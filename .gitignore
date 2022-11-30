@@ -131,3 +131,10 @@ dist
 
 # Vim swap files
 *.swp
+
+# Emacs lock files
+.\#*
+
+# Generated theme.css file
+css/theme.css
+css/theme.css.map
