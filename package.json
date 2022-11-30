@@ -16,5 +16,8 @@
     "bidirectional"
   ],
   "author": "Lawrence Dunn",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "sass": "^1.56.1"
+  }
 }
