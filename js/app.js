@@ -40,16 +40,19 @@ class AxiomsColumn extends React.Component {
               <div className="block">
                 <label className="label">Add a new equational axiom</label>
                 <div className="field has-addons">
-                  <div className="control">
-                    <input className="input" type="text" placeholder="expr1 = expr2"></input>
-                  </div>
-                  <div className="control">
-                    <a className="button is-info">
-                      Add
-                    </a>
-                  </div>
+                <div className="control">
+                    <input className="input" type="text" placeholder="name"></input>
                 </div>
-              <p className="help">Write a new axiom in the form expr1 = expr2</p>
+                <div className="control">
+                    <input className="input" type="text" placeholder="expr1 = expr2"></input>
+                </div>
+                <div className="control">
+                  <a className="button is-info">
+                    Add
+                  </a>
+                </div>
+              </div>
+                <p className="help">Add an axiom in the form expr1 = expr2. Make sure to give it a meaningful name. </p>
             </div>
             </div>);
     };
