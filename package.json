@@ -4,9 +4,10 @@
   "description": "Main application for Rewrite Live",
   "main": "index.js",
   "scripts": {
-      "test": "echo \"Error: no test specified\" && exit 1",
-      "sass": "sass",
-      "build-sass": "sass scss/theme.scss css/theme.css"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "sass": "sass",
+    "http-server": "http-server",
+    "build-sass": "sass scss/theme.scss css/theme.css"
   },
   "repository": {
     "type": "git",
@@ -24,6 +25,9 @@
   },
   "dependencies": {
     "bulma": "^0.9.4",
-    "normalize.css": "^8.0.1"
+    "http-server": "^14.1.1",
+    "normalize.css": "^8.0.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   }
 }
