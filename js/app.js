@@ -6,14 +6,36 @@ class Hello extends React.Component {
     };
 }
 
+class Axiom extends React.Component {
+    constructor(props) {
+        super(props);
+    };
+
+    render() {
+        return(<li> <div className="axiom_name">{this.props.name}</div> {this.props.left} = {this.props.right} </li>);
+    };
+}
+
 class AxiomsColumn extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { axioms: this.props.axioms };
+    };
     render () {
         console.log("Rendering AxiomsColumn");
-        return <div>
+        let e_axioms;
+        if (!this.state.axioms) {
+            e_axioms = <p>Axiom set is empty. Add some equalities to get started!</p>
+        } else {
+            e_axioms = this.state.axioms.map ((axiom) => <Axiom {...axiom} />);
+        }
+        console.log(e_axioms);
+        return (
+            <div>
             <h3 className="title is-3">Axioms</h3>
-            <div className="block">
-            <label className="label">Current axiom set</label>
-                Empty
+              <div className="block">
+                <label className="label">Current axiom set</label>
+                <ol class="axioms_list">{e_axioms}</ol>
               </div>
               <div className="block">
                 <label className="label">Add a new equational axiom</label>
@@ -27,11 +49,14 @@ class AxiomsColumn extends React.Component {
                     </a>
                   </div>
                 </div>
-            <p className="help">Write a new axiom in the form expr1 = expr2</p>
+              <p className="help">Write a new axiom in the form expr1 = expr2</p>
             </div>
-            </div>;
+            </div>);
     };
 }
 
-ReactDOM.render(<AxiomsColumn />, document.getElementById('axioms-root'));
+const axiom1 = {name: "ax1", left: "hello", right: "world" };
+const axiom2 = {name: "ax2", left: "goodbye", right: "world" };
+
+ReactDOM.render(<AxiomsColumn axioms={[axiom1, axiom2]} />, document.getElementById('axioms-root'));
 ReactDOM.render(<Hello name='World'/>, document.getElementById('goal-root'));

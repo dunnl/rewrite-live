@@ -32,4 +32,12 @@
     background-color: #A9BCE5;
 }
 
+.axiom_name {
+    display:inline-block;
+    min-width: 3em;
+    font-weight: 700;
+}
 
+.axioms_list {
+    list-style: none;
+}
