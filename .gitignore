@@ -138,3 +138,6 @@ dist
 # Generated theme.css file
 css/theme.css
 css/theme.css.map
+
+# Notes
+*.org
