@@ -1,6 +1,22 @@
+.navbar-title {
+    padding-right: 4em;
+}
+
 .expr {
     font-size: 40px;
     font-weight: 700;
+    letter-spacing:0.1em;
+}
+
+.no-bullets {
+    list-style-type: none;
+}
+
+.script {
+    font-family: monospace;
+}
+
+.expr-hi {
     padding: 5px 10px 5px 10px;
     margin: 5px 10px 5px 10px;
     border: 0px solid black;
@@ -29,6 +45,10 @@
 
 .c6 {
     background-color: #A9BCE5;
+}
+
+.main-notice {
+    margin-bottom: 4em;
 }
 
 .axiom_name {
