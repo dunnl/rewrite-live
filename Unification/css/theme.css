@@ -1,0 +1,27 @@
+.eqn {
+    display: block;
+    margin: 1em 0.5em 1em 0.5em;
+    font-size: 14px;
+}
+
+.expr {
+    display: inline;
+    letter-spacing: 0.03em;
+}
+
+.var {
+    color: gray;
+}
+
+.fn {
+    font-weight:500;
+    color: black;
+}
+
+.mgustate {
+    display: flex;
+}
+
+.update {
+    padding: 1.25em;
+}
