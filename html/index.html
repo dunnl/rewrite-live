@@ -1,117 +1,103 @@
 <!doctype html>
 <html class="no-js" lang="">
-
-<head>
-  <meta charset="utf-8">
-  <title>Rewrite Live!</title>
-  <meta name="description" content="">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <meta property="og:title" content="">
-  <meta property="og:type" content="">
-  <meta property="og:url" content="">
-  <meta property="og:image" content="">
-
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-
-  <link rel="manifest" href="site.webmanifest">
-  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-  <link rel="manifest" href="site.webmanifest">
-
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-
-  <link rel="stylesheet" href="css/normalize.css">
-  <link rel="stylesheet" href="css/main.css">
-  <link rel="stylesheet" href="css/rewrite.css">
-
-  <meta name="theme-color" content="#fafafa">
-</head>
-<body>
-  <main>
-    <section class="section">
-      <div class="container">
-        <h1 class="title is-1">
-          REWRITE LIVE
-        </h1>
-        <h2 class="subtitle is-3">
-          A bidirectional interface for rewriting
-        </h2>
-        <div class="columns">
-          <div class="column">
-            <span class="expr c1">
-              g <span class="expr c2">
-                (g <span class= "expr highlight ">x</span>
-                (<span class="expr c3">
-                  f <span class= "expr highlight">x</span>
+  <head>
+    <meta charset="utf-8">
+    <title>Rewrite Live!</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title" content="">
+    <meta property="og:type" content="">
+    <meta property="og:url" content="">
+    <meta property="og:image" content="">
+    <meta name="theme-color" content="#fafafa">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="css/rewrite.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  </head>
+  <body>
+    <main>
+      <section class="section">
+        <div class="container">
+          <h1 class="title is-1">
+            REWRITE LIVE
+          </h1>
+          <h2 class="subtitle is-3">
+            A bidirectional interface for rewriting
+          </h2>
+          <div class="columns">
+            <div class="column">
+              <span class="expr c1">
+                g <span class="expr c2">
+                  (g <span class= "expr highlight ">x</span>
+                  (<span class="expr c3">
+                    f <span class= "expr highlight">x</span>
+                    <span class="expr">y</span>
+                  </span>)
+                  )
+                </span>
+                (<span class="expr">
+                  g <span class= "expr highlight">x</span>
                   <span class="expr">y</span>
                 </span>)
-                )
               </span>
-              (<span class="expr">
-                g <span class= "expr highlight">x</span>
-                <span class="expr">y</span>
-              </span>)
-            </span>
-            <span class="expr">
-              =
-            </span>
-            <span class="expr c4">
-              g <span class= "expr highlight ">x</span>
-              (<span class="expr">
-                f <span class= "expr highlight c5">x</span>
-                <span class="expr">y</span>
-              </span>)
-            </span>
+              <span class="expr">
+                =
+              </span>
+              <span class="expr c4">
+                g <span class= "expr highlight ">x</span>
+                (<span class="expr">
+                  f <span class= "expr highlight c5">x</span>
+                  <span class="expr">y</span>
+                </span>)
+              </span>
+            </div>
+          </div>
+          <div class="columns">
+            <div class="column">
+              <h3 class="title is-3">Axioms</h3>
+              <div class="block">
+                <label class="label">Current axiom set</label>
+                Empty
+              </div>
+              <div class="block">
+                <label class="label">Add a new equational axiom</label>
+                <div class="field has-addons">
+                  <div class="control">
+                    <input class="input" type="text" placeholder="expr1 = expr2">
+                  </div>
+                  <div class="control">
+                    <a class="button is-info">
+                      Add
+                    </a>
+                  </div>
+                </div>
+                <p class="help">Write a new axiom in the form \(\textit{expr}_1 = \textit{expr}_2\)</p>
+              </div>
+            </div>
+            <div class="column">
+              <h3 class="title is-3">Script</h3>
+              <ol>
+                <li> Rewrite add_comm ← at 2. </li>
+                <li> Rewrite add_assoc → at 3. </li>
+              </ol>
+            </div>
+            <div class="column">
+              <h3 class="title is-3">History</h3>
+              <ol>
+                <li> \[f x (g y z) = f (f (g z y) z) x\] </li>
+                <li> \[f x (g y z) = f (f (g z y) z) x\] </li>
+                <li> \[f x (g y z) = f (f (g z y) z) x\] </li>
+              </ol>
+            </div>
           </div>
         </div>
-
-        <div class="columns">
-          <div class="column">
-	    <h3 class="title is-3">Axioms</h3>
-	    <div class="block">
-	      <label class="label">Current axiom set</label>
-	      Empty
-	    </div>
-	    <div class="block">
-	      <label class="label">Add a new equational axiom</label>
-	      <div class="field has-addons">
-		<div class="control">
-		  <input class="input" type="text" placeholder="expr1 = expr2">
-		</div>
-		<div class="control">
-		  <a class="button is-info">
-		    Add
-		  </a>
-		</div>
-	      </div>
-	      <p class="help">Write a new axiom in the form \(\textit{expr}_1 = \textit{expr}_2\)</p>
-	    </div>
-	  </div>
-	  <div class="column">
-	    <h3 class="title is-3">Script</h3>
-	    <ol>
-	      <li> Rewrite add_comm ← at 2. </li>
-              <li> Rewrite add_assoc → at 3. </li>
-	    </ol>
-	  </div>
-	  <div class="column">
-	    <h3 class="title is-3">History</h3>
-	    <ol>
-	      <li> \[f x (g y z) = f (f (g z y) z) x\] </li>
-	      <li> \[f x (g y z) = f (f (g z y) z) x\] </li>
-	      <li> \[f x (g y z) = f (f (g z y) z) x\] </li>
-	    </ol>
-	  </div>
-	</div>
-      </div>
-    </section>
-  </main>
-</div>
-</section>
-</main>
-</body>
-
+      </section>
+    </main>
+  </body>
 </html>
