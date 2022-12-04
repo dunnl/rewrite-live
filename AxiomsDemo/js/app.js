@@ -1,6 +1,34 @@
-class Hello extends React.Component {
+class Goal extends React.Component {
     render() {
-        return <p>Hello {this.props.name}</p>;
+        return (
+            <div>
+                <div id="goal-title">
+                  <h1 className="title mb-0 is-1">Goal</h1>
+                </div>
+            <p id="goal-display">
+            <span className="expr">
+              g <span className="expr">
+                (g <span className= "expr highlight ">x</span>
+                (<span className="expr">
+                  f <span className= "expr highlight">x</span>
+                  <span className="expr">y</span></span>))
+              </span>
+              (<span className="expr">
+                g <span className= "expr highlight">x</span>
+                <span className="expr">y</span>
+              </span>)
+            </span>
+            <span className="expr">
+              =
+            </span>
+            <span className="expr">
+              g <span className= "expr highlight ">x</span>
+              (<span className="expr">
+                f <span className= "expr highlight">x</span>
+                <span className="expr">y</span>
+              </span>)
+            </span></p>
+            </div>);
     };
 }
 
@@ -24,9 +52,8 @@ class Axioms extends React.Component {
     handleAddAxiom(new_axiom) {
         let left = new_axiom.expr.split('=')[0];
         let right = new_axiom.expr.split('=')[1];
-        this.setState((oldState) => {
-            return {axioms: oldState.axioms.concat({name:new_axiom.name, left:left, right:right})}
-        });
+        this.setState(oldState => ({axioms: oldState.axioms.concat({name:new_axiom.name, left:left, right:right})})
+        );
     }
 
     render () {
@@ -109,4 +136,4 @@ const axiom1 = {name: "ax1", left: "hello", right: "world" };
 const axiom2 = {name: "ax2", left: "goodbye", right: "world" };
 const default_axioms = [axiom1, axiom2];
 ReactDOM.render(<Axioms axioms={[]} />, document.getElementById('axioms-root'));
-ReactDOM.render(<Hello name='World'/>, document.getElementById('goal-root'));
+ReactDOM.render(<Goal/>, document.getElementById('goal-root'));

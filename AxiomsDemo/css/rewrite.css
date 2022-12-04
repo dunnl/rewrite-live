@@ -1,9 +1,8 @@
 .expr {
     font-size: 40px;
     font-weight: 700;
-    padding: 10px;
-    margin: 10px;
-    #border: 1px solid black;
+    padding: 5px 10px 5px 10px;
+    margin: 5px 10px 5px 10px;
     border: 0px solid black;
     display: inline-block;
 }
@@ -40,4 +39,12 @@
 
 .axioms_list {
     list-style: none;
+}
+
+#goal-title {
+    margin:auto;
+    text-align: center;
+}
+
+#goal-display {
 }
