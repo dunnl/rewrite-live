@@ -6,7 +6,7 @@
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "sass": "sass",
-        "build": "cp html _out/ -r",
+        "build": "mkdir -p _out/ && cp html/* _out/ -r",
         "serve": "http-server _out/ -c-1",
         "build-sass": "sass scss/theme.scss css/theme.css"
     },
