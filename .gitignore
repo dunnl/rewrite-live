@@ -1,3 +1,20 @@
+######################
+# My ignores
+
+# Vim swap files
+*.swp
+
+# Emacs lock files
+.\#*
+
+# output directory
+_out/
+
+# Notes
+*.org
+
+######################
+
 # Logs
 logs
 *.log
@@ -128,16 +145,3 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
-
-# Vim swap files
-*.swp
-
-# Emacs lock files
-.\#*
-
-# Generated theme.css file
-css/theme.css
-css/theme.css.map
-
-# Notes
-*.org
