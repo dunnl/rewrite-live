@@ -1,37 +1,3 @@
-class Goal extends React.Component {
-    render() {
-        return (
-            <div>
-                <div id="goal-title">
-                  <h1 className="title mb-0 is-1">Goal</h1>
-                </div>
-            <p id="goal-display">
-            <span className="expr">
-              g <span className="expr">
-                (g <span className= "expr highlight ">x</span>
-                (<span className="expr">
-                  f <span className= "expr highlight">x</span>
-                  <span className="expr">y</span></span>))
-              </span>
-              (<span className="expr">
-                g <span className= "expr highlight">x</span>
-                <span className="expr">y</span>
-              </span>)
-            </span>
-            <span className="expr">
-              =
-            </span>
-            <span className="expr">
-              g <span className= "expr highlight ">x</span>
-              (<span className="expr">
-                f <span className= "expr highlight">x</span>
-                <span className="expr">y</span>
-              </span>)
-            </span></p>
-            </div>);
-    };
-}
-
 class Axiom extends React.Component {
     constructor(props) {
         super(props);
@@ -136,4 +102,3 @@ const axiom1 = {name: "ax1", left: "hello", right: "world" };
 const axiom2 = {name: "ax2", left: "goodbye", right: "world" };
 const default_axioms = [axiom1, axiom2];
 ReactDOM.render(<Axioms axioms={[]} />, document.getElementById('axioms-root'));
-ReactDOM.render(<Goal/>, document.getElementById('goal-root'));
