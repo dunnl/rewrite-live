@@ -10,7 +10,7 @@ When creating a new Spago project, you can use
 `spago init --no-comments` or `spago init -C`
 to generate this file without the comments in this block.
 -}
-{ name = "my-project"
+{ name = "rewrite-live"
 , dependencies =
   [ "arrays"
   , "console"
@@ -34,5 +34,5 @@ to generate this file without the comments in this block.
   , "web-html"
   ]
 , packages = ./packages.dhall
-, sources = [ "src/**/*.purs", "test/**/*.purs" ]
+, sources = [ "purs/**/*.purs", "purs_test/**/*.purs" ]
 }

@@ -10,9 +10,7 @@ import React.Basic.Classic (Component, JSX, createComponent, make)
 import React.Basic.DOM as R
 import React.Basic.DOM.Events (capture, targetValue)
 
-
 -- | # Equations and assignments
-
 
 -- | An `Equation` is a pair of expressions.
 type Equation = Pair Expr
@@ -74,7 +72,7 @@ eqnToJSX (Pair ex1 ex2) =
 -- | brackets.
 dsgpToJSX :: Equation -> JSX
 dsgpToJSX (Pair ex1 ex2) =
-  R.div { className: "expr",
+  R.div { className: "expr-inline",
           children: [ R.text "\\(\\langle\\)",
                       exprToJSX ex1,
                       R.text ", ",

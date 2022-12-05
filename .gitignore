@@ -15,6 +15,20 @@ _out/
 
 ######################
 
+# Purescript stuff
+/bower_components/
+/node_modules/
+/.pulp-cache/
+/output/
+/generated-docs/
+/.psc-package/
+/.psc*
+/.purs*
+/.psa*
+/.spago
+
+######################
+
 # Logs
 logs
 *.log

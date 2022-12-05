@@ -89,7 +89,7 @@ toElementExpr expr =
 
 exprToJSX :: Expr -> JSX
 exprToJSX expr =
-  R.span {className: "expr",
+  R.span {className: "expr-inline",
          children: [go expr]}
   where
     go (Var x) =

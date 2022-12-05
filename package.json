@@ -7,6 +7,7 @@
         "test": "echo \"Error: no test specified\" && exit 1",
         "sass": "sass",
         "build": "npm run build-sass && npm run build-html",
+        "build-purs": "mkdir -p _out/ && spago bundle-app --to _out/unification.js",
         "build-html": "mkdir -p _out/ && cp html/* _out/ -r",
         "build-sass": "mkdir -p _out/ && sass scss/theme.scss _out/theme.css",
         "watch-sass": "mkdir -p _out/ && sass --watch ./scss/theme.scss:_out/theme.css",
