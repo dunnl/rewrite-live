@@ -41616,7 +41616,7 @@
       throw new Error("Failed pattern match at Expr (line 95, column 5 - line 97, column 38): " + [v.constructor.name]);
     };
     return span3()({
-      className: "expr",
+      className: "expr-inline",
       children: [go2(expr)]
     });
   };
@@ -42041,7 +42041,7 @@
               return text("The system cannot be unified.");
             }
             ;
-            throw new Error("Failed pattern match at Unification (line 274, column 42 - line 276, column 100): " + [res.constructor.name]);
+            throw new Error("Failed pattern match at Unification (line 272, column 42 - line 274, column 100): " + [res.constructor.name]);
           }()]
         })]
       }), div2()({
@@ -42052,7 +42052,7 @@
   };
   var dsgpToJSX = function(v) {
     return div2()({
-      className: "expr",
+      className: "expr-inline",
       children: [text("\\(\\langle\\)"), exprToJSX(v.value0), text(", "), exprToJSX(v.value1), text("\\(\\rangle\\)")]
     });
   };
@@ -42122,7 +42122,7 @@
           });
         }
         ;
-        throw new Error("Failed pattern match at Unification (line 162, column 3 - line 188, column 91): " + [eqn.constructor.name]);
+        throw new Error("Failed pattern match at Unification (line 160, column 3 - line 186, column 91): " + [eqn.constructor.name]);
       }
       ;
       while (!$tco_done) {
@@ -42145,7 +42145,7 @@
       });
     }
     ;
-    throw new Error("Failed pattern match at Unification (line 153, column 3 - line 157, column 39): " + [v.constructor.name]);
+    throw new Error("Failed pattern match at Unification (line 151, column 3 - line 155, column 39): " + [v.constructor.name]);
   };
   var solvingStep = function($copy_st) {
     return function($copy_start) {
@@ -42175,7 +42175,7 @@
             return;
           }
           ;
-          throw new Error("Failed pattern match at Unification (line 208, column 3 - line 211, column 65): " + [v.constructor.name]);
+          throw new Error("Failed pattern match at Unification (line 206, column 3 - line 209, column 65): " + [v.constructor.name]);
         }
         ;
         while (!$tco_done) {
@@ -42282,7 +42282,7 @@
       });
     }
     ;
-    throw new Error("Failed pattern match at Unification (line 326, column 3 - line 332, column 28): " + [v.constructor.name]);
+    throw new Error("Failed pattern match at Unification (line 324, column 3 - line 330, column 28): " + [v.constructor.name]);
   };
   var demoJSX = /* @__PURE__ */ make()(demoComponent)({
     initialState,
