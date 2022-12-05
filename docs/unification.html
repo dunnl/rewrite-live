@@ -1,0 +1,96 @@
+<!doctype html>
+<html class="no-js" lang="">
+  <head>
+    <meta charset="utf-8">
+    <title>Rewrite Live!</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title" content="">
+    <meta property="og:type" content="">
+    <meta property="og:url" content="">
+    <meta property="og:image" content="">
+    <meta name="theme-color" content="#fafafa">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="theme.css">
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script defer type="module" src="/unification.js"></script>
+  </head>
+  <body>
+    <main>
+      <section class="section">
+        <div class="container">
+          <nav class="navbar" role="navigation" aria-label="main navigation">
+            <div class="navbar-brand">
+              <div class="navbar-title">
+                <h1 class="title is-1">
+                  REWRITE LIVE
+                </h1>
+                <h2 class="subtitle is-3">
+                  A bidirectional interface for rewriting
+                </h2>
+              </div>
+            </div>
+            <div id="navbarBasicExample" class="navbar-menu">
+              <div class="navbar-start">
+                <a href="/" class="navbar-item">
+                  Home
+                </a>
+                <div class="navbar-item has-dropdown is-hoverable">
+                  <a class="navbar-link">
+                    Demos
+                  </a>
+                  <div class="navbar-dropdown">
+                    <a href="/unification.html" class="navbar-item">
+                      Unification engine
+                    </a>
+                  </div>
+                </div>
+                <div class="navbar-item is-hoverable">
+                  <a href="/docs/" class="navbar-item">
+                    Purescript docs
+                  </a>
+                </div>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </section>
+      <section class="section">
+        <div class="container">
+          <div class="columns is-centered">
+            <div class="column is-half">
+              <section class="main-notice block">
+                <div class="notification is-info">
+                  <h1 class='title'>
+                    Example
+                  </h1>
+                  Try the following example to get started:
+                  <p>F (x, G (x, y))</p>
+                  <p>=</p>
+                  <p>F (G (F (y, v, u)), G (G (F (y, v, u)), H (c)))</p>
+                </div>
+              </section>
+            </div>
+          </div>
+          <div class="columns">
+            <div class="column">
+              <div id="unification-root"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer id="footer" class="footer">
+      <div class="content has-text-centered">
+        <p>
+          Made with <a href="https://www.purescript.org/">Purescript</a>, <a href="https://reactjs.org/">React</a>, and <a href="https://bulma.io/documentation/">Bulma</a> 😍
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>

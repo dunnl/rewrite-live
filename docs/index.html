@@ -1,0 +1,127 @@
+<!doctype html>
+<html class="no-js" lang="">
+  <head>
+    <meta charset="utf-8">
+    <title>Rewrite Live!</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title" content="">
+    <meta property="og:type" content="">
+    <meta property="og:url" content="">
+    <meta property="og:image" content="">
+    <meta name="theme-color" content="#fafafa">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="theme.css">
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  </head>
+  <body>
+    <main>
+      <section class="section">
+        <div class="container">
+          <nav class="navbar" role="navigation" aria-label="main navigation">
+            <div class="navbar-brand">
+              <div class="navbar-title">
+                <h1 class="title is-1">
+                  REWRITE LIVE
+                </h1>
+                <h2 class="subtitle is-3">
+                  A bidirectional interface for rewriting
+                </h2>
+              </div>
+            </div>
+            <div id="navbarBasicExample" class="navbar-menu">
+              <div class="navbar-start">
+                <a href="/" class="navbar-item">
+                  Home
+                </a>
+                <div class="navbar-item has-dropdown is-hoverable">
+                  <a class="navbar-link">
+                    Demos
+                  </a>
+                  <div class="navbar-dropdown">
+                    <a href="/unification.html" class="navbar-item">
+                      Unification engine
+                    </a>
+                  </div>
+                </div>
+                <div class="navbar-item is-hoverable">
+                  <a href="/docs/" class="navbar-item">
+                    Purescript docs
+                  </a>
+                </div>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </section>
+      <section class="section">
+        <div class="container">
+          <div class="columns is-centered">
+            <div class="column is-half">
+              <section class="main-notice block">
+                <div class="notification is-warning">
+                  <h1 class='title'>
+                    Notice
+                  </h1>
+                  This page is a static mockup of Rewrite Live! Most functionality is not currently implemented.
+                </div>
+              </section>
+            </div>
+          </div>
+          <div class="columns">
+            <div class="column">
+              <div class="expr-goal">
+                <span class="expr-hi c1">F(<span class="expr-hi c2">F(x,<span class="expr-hi c3">F(x,y)</span>),<span class="expr-hi c4">G(x,y)</span>)</span></span>
+                <span class="expr-hi">=</span>
+                <span class="expr-hi c5">F(G(x,z),<span class="expr-hi c6">F(x,y)</span>)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="section">
+        <div class="container">
+          <div class="columns">
+            <div class="column">
+              <div id="axioms-root">
+              </div>
+            </div>
+            <div class="column">
+              <h3 class="title is-3">Coq Script</h3>
+              <ol class="script no-bullets">
+                <li> rewrite add_comm ← at 2. </li>
+                <li> rewrite add_assoc → at 3. </li>
+              </ol>
+            </div>
+            <div class="column">
+              <h3 class="title is-3">LaTeX Preview</h3>
+              \[\begin{aligned} F (x, G(y,z)) &= F(F(G(z,y),z),H(y))\\
+              &= F(F(x,z),H(y)) \\
+              &= F(G(y),H(y)) \\
+              &= \ldots \\
+              &= G(H(G(z,y),z),F(y, z)) \\
+              \end{aligned}\]
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer id="footer" class="footer">
+      <div class="content has-text-centered">
+        <p>
+          Made with <a href="https://www.purescript.org/">Purescript</a>, <a href="https://reactjs.org/">React</a>, and <a href="https://bulma.io/documentation/">Bulma</a> 😍
+        </p>
+      </div>
+    </footer>
+    <script type="text/babel" defer src="/js/axioms.js"></script>
+  </body>
+</html>
