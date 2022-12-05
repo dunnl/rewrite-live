@@ -1,5 +1,6 @@
 module Unification where
 
+import Data.String as Str
 import Data.Array(fromFoldable)
 import Data.Either (Either(..))
 import Effect (Effect)
@@ -57,21 +58,22 @@ varElim_asgns v e asgns =
 
 -- | ## JSX for equations and assignments
 
--- | Render an `Equation` as an HTML `div`.
-eqnToJSX :: Equation -> JSX
-eqnToJSX (Pair ex1 ex2) =
+-- | Render an `Equation` as an HTML `div .eqn`.
+renderEqn :: Equation -> JSX
+renderEqn (Pair ex1 ex2) =
   R.div { className: "eqn",
-          children: [ exprToJSX ex1,
-                      R.text " = ",
-                      exprToJSX ex2 ]
+          children: [ exprToJSX ex1
+                    , R.text " = "
+                    , exprToJSX ex2
+                    ]
         }
 
--- | Render an `Equation` as an HTML `div`, formatting it as a
--- | disagreement pair for unification. This follows the common
--- | convention, displaying the expressions as a pair with angle
--- | brackets.
-dsgpToJSX :: Equation -> JSX
-dsgpToJSX (Pair ex1 ex2) =
+-- | Render an `Equation` as an HTML `div .expr-inline`.
+
+-- | This is pretty-printed per common convention, as a pair between
+-- | angle brackets.
+renderDsgp :: Equation -> JSX
+renderDsgp (Pair ex1 ex2) =
   R.div { className: "expr-inline",
           children: [ R.text "\\(\\langle\\)",
                       exprToJSX ex1,
@@ -81,35 +83,25 @@ dsgpToJSX (Pair ex1 ex2) =
                       ]
         }
 
--- | Convert a set of `Equations` into a list of rendered HTML.
-eqnsToJSX :: Equations -> List JSX
-eqnsToJSX eqns = dsgpToJSX <$> eqns
-
 -- | Convert a set of `Equations` into an HTML ordered list.
-eqnsToJSX' :: Equations -> JSX
-eqnsToJSX' eqns =
-  R.ol_ (fromFoldable $ (\x -> R.li {children:[x]}) <$> (eqnsToJSX eqns))
+renderEqns :: Equations -> JSX
+renderEqns eqns =
+  R.ol_ (fromFoldable $ (\x -> R.li {children:[x]}) <$> (renderDsgp <$> eqns))
 
 -- | Render an `Assignment` into HTML.
-asgnToJSX :: Assignment -> JSX
-asgnToJSX ({variable: v, assignment: ex2}) =
+renderAsgn :: Assignment -> JSX
+renderAsgn ({variable: v, assignment: ex2}) =
   R.div { className: "eqn",
           children: [ exprToJSX (Var v),
                       R.text " \\(\\mapsto\\) ",
                       exprToJSX ex2 ]
         }
-
--- | Convert a set of `Assignments` into a list of rendered HTML.
-asgnsToJSX :: Assignments -> List JSX
-asgnsToJSX asgns = asgnToJSX <$> asgns
-
--- | Convert a set of `Assignments` into an HTML ordered list.
-asgnsToJSX' :: Assignments -> JSX
-asgnsToJSX' asgns =
-  R.ol_ (fromFoldable $ asgnsToJSX asgns)
-
+-- | Render a set of `Assignments` an HTML `ol`.
+-- |
 -- | # Most general unifier engine
--- | Can I put something here?
+renderAsgns :: Assignments -> JSX
+renderAsgns asgns =
+  R.ol_ (fromFoldable $ (renderAsgn <$> asgns))
 
 -- | A state value maintained during unification.  The `Equations`
 -- | represent unprocessed disagreement pairs. (Pedantically speaking
@@ -145,18 +137,19 @@ type MGU_Update = Record (msg :: JSX, next :: MGU_State)
 -- | Given a current state, take one step in the unification
 -- | procedure. Operationally, we pop off a disagreement pair from the
 -- | stack of unprocessed equations (if no such disagreement pairs
--- | exist,
-processOneEquation :: MGU_State -> Either MGU_Result MGU_Update
-processOneEquation st =
+-- | exist, we are done and unification is successful.) and process
+-- | it according to a simple algorithm.
+takeUnificationStep :: MGU_State -> Either MGU_Result MGU_Update
+takeUnificationStep st =
   case (popList st.equations) of
     Nothing -> -- There are no non-assignment equations left, we are done
       Left (Solvable st.assignments)
     Just (Tuple eqn rest) -> -- We have a new equation to consider
-      step eqn (st {equations = rest})
+      processEquation eqn (st {equations = rest})
 
--- The state argument should not contain equation
-step :: Equation -> MGU_State ->  Either MGU_Result MGU_Update
-step eqn st =
+-- | Process one equation during unification.
+processEquation :: Equation -> MGU_State ->  Either MGU_Result MGU_Update
+processEquation eqn st =
   case eqn of
     input@(Pair (Var x) (Var y)) ->
       if x == y
@@ -164,13 +157,13 @@ step eqn st =
         Right { next: st,
                 msg: R.span { children:
                               [ R.text "Both variables of ",
-                                dsgpToJSX input,
+                                renderDsgp input,
                                 R.text " are equal, so this is not a disagreement and we can discard this constraint. "
                               ]}}
       else -- We have a var=var constraint, substitute and hang on to it
         Right $ pushNewAssignment x (Var y) st
     Pair (Node f args) (Var v) ->
-      step (Pair (Var v) (Node f args)) st
+      processEquation (Pair (Var v) (Node f args)) st
     Pair (Var v) (Node f args) ->
       Right $ pushNewAssignment v (Node f args) st
     Pair n1@(Node f1 args1) n2@(Node f2 args2) ->
@@ -185,6 +178,12 @@ step eqn st =
                         <> "We push these new constraints back onto the stack.",
                         next: st {equations = (zipWith Pair args1 args2) <> st.equations}}
 
+-- | Finish one successful step of unification that has resulted in a
+-- | new assignment of an expression to a variable. In the `next`
+-- | state returned in the `MGU_Update`, we perform the associated
+-- | substitution in all remaining disagreement pairs as well as
+-- | throughout the current value of the m.g.u. Finally, we add the
+-- | new assignment to m.g.u.
 pushNewAssignment :: String -> Expr -> MGU_State -> MGU_Update
 pushNewAssignment v e st =
   { msg:
@@ -196,161 +195,251 @@ pushNewAssignment v e st =
       equations: varElim_eqns v e st.equations
     }}
 
+-- | The self-contained history of an execution of the unification
+-- | algorithm.
+-- |
+-- | - `start` contains the initial set of equations
+-- | - `history` contains a list of successful steps taken during unification.
+-- |    This list will be empty if the procedure fails on the first step.
+-- | - `final` contains the result of unification
 type Trace =
   Record (start :: Equations,
           history :: List MGU_Update,
           final :: MGU_Result)
 
-solvingStep :: MGU_State -> Equations -> List MGU_Update -> Trace
-solvingStep st start history =
-  case processOneEquation st of
-    Left result -> { start, history, final: result }
-    Right {msg, next} ->
-      solvingStep next start (history <> (Cons {msg, next} Nil))
+-- | Construct the initial state of the unification procedure from an
+-- | equation between two expressions.
+equationToInitialState :: Equation -> MGU_State
+equationToInitialState eqn =
+  {assignments: Nil, equations: singleton eqn}
 
-trySolving :: Equations -> Trace
-trySolving eqns =
-  solvingStep {assignments: Nil, equations: eqns} eqns Nil
+-- | Attempt to unify an equation bewteen two expressions.
+solveUnificationProblem :: Equation -> Trace
+solveUnificationProblem eqn =
+  go (equationToInitialState eqn) Nil
+  where
+    go :: MGU_State -> List MGU_Update -> Trace
+    go st history =
+      case takeUnificationStep st of
+        Left result -> { start: singleton eqn
+                       , history
+                       , final: result }
+        Right {msg, next} ->
+          go next (history <> (Cons {msg, next} Nil))
 
-tryUnifying :: Equation -> MGU_Result
-tryUnifying = _.final <<< trySolving <<< singleton
-
+-- | Given an expression, annotate the entire expression with the
+-- | results of unification.
 unifyAll :: Expr -> Int -> Expr -> AnnExpr (Tuple Int MGU_Result)
 unifyAll e_uni n e_main =
   case e_main of
     Var v -> AVar v
     Node fn args ->
-      let mgu_here = tryUnifying (Pair e_uni e_main)
+      let mgu_here = _.final $ solveUnificationProblem (Pair e_uni e_main)
       in ANode fn (lweird (unifyAll e_uni) (n+1) args) (Tuple n mgu_here)
 
+-- | I am a weird function.
 weird :: Int -> Expr -> AnnExpr Int
 weird n (Var v) = AVar v
 weird n (Node fn args) = ANode fn (lweird weird (n + 1) args) n
 
--- | ## React component
-mguStateComponent :: Component (Record (state :: MGU_State))
-mguStateComponent = createComponent "State"
+-- | ## Rendering values
 
-mguResultComponent :: Component (Record (res :: MGU_Result))
-mguResultComponent = createComponent "Result"
+-- | ### Helpers
 
-mguTraceComponent :: Component (Record (trace :: Trace))
-mguTraceComponent = createComponent "Trace"
+-- | Display an array of `div .column` values inside a single `div .columns`.
+inRowOfColumns :: String -> Array JSX -> JSX
+inRowOfColumns classes children =
+    R.div { className: "columns" <>
+            (if Str.length classes > 0
+             then " " <> classes
+             else mempty)
+          , children
+          }
 
-stateJSX :: Record (state :: MGU_State) -> JSX
-stateJSX {state} =
-  R.div { className: "box",
-          children:
-          [R.div { className: "columns mgustate",
-                   children:
-                   [ R.div { className: "column is-three-fifths",
-                             children: [ R.h5 { className: "has-text-weight-bold",
-                                                children: [R.text "Potential disagreement pairs"]}
-                                       , eqnsToJSX' state.equations]},
-                     R.div { className: "column",
-                             children: [ R.h5 { className: "has-text-weight-bold",
-                                                children: [R.text "Current m.g.u. \\(\\sigma\\)"] }
-                                       , asgnsToJSX' state.assignments]}]}]}
+-- | Render some content as a `div .column`.
+inColumn :: String -> Array JSX -> JSX
+inColumn classes children =
+  R.div { className: "column" <>
+          (if Str.length classes > 0
+           then " " <> classes
+           else mempty)
+        , children
+        }
 
-startJSX :: Equations -> JSX
-startJSX eqns =
-  R.div { className: "columns is-centered",
-          children:
-          [ R.div { className: "column",
-                    children: [R.div { className: "update",
-                                       children: [R.text "Attempting to compute a most general unifier for the following system."]}]},
-            R.div { className: "column is-three-fifths",
-                    children: [stateJSX {state: {assignments: Nil, equations: eqns}}]}]}
+-- | ### Renderers
 
-finalJSX :: MGU_Result -> JSX
-finalJSX res =
-  R.div { className: "columns is-centered",
-          children:
-          [ R.div { className: "column"
-                  , children: [R.div { className: "update",
-                                       children: [
-                                         case res of
-                                           Solvable asgns -> R.text "The equation is solvable according to the displayed unifier."
-                                           Unsolvable str -> R.text "The system cannot be unified."
-                                         ]
-                                     }
-                              ]
-                    }
-          , R.div { className: "column is-three-fifths"
-                  , children: []
-                  }
+-- | Render a `MGU_State` as a HTML `div .box`
+renderMguState :: MGU_State -> JSX
+renderMguState state =
+  R.div { className: "box"
+        , children:
+          [ inRowOfColumns "mgustate"
+            [ inColumn "is-three-fifths"
+              [ R.h5 { className: "has-text-weight-bold",
+                       children: [R.text "Potential disagreement pairs"]}
+              , renderEqns state.equations]
+            , inColumn ""
+              [ R.h5 { className: "has-text-weight-bold",
+                       children: [R.text "Current m.g.u. \\(\\sigma\\)"] }
+              , renderAsgns state.assignments
+              ]
+            ]
           ]
         }
 
-updateJSX :: MGU_Update -> JSX
-updateJSX {msg, next} =
+
+-- | Given a set of `Equations` used as the input for unification,
+-- | render an HTML `div .columns` displaying information about the
+-- | start of the problem.
+renderMguStart :: Equations -> JSX
+renderMguStart eqns =
+  inRowOfColumns "is-centered"
+  [ inColumn "" [update]
+  , inColumn "" [state]
+  ]
+  where
+    start_msg = "Attempting to compute a most general unifier for the following system."
+    update =  R.div { className: "update"
+                    , children: [R.text start_msg]
+                    }
+    state = renderMguState
+            { assignments: Nil
+            , equations: eqns
+            }
+
+
+-- | Render the `MGU_Result` resulting from a run of the unification problem.
+-- | render an HTML `div .columns` displaying information about the
+-- | conclusion of the problem.
+renderMguResult :: MGU_Result -> JSX
+renderMguResult res =
+  inRowOfColumns "is-centered" $
+  [ inColumn "" $
+    [ R.div { className: "update"
+            , children:
+              [ case res of
+                   Solvable asgns ->
+                     R.text "The equation is solvable according to the displayed unifier."
+                   Unsolvable str -> R.text "The system cannot be unified."
+              ]
+            }
+    ]
+  ]
+
+para :: String -> JSX
+para msg =
+  R.p { children: [R.text msg] }
+
+-- | Render the `MGU_Result` resulting from a run of the unification problem.
+-- | as a nice summary.
+renderMguSummary :: MGU_Result -> JSX
+renderMguSummary res =
+  inRowOfColumns "is-centered" $
+  [ inColumn "is-half" $
+    [
+    case res of
+      Solvable asgns ->
+        R.article { className: "message is-success"
+                  , children:
+                    [ R.div { className: "message-header"
+                            , children: [para "Success"]
+                            }
+                    , R.div { className: "message-body has-text-centered"
+                            , children:
+                              [ para "This problem has the following most general unifier:"
+                              , renderAsgns asgns
+                              ]
+                            }
+                    ]
+                  }
+
+      Unsolvable _ ->
+        R.article { className: "message is-danger"
+                  , children:
+                    [ R.div { className: "message-header"
+                            , children: [para "Failure"]
+                            }
+                    , R.div { className: "message-body has-text-centered"
+                            , children: [para "This problem is not unifiable."]
+                            }
+                    ]
+                  }
+    ]
+  ]
+
+
+renderMguUpdate :: MGU_Update -> JSX
+renderMguUpdate {msg, next} =
   R.div { className: "columns is-centered",
           children:
           [ R.div { className: "column",
                     children: [R.div { className: "update",
                                        children: [msg]}]},
-            R.div { className: "column is-three-fifths",
-                    children: [stateJSX {state: next}]}]}
+            R.div { className: "column",
+                    children: [renderMguState next]}]}
 
-traceJSX :: Trace -> JSX
-traceJSX trace =
-  startJSX trace.start <>
-  (fold $ updateJSX <$> trace.history) <>
-  finalJSX trace.final
+renderTrace :: Trace -> JSX
+renderTrace trace =
+  renderMguSummary trace.final <>
+  renderMguStart trace.start <>
+  foldMap renderMguUpdate trace.history <>
+  renderMguResult trace.final
 
+-- | # The unification app
+
+type State =
+  Record ( e1 :: String
+         , e2 :: String
+         )
+
+-- | Compute whether the `State` constitutes a well-formed `Equation`
 stateEquation :: State -> Maybe Equation
 stateEquation {e1, e2} = do
   e1' <- tryParseExpression e1
   e2' <- tryParseExpression e2
   pure (Pair e1' e2')
 
--- | ## Unification engine demo
 
-demoComponent :: Component Unit
-demoComponent = createComponent "UnificationDemo"
-
-type State =
-  Record (e1 :: String, e2 :: String, trace :: Maybe Trace)
-
+-- | The initial state of the app is a set of two empty textboxes.
 initialState :: State
 initialState =
-   { e1: "",
-     e2: "",
-     trace: Nothing
+   { e1: ""
+   , e2: ""
    }
 
-stateToTrace :: State -> JSX
-stateToTrace st =
-  case stateEquation st of
-    Nothing -> R.text "Enter two expressions to compute their most general unifier, if there is one."
-    Just eqn ->  R.div { className: "columns is-centered",
-                         children:
-                         [ R.div { className: "column",
-                                   children: [traceJSX (trySolving (singleton eqn))] }
-                         ]}
+-- | Render the `State` of the app
+renderState :: State -> JSX
+renderState st =
+  inRowOfColumns "is-centered"
+  [ inColumn ""
+    [ case stateEquation st of
+         Nothing ->
+           R.text "Enter two expressions to compute their most general unifier, if there is one."
+         Just eqn ->
+           renderTrace (solveUnificationProblem eqn)
+    ]
+  ]
 
 foreign import typeset :: Effect Unit
 
-demoJSX :: Unit -> JSX
-demoJSX = make demoComponent
+renderUnificationDemo :: Unit -> JSX
+renderUnificationDemo = make (createComponent "UnificationDemo")
   { initialState: initialState
   , didUpdate: \_ _ -> typeset
   , render: \self ->
-        R.div { className: "columns is-centered",
-                children:
-                [ R.div { className: "column is-half",
-                          children:
-                          [ exprTextBox { label: "Expression 1",
-                                          value: self.state.e1,
-                                          onChange: capture targetValue $ \targetValue ->
-                                           self.setState $ \s -> s { e1 = fromMaybe "" targetValue } },
-                            exprTextBox { label: "Expression 2",
-                                          value: self.state.e2,
-                                          onChange: capture targetValue $ \targetValue ->
-                                           self.setState $ \s -> s { e2 = fromMaybe "" targetValue } }
-                          ]
-                        }
-                ]
-              }
-        <> stateToTrace self.state
+    inRowOfColumns "is-centered"
+    [ inColumn "is-half"
+      [ exprTextBox { label: "Expression 1"
+                    , value: self.state.e1
+                    , onChange: capture targetValue $ \targetValue ->
+                      self.setState $ \s -> s { e1 = fromMaybe "" targetValue }
+                    }
+      , exprTextBox { label: "Expression 2"
+                    , value: self.state.e2
+                    , onChange: capture targetValue $ \targetValue ->
+                      self.setState $ \s -> s { e2 = fromMaybe "" targetValue }
+                    }
+      ]
+    ] <>
+    renderState self.state
   }

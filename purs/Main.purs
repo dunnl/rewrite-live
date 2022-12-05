@@ -43,5 +43,5 @@ main = do
     Nothing -> throw "Container element not found."
     Just c  -> do
       reactroot <- createRoot c
-      renderRoot reactroot (demoJSX unit)
+      renderRoot reactroot (renderUnificationDemo unit)
 

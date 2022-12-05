@@ -17,6 +17,7 @@
     <link rel="manifest" href="site.webmanifest">
     <link rel="stylesheet" href="theme.css">
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script async src="js/toggle.js"></script>
     <script defer type="module" src="unification.js"></script>
   </head>
   <body>
@@ -33,8 +34,13 @@
                   A bidirectional interface for rewriting
                 </h2>
               </div>
+              <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+              </a>
             </div>
-            <div id="navbarBasicExample" class="navbar-menu">
+            <div id="navMenu" class="navbar-menu">
               <div class="navbar-start">
                 <a href="./" class="navbar-item">
                   Home
@@ -61,18 +67,23 @@
       </section>
       <section class="section">
         <div class="container">
-          <div class="columns is-centered">
+          <div id="notice" class="columns is-centered">
             <div class="column is-half">
-              <section class="main-notice block">
-                <div class="notification is-info">
-                  <h1 class='title'>
-                    Example
-                  </h1>
-                  Try the following example to get started:
-                  <p>F (x, G (x, y))</p>
-                  <p>=</p>
-                  <p>F (G (F (y, v, u)), G (G (F (y, v, u)), H (c)))</p>
-                </div>
+              <section class="main-notice">
+                <article class="message is-info">
+                  <div class="message-header">
+                    <p>Example</p>
+                    <button class="delete" onclick="document.getElementById('notice').style.display='none'" aria-label="delete"></button>
+                  </div>
+                  <div class="message-body">
+                    Try the following example to get started:
+                    <div class="block has-text-centered">
+                      <p>F (x, G (x, z))</p>
+                      <p>=</p>
+                      <p>F (y, G (C, D))</p>
+                    </div>
+                  </div>
+                </article>
               </section>
             </div>
           </div>
