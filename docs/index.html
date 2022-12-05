@@ -15,8 +15,8 @@
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
     <link rel="manifest" href="site.webmanifest">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <link rel="stylesheet" href="theme.css">
+    <script async src="js/toggle.js"></script>
     <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
     <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
@@ -37,6 +37,11 @@
                   A bidirectional interface for rewriting
                 </h2>
               </div>
+              <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+              </a>
             </div>
             <div id="navbarBasicExample" class="navbar-menu">
               <div class="navbar-start">
@@ -65,15 +70,18 @@
       </section>
       <section class="section">
         <div class="container">
-          <div class="columns is-centered">
+          <div id="notice" class="columns is-centered">
             <div class="column is-half">
               <section class="main-notice block">
-                <div class="notification is-warning">
-                  <h1 class='title'>
-                    Notice
-                  </h1>
+                <article class="message is-warning">
+                  <div class="message-header">
+                    <p>Notice</p>
+                    <button class="delete" onclick="document.getElementById('notice').style.display='none'" aria-label="delete"></button>
+                  </div>
+                  <div class="message-body">
                   This page is a static mockup of Rewrite Live! Most functionality is not currently implemented.
-                </div>
+                  </div>
+                </article>
               </section>
             </div>
           </div>

@@ -660,10 +660,10 @@
                   }
                 }
                 var iterator2 = iteratorFn.call(iterableChildren);
-                var step4;
+                var step3;
                 var ii = 0;
-                while (!(step4 = iterator2.next()).done) {
-                  child = step4.value;
+                while (!(step3 = iterator2.next()).done) {
+                  child = step3.value;
                   nextName = nextNamePrefix + getElementKey(child, ii++);
                   subtreeCount += mapIntoArray(child, array, escapedPrefix, nextName, callback);
                 }
@@ -1433,10 +1433,10 @@
               if (typeof iteratorFn === "function") {
                 if (iteratorFn !== node.entries) {
                   var iterator2 = iteratorFn.call(node);
-                  var step4;
-                  while (!(step4 = iterator2.next()).done) {
-                    if (isValidElement(step4.value)) {
-                      validateExplicitKey(step4.value, parentType);
+                  var step3;
+                  while (!(step3 = iterator2.next()).done) {
+                    if (isValidElement(step3.value)) {
+                      validateExplicitKey(step3.value, parentType);
                     }
                   }
                 }
@@ -12925,15 +12925,15 @@
               var lastPlacedIndex = 0;
               var newIdx = 0;
               var nextOldFiber = null;
-              var step4 = newChildren.next();
-              for (; oldFiber !== null && !step4.done; newIdx++, step4 = newChildren.next()) {
+              var step3 = newChildren.next();
+              for (; oldFiber !== null && !step3.done; newIdx++, step3 = newChildren.next()) {
                 if (oldFiber.index > newIdx) {
                   nextOldFiber = oldFiber;
                   oldFiber = null;
                 } else {
                   nextOldFiber = oldFiber.sibling;
                 }
-                var newFiber = updateSlot(returnFiber, oldFiber, step4.value, lanes);
+                var newFiber = updateSlot(returnFiber, oldFiber, step3.value, lanes);
                 if (newFiber === null) {
                   if (oldFiber === null) {
                     oldFiber = nextOldFiber;
@@ -12954,7 +12954,7 @@
                 previousNewFiber = newFiber;
                 oldFiber = nextOldFiber;
               }
-              if (step4.done) {
+              if (step3.done) {
                 deleteRemainingChildren(returnFiber, oldFiber);
                 if (getIsHydrating()) {
                   var numberOfForks = newIdx;
@@ -12963,8 +12963,8 @@
                 return resultingFirstChild;
               }
               if (oldFiber === null) {
-                for (; !step4.done; newIdx++, step4 = newChildren.next()) {
-                  var _newFiber3 = createChild(returnFiber, step4.value, lanes);
+                for (; !step3.done; newIdx++, step3 = newChildren.next()) {
+                  var _newFiber3 = createChild(returnFiber, step3.value, lanes);
                   if (_newFiber3 === null) {
                     continue;
                   }
@@ -12983,8 +12983,8 @@
                 return resultingFirstChild;
               }
               var existingChildren = mapRemainingChildren(returnFiber, oldFiber);
-              for (; !step4.done; newIdx++, step4 = newChildren.next()) {
-                var _newFiber4 = updateFromMap(existingChildren, returnFiber, newIdx, step4.value, lanes);
+              for (; !step3.done; newIdx++, step3 = newChildren.next()) {
+                var _newFiber4 = updateFromMap(existingChildren, returnFiber, newIdx, step3.value, lanes);
                 if (_newFiber4 !== null) {
                   if (shouldTrackSideEffects) {
                     if (_newFiber4.alternate !== null) {
@@ -16645,10 +16645,10 @@
                   if (typeof iteratorFn === "function") {
                     var childrenIterator = iteratorFn.call(children);
                     if (childrenIterator) {
-                      var step4 = childrenIterator.next();
+                      var step3 = childrenIterator.next();
                       var _i = 0;
-                      for (; !step4.done; step4 = childrenIterator.next()) {
-                        if (!validateSuspenseListNestedChild(step4.value, _i)) {
+                      for (; !step3.done; step3 = childrenIterator.next()) {
+                        if (!validateSuspenseListNestedChild(step3.value, _i)) {
                           return;
                         }
                         _i++;
@@ -16662,8 +16662,8 @@
             }
           }
           function initSuspenseListRenderState(workInProgress2, isBackwards, tail3, lastContentRow, tailMode) {
-            var renderState = workInProgress2.memoizedState;
-            if (renderState === null) {
+            var renderState2 = workInProgress2.memoizedState;
+            if (renderState2 === null) {
               workInProgress2.memoizedState = {
                 isBackwards,
                 rendering: null,
@@ -16673,12 +16673,12 @@
                 tailMode
               };
             } else {
-              renderState.isBackwards = isBackwards;
-              renderState.rendering = null;
-              renderState.renderingStartTime = 0;
-              renderState.last = lastContentRow;
-              renderState.tail = tail3;
-              renderState.tailMode = tailMode;
+              renderState2.isBackwards = isBackwards;
+              renderState2.rendering = null;
+              renderState2.renderingStartTime = 0;
+              renderState2.last = lastContentRow;
+              renderState2.tail = tail3;
+              renderState2.tailMode = tailMode;
             }
           }
           function updateSuspenseListComponent(current2, workInProgress2, renderLanes2) {
@@ -16983,11 +16983,11 @@
                   }
                   workInProgress2.flags |= DidCapture;
                 }
-                var renderState = workInProgress2.memoizedState;
-                if (renderState !== null) {
-                  renderState.rendering = null;
-                  renderState.tail = null;
-                  renderState.lastEffect = null;
+                var renderState2 = workInProgress2.memoizedState;
+                if (renderState2 !== null) {
+                  renderState2.rendering = null;
+                  renderState2.tail = null;
+                  renderState2.lastEffect = null;
                 }
                 pushSuspenseContext(workInProgress2, suspenseStackCursor.current);
                 if (_hasChildWork) {
@@ -17178,13 +17178,13 @@
               }
             };
           }
-          function cutOffTailIfNeeded(renderState, hasRenderedATailFallback) {
+          function cutOffTailIfNeeded(renderState2, hasRenderedATailFallback) {
             if (getIsHydrating()) {
               return;
             }
-            switch (renderState.tailMode) {
+            switch (renderState2.tailMode) {
               case "hidden": {
-                var tailNode = renderState.tail;
+                var tailNode = renderState2.tail;
                 var lastTailNode = null;
                 while (tailNode !== null) {
                   if (tailNode.alternate !== null) {
@@ -17193,14 +17193,14 @@
                   tailNode = tailNode.sibling;
                 }
                 if (lastTailNode === null) {
-                  renderState.tail = null;
+                  renderState2.tail = null;
                 } else {
                   lastTailNode.sibling = null;
                 }
                 break;
               }
               case "collapsed": {
-                var _tailNode = renderState.tail;
+                var _tailNode = renderState2.tail;
                 var _lastTailNode = null;
                 while (_tailNode !== null) {
                   if (_tailNode.alternate !== null) {
@@ -17209,10 +17209,10 @@
                   _tailNode = _tailNode.sibling;
                 }
                 if (_lastTailNode === null) {
-                  if (!hasRenderedATailFallback && renderState.tail !== null) {
-                    renderState.tail.sibling = null;
+                  if (!hasRenderedATailFallback && renderState2.tail !== null) {
+                    renderState2.tail.sibling = null;
                   } else {
-                    renderState.tail = null;
+                    renderState2.tail = null;
                   }
                 } else {
                   _lastTailNode.sibling = null;
@@ -17520,13 +17520,13 @@
               }
               case SuspenseListComponent: {
                 popSuspenseContext(workInProgress2);
-                var renderState = workInProgress2.memoizedState;
-                if (renderState === null) {
+                var renderState2 = workInProgress2.memoizedState;
+                if (renderState2 === null) {
                   bubbleProperties(workInProgress2);
                   return null;
                 }
                 var didSuspendAlready = (workInProgress2.flags & DidCapture) !== NoFlags;
-                var renderedTail = renderState.rendering;
+                var renderedTail = renderState2.rendering;
                 if (renderedTail === null) {
                   if (!didSuspendAlready) {
                     var cannotBeSuspended = renderHasNotSuspendedYet() && (current2 === null || (current2.flags & DidCapture) === NoFlags);
@@ -17537,7 +17537,7 @@
                         if (suspended !== null) {
                           didSuspendAlready = true;
                           workInProgress2.flags |= DidCapture;
-                          cutOffTailIfNeeded(renderState, false);
+                          cutOffTailIfNeeded(renderState2, false);
                           var newThenables = suspended.updateQueue;
                           if (newThenables !== null) {
                             workInProgress2.updateQueue = newThenables;
@@ -17551,14 +17551,14 @@
                         row = row.sibling;
                       }
                     }
-                    if (renderState.tail !== null && now() > getRenderTargetTime()) {
+                    if (renderState2.tail !== null && now() > getRenderTargetTime()) {
                       workInProgress2.flags |= DidCapture;
                       didSuspendAlready = true;
-                      cutOffTailIfNeeded(renderState, false);
+                      cutOffTailIfNeeded(renderState2, false);
                       workInProgress2.lanes = SomeRetryLane;
                     }
                   } else {
-                    cutOffTailIfNeeded(renderState, false);
+                    cutOffTailIfNeeded(renderState2, false);
                   }
                 } else {
                   if (!didSuspendAlready) {
@@ -17571,36 +17571,36 @@
                         workInProgress2.updateQueue = _newThenables;
                         workInProgress2.flags |= Update;
                       }
-                      cutOffTailIfNeeded(renderState, true);
-                      if (renderState.tail === null && renderState.tailMode === "hidden" && !renderedTail.alternate && !getIsHydrating()) {
+                      cutOffTailIfNeeded(renderState2, true);
+                      if (renderState2.tail === null && renderState2.tailMode === "hidden" && !renderedTail.alternate && !getIsHydrating()) {
                         bubbleProperties(workInProgress2);
                         return null;
                       }
-                    } else if (now() * 2 - renderState.renderingStartTime > getRenderTargetTime() && renderLanes2 !== OffscreenLane) {
+                    } else if (now() * 2 - renderState2.renderingStartTime > getRenderTargetTime() && renderLanes2 !== OffscreenLane) {
                       workInProgress2.flags |= DidCapture;
                       didSuspendAlready = true;
-                      cutOffTailIfNeeded(renderState, false);
+                      cutOffTailIfNeeded(renderState2, false);
                       workInProgress2.lanes = SomeRetryLane;
                     }
                   }
-                  if (renderState.isBackwards) {
+                  if (renderState2.isBackwards) {
                     renderedTail.sibling = workInProgress2.child;
                     workInProgress2.child = renderedTail;
                   } else {
-                    var previousSibling = renderState.last;
+                    var previousSibling = renderState2.last;
                     if (previousSibling !== null) {
                       previousSibling.sibling = renderedTail;
                     } else {
                       workInProgress2.child = renderedTail;
                     }
-                    renderState.last = renderedTail;
+                    renderState2.last = renderedTail;
                   }
                 }
-                if (renderState.tail !== null) {
-                  var next = renderState.tail;
-                  renderState.rendering = next;
-                  renderState.tail = next.sibling;
-                  renderState.renderingStartTime = now();
+                if (renderState2.tail !== null) {
+                  var next = renderState2.tail;
+                  renderState2.rendering = next;
+                  renderState2.tail = next.sibling;
+                  renderState2.renderingStartTime = now();
                   next.sibling = null;
                   var suspenseContext = suspenseStackCursor.current;
                   if (didSuspendAlready) {
@@ -23103,6 +23103,7 @@
       };
     };
   };
+  var isNothing = /* @__PURE__ */ maybe(true)(/* @__PURE__ */ $$const(false));
   var isJust = /* @__PURE__ */ maybe(false)(/* @__PURE__ */ $$const(true));
   var functorMaybe = {
     map: function(v) {
@@ -23292,6 +23293,12 @@
     };
     return Tuple2;
   }();
+  var snd = function(v) {
+    return v.value1;
+  };
+  var fst = function(v) {
+    return v.value0;
+  };
 
   // output/Data.Bifunctor/index.js
   var bimap = function(dict) {
@@ -23339,11 +23346,6 @@
   };
   var foldMap = function(dict) {
     return dict.foldMap;
-  };
-  var fold = function(dictFoldable) {
-    return function(dictMonoid) {
-      return foldMap(dictFoldable)(dictMonoid)(identity(categoryFn));
-    };
   };
 
   // output/Data.Identity/index.js
@@ -23441,6 +23443,70 @@
       };
     };
   }();
+
+  // output/Data.Unfoldable/foreign.js
+  var unfoldrArrayImpl = function(isNothing2) {
+    return function(fromJust2) {
+      return function(fst3) {
+        return function(snd3) {
+          return function(f) {
+            return function(b2) {
+              var result = [];
+              var value12 = b2;
+              while (true) {
+                var maybe2 = f(value12);
+                if (isNothing2(maybe2))
+                  return result;
+                var tuple = fromJust2(maybe2);
+                result.push(fst3(tuple));
+                value12 = snd3(tuple);
+              }
+            };
+          };
+        };
+      };
+    };
+  };
+
+  // output/Data.Unfoldable1/foreign.js
+  var unfoldr1ArrayImpl = function(isNothing2) {
+    return function(fromJust2) {
+      return function(fst3) {
+        return function(snd3) {
+          return function(f) {
+            return function(b2) {
+              var result = [];
+              var value12 = b2;
+              while (true) {
+                var tuple = f(value12);
+                result.push(fst3(tuple));
+                var maybe2 = snd3(tuple);
+                if (isNothing2(maybe2))
+                  return result;
+                value12 = fromJust2(maybe2);
+              }
+            };
+          };
+        };
+      };
+    };
+  };
+
+  // output/Data.Unfoldable1/index.js
+  var unfoldable1Array = {
+    unfoldr1: /* @__PURE__ */ unfoldr1ArrayImpl(isNothing)(/* @__PURE__ */ fromJust())(fst)(snd)
+  };
+
+  // output/Data.Unfoldable/index.js
+  var unfoldr = function(dict) {
+    return dict.unfoldr;
+  };
+  var unfoldableArray = {
+    unfoldr: /* @__PURE__ */ unfoldrArrayImpl(isNothing)(/* @__PURE__ */ fromJust())(fst)(snd),
+    Unfoldable10: function() {
+      return unfoldable1Array;
+    }
+  };
 
   // output/Data.NonEmpty/index.js
   var NonEmpty = /* @__PURE__ */ function() {
@@ -24598,23 +24664,23 @@
           var $lazy_loop = $runtime_lazy3("loop", "Parsing", function() {
             return function(state22, arg, gas) {
               var v = next(arg);
-              return v(state22, more, lift3, $$throw2, function(state3, step4) {
-                if (step4 instanceof Loop) {
+              return v(state22, more, lift3, $$throw2, function(state3, step3) {
+                if (step3 instanceof Loop) {
                   var $120 = gas === 0;
                   if ($120) {
                     return more(function(v1) {
-                      return $lazy_loop(269)(state3, step4.value0, 30);
+                      return $lazy_loop(269)(state3, step3.value0, 30);
                     });
                   }
                   ;
-                  return $lazy_loop(271)(state3, step4.value0, gas - 1 | 0);
+                  return $lazy_loop(271)(state3, step3.value0, gas - 1 | 0);
                 }
                 ;
-                if (step4 instanceof Done) {
-                  return done(state3, step4.value0);
+                if (step3 instanceof Done) {
+                  return done(state3, step3.value0);
                 }
                 ;
-                throw new Error("Failed pattern match at Parsing (line 265, column 39 - line 273, column 43): " + [step4.constructor.name]);
+                throw new Error("Failed pattern match at Parsing (line 265, column 39 - line 273, column 43): " + [step3.constructor.name]);
               });
             };
           });
@@ -24676,8 +24742,8 @@
         var go2 = function($copy_step) {
           var $tco_done = false;
           var $tco_result;
-          function $tco_loop(step4) {
-            var v1 = step4(unit);
+          function $tco_loop(step3) {
+            var v1 = step3(unit);
             if (v1 instanceof More) {
               $copy_step = v1.value0;
               return;
@@ -24857,6 +24923,16 @@
       return fallback(n);
     };
   };
+  var _toCodePointArray = function(fallback) {
+    return function(unsafeCodePointAt02) {
+      if (hasArrayFrom) {
+        return function(str) {
+          return Array.from(str, unsafeCodePointAt02);
+        };
+      }
+      return fallback;
+    };
+  };
 
   // output/Data.String.CodePoints/index.js
   var $runtime_lazy4 = function(name15, moduleName, init3) {
@@ -24915,6 +24991,14 @@
       tail: drop2(1)(s2)
     });
   };
+  var unconsButWithTuple = function(s2) {
+    return map(functorMaybe)(function(v) {
+      return new Tuple(v.head, v.tail);
+    })(uncons3(s2));
+  };
+  var toCodePointArrayFallback = function(s2) {
+    return unfoldr(unfoldableArray)(unconsButWithTuple)(s2);
+  };
   var unsafeCodePointAt0Fallback = function(s2) {
     var cu0 = fromEnum(boundedEnumChar)(charAt(0)(s2));
     var $25 = isLead(cu0) && length3(s2) > 1;
@@ -24931,6 +25015,10 @@
     return cu0;
   };
   var unsafeCodePointAt0 = /* @__PURE__ */ _unsafeCodePointAt0(unsafeCodePointAt0Fallback);
+  var toCodePointArray = /* @__PURE__ */ _toCodePointArray(toCodePointArrayFallback)(unsafeCodePointAt0);
+  var length6 = function($52) {
+    return length2(toCodePointArray($52));
+  };
   var fromCharCode2 = /* @__PURE__ */ function() {
     var $53 = toEnumWithDefaults(boundedEnumChar)(bottom(boundedChar))(top(boundedChar));
     return function($54) {
@@ -41438,6 +41526,13 @@
   var span3 = function() {
     return element(span$prime());
   };
+  var _p$prime = /* @__PURE__ */ unsafePerformEffect(/* @__PURE__ */ unsafeCreateDOMComponent("p"));
+  var p$prime = function() {
+    return _p$prime;
+  };
+  var p = function() {
+    return element(p$prime());
+  };
   var _ol$prime = /* @__PURE__ */ unsafePerformEffect(/* @__PURE__ */ unsafeCreateDOMComponent("ol"));
   var ol$prime = function() {
     return _ol$prime;
@@ -41491,6 +41586,13 @@
   };
   var div2 = function() {
     return element(div$prime());
+  };
+  var _article$prime = /* @__PURE__ */ unsafePerformEffect(/* @__PURE__ */ unsafeCreateDOMComponent("article"));
+  var article$prime = function() {
+    return _article$prime;
+  };
+  var article = function() {
+    return element(article$prime());
   };
 
   // output/React.Basic.DOM/index.js
@@ -42002,6 +42104,28 @@
       });
     });
   };
+  var renderDsgp = function(v) {
+    return div2()({
+      className: "expr-inline",
+      children: [text("\\(\\langle\\)"), exprToJSX(v.value0), text(", "), exprToJSX(v.value1), text("\\(\\rangle\\)")]
+    });
+  };
+  var renderEqns = function(eqns) {
+    return ol_(fromFoldable(foldableList)(map(functorList)(function(x) {
+      return li()({
+        children: [x]
+      });
+    })(map(functorList)(renderDsgp)(eqns))));
+  };
+  var renderAsgn = function(v) {
+    return div2()({
+      className: "eqn",
+      children: [exprToJSX(new Var(v.variable)), text(" \\(\\mapsto\\) "), exprToJSX(v.assignment)]
+    });
+  };
+  var renderAsgns = function(asgns) {
+    return ol_(fromFoldable(foldableList)(map(functorList)(renderAsgn)(asgns)));
+  };
   var pushNewAssignment = function(v) {
     return function(e) {
       return function(st) {
@@ -42018,68 +42142,20 @@
       };
     };
   };
-  var initialState = /* @__PURE__ */ function() {
-    return {
-      e1: "",
-      e2: "",
-      trace: Nothing.value
-    };
-  }();
-  var finalJSX = function(res) {
-    return div2()({
-      className: "columns is-centered",
-      children: [div2()({
-        className: "column",
-        children: [div2()({
-          className: "update",
-          children: [function() {
-            if (res instanceof Solvable) {
-              return text("The equation is solvable according to the displayed unifier.");
-            }
-            ;
-            if (res instanceof Unsolvable) {
-              return text("The system cannot be unified.");
-            }
-            ;
-            throw new Error("Failed pattern match at Unification (line 272, column 42 - line 274, column 100): " + [res.constructor.name]);
-          }()]
-        })]
-      }), div2()({
-        className: "column is-three-fifths",
-        children: []
-      })]
-    });
-  };
-  var dsgpToJSX = function(v) {
-    return div2()({
-      className: "expr-inline",
-      children: [text("\\(\\langle\\)"), exprToJSX(v.value0), text(", "), exprToJSX(v.value1), text("\\(\\rangle\\)")]
-    });
-  };
-  var eqnsToJSX = function(eqns) {
-    return map(functorList)(dsgpToJSX)(eqns);
-  };
-  var eqnsToJSX$prime = function(eqns) {
-    return ol_(fromFoldable(foldableList)(map(functorList)(function(x) {
-      return li()({
-        children: [x]
-      });
-    })(eqnsToJSX(eqns))));
-  };
-  var step2 = function($copy_eqn) {
+  var processEquation = function($copy_eqn) {
     return function($copy_st) {
       var $tco_var_eqn = $copy_eqn;
       var $tco_done = false;
       var $tco_result;
       function $tco_loop(eqn, st) {
         if (eqn.value0 instanceof Var && eqn.value1 instanceof Var) {
-          var $37 = eqn.value0.value0 === eqn.value1.value0;
-          if ($37) {
+          var $36 = eqn.value0.value0 === eqn.value1.value0;
+          if ($36) {
             $tco_done = true;
             return new Right({
               next: st,
               msg: span3()({
-                children: [text("Both variables of "), dsgpToJSX(eqn), text(" are equal, so this is not a disagreement and we can discard this constraint. ")]
+                children: [text("Both variables of "), renderDsgp(eqn), text(" are equal, so this is not a disagreement and we can discard this constraint. ")]
               })
             });
           }
@@ -42100,14 +42176,14 @@
         }
         ;
         if (eqn.value0 instanceof Node && eqn.value1 instanceof Node) {
-          var $52 = eqn.value0.value0 !== eqn.value1.value0;
-          if ($52) {
+          var $51 = eqn.value0.value0 !== eqn.value1.value0;
+          if ($51) {
             $tco_done = true;
             return new Left(new Unsolvable("There is no way to unify " + (show(showExpr)(eqn.value0) + (" with " + (show(showExpr)(eqn.value1) + " because their heads are not equal.")))));
           }
           ;
-          var $53 = length4(eqn.value0.value1) !== length4(eqn.value1.value1);
-          if ($53) {
+          var $52 = length4(eqn.value0.value1) !== length4(eqn.value1.value1);
+          if ($52) {
             $tco_done = true;
             return new Left(new Unsolvable("There is no way to unify " + (show(showExpr)(eqn.value0) + (" with " + (show(showExpr)(eqn.value1) + ". The heads match but they are applied to different numbers of arguments")))));
           }
@@ -42122,7 +42198,7 @@
           });
         }
         ;
-        throw new Error("Failed pattern match at Unification (line 160, column 3 - line 186, column 91): " + [eqn.constructor.name]);
+        throw new Error("Failed pattern match at Unification (line 153, column 3 - line 179, column 91): " + [eqn.constructor.name]);
       }
       ;
       while (!$tco_done) {
@@ -42132,121 +42208,100 @@
       return $tco_result;
     };
   };
-  var processOneEquation = function(st) {
+  var takeUnificationStep = function(st) {
     var v = popList(st.equations);
     if (v instanceof Nothing) {
       return new Left(new Solvable(st.assignments));
     }
     ;
     if (v instanceof Just) {
-      return step2(v.value0.value0)({
+      return processEquation(v.value0.value0)({
         assignments: st.assignments,
         equations: v.value0.value1
       });
     }
     ;
-    throw new Error("Failed pattern match at Unification (line 151, column 3 - line 155, column 39): " + [v.constructor.name]);
+    throw new Error("Failed pattern match at Unification (line 144, column 3 - line 148, column 50): " + [v.constructor.name]);
   };
-  var solvingStep = function($copy_st) {
-    return function($copy_start) {
-      return function($copy_history) {
-        var $tco_var_st = $copy_st;
-        var $tco_var_start = $copy_start;
-        var $tco_done = false;
-        var $tco_result;
-        function $tco_loop(st, start2, history2) {
-          var v = processOneEquation(st);
-          if (v instanceof Left) {
-            $tco_done = true;
-            return {
-              start: start2,
-              history: history2,
-              "final": v.value0
-            };
+  var para = function(msg) {
+    return p()({
+      children: [text(msg)]
+    });
+  };
+  var initialState = {
+    e1: "",
+    e2: ""
+  };
+  var inRowOfColumns = function(classes) {
+    return function(children) {
+      return div2()({
+        className: "columns" + function() {
+          var $63 = length6(classes) > 0;
+          if ($63) {
+            return " " + classes;
           }
           ;
-          if (v instanceof Right) {
-            $tco_var_st = v.value0.next;
-            $tco_var_start = start2;
-            $copy_history = append(semigroupList)(history2)(new Cons({
-              msg: v.value0.msg,
-              next: v.value0.next
-            }, Nil.value));
-            return;
-          }
-          ;
-          throw new Error("Failed pattern match at Unification (line 206, column 3 - line 209, column 65): " + [v.constructor.name]);
-        }
-        ;
-        while (!$tco_done) {
-          $tco_result = $tco_loop($tco_var_st, $tco_var_start, $copy_history);
-        }
-        ;
-        return $tco_result;
-      };
+          return mempty(monoidString);
+        }(),
+        children
+      });
     };
   };
-  var trySolving = function(eqns) {
-    return solvingStep({
-      assignments: Nil.value,
-      equations: eqns
-    })(eqns)(Nil.value);
+  var inColumn = function(classes) {
+    return function(children) {
+      return div2()({
+        className: "column" + function() {
+          var $64 = length6(classes) > 0;
+          if ($64) {
+            return " " + classes;
+          }
+          ;
+          return mempty(monoidString);
+        }(),
+        children
+      });
+    };
   };
-  var demoComponent = /* @__PURE__ */ createComponent("UnificationDemo");
-  var asgnToJSX = function(v) {
-    return div2()({
-      className: "eqn",
-      children: [exprToJSX(new Var(v.variable)), text(" \\(\\mapsto\\) "), exprToJSX(v.assignment)]
-    });
+  var renderMguResult = function(res) {
+    return inRowOfColumns("is-centered")([inColumn("")([div2()({
+      className: "update",
+      children: [function() {
+        if (res instanceof Solvable) {
+          return text("The equation is solvable according to the displayed unifier.");
+        }
+        ;
+        if (res instanceof Unsolvable) {
+          return text("The system cannot be unified.");
+        }
+        ;
+        throw new Error("Failed pattern match at Unification (line 320, column 17 - line 323, column 76): " + [res.constructor.name]);
+      }()]
+    })])]);
   };
-  var asgnsToJSX = function(asgns) {
-    return map(functorList)(asgnToJSX)(asgns);
-  };
-  var asgnsToJSX$prime = function(asgns) {
-    return ol_(fromFoldable(foldableList)(asgnsToJSX(asgns)));
-  };
-  var stateJSX = function(v) {
+  var renderMguState = function(state3) {
     return div2()({
       className: "box",
-      children: [div2()({
-        className: "columns mgustate",
-        children: [div2()({
-          className: "column is-three-fifths",
-          children: [h5()({
-            className: "has-text-weight-bold",
-            children: [text("Potential disagreement pairs")]
-          }), eqnsToJSX$prime(v.state.equations)]
-        }), div2()({
-          className: "column",
-          children: [h5()({
-            className: "has-text-weight-bold",
-            children: [text("Current m.g.u. \\(\\sigma\\)")]
-          }), asgnsToJSX$prime(v.state.assignments)]
-        })]
-      })]
+      children: [inRowOfColumns("mgustate")([inColumn("is-three-fifths")([h5()({
+        className: "has-text-weight-bold",
+        children: [text("Potential disagreement pairs")]
+      }), renderEqns(state3.equations)]), inColumn("")([h5()({
+        className: "has-text-weight-bold",
+        children: [text("Current m.g.u. \\(\\sigma\\)")]
+      }), renderAsgns(state3.assignments)])])]
     });
   };
-  var startJSX = function(eqns) {
-    return div2()({
-      className: "columns is-centered",
-      children: [div2()({
-        className: "column",
-        children: [div2()({
-          className: "update",
-          children: [text("Attempting to compute a most general unifier for the following system.")]
-        })]
-      }), div2()({
-        className: "column is-three-fifths",
-        children: [stateJSX({
-          state: {
-            assignments: Nil.value,
-            equations: eqns
-          }
-        })]
-      })]
+  var renderMguStart = function(eqns) {
+    var state3 = renderMguState({
+      assignments: Nil.value,
+      equations: eqns
     });
+    var update = div2()({
+      className: "update",
+      children: [text("Attempting to compute a most general unifier for the following system.")]
+    });
+    return inRowOfColumns("is-centered")([inColumn("")([update]), inColumn("")([state3])]);
   };
-  var updateJSX = function(v) {
+  var renderMguUpdate = function(v) {
     return div2()({
       className: "columns is-centered",
       children: [div2()({
@@ -42256,35 +42311,104 @@
           children: [v.msg]
         })]
       }), div2()({
-        className: "column is-three-fifths",
-        children: [stateJSX({
-          state: v.next
-        })]
+        className: "column",
+        children: [renderMguState(v.next)]
       })]
     });
   };
-  var traceJSX = function(trace) {
-    return append(semigroupJSX)(startJSX(trace.start))(append(semigroupJSX)(fold(foldableList)(monoidJSX)(map(functorList)(updateJSX)(trace.history)))(finalJSX(trace["final"])));
+  var renderMguSummary = function(res) {
+    return inRowOfColumns("is-centered")([inColumn("is-half")([function() {
+      if (res instanceof Solvable) {
+        return article()({
+          className: "message is-success",
+          children: [div2()({
+            className: "message-header",
+            children: [para("Success")]
+          }), div2()({
+            className: "message-body has-text-centered",
+            children: [para("This problem has the following most general unifier:"), renderAsgns(res.value0)]
+          })]
+        });
+      }
+      ;
+      if (res instanceof Unsolvable) {
+        return article()({
+          className: "message is-danger",
+          children: [div2()({
+            className: "message-header",
+            children: [para("Failure")]
+          }), div2()({
+            className: "message-body has-text-centered",
+            children: [para("This problem is not unifiable.")]
+          })]
+        });
+      }
+      ;
+      throw new Error("Failed pattern match at Unification (line 340, column 5 - line 366, column 20): " + [res.constructor.name]);
+    }()])]);
   };
-  var stateToTrace = function(st) {
-    var v = stateEquation(st);
-    if (v instanceof Nothing) {
-      return text("Enter two expressions to compute their most general unifier, if there is one.");
-    }
-    ;
-    if (v instanceof Just) {
-      return div2()({
-        className: "columns is-centered",
-        children: [div2()({
-          className: "column",
-          children: [traceJSX(trySolving(singleton5(v.value0)))]
-        })]
-      });
-    }
-    ;
-    throw new Error("Failed pattern match at Unification (line 324, column 3 - line 330, column 28): " + [v.constructor.name]);
+  var renderTrace = function(trace) {
+    return append(semigroupJSX)(renderMguSummary(trace["final"]))(append(semigroupJSX)(renderMguStart(trace.start))(append(semigroupJSX)(foldMap(foldableList)(monoidJSX)(renderMguUpdate)(trace.history))(renderMguResult(trace["final"]))));
   };
-  var demoJSX = /* @__PURE__ */ make()(demoComponent)({
+  var equationToInitialState = function(eqn) {
+    return {
+      assignments: Nil.value,
+      equations: singleton5(eqn)
+    };
+  };
+  var solveUnificationProblem = function(eqn) {
+    var go2 = function($copy_st) {
+      return function($copy_history) {
+        var $tco_var_st = $copy_st;
+        var $tco_done = false;
+        var $tco_result;
+        function $tco_loop(st, history2) {
+          var v = takeUnificationStep(st);
+          if (v instanceof Left) {
+            $tco_done = true;
+            return {
+              start: singleton5(eqn),
+              history: history2,
+              "final": v.value0
+            };
+          }
+          ;
+          if (v instanceof Right) {
+            $tco_var_st = v.value0.next;
+            $copy_history = append(semigroupList)(history2)(new Cons({
+              msg: v.value0.msg,
+              next: v.value0.next
+            }, Nil.value));
+            return;
+          }
+          ;
+          throw new Error("Failed pattern match at Unification (line 223, column 7 - line 228, column 54): " + [v.constructor.name]);
+        }
+        ;
+        while (!$tco_done) {
+          $tco_result = $tco_loop($tco_var_st, $copy_history);
+        }
+        ;
+        return $tco_result;
+      };
+    };
+    return go2(equationToInitialState(eqn))(Nil.value);
+  };
+  var renderState = function(st) {
+    return inRowOfColumns("is-centered")([inColumn("")([function() {
+      var v = stateEquation(st);
+      if (v instanceof Nothing) {
+        return text("Enter two expressions to compute their most general unifier, if there is one.");
+      }
+      ;
+      if (v instanceof Just) {
+        return renderTrace(solveUnificationProblem(v.value0));
+      }
+      ;
+      throw new Error("Failed pattern match at Unification (line 415, column 7 - line 419, column 53): " + [v.constructor.name]);
+    }()])]);
+  };
+  var renderUnificationDemo = /* @__PURE__ */ make()(/* @__PURE__ */ createComponent("UnificationDemo"))({
     initialState,
     didUpdate: function(v) {
       return function(v1) {
@@ -42292,37 +42416,29 @@
       };
     },
     render: function(self) {
-      return append(semigroupJSX)(div2()({
-        className: "columns is-centered",
-        children: [div2()({
-          className: "column is-half",
-          children: [exprTextBox({
-            label: "Expression 1",
-            value: self.state.e1,
-            onChange: capture(targetValue)(function(targetValue2) {
-              return self.setState(function(s2) {
-                return {
-                  e1: fromMaybe("")(targetValue2),
-                  e2: s2.e2,
-                  trace: s2.trace
-                };
-              });
-            })
-          }), exprTextBox({
-            label: "Expression 2",
-            value: self.state.e2,
-            onChange: capture(targetValue)(function(targetValue2) {
-              return self.setState(function(s2) {
-                return {
-                  e1: s2.e1,
-                  e2: fromMaybe("")(targetValue2),
-                  trace: s2.trace
-                };
-              });
-            })
-          })]
-        })]
-      }))(stateToTrace(self.state));
+      return append(semigroupJSX)(inRowOfColumns("is-centered")([inColumn("is-half")([exprTextBox({
+        label: "Expression 1",
+        value: self.state.e1,
+        onChange: capture(targetValue)(function(targetValue2) {
+          return self.setState(function(s2) {
+            return {
+              e1: fromMaybe("")(targetValue2),
+              e2: s2.e2
+            };
+          });
+        })
+      }), exprTextBox({
+        label: "Expression 2",
+        value: self.state.e2,
+        onChange: capture(targetValue)(function(targetValue2) {
+          return self.setState(function(s2) {
+            return {
+              e1: s2.e1,
+              e2: fromMaybe("")(targetValue2)
+            };
+          });
+        })
+      })])]))(renderState(self.state));
     }
   });
 
@@ -42369,10 +42485,10 @@
     ;
     if (container instanceof Just) {
       var reactroot = createRoot(container.value0)();
-      return renderRoot(reactroot)(demoJSX(unit))();
+      return renderRoot(reactroot)(renderUnificationDemo(unit))();
     }
     ;
-    throw new Error("Failed pattern match at Main (line 42, column 3 - line 46, column 42): " + [container.constructor.name]);
+    throw new Error("Failed pattern match at Main (line 42, column 3 - line 46, column 56): " + [container.constructor.name]);
   };
 
   // <stdin>
