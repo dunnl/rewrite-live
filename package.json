@@ -8,6 +8,8 @@
         "sass": "sass",
         "build": "npm run build-sass && npm run build-html",
         "build-purs": "mkdir -p _out/ && spago bundle-app --to _out/unification.js",
+        "build-docs": "spago docs",
+        "copy-docs": "mkdir -p _out/docs/ && cp generated-docs/html/* _out/docs/ -r",
         "build-html": "mkdir -p _out/ && cp html/* _out/ -r",
         "build-sass": "mkdir -p _out/ && sass scss/theme.scss _out/theme.css",
         "watch-sass": "mkdir -p _out/ && sass --watch ./scss/theme.scss:_out/theme.css",
