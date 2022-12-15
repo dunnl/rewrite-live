@@ -35,8 +35,8 @@ asgnToEqn asgn = Pair (Var asgn.variable) asgn.assignment
 
 -- | Apply a single-variable substitution to the right-hand side of an
 -- | `Assignment`.
-asgn_sub :: String -> Expr -> Assignment -> Assignment
-asgn_sub v e asgn = asgn {assignment = expr_sub v e asgn.assignment}
+sub_asgn :: String -> Expr -> Assignment -> Assignment
+sub_asgn v e asgn = asgn {assignment = expr_sub v e asgn.assignment}
 
 -- | Compute whether a given variable occurs anywhere in a set of
 -- | equations
