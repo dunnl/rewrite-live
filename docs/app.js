@@ -108,7 +108,7 @@
             ReactSharedInternals.ReactDebugCurrentFrame = ReactDebugCurrentFrame;
             ReactSharedInternals.ReactCurrentActQueue = ReactCurrentActQueue;
           }
-          function warn(format) {
+          function warn2(format) {
             {
               {
                 for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
@@ -118,7 +118,7 @@
               }
             }
           }
-          function error2(format) {
+          function error3(format) {
             {
               {
                 for (var _len2 = arguments.length, args = new Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
@@ -152,7 +152,7 @@
               if (didWarnStateUpdateForUnmountedComponent[warningKey]) {
                 return;
               }
-              error2("Can't call %s on a component that is not yet mounted. This is a no-op, but it might indicate a bug in your application. Instead, assign to `this.state` directly or define a `state = {};` class property with the desired state in the %s component.", callerName, componentName);
+              error3("Can't call %s on a component that is not yet mounted. This is a no-op, but it might indicate a bug in your application. Instead, assign to `this.state` directly or define a `state = {};` class property with the desired state in the %s component.", callerName, componentName);
               didWarnStateUpdateForUnmountedComponent[warningKey] = true;
             }
           }
@@ -196,10 +196,10 @@
               isMounted: ["isMounted", "Instead, make sure to clean up subscriptions and pending requests in componentWillUnmount to prevent memory leaks."],
               replaceState: ["replaceState", "Refactor your code to use setState instead (see https://github.com/facebook/react/issues/3236)."]
             };
-            var defineDeprecationWarning = function(methodName, info) {
+            var defineDeprecationWarning = function(methodName, info2) {
               Object.defineProperty(Component.prototype, methodName, {
                 get: function() {
-                  warn("%s(...) is deprecated in plain JavaScript React classes. %s", info[0], info[1]);
+                  warn2("%s(...) is deprecated in plain JavaScript React classes. %s", info2[0], info2[1]);
                   return void 0;
                 }
               });
@@ -259,7 +259,7 @@
           function checkKeyStringCoercion(value12) {
             {
               if (willCoercionThrow(value12)) {
-                error2("The provided key is an unsupported type %s. This value must be coerced to a string before before using it here.", typeName(value12));
+                error3("The provided key is an unsupported type %s. This value must be coerced to a string before before using it here.", typeName(value12));
                 return testStringCoercion(value12);
               }
             }
@@ -281,7 +281,7 @@
             }
             {
               if (typeof type.tag === "number") {
-                error2("Received an unexpected object in getComponentNameFromType(). This is likely a bug in React. Please file an issue.");
+                error3("Received an unexpected object in getComponentNameFromType(). This is likely a bug in React. Please file an issue.");
               }
             }
             if (typeof type === "function") {
@@ -334,7 +334,7 @@
             }
             return null;
           }
-          var hasOwnProperty = Object.prototype.hasOwnProperty;
+          var hasOwnProperty2 = Object.prototype.hasOwnProperty;
           var RESERVED_PROPS = {
             key: true,
             ref: true,
@@ -347,7 +347,7 @@
           }
           function hasValidRef(config) {
             {
-              if (hasOwnProperty.call(config, "ref")) {
+              if (hasOwnProperty2.call(config, "ref")) {
                 var getter = Object.getOwnPropertyDescriptor(config, "ref").get;
                 if (getter && getter.isReactWarning) {
                   return false;
@@ -358,7 +358,7 @@
           }
           function hasValidKey(config) {
             {
-              if (hasOwnProperty.call(config, "key")) {
+              if (hasOwnProperty2.call(config, "key")) {
                 var getter = Object.getOwnPropertyDescriptor(config, "key").get;
                 if (getter && getter.isReactWarning) {
                   return false;
@@ -372,7 +372,7 @@
               {
                 if (!specialPropKeyWarningShown) {
                   specialPropKeyWarningShown = true;
-                  error2("%s: `key` is not a prop. Trying to access it will result in `undefined` being returned. If you need to access the same value within the child component, you should pass it as a different prop. (https://reactjs.org/link/special-props)", displayName);
+                  error3("%s: `key` is not a prop. Trying to access it will result in `undefined` being returned. If you need to access the same value within the child component, you should pass it as a different prop. (https://reactjs.org/link/special-props)", displayName);
                 }
               }
             };
@@ -387,7 +387,7 @@
               {
                 if (!specialPropRefWarningShown) {
                   specialPropRefWarningShown = true;
-                  error2("%s: `ref` is not a prop. Trying to access it will result in `undefined` being returned. If you need to access the same value within the child component, you should pass it as a different prop. (https://reactjs.org/link/special-props)", displayName);
+                  error3("%s: `ref` is not a prop. Trying to access it will result in `undefined` being returned. If you need to access the same value within the child component, you should pass it as a different prop. (https://reactjs.org/link/special-props)", displayName);
                 }
               }
             };
@@ -402,7 +402,7 @@
               if (typeof config.ref === "string" && ReactCurrentOwner.current && config.__self && ReactCurrentOwner.current.stateNode !== config.__self) {
                 var componentName = getComponentNameFromType(ReactCurrentOwner.current.type);
                 if (!didWarnAboutStringRefs[componentName]) {
-                  error2('Component "%s" contains the string ref "%s". Support for string refs will be removed in a future major release. This case cannot be automatically converted to an arrow function. We ask you to manually fix this case by using useRef() or createRef() instead. Learn more about using refs safely here: https://reactjs.org/link/strict-mode-string-ref', componentName, config.ref);
+                  error3('Component "%s" contains the string ref "%s". Support for string refs will be removed in a future major release. This case cannot be automatically converted to an arrow function. We ask you to manually fix this case by using useRef() or createRef() instead. Learn more about using refs safely here: https://reactjs.org/link/strict-mode-string-ref', componentName, config.ref);
                   didWarnAboutStringRefs[componentName] = true;
                 }
               }
@@ -467,7 +467,7 @@
               self = config.__self === void 0 ? null : config.__self;
               source3 = config.__source === void 0 ? null : config.__source;
               for (propName in config) {
-                if (hasOwnProperty.call(config, propName) && !RESERVED_PROPS.hasOwnProperty(propName)) {
+                if (hasOwnProperty2.call(config, propName) && !RESERVED_PROPS.hasOwnProperty(propName)) {
                   props[propName] = config[propName];
                 }
               }
@@ -539,7 +539,7 @@
                 defaultProps = element2.type.defaultProps;
               }
               for (propName in config) {
-                if (hasOwnProperty.call(config, propName) && !RESERVED_PROPS.hasOwnProperty(propName)) {
+                if (hasOwnProperty2.call(config, propName) && !RESERVED_PROPS.hasOwnProperty(propName)) {
                   if (config[propName] === void 0 && defaultProps !== void 0) {
                     props[propName] = defaultProps[propName];
                   } else {
@@ -654,7 +654,7 @@
                 {
                   if (iteratorFn === iterableChildren.entries) {
                     if (!didWarnAboutMaps) {
-                      warn("Using Maps as children is not supported. Use an array of keyed ReactElements instead.");
+                      warn2("Using Maps as children is not supported. Use an array of keyed ReactElements instead.");
                     }
                     didWarnAboutMaps = true;
                   }
@@ -736,7 +736,7 @@
                   get: function() {
                     if (!hasWarnedAboutUsingConsumerProvider) {
                       hasWarnedAboutUsingConsumerProvider = true;
-                      error2("Rendering <Context.Consumer.Provider> is not supported and will be removed in a future major release. Did you mean to render <Context.Provider> instead?");
+                      error3("Rendering <Context.Consumer.Provider> is not supported and will be removed in a future major release. Did you mean to render <Context.Provider> instead?");
                     }
                     return context.Provider;
                   },
@@ -772,7 +772,7 @@
                   get: function() {
                     if (!hasWarnedAboutUsingNestedContextConsumers) {
                       hasWarnedAboutUsingNestedContextConsumers = true;
-                      error2("Rendering <Context.Consumer.Consumer> is not supported and will be removed in a future major release. Did you mean to render <Context.Consumer> instead?");
+                      error3("Rendering <Context.Consumer.Consumer> is not supported and will be removed in a future major release. Did you mean to render <Context.Consumer> instead?");
                     }
                     return context.Consumer;
                   }
@@ -783,7 +783,7 @@
                   },
                   set: function(displayName) {
                     if (!hasWarnedAboutDisplayNameOnConsumer) {
-                      warn("Setting `displayName` on Context.Consumer has no effect. You should set it directly on the context with Context.displayName = '%s'.", displayName);
+                      warn2("Setting `displayName` on Context.Consumer has no effect. You should set it directly on the context with Context.displayName = '%s'.", displayName);
                       hasWarnedAboutDisplayNameOnConsumer = true;
                     }
                   }
@@ -811,11 +811,11 @@
                   resolved._status = Resolved;
                   resolved._result = moduleObject2;
                 }
-              }, function(error3) {
+              }, function(error4) {
                 if (payload._status === Pending || payload._status === Uninitialized) {
                   var rejected = payload;
                   rejected._status = Rejected;
-                  rejected._result = error3;
+                  rejected._result = error4;
                 }
               });
               if (payload._status === Uninitialized) {
@@ -828,12 +828,12 @@
               var moduleObject = payload._result;
               {
                 if (moduleObject === void 0) {
-                  error2("lazy: Expected the result of a dynamic import() call. Instead received: %s\n\nYour code should look like: \n  const MyComponent = lazy(() => import('./MyComponent'))\n\nDid you accidentally put curly braces around the import?", moduleObject);
+                  error3("lazy: Expected the result of a dynamic import() call. Instead received: %s\n\nYour code should look like: \n  const MyComponent = lazy(() => import('./MyComponent'))\n\nDid you accidentally put curly braces around the import?", moduleObject);
                 }
               }
               {
                 if (!("default" in moduleObject)) {
-                  error2("lazy: Expected the result of a dynamic import() call. Instead received: %s\n\nYour code should look like: \n  const MyComponent = lazy(() => import('./MyComponent'))", moduleObject);
+                  error3("lazy: Expected the result of a dynamic import() call. Instead received: %s\n\nYour code should look like: \n  const MyComponent = lazy(() => import('./MyComponent'))", moduleObject);
                 }
               }
               return moduleObject.default;
@@ -861,7 +861,7 @@
                     return defaultProps;
                   },
                   set: function(newDefaultProps) {
-                    error2("React.lazy(...): It is not supported to assign `defaultProps` to a lazy component import. Either specify them where the component is defined, or create a wrapping component around it.");
+                    error3("React.lazy(...): It is not supported to assign `defaultProps` to a lazy component import. Either specify them where the component is defined, or create a wrapping component around it.");
                     defaultProps = newDefaultProps;
                     Object.defineProperty(lazyType, "defaultProps", {
                       enumerable: true
@@ -874,7 +874,7 @@
                     return propTypes;
                   },
                   set: function(newPropTypes) {
-                    error2("React.lazy(...): It is not supported to assign `propTypes` to a lazy component import. Either specify them where the component is defined, or create a wrapping component around it.");
+                    error3("React.lazy(...): It is not supported to assign `propTypes` to a lazy component import. Either specify them where the component is defined, or create a wrapping component around it.");
                     propTypes = newPropTypes;
                     Object.defineProperty(lazyType, "propTypes", {
                       enumerable: true
@@ -888,17 +888,17 @@
           function forwardRef(render) {
             {
               if (render != null && render.$$typeof === REACT_MEMO_TYPE) {
-                error2("forwardRef requires a render function but received a `memo` component. Instead of forwardRef(memo(...)), use memo(forwardRef(...)).");
+                error3("forwardRef requires a render function but received a `memo` component. Instead of forwardRef(memo(...)), use memo(forwardRef(...)).");
               } else if (typeof render !== "function") {
-                error2("forwardRef requires a render function but was given %s.", render === null ? "null" : typeof render);
+                error3("forwardRef requires a render function but was given %s.", render === null ? "null" : typeof render);
               } else {
                 if (render.length !== 0 && render.length !== 2) {
-                  error2("forwardRef render functions accept exactly two parameters: props and ref. %s", render.length === 1 ? "Did you forget to use the ref parameter?" : "Any additional parameter will be undefined.");
+                  error3("forwardRef render functions accept exactly two parameters: props and ref. %s", render.length === 1 ? "Did you forget to use the ref parameter?" : "Any additional parameter will be undefined.");
                 }
               }
               if (render != null) {
                 if (render.defaultProps != null || render.propTypes != null) {
-                  error2("forwardRef render functions do not support propTypes or defaultProps. Did you accidentally pass a React component?");
+                  error3("forwardRef render functions do not support propTypes or defaultProps. Did you accidentally pass a React component?");
                 }
               }
             }
@@ -945,7 +945,7 @@
           function memo(type, compare2) {
             {
               if (!isValidElementType(type)) {
-                error2("memo: The first argument must be a component. Instead received: %s", type === null ? "null" : typeof type);
+                error3("memo: The first argument must be a component. Instead received: %s", type === null ? "null" : typeof type);
               }
             }
             var elementType = {
@@ -975,7 +975,7 @@
             var dispatcher = ReactCurrentDispatcher.current;
             {
               if (dispatcher === null) {
-                error2("Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:\n1. You might have mismatching versions of React and the renderer (such as React DOM)\n2. You might be breaking the Rules of Hooks\n3. You might have more than one copy of React in the same app\nSee https://reactjs.org/link/invalid-hook-call for tips about how to debug and fix this problem.");
+                error3("Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:\n1. You might have mismatching versions of React and the renderer (such as React DOM)\n2. You might be breaking the Rules of Hooks\n3. You might have more than one copy of React in the same app\nSee https://reactjs.org/link/invalid-hook-call for tips about how to debug and fix this problem.");
               }
             }
             return dispatcher;
@@ -986,17 +986,17 @@
               if (Context._context !== void 0) {
                 var realContext = Context._context;
                 if (realContext.Consumer === Context) {
-                  error2("Calling useContext(Context.Consumer) is not supported, may cause bugs, and will be removed in a future major release. Did you mean to call useContext(Context) instead?");
+                  error3("Calling useContext(Context.Consumer) is not supported, may cause bugs, and will be removed in a future major release. Did you mean to call useContext(Context) instead?");
                 } else if (realContext.Provider === Context) {
-                  error2("Calling useContext(Context.Provider) is not supported. Did you mean to call useContext(Context) instead?");
+                  error3("Calling useContext(Context.Provider) is not supported. Did you mean to call useContext(Context) instead?");
                 }
               }
             }
             return dispatcher.useContext(Context);
           }
-          function useState(initialState2) {
+          function useState(initialState) {
             var dispatcher = resolveDispatcher();
-            return dispatcher.useState(initialState2);
+            return dispatcher.useState(initialState);
           }
           function useReducer(reducer, initialArg, init3) {
             var dispatcher = resolveDispatcher();
@@ -1126,7 +1126,7 @@
                 });
               }
               if (disabledDepth < 0) {
-                error2("disabledDepth fell below zero. This is a bug in React. Please file an issue.");
+                error3("disabledDepth fell below zero. This is a bug in React. Please file an issue.");
               }
             }
           }
@@ -1315,7 +1315,7 @@
           }
           function checkPropTypes(typeSpecs, values, location2, componentName, element2) {
             {
-              var has = Function.call.bind(hasOwnProperty);
+              var has = Function.call.bind(hasOwnProperty2);
               for (var typeSpecName in typeSpecs) {
                 if (has(typeSpecs, typeSpecName)) {
                   var error$1 = void 0;
@@ -1331,13 +1331,13 @@
                   }
                   if (error$1 && !(error$1 instanceof Error)) {
                     setCurrentlyValidatingElement(element2);
-                    error2("%s: type specification of %s `%s` is invalid; the type checker function must return `null` or an `Error` but returned a %s. You may have forgotten to pass an argument to the type checker creator (arrayOf, instanceOf, objectOf, oneOf, oneOfType, and shape all require an argument).", componentName || "React class", location2, typeSpecName, typeof error$1);
+                    error3("%s: type specification of %s `%s` is invalid; the type checker function must return `null` or an `Error` but returned a %s. You may have forgotten to pass an argument to the type checker creator (arrayOf, instanceOf, objectOf, oneOf, oneOfType, and shape all require an argument).", componentName || "React class", location2, typeSpecName, typeof error$1);
                     setCurrentlyValidatingElement(null);
                   }
                   if (error$1 instanceof Error && !(error$1.message in loggedTypeFailures)) {
                     loggedTypeFailures[error$1.message] = true;
                     setCurrentlyValidatingElement(element2);
-                    error2("Failed %s type: %s", location2, error$1.message);
+                    error3("Failed %s type: %s", location2, error$1.message);
                     setCurrentlyValidatingElement(null);
                   }
                 }
@@ -1384,14 +1384,14 @@
           }
           var ownerHasKeyUseWarning = {};
           function getCurrentComponentErrorInfo(parentType) {
-            var info = getDeclarationErrorAddendum();
-            if (!info) {
+            var info2 = getDeclarationErrorAddendum();
+            if (!info2) {
               var parentName = typeof parentType === "string" ? parentType : parentType.displayName || parentType.name;
               if (parentName) {
-                info = "\n\nCheck the top-level render call using <" + parentName + ">.";
+                info2 = "\n\nCheck the top-level render call using <" + parentName + ">.";
               }
             }
-            return info;
+            return info2;
           }
           function validateExplicitKey(element2, parentType) {
             if (!element2._store || element2._store.validated || element2.key != null) {
@@ -1409,7 +1409,7 @@
             }
             {
               setCurrentlyValidatingElement$1(element2);
-              error2('Each child in a list should have a unique "key" prop.%s%s See https://reactjs.org/link/warning-keys for more information.', currentComponentErrorInfo, childOwner);
+              error3('Each child in a list should have a unique "key" prop.%s%s See https://reactjs.org/link/warning-keys for more information.', currentComponentErrorInfo, childOwner);
               setCurrentlyValidatingElement$1(null);
             }
           }
@@ -1463,28 +1463,28 @@
               } else if (type.PropTypes !== void 0 && !propTypesMisspellWarningShown) {
                 propTypesMisspellWarningShown = true;
                 var _name = getComponentNameFromType(type);
-                error2("Component %s declared `PropTypes` instead of `propTypes`. Did you misspell the property assignment?", _name || "Unknown");
+                error3("Component %s declared `PropTypes` instead of `propTypes`. Did you misspell the property assignment?", _name || "Unknown");
               }
               if (typeof type.getDefaultProps === "function" && !type.getDefaultProps.isReactClassApproved) {
-                error2("getDefaultProps is only used on classic React.createClass definitions. Use a static property named `defaultProps` instead.");
+                error3("getDefaultProps is only used on classic React.createClass definitions. Use a static property named `defaultProps` instead.");
               }
             }
           }
           function validateFragmentProps(fragment2) {
             {
-              var keys = Object.keys(fragment2.props);
-              for (var i2 = 0; i2 < keys.length; i2++) {
-                var key = keys[i2];
+              var keys2 = Object.keys(fragment2.props);
+              for (var i2 = 0; i2 < keys2.length; i2++) {
+                var key = keys2[i2];
                 if (key !== "children" && key !== "key") {
                   setCurrentlyValidatingElement$1(fragment2);
-                  error2("Invalid prop `%s` supplied to `React.Fragment`. React.Fragment can only have `key` and `children` props.", key);
+                  error3("Invalid prop `%s` supplied to `React.Fragment`. React.Fragment can only have `key` and `children` props.", key);
                   setCurrentlyValidatingElement$1(null);
                   break;
                 }
               }
               if (fragment2.ref !== null) {
                 setCurrentlyValidatingElement$1(fragment2);
-                error2("Invalid attribute `ref` supplied to `React.Fragment`.");
+                error3("Invalid attribute `ref` supplied to `React.Fragment`.");
                 setCurrentlyValidatingElement$1(null);
               }
             }
@@ -1492,15 +1492,15 @@
           function createElementWithValidation(type, props, children) {
             var validType = isValidElementType(type);
             if (!validType) {
-              var info = "";
+              var info2 = "";
               if (type === void 0 || typeof type === "object" && type !== null && Object.keys(type).length === 0) {
-                info += " You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.";
+                info2 += " You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.";
               }
               var sourceInfo = getSourceInfoErrorAddendumForProps(props);
               if (sourceInfo) {
-                info += sourceInfo;
+                info2 += sourceInfo;
               } else {
-                info += getDeclarationErrorAddendum();
+                info2 += getDeclarationErrorAddendum();
               }
               var typeString;
               if (type === null) {
@@ -1509,12 +1509,12 @@
                 typeString = "array";
               } else if (type !== void 0 && type.$$typeof === REACT_ELEMENT_TYPE) {
                 typeString = "<" + (getComponentNameFromType(type.type) || "Unknown") + " />";
-                info = " Did you accidentally export a JSX literal instead of a component?";
+                info2 = " Did you accidentally export a JSX literal instead of a component?";
               } else {
                 typeString = typeof type;
               }
               {
-                error2("React.createElement: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: %s.%s", typeString, info);
+                error3("React.createElement: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: %s.%s", typeString, info2);
               }
             }
             var element2 = createElement2.apply(this, arguments);
@@ -1540,12 +1540,12 @@
             {
               if (!didWarnAboutDeprecatedCreateFactory) {
                 didWarnAboutDeprecatedCreateFactory = true;
-                warn("React.createFactory() is deprecated and will be removed in a future major release. Consider using JSX or use React.createElement() directly instead.");
+                warn2("React.createFactory() is deprecated and will be removed in a future major release. Consider using JSX or use React.createElement() directly instead.");
               }
               Object.defineProperty(validatedFactory, "type", {
                 enumerable: false,
                 get: function() {
-                  warn("Factory.type is deprecated. Access the class directly before passing it to createFactory.");
+                  warn2("Factory.type is deprecated. Access the class directly before passing it to createFactory.");
                   Object.defineProperty(this, "type", {
                     value: type
                   });
@@ -1578,7 +1578,7 @@
                 if (prevTransition === null && currentTransition._updatedFibers) {
                   var updatedFibersCount = currentTransition._updatedFibers.size;
                   if (updatedFibersCount > 10) {
-                    warn("Detected a large number of updates inside startTransition. If this is due to a subscription please re-write it to use React provided hooks. Otherwise concurrent mode guarantees are off the table.");
+                    warn2("Detected a large number of updates inside startTransition. If this is due to a subscription please re-write it to use React provided hooks. Otherwise concurrent mode guarantees are off the table.");
                   }
                   currentTransition._updatedFibers.clear();
                 }
@@ -1599,7 +1599,7 @@
                     if (didWarnAboutMessageChannel === false) {
                       didWarnAboutMessageChannel = true;
                       if (typeof MessageChannel === "undefined") {
-                        error2("This browser does not have a MessageChannel implementation, so enqueuing tasks via await act(async () => ...) will fail. Please file an issue at https://github.com/facebook/react/issues if you encounter this warning.");
+                        error3("This browser does not have a MessageChannel implementation, so enqueuing tasks via await act(async () => ...) will fail. Please file an issue at https://github.com/facebook/react/issues if you encounter this warning.");
                       }
                     }
                   }
@@ -1632,9 +1632,9 @@
                     flushActQueue(queue);
                   }
                 }
-              } catch (error3) {
+              } catch (error4) {
                 popActScope(prevActScopeDepth);
-                throw error3;
+                throw error4;
               } finally {
                 ReactCurrentActQueue.isBatchingLegacy = prevIsBatchingLegacy;
               }
@@ -1651,9 +1651,9 @@
                       } else {
                         resolve(returnValue2);
                       }
-                    }, function(error3) {
+                    }, function(error4) {
                       popActScope(prevActScopeDepth);
-                      reject(error3);
+                      reject(error4);
                     });
                   }
                 };
@@ -1663,7 +1663,7 @@
                     }).then(function() {
                       if (!wasAwaited) {
                         didWarnNoAwaitAct = true;
-                        error2("You called act(async () => ...) without await. This could lead to unexpected testing behaviour, interleaving multiple act calls and mixing their scopes. You should - await act(async () => ...);");
+                        error3("You called act(async () => ...) without await. This could lead to unexpected testing behaviour, interleaving multiple act calls and mixing their scopes. You should - await act(async () => ...);");
                       }
                     });
                   }
@@ -1703,7 +1703,7 @@
           function popActScope(prevActScopeDepth) {
             {
               if (prevActScopeDepth !== actScopeDepth - 1) {
-                error2("You seem to have overlapping act() calls, this is not supported. Be sure to await previous act() calls before making a new one. ");
+                error3("You seem to have overlapping act() calls, this is not supported. Be sure to await previous act() calls before making a new one. ");
               }
               actScopeDepth = prevActScopeDepth;
             }
@@ -1722,8 +1722,8 @@
                       recursivelyFlushAsyncActWork(returnValue, resolve, reject);
                     }
                   });
-                } catch (error3) {
-                  reject(error3);
+                } catch (error4) {
+                  reject(error4);
                 }
               } else {
                 resolve(returnValue);
@@ -1744,9 +1744,9 @@
                     } while (callback !== null);
                   }
                   queue.length = 0;
-                } catch (error3) {
+                } catch (error4) {
                   queue = queue.slice(i2 + 1);
-                  throw error3;
+                  throw error4;
                 } finally {
                   isFlushing = false;
                 }
@@ -1977,13 +1977,13 @@
               if (enableProfiling) {
                 try {
                   return workLoop(hasTimeRemaining, initialTime2);
-                } catch (error2) {
+                } catch (error3) {
                   if (currentTask !== null) {
                     var currentTime2 = exports2.unstable_now();
                     markTaskErrored(currentTask, currentTime2);
                     currentTask.isQueued = false;
                   }
-                  throw error2;
+                  throw error3;
                 }
               } else {
                 return workLoop(hasTimeRemaining, initialTime2);
@@ -2290,16 +2290,16 @@
           if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart === "function") {
             __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(new Error());
           }
-          var React4 = require_react();
+          var React6 = require_react();
           var Scheduler = require_scheduler();
-          var ReactSharedInternals = React4.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+          var ReactSharedInternals = React6.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
           var suppressWarning = false;
           function setSuppressWarning(newSuppressWarning) {
             {
               suppressWarning = newSuppressWarning;
             }
           }
-          function warn(format) {
+          function warn2(format) {
             {
               if (!suppressWarning) {
                 for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
@@ -2309,7 +2309,7 @@
               }
             }
           }
-          function error2(format) {
+          function error3(format) {
             {
               if (!suppressWarning) {
                 for (var _len2 = arguments.length, args = new Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
@@ -2380,7 +2380,7 @@
           function registerDirectEvent(registrationName, dependencies) {
             {
               if (registrationNameDependencies[registrationName]) {
-                error2("EventRegistry: More than one plugin attempted to publish the same registration name, `%s`.", registrationName);
+                error3("EventRegistry: More than one plugin attempted to publish the same registration name, `%s`.", registrationName);
               }
             }
             registrationNameDependencies[registrationName] = dependencies;
@@ -2396,7 +2396,7 @@
             }
           }
           var canUseDOM = !!(typeof window !== "undefined" && typeof window.document !== "undefined" && typeof window.document.createElement !== "undefined");
-          var hasOwnProperty = Object.prototype.hasOwnProperty;
+          var hasOwnProperty2 = Object.prototype.hasOwnProperty;
           function typeName(value12) {
             {
               var hasToStringTag = typeof Symbol === "function" && Symbol.toStringTag;
@@ -2420,7 +2420,7 @@
           function checkAttributeStringCoercion(value12, attributeName) {
             {
               if (willCoercionThrow(value12)) {
-                error2("The provided `%s` attribute is an unsupported type %s. This value must be coerced to a string before before using it here.", attributeName, typeName(value12));
+                error3("The provided `%s` attribute is an unsupported type %s. This value must be coerced to a string before before using it here.", attributeName, typeName(value12));
                 return testStringCoercion(value12);
               }
             }
@@ -2428,7 +2428,7 @@
           function checkKeyStringCoercion(value12) {
             {
               if (willCoercionThrow(value12)) {
-                error2("The provided key is an unsupported type %s. This value must be coerced to a string before before using it here.", typeName(value12));
+                error3("The provided key is an unsupported type %s. This value must be coerced to a string before before using it here.", typeName(value12));
                 return testStringCoercion(value12);
               }
             }
@@ -2436,7 +2436,7 @@
           function checkPropStringCoercion(value12, propName) {
             {
               if (willCoercionThrow(value12)) {
-                error2("The provided `%s` prop is an unsupported type %s. This value must be coerced to a string before before using it here.", propName, typeName(value12));
+                error3("The provided `%s` prop is an unsupported type %s. This value must be coerced to a string before before using it here.", propName, typeName(value12));
                 return testStringCoercion(value12);
               }
             }
@@ -2444,7 +2444,7 @@
           function checkCSSPropertyStringCoercion(value12, propName) {
             {
               if (willCoercionThrow(value12)) {
-                error2("The provided `%s` CSS property is an unsupported type %s. This value must be coerced to a string before before using it here.", propName, typeName(value12));
+                error3("The provided `%s` CSS property is an unsupported type %s. This value must be coerced to a string before before using it here.", propName, typeName(value12));
                 return testStringCoercion(value12);
               }
             }
@@ -2452,7 +2452,7 @@
           function checkHtmlStringCoercion(value12) {
             {
               if (willCoercionThrow(value12)) {
-                error2("The provided HTML markup uses a value of unsupported type %s. This value must be coerced to a string before before using it here.", typeName(value12));
+                error3("The provided HTML markup uses a value of unsupported type %s. This value must be coerced to a string before before using it here.", typeName(value12));
                 return testStringCoercion(value12);
               }
             }
@@ -2460,7 +2460,7 @@
           function checkFormFieldValueStringCoercion(value12) {
             {
               if (willCoercionThrow(value12)) {
-                error2("Form field values (value, checked, defaultValue, or defaultChecked props) must be strings, not %s. This value must be coerced to a string before before using it here.", typeName(value12));
+                error3("Form field values (value, checked, defaultValue, or defaultChecked props) must be strings, not %s. This value must be coerced to a string before before using it here.", typeName(value12));
                 return testStringCoercion(value12);
               }
             }
@@ -2478,10 +2478,10 @@
           var illegalAttributeNameCache = {};
           var validatedAttributeNameCache = {};
           function isAttributeNameSafe(attributeName) {
-            if (hasOwnProperty.call(validatedAttributeNameCache, attributeName)) {
+            if (hasOwnProperty2.call(validatedAttributeNameCache, attributeName)) {
               return true;
             }
-            if (hasOwnProperty.call(illegalAttributeNameCache, attributeName)) {
+            if (hasOwnProperty2.call(illegalAttributeNameCache, attributeName)) {
               return false;
             }
             if (VALID_ATTRIBUTE_NAME_REGEX.test(attributeName)) {
@@ -2490,7 +2490,7 @@
             }
             illegalAttributeNameCache[attributeName] = true;
             {
-              error2("Invalid attribute name: `%s`", attributeName);
+              error3("Invalid attribute name: `%s`", attributeName);
             }
             return false;
           }
@@ -2757,7 +2757,7 @@
             {
               if (!didWarn && isJavaScriptProtocol.test(url)) {
                 didWarn = true;
-                error2("A future version of React will block javascript: URLs as a security precaution. Use event handlers instead if you can. If you need to generate unsafe HTML try using dangerouslySetInnerHTML instead. React was passed %s.", JSON.stringify(url));
+                error3("A future version of React will block javascript: URLs as a security precaution. Use event handlers instead if you can. If you need to generate unsafe HTML try using dangerouslySetInnerHTML instead. React was passed %s.", JSON.stringify(url));
               }
             }
           }
@@ -2990,7 +2990,7 @@
                 });
               }
               if (disabledDepth < 0) {
-                error2("disabledDepth fell below zero. This is a bug in React. Please file an issue.");
+                error3("disabledDepth fell below zero. This is a bug in React. Please file an issue.");
               }
             }
           }
@@ -3195,13 +3195,13 @@
           }
           function getStackByFiberInDevAndProd(workInProgress2) {
             try {
-              var info = "";
+              var info2 = "";
               var node = workInProgress2;
               do {
-                info += describeFiber(node);
+                info2 += describeFiber(node);
                 node = node.return;
               } while (node);
-              return info;
+              return info2;
             } catch (x) {
               return "\nError generating stack: " + x.message + "\n" + x.stack;
             }
@@ -3223,7 +3223,7 @@
             }
             {
               if (typeof type.tag === "number") {
-                error2("Received an unexpected object in getComponentNameFromType(). This is likely a bug in React. Please file an issue.");
+                error3("Received an unexpected object in getComponentNameFromType(). This is likely a bug in React. Please file an issue.");
               }
             }
             if (typeof type === "function") {
@@ -3421,10 +3421,10 @@
           function checkControlledValueProps(tagName, props) {
             {
               if (!(hasReadOnlyValue[props.type] || props.onChange || props.onInput || props.readOnly || props.disabled || props.value == null)) {
-                error2("You provided a `value` prop to a form field without an `onChange` handler. This will render a read-only field. If the field should be mutable use `defaultValue`. Otherwise, set either `onChange` or `readOnly`.");
+                error3("You provided a `value` prop to a form field without an `onChange` handler. This will render a read-only field. If the field should be mutable use `defaultValue`. Otherwise, set either `onChange` or `readOnly`.");
               }
               if (!(props.onChange || props.readOnly || props.disabled || props.checked == null)) {
-                error2("You provided a `checked` prop to a form field without an `onChange` handler. This will render a read-only field. If the field should be mutable use `defaultChecked`. Otherwise, set either `onChange` or `readOnly`.");
+                error3("You provided a `checked` prop to a form field without an `onChange` handler. This will render a read-only field. If the field should be mutable use `defaultChecked`. Otherwise, set either `onChange` or `readOnly`.");
               }
             }
           }
@@ -3551,11 +3551,11 @@
             {
               checkControlledValueProps("input", props);
               if (props.checked !== void 0 && props.defaultChecked !== void 0 && !didWarnCheckedDefaultChecked) {
-                error2("%s contains an input of type %s with both checked and defaultChecked props. Input elements must be either controlled or uncontrolled (specify either the checked prop, or the defaultChecked prop, but not both). Decide between using a controlled or uncontrolled input element and remove one of these props. More info: https://reactjs.org/link/controlled-components", getCurrentFiberOwnerNameInDevOrNull() || "A component", props.type);
+                error3("%s contains an input of type %s with both checked and defaultChecked props. Input elements must be either controlled or uncontrolled (specify either the checked prop, or the defaultChecked prop, but not both). Decide between using a controlled or uncontrolled input element and remove one of these props. More info: https://reactjs.org/link/controlled-components", getCurrentFiberOwnerNameInDevOrNull() || "A component", props.type);
                 didWarnCheckedDefaultChecked = true;
               }
               if (props.value !== void 0 && props.defaultValue !== void 0 && !didWarnValueDefaultValue) {
-                error2("%s contains an input of type %s with both value and defaultValue props. Input elements must be either controlled or uncontrolled (specify either the value prop, or the defaultValue prop, but not both). Decide between using a controlled or uncontrolled input element and remove one of these props. More info: https://reactjs.org/link/controlled-components", getCurrentFiberOwnerNameInDevOrNull() || "A component", props.type);
+                error3("%s contains an input of type %s with both value and defaultValue props. Input elements must be either controlled or uncontrolled (specify either the value prop, or the defaultValue prop, but not both). Decide between using a controlled or uncontrolled input element and remove one of these props. More info: https://reactjs.org/link/controlled-components", getCurrentFiberOwnerNameInDevOrNull() || "A component", props.type);
                 didWarnValueDefaultValue = true;
               }
             }
@@ -3579,11 +3579,11 @@
             {
               var controlled = isControlled(props);
               if (!node._wrapperState.controlled && controlled && !didWarnUncontrolledToControlled) {
-                error2("A component is changing an uncontrolled input to be controlled. This is likely caused by the value changing from undefined to a defined value, which should not happen. Decide between using a controlled or uncontrolled input element for the lifetime of the component. More info: https://reactjs.org/link/controlled-components");
+                error3("A component is changing an uncontrolled input to be controlled. This is likely caused by the value changing from undefined to a defined value, which should not happen. Decide between using a controlled or uncontrolled input element for the lifetime of the component. More info: https://reactjs.org/link/controlled-components");
                 didWarnUncontrolledToControlled = true;
               }
               if (node._wrapperState.controlled && !controlled && !didWarnControlledToUncontrolled) {
-                error2("A component is changing a controlled input to be uncontrolled. This is likely caused by the value changing from a defined to undefined, which should not happen. Decide between using a controlled or uncontrolled input element for the lifetime of the component. More info: https://reactjs.org/link/controlled-components");
+                error3("A component is changing a controlled input to be uncontrolled. This is likely caused by the value changing from a defined to undefined, which should not happen. Decide between using a controlled or uncontrolled input element for the lifetime of the component. More info: https://reactjs.org/link/controlled-components");
                 didWarnControlledToUncontrolled = true;
               }
             }
@@ -3693,7 +3693,7 @@
             {
               if (props.value == null) {
                 if (typeof props.children === "object" && props.children !== null) {
-                  React4.Children.forEach(props.children, function(child) {
+                  React6.Children.forEach(props.children, function(child) {
                     if (child == null) {
                       return;
                     }
@@ -3702,18 +3702,18 @@
                     }
                     if (!didWarnInvalidChild) {
                       didWarnInvalidChild = true;
-                      error2("Cannot infer the option value of complex children. Pass a `value` prop or use a plain string as children to <option>.");
+                      error3("Cannot infer the option value of complex children. Pass a `value` prop or use a plain string as children to <option>.");
                     }
                   });
                 } else if (props.dangerouslySetInnerHTML != null) {
                   if (!didWarnInvalidInnerHTML) {
                     didWarnInvalidInnerHTML = true;
-                    error2("Pass a `value` prop if you set dangerouslyInnerHTML so React knows which value should be selected.");
+                    error3("Pass a `value` prop if you set dangerouslyInnerHTML so React knows which value should be selected.");
                   }
                 }
               }
               if (props.selected != null && !didWarnSelectedSetOnOption) {
-                error2("Use the `defaultValue` or `value` props on <select> instead of setting `selected` on <option>.");
+                error3("Use the `defaultValue` or `value` props on <select> instead of setting `selected` on <option>.");
                 didWarnSelectedSetOnOption = true;
               }
             }
@@ -3749,9 +3749,9 @@
                 }
                 var propNameIsArray = isArray(props[propName]);
                 if (props.multiple && !propNameIsArray) {
-                  error2("The `%s` prop supplied to <select> must be an array if `multiple` is true.%s", propName, getDeclarationErrorAddendum());
+                  error3("The `%s` prop supplied to <select> must be an array if `multiple` is true.%s", propName, getDeclarationErrorAddendum());
                 } else if (!props.multiple && propNameIsArray) {
-                  error2("The `%s` prop supplied to <select> must be a scalar value if `multiple` is false.%s", propName, getDeclarationErrorAddendum());
+                  error3("The `%s` prop supplied to <select> must be a scalar value if `multiple` is false.%s", propName, getDeclarationErrorAddendum());
                 }
               }
             }
@@ -3808,7 +3808,7 @@
             };
             {
               if (props.value !== void 0 && props.defaultValue !== void 0 && !didWarnValueDefaultValue$1) {
-                error2("Select elements must be either controlled or uncontrolled (specify either the value prop, or the defaultValue prop, but not both). Decide between using a controlled or uncontrolled select element and remove one of these props. More info: https://reactjs.org/link/controlled-components");
+                error3("Select elements must be either controlled or uncontrolled (specify either the value prop, or the defaultValue prop, but not both). Decide between using a controlled or uncontrolled select element and remove one of these props. More info: https://reactjs.org/link/controlled-components");
                 didWarnValueDefaultValue$1 = true;
               }
             }
@@ -3863,7 +3863,7 @@
             {
               checkControlledValueProps("textarea", props);
               if (props.value !== void 0 && props.defaultValue !== void 0 && !didWarnValDefaultVal) {
-                error2("%s contains a textarea with both value and defaultValue props. Textarea elements must be either controlled or uncontrolled (specify either the value prop, or the defaultValue prop, but not both). Decide between using a controlled or uncontrolled textarea and remove one of these props. More info: https://reactjs.org/link/controlled-components", getCurrentFiberOwnerNameInDevOrNull() || "A component");
+                error3("%s contains a textarea with both value and defaultValue props. Textarea elements must be either controlled or uncontrolled (specify either the value prop, or the defaultValue prop, but not both). Decide between using a controlled or uncontrolled textarea and remove one of these props. More info: https://reactjs.org/link/controlled-components", getCurrentFiberOwnerNameInDevOrNull() || "A component");
                 didWarnValDefaultVal = true;
               }
             }
@@ -3872,7 +3872,7 @@
               var children = props.children, defaultValue4 = props.defaultValue;
               if (children != null) {
                 {
-                  error2("Use the `defaultValue` or `value` props instead of setting children on <textarea>.");
+                  error3("Use the `defaultValue` or `value` props instead of setting children on <textarea>.");
                 }
                 {
                   if (defaultValue4 != null) {
@@ -4133,35 +4133,35 @@
                 return;
               }
               warnedStyleNames[name15] = true;
-              error2("Unsupported style property %s. Did you mean %s?", name15, camelize(name15.replace(msPattern$1, "ms-")));
+              error3("Unsupported style property %s. Did you mean %s?", name15, camelize(name15.replace(msPattern$1, "ms-")));
             };
             var warnBadVendoredStyleName = function(name15) {
               if (warnedStyleNames.hasOwnProperty(name15) && warnedStyleNames[name15]) {
                 return;
               }
               warnedStyleNames[name15] = true;
-              error2("Unsupported vendor-prefixed style property %s. Did you mean %s?", name15, name15.charAt(0).toUpperCase() + name15.slice(1));
+              error3("Unsupported vendor-prefixed style property %s. Did you mean %s?", name15, name15.charAt(0).toUpperCase() + name15.slice(1));
             };
             var warnStyleValueWithSemicolon = function(name15, value12) {
               if (warnedStyleValues.hasOwnProperty(value12) && warnedStyleValues[value12]) {
                 return;
               }
               warnedStyleValues[value12] = true;
-              error2(`Style property values shouldn't contain a semicolon. Try "%s: %s" instead.`, name15, value12.replace(badStyleValueWithSemicolonPattern, ""));
+              error3(`Style property values shouldn't contain a semicolon. Try "%s: %s" instead.`, name15, value12.replace(badStyleValueWithSemicolonPattern, ""));
             };
             var warnStyleValueIsNaN = function(name15, value12) {
               if (warnedForNaNValue) {
                 return;
               }
               warnedForNaNValue = true;
-              error2("`NaN` is an invalid value for the `%s` css style property.", name15);
+              error3("`NaN` is an invalid value for the `%s` css style property.", name15);
             };
             var warnStyleValueIsInfinity = function(name15, value12) {
               if (warnedForInfinityValue) {
                 return;
               }
               warnedForInfinityValue = true;
-              error2("`Infinity` is an invalid value for the `%s` css style property.", name15);
+              error3("`Infinity` is an invalid value for the `%s` css style property.", name15);
             };
             warnValidStyle = function(name15, value12) {
               if (name15.indexOf("-") > -1) {
@@ -4253,7 +4253,7 @@
                     continue;
                   }
                   warnedAbout[warningKey] = true;
-                  error2("%s a style property during rerender (%s) when a conflicting property is set (%s) can lead to styling bugs. To avoid this, don't mix shorthand and non-shorthand properties for the same value; instead, replace the shorthand with separate values.", isValueEmpty(styleUpdates[originalKey]) ? "Removing" : "Updating", originalKey, correctOriginalKey);
+                  error3("%s a style property during rerender (%s) when a conflicting property is set (%s) can lead to styling bugs. To avoid this, don't mix shorthand and non-shorthand properties for the same value; instead, replace the shorthand with separate values.", isValueEmpty(styleUpdates[originalKey]) ? "Removing" : "Updating", originalKey, correctOriginalKey);
                 }
               }
             }
@@ -4298,7 +4298,7 @@
             }
             {
               if (!props.suppressContentEditableWarning && props.contentEditable && props.children != null) {
-                error2("A component is `contentEditable` and contains `children` managed by React. It is now your responsibility to guarantee that none of those nodes are unexpectedly modified or duplicated. This is probably not intentional.");
+                error3("A component is `contentEditable` and contains `children` managed by React. It is now your responsibility to guarantee that none of those nodes are unexpectedly modified or duplicated. This is probably not intentional.");
               }
             }
             if (props.style != null && typeof props.style !== "object") {
@@ -4866,19 +4866,19 @@
           var rARIACamel = new RegExp("^(aria)[A-Z][" + ATTRIBUTE_NAME_CHAR + "]*$");
           function validateProperty(tagName, name15) {
             {
-              if (hasOwnProperty.call(warnedProperties, name15) && warnedProperties[name15]) {
+              if (hasOwnProperty2.call(warnedProperties, name15) && warnedProperties[name15]) {
                 return true;
               }
               if (rARIACamel.test(name15)) {
                 var ariaName = "aria-" + name15.slice(4).toLowerCase();
                 var correctName = ariaProperties.hasOwnProperty(ariaName) ? ariaName : null;
                 if (correctName == null) {
-                  error2("Invalid ARIA attribute `%s`. ARIA attributes follow the pattern aria-* and must be lowercase.", name15);
+                  error3("Invalid ARIA attribute `%s`. ARIA attributes follow the pattern aria-* and must be lowercase.", name15);
                   warnedProperties[name15] = true;
                   return true;
                 }
                 if (name15 !== correctName) {
-                  error2("Invalid ARIA attribute `%s`. Did you mean `%s`?", name15, correctName);
+                  error3("Invalid ARIA attribute `%s`. Did you mean `%s`?", name15, correctName);
                   warnedProperties[name15] = true;
                   return true;
                 }
@@ -4891,7 +4891,7 @@
                   return false;
                 }
                 if (name15 !== standardName) {
-                  error2("Unknown ARIA attribute `%s`. Did you mean `%s`?", name15, standardName);
+                  error3("Unknown ARIA attribute `%s`. Did you mean `%s`?", name15, standardName);
                   warnedProperties[name15] = true;
                   return true;
                 }
@@ -4912,9 +4912,9 @@
                 return "`" + prop + "`";
               }).join(", ");
               if (invalidProps.length === 1) {
-                error2("Invalid aria prop %s on <%s> tag. For details, see https://reactjs.org/link/invalid-aria-props", unknownPropString, type);
+                error3("Invalid aria prop %s on <%s> tag. For details, see https://reactjs.org/link/invalid-aria-props", unknownPropString, type);
               } else if (invalidProps.length > 1) {
-                error2("Invalid aria props %s on <%s> tag. For details, see https://reactjs.org/link/invalid-aria-props", unknownPropString, type);
+                error3("Invalid aria props %s on <%s> tag. For details, see https://reactjs.org/link/invalid-aria-props", unknownPropString, type);
               }
             }
           }
@@ -4933,9 +4933,9 @@
               if (props != null && props.value === null && !didWarnValueNull) {
                 didWarnValueNull = true;
                 if (type === "select" && props.multiple) {
-                  error2("`value` prop on `%s` should not be null. Consider using an empty array when `multiple` is set to `true` to clear the component or `undefined` for uncontrolled components.", type);
+                  error3("`value` prop on `%s` should not be null. Consider using an empty array when `multiple` is set to `true` to clear the component or `undefined` for uncontrolled components.", type);
                 } else {
-                  error2("`value` prop on `%s` should not be null. Consider using an empty string to clear the component or `undefined` for uncontrolled components.", type);
+                  error3("`value` prop on `%s` should not be null. Consider using an empty string to clear the component or `undefined` for uncontrolled components.", type);
                 }
               }
             }
@@ -4949,12 +4949,12 @@
             var rARIA$1 = new RegExp("^(aria)-[" + ATTRIBUTE_NAME_CHAR + "]*$");
             var rARIACamel$1 = new RegExp("^(aria)[A-Z][" + ATTRIBUTE_NAME_CHAR + "]*$");
             validateProperty$1 = function(tagName, name15, value12, eventRegistry) {
-              if (hasOwnProperty.call(warnedProperties$1, name15) && warnedProperties$1[name15]) {
+              if (hasOwnProperty2.call(warnedProperties$1, name15) && warnedProperties$1[name15]) {
                 return true;
               }
               var lowerCasedName = name15.toLowerCase();
               if (lowerCasedName === "onfocusin" || lowerCasedName === "onfocusout") {
-                error2("React uses onFocus and onBlur instead of onFocusIn and onFocusOut. All React events are normalized to bubble, so onFocusIn and onFocusOut are not needed/supported by React.");
+                error3("React uses onFocus and onBlur instead of onFocusIn and onFocusOut. All React events are normalized to bubble, so onFocusIn and onFocusOut are not needed/supported by React.");
                 warnedProperties$1[name15] = true;
                 return true;
               }
@@ -4965,18 +4965,18 @@
                 }
                 var registrationName = possibleRegistrationNames2.hasOwnProperty(lowerCasedName) ? possibleRegistrationNames2[lowerCasedName] : null;
                 if (registrationName != null) {
-                  error2("Invalid event handler property `%s`. Did you mean `%s`?", name15, registrationName);
+                  error3("Invalid event handler property `%s`. Did you mean `%s`?", name15, registrationName);
                   warnedProperties$1[name15] = true;
                   return true;
                 }
                 if (EVENT_NAME_REGEX.test(name15)) {
-                  error2("Unknown event handler property `%s`. It will be ignored.", name15);
+                  error3("Unknown event handler property `%s`. It will be ignored.", name15);
                   warnedProperties$1[name15] = true;
                   return true;
                 }
               } else if (EVENT_NAME_REGEX.test(name15)) {
                 if (INVALID_EVENT_NAME_REGEX.test(name15)) {
-                  error2("Invalid event handler property `%s`. React events use the camelCase naming convention, for example `onClick`.", name15);
+                  error3("Invalid event handler property `%s`. React events use the camelCase naming convention, for example `onClick`.", name15);
                 }
                 warnedProperties$1[name15] = true;
                 return true;
@@ -4985,22 +4985,22 @@
                 return true;
               }
               if (lowerCasedName === "innerhtml") {
-                error2("Directly setting property `innerHTML` is not permitted. For more information, lookup documentation on `dangerouslySetInnerHTML`.");
+                error3("Directly setting property `innerHTML` is not permitted. For more information, lookup documentation on `dangerouslySetInnerHTML`.");
                 warnedProperties$1[name15] = true;
                 return true;
               }
               if (lowerCasedName === "aria") {
-                error2("The `aria` attribute is reserved for future use in React. Pass individual `aria-` attributes instead.");
+                error3("The `aria` attribute is reserved for future use in React. Pass individual `aria-` attributes instead.");
                 warnedProperties$1[name15] = true;
                 return true;
               }
               if (lowerCasedName === "is" && value12 !== null && value12 !== void 0 && typeof value12 !== "string") {
-                error2("Received a `%s` for a string attribute `is`. If this is expected, cast the value to a string.", typeof value12);
+                error3("Received a `%s` for a string attribute `is`. If this is expected, cast the value to a string.", typeof value12);
                 warnedProperties$1[name15] = true;
                 return true;
               }
               if (typeof value12 === "number" && isNaN(value12)) {
-                error2("Received NaN for the `%s` attribute. If this is expected, cast the value to a string.", name15);
+                error3("Received NaN for the `%s` attribute. If this is expected, cast the value to a string.", name15);
                 warnedProperties$1[name15] = true;
                 return true;
               }
@@ -5009,20 +5009,20 @@
               if (possibleStandardNames.hasOwnProperty(lowerCasedName)) {
                 var standardName = possibleStandardNames[lowerCasedName];
                 if (standardName !== name15) {
-                  error2("Invalid DOM property `%s`. Did you mean `%s`?", name15, standardName);
+                  error3("Invalid DOM property `%s`. Did you mean `%s`?", name15, standardName);
                   warnedProperties$1[name15] = true;
                   return true;
                 }
               } else if (!isReserved && name15 !== lowerCasedName) {
-                error2("React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element.", name15, lowerCasedName);
+                error3("React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element.", name15, lowerCasedName);
                 warnedProperties$1[name15] = true;
                 return true;
               }
               if (typeof value12 === "boolean" && shouldRemoveAttributeWithWarning(name15, value12, propertyInfo, false)) {
                 if (value12) {
-                  error2('Received `%s` for a non-boolean attribute `%s`.\n\nIf you want to write it to the DOM, pass a string instead: %s="%s" or %s={value.toString()}.', value12, name15, name15, value12, name15);
+                  error3('Received `%s` for a non-boolean attribute `%s`.\n\nIf you want to write it to the DOM, pass a string instead: %s="%s" or %s={value.toString()}.', value12, name15, name15, value12, name15);
                 } else {
-                  error2('Received `%s` for a non-boolean attribute `%s`.\n\nIf you want to write it to the DOM, pass a string instead: %s="%s" or %s={value.toString()}.\n\nIf you used to conditionally omit it with %s={condition && value}, pass %s={condition ? value : undefined} instead.', value12, name15, name15, value12, name15, name15, name15);
+                  error3('Received `%s` for a non-boolean attribute `%s`.\n\nIf you want to write it to the DOM, pass a string instead: %s="%s" or %s={value.toString()}.\n\nIf you used to conditionally omit it with %s={condition && value}, pass %s={condition ? value : undefined} instead.', value12, name15, name15, value12, name15, name15, name15);
                 }
                 warnedProperties$1[name15] = true;
                 return true;
@@ -5035,7 +5035,7 @@
                 return false;
               }
               if ((value12 === "false" || value12 === "true") && propertyInfo !== null && propertyInfo.type === BOOLEAN) {
-                error2("Received the string `%s` for the boolean attribute `%s`. %s Did you mean %s={%s}?", value12, name15, value12 === "false" ? "The browser will interpret it as a truthy value." : 'Although this works, it will not work as expected if you pass the string "false".', name15, value12);
+                error3("Received the string `%s` for the boolean attribute `%s`. %s Did you mean %s={%s}?", value12, name15, value12 === "false" ? "The browser will interpret it as a truthy value." : 'Although this works, it will not work as expected if you pass the string "false".', name15, value12);
                 warnedProperties$1[name15] = true;
                 return true;
               }
@@ -5055,9 +5055,9 @@
                 return "`" + prop + "`";
               }).join(", ");
               if (unknownProps.length === 1) {
-                error2("Invalid value for prop %s on <%s> tag. Either remove it from the element, or pass a string or number value to keep it in the DOM. For details, see https://reactjs.org/link/attribute-behavior ", unknownPropString, type);
+                error3("Invalid value for prop %s on <%s> tag. Either remove it from the element, or pass a string or number value to keep it in the DOM. For details, see https://reactjs.org/link/attribute-behavior ", unknownPropString, type);
               } else if (unknownProps.length > 1) {
-                error2("Invalid values for props %s on <%s> tag. Either remove them from the element, or pass a string or number value to keep them in the DOM. For details, see https://reactjs.org/link/attribute-behavior ", unknownPropString, type);
+                error3("Invalid values for props %s on <%s> tag. Either remove them from the element, or pass a string or number value to keep them in the DOM. For details, see https://reactjs.org/link/attribute-behavior ", unknownPropString, type);
               }
             }
           };
@@ -5075,7 +5075,7 @@
           function setReplayingEvent(event) {
             {
               if (currentReplayingEvent !== null) {
-                error2("Expected currently replaying event to be null. This error is likely caused by a bug in React. Please file an issue.");
+                error3("Expected currently replaying event to be null. This error is likely caused by a bug in React. Please file an issue.");
               }
             }
             currentReplayingEvent = event;
@@ -5083,7 +5083,7 @@
           function resetReplayingEvent() {
             {
               if (currentReplayingEvent === null) {
-                error2("Expected currently replaying event to not be null. This error is likely caused by a bug in React. Please file an issue.");
+                error3("Expected currently replaying event to not be null. This error is likely caused by a bug in React. Please file an issue.");
               }
             }
             currentReplayingEvent = null;
@@ -5234,8 +5234,8 @@
             var funcArgs = Array.prototype.slice.call(arguments, 3);
             try {
               func.apply(context, funcArgs);
-            } catch (error3) {
-              this.onError(error3);
+            } catch (error4) {
+              this.onError(error4);
             }
           }
           var invokeGuardedCallbackImpl = invokeGuardedCallbackProd;
@@ -5264,19 +5264,19 @@
                   func.apply(context, funcArgs);
                   didError = false;
                 }
-                var error3;
+                var error4;
                 var didSetError = false;
                 var isCrossOriginError = false;
                 function handleWindowError(event) {
-                  error3 = event.error;
+                  error4 = event.error;
                   didSetError = true;
-                  if (error3 === null && event.colno === 0 && event.lineno === 0) {
+                  if (error4 === null && event.colno === 0 && event.lineno === 0) {
                     isCrossOriginError = true;
                   }
                   if (event.defaultPrevented) {
-                    if (error3 != null && typeof error3 === "object") {
+                    if (error4 != null && typeof error4 === "object") {
                       try {
-                        error3._suppressLogging = true;
+                        error4._suppressLogging = true;
                       } catch (inner) {
                       }
                     }
@@ -5292,11 +5292,11 @@
                 }
                 if (didCall && didError) {
                   if (!didSetError) {
-                    error3 = new Error(`An error was thrown inside one of your components, but React doesn't know what it was. This is likely due to browser flakiness. React does its best to preserve the "Pause on exceptions" behavior of the DevTools, which requires some DEV-mode only tricks. It's possible that these don't work in your browser. Try triggering the error in production mode, or switching to a modern browser. If you suspect that this is actually an issue with React, please file an issue.`);
+                    error4 = new Error(`An error was thrown inside one of your components, but React doesn't know what it was. This is likely due to browser flakiness. React does its best to preserve the "Pause on exceptions" behavior of the DevTools, which requires some DEV-mode only tricks. It's possible that these don't work in your browser. Try triggering the error in production mode, or switching to a modern browser. If you suspect that this is actually an issue with React, please file an issue.`);
                   } else if (isCrossOriginError) {
-                    error3 = new Error("A cross-origin error was thrown. React doesn't have access to the actual error object in development. See https://reactjs.org/link/crossorigin-error for more information.");
+                    error4 = new Error("A cross-origin error was thrown. React doesn't have access to the actual error object in development. See https://reactjs.org/link/crossorigin-error for more information.");
                   }
-                  this.onError(error3);
+                  this.onError(error4);
                 }
                 window.removeEventListener("error", handleWindowError);
                 if (!didCall) {
@@ -5312,9 +5312,9 @@
           var hasRethrowError = false;
           var rethrowError = null;
           var reporter = {
-            onError: function(error3) {
+            onError: function(error4) {
               hasError = true;
-              caughtError = error3;
+              caughtError = error4;
             }
           };
           function invokeGuardedCallback(name15, func, context, a2, b2, c, d, e, f) {
@@ -5325,19 +5325,19 @@
           function invokeGuardedCallbackAndCatchFirstError(name15, func, context, a2, b2, c, d, e, f) {
             invokeGuardedCallback.apply(this, arguments);
             if (hasError) {
-              var error3 = clearCaughtError();
+              var error4 = clearCaughtError();
               if (!hasRethrowError) {
                 hasRethrowError = true;
-                rethrowError = error3;
+                rethrowError = error4;
               }
             }
           }
           function rethrowCaughtError() {
             if (hasRethrowError) {
-              var error3 = rethrowError;
+              var error4 = rethrowError;
               hasRethrowError = false;
               rethrowError = null;
-              throw error3;
+              throw error4;
             }
           }
           function hasCaughtError() {
@@ -5345,10 +5345,10 @@
           }
           function clearCaughtError() {
             if (hasError) {
-              var error3 = caughtError;
+              var error4 = caughtError;
               hasError = false;
               caughtError = null;
-              return error3;
+              return error4;
             } else {
               throw new Error("clearCaughtError was called but no error was captured. This error is likely caused by a bug in React. Please file an issue.");
             }
@@ -5444,7 +5444,7 @@
                 var ownerFiber = owner;
                 var instance = ownerFiber.stateNode;
                 if (!instance._warnedAboutRefsInRender) {
-                  error2("%s is accessing isMounted inside its render() function. render() should be a pure function of props and state. It should never access something that requires stale data from the previous render, such as refs. Move this logic to componentDidMount and componentDidUpdate instead.", getComponentNameFromFiber(ownerFiber) || "A component");
+                  error3("%s is accessing isMounted inside its render() function. render() should be a pure function of props and state. It should never access something that requires stale data from the previous render, such as refs. Move this logic to componentDidMount and componentDidUpdate instead.", getComponentNameFromFiber(ownerFiber) || "A component");
                 }
                 instance._warnedAboutRefsInRender = true;
               }
@@ -5624,7 +5624,7 @@
             }
             if (!hook.supportsFiber) {
               {
-                error2("The installed version of React DevTools is too old and will not work with the current version of React. Please update React DevTools. https://reactjs.org/link/react-devtools");
+                error3("The installed version of React DevTools is too old and will not work with the current version of React. Please update React DevTools. https://reactjs.org/link/react-devtools");
               }
               return true;
             }
@@ -5639,7 +5639,7 @@
               injectedHook = hook;
             } catch (err) {
               {
-                error2("React instrumentation encountered an error: %s.", err);
+                error3("React instrumentation encountered an error: %s.", err);
               }
             }
             if (hook.checkDCE) {
@@ -5656,7 +5656,7 @@
                 } catch (err) {
                   if (!hasLoggedError) {
                     hasLoggedError = true;
-                    error2("React instrumentation encountered an error: %s", err);
+                    error3("React instrumentation encountered an error: %s", err);
                   }
                 }
               }
@@ -5693,7 +5693,7 @@
                 {
                   if (!hasLoggedError) {
                     hasLoggedError = true;
-                    error2("React instrumentation encountered an error: %s", err);
+                    error3("React instrumentation encountered an error: %s", err);
                   }
                 }
               }
@@ -5707,7 +5707,7 @@
                 {
                   if (!hasLoggedError) {
                     hasLoggedError = true;
-                    error2("React instrumentation encountered an error: %s", err);
+                    error3("React instrumentation encountered an error: %s", err);
                   }
                 }
               }
@@ -5721,7 +5721,7 @@
                 {
                   if (!hasLoggedError) {
                     hasLoggedError = true;
-                    error2("React instrumentation encountered an error: %s", err);
+                    error3("React instrumentation encountered an error: %s", err);
                   }
                 }
               }
@@ -5740,7 +5740,7 @@
                   {
                     if (!hasLoggedError) {
                       hasLoggedError = true;
-                      error2("React instrumentation encountered an error: %s", err);
+                      error3("React instrumentation encountered an error: %s", err);
                     }
                   }
                 }
@@ -5936,14 +5936,14 @@
           var StrictLegacyMode = 8;
           var StrictEffectsMode = 16;
           var clz32 = Math.clz32 ? Math.clz32 : clz32Fallback;
-          var log2 = Math.log;
+          var log3 = Math.log;
           var LN2 = Math.LN2;
           function clz32Fallback(x) {
             var asUint = x >>> 0;
             if (asUint === 0) {
               return 32;
             }
-            return 31 - (log2(asUint) / LN2 | 0) | 0;
+            return 31 - (log3(asUint) / LN2 | 0) | 0;
           }
           var TotalLanes = 31;
           var NoLanes = 0;
@@ -6073,7 +6073,7 @@
                 return OffscreenLane;
               default:
                 {
-                  error2("Should have found matching lanes. This is a bug in React.");
+                  error3("Should have found matching lanes. This is a bug in React.");
                 }
                 return lanes;
             }
@@ -6186,7 +6186,7 @@
                 return NoTimestamp;
               default:
                 {
-                  error2("Should have found matching lanes. This is a bug in React.");
+                  error3("Should have found matching lanes. This is a bug in React.");
                 }
                 return NoTimestamp;
             }
@@ -7841,7 +7841,7 @@
             }
             for (var i2 = 0; i2 < keysA.length; i2++) {
               var currentKey = keysA[i2];
-              if (!hasOwnProperty.call(objB, currentKey) || !objectIs(objA[currentKey], objB[currentKey])) {
+              if (!hasOwnProperty2.call(objB, currentKey) || !objectIs(objA[currentKey], objB[currentKey])) {
                 return false;
               }
             }
@@ -7969,15 +7969,15 @@
               if (selection.rangeCount === 1 && selection.anchorNode === startMarker.node && selection.anchorOffset === startMarker.offset && selection.focusNode === endMarker.node && selection.focusOffset === endMarker.offset) {
                 return;
               }
-              var range4 = doc.createRange();
-              range4.setStart(startMarker.node, startMarker.offset);
+              var range3 = doc.createRange();
+              range3.setStart(startMarker.node, startMarker.offset);
               selection.removeAllRanges();
               if (start2 > end) {
-                selection.addRange(range4);
+                selection.addRange(range3);
                 selection.extend(endMarker.node, endMarker.offset);
               } else {
-                range4.setEnd(endMarker.node, endMarker.offset);
-                selection.addRange(range4);
+                range3.setEnd(endMarker.node, endMarker.offset);
+                selection.addRange(range3);
               }
             }
           }
@@ -8058,9 +8058,9 @@
                 priorFocusedElem.focus();
               }
               for (var i2 = 0; i2 < ancestors.length; i2++) {
-                var info = ancestors[i2];
-                info.element.scrollLeft = info.left;
-                info.element.scrollTop = info.top;
+                var info2 = ancestors[i2];
+                info2.element.scrollLeft = info2.left;
+                info2.element.scrollTop = info2.top;
               }
             }
           }
@@ -8400,7 +8400,7 @@
           function listenToNonDelegatedEvent(domEventName, targetElement) {
             {
               if (!nonDelegatedEvents.has(domEventName)) {
-                error2('Did not expect a listenToNonDelegatedEvent() call for "%s". This is a bug in React. Please file an issue.', domEventName);
+                error3('Did not expect a listenToNonDelegatedEvent() call for "%s". This is a bug in React. Please file an issue.', domEventName);
               }
             }
             var isCapturePhaseListener = false;
@@ -8414,7 +8414,7 @@
           function listenToNativeEvent(domEventName, isCapturePhaseListener, target5) {
             {
               if (nonDelegatedEvents.has(domEventName) && !isCapturePhaseListener) {
-                error2('Did not expect a listenToNativeEvent() call for "%s" in the bubble phase. This is a bug in React. Please file an issue.', domEventName);
+                error3('Did not expect a listenToNativeEvent() call for "%s" in the bubble phase. This is a bug in React. Please file an issue.', domEventName);
               }
             }
             var eventSystemFlags = 0;
@@ -8701,7 +8701,7 @@
                 return;
               }
               didWarnInvalidHydration = true;
-              error2("Prop `%s` did not match. Server: %s Client: %s", propName, JSON.stringify(normalizedServerValue), JSON.stringify(normalizedClientValue));
+              error3("Prop `%s` did not match. Server: %s Client: %s", propName, JSON.stringify(normalizedServerValue), JSON.stringify(normalizedClientValue));
             };
             warnForExtraAttributes = function(attributeNames) {
               if (didWarnInvalidHydration) {
@@ -8712,13 +8712,13 @@
               attributeNames.forEach(function(name15) {
                 names.push(name15);
               });
-              error2("Extra attributes from the server: %s", names);
+              error3("Extra attributes from the server: %s", names);
             };
             warnForInvalidEventListener = function(registrationName, listener) {
               if (listener === false) {
-                error2("Expected `%s` listener to be a function, instead got `false`.\n\nIf you used to conditionally omit it with %s={condition && value}, pass %s={condition ? value : undefined} instead.", registrationName, registrationName, registrationName);
+                error3("Expected `%s` listener to be a function, instead got `false`.\n\nIf you used to conditionally omit it with %s={condition && value}, pass %s={condition ? value : undefined} instead.", registrationName, registrationName, registrationName);
               } else {
-                error2("Expected `%s` listener to be a function, instead got a value of `%s` type.", registrationName, typeof listener);
+                error3("Expected `%s` listener to be a function, instead got a value of `%s` type.", registrationName, typeof listener);
               }
             };
             normalizeHTML = function(parent2, html2) {
@@ -8746,7 +8746,7 @@
               {
                 if (!didWarnInvalidHydration) {
                   didWarnInvalidHydration = true;
-                  error2('Text content did not match. Server: "%s" Client: "%s"', normalizedServerText, normalizedClientText);
+                  error3('Text content did not match. Server: "%s" Client: "%s"', normalizedServerText, normalizedClientText);
                 }
               }
             }
@@ -8834,7 +8834,7 @@
               {
                 isCustomComponentTag = isCustomComponent(type, props);
                 if (!isCustomComponentTag && type !== type.toLowerCase()) {
-                  error2("<%s /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.", type);
+                  error3("<%s /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.", type);
                 }
               }
               if (type === "script") {
@@ -8862,9 +8862,9 @@
             }
             {
               if (namespaceURI === HTML_NAMESPACE) {
-                if (!isCustomComponentTag && Object.prototype.toString.call(domElement) === "[object HTMLUnknownElement]" && !hasOwnProperty.call(warnedUnknownTags, type)) {
+                if (!isCustomComponentTag && Object.prototype.toString.call(domElement) === "[object HTMLUnknownElement]" && !hasOwnProperty2.call(warnedUnknownTags, type)) {
                   warnedUnknownTags[type] = true;
-                  error2("The tag <%s> is unrecognized in this browser. If you meant to render a React component, start its name with an uppercase letter.", type);
+                  error3("The tag <%s> is unrecognized in this browser. If you meant to render a React component, start its name with an uppercase letter.", type);
                 }
               }
             }
@@ -9323,7 +9323,7 @@
                 return;
               }
               didWarnInvalidHydration = true;
-              error2("Did not expect server HTML to contain a <%s> in <%s>.", child.nodeName.toLowerCase(), parentNode.nodeName.toLowerCase());
+              error3("Did not expect server HTML to contain a <%s> in <%s>.", child.nodeName.toLowerCase(), parentNode.nodeName.toLowerCase());
             }
           }
           function warnForDeletedHydratableText(parentNode, child) {
@@ -9332,7 +9332,7 @@
                 return;
               }
               didWarnInvalidHydration = true;
-              error2('Did not expect server HTML to contain the text node "%s" in <%s>.', child.nodeValue, parentNode.nodeName.toLowerCase());
+              error3('Did not expect server HTML to contain the text node "%s" in <%s>.', child.nodeValue, parentNode.nodeName.toLowerCase());
             }
           }
           function warnForInsertedHydratedElement(parentNode, tag, props) {
@@ -9341,7 +9341,7 @@
                 return;
               }
               didWarnInvalidHydration = true;
-              error2("Expected server HTML to contain a matching <%s> in <%s>.", tag, parentNode.nodeName.toLowerCase());
+              error3("Expected server HTML to contain a matching <%s> in <%s>.", tag, parentNode.nodeName.toLowerCase());
             }
           }
           function warnForInsertedHydratedText(parentNode, text6) {
@@ -9353,7 +9353,7 @@
                 return;
               }
               didWarnInvalidHydration = true;
-              error2('Expected server HTML to contain a matching text node for "%s" in <%s>.', text6, parentNode.nodeName.toLowerCase());
+              error3('Expected server HTML to contain a matching text node for "%s" in <%s>.', text6, parentNode.nodeName.toLowerCase());
             }
           }
           function restoreControlledState$3(domElement, tag, props) {
@@ -9403,7 +9403,7 @@
             };
             updatedAncestorInfo = function(oldInfo, tag) {
               var ancestorInfo = assign2({}, oldInfo || emptyAncestorInfo);
-              var info = {
+              var info2 = {
                 tag
               };
               if (inScopeTags.indexOf(tag) !== -1) {
@@ -9418,27 +9418,27 @@
                 ancestorInfo.listItemTagAutoclosing = null;
                 ancestorInfo.dlItemTagAutoclosing = null;
               }
-              ancestorInfo.current = info;
+              ancestorInfo.current = info2;
               if (tag === "form") {
-                ancestorInfo.formTag = info;
+                ancestorInfo.formTag = info2;
               }
               if (tag === "a") {
-                ancestorInfo.aTagInScope = info;
+                ancestorInfo.aTagInScope = info2;
               }
               if (tag === "button") {
-                ancestorInfo.buttonTagInScope = info;
+                ancestorInfo.buttonTagInScope = info2;
               }
               if (tag === "nobr") {
-                ancestorInfo.nobrTagInScope = info;
+                ancestorInfo.nobrTagInScope = info2;
               }
               if (tag === "p") {
-                ancestorInfo.pTagInButtonScope = info;
+                ancestorInfo.pTagInButtonScope = info2;
               }
               if (tag === "li") {
-                ancestorInfo.listItemTagAutoclosing = info;
+                ancestorInfo.listItemTagAutoclosing = info2;
               }
               if (tag === "dd" || tag === "dt") {
-                ancestorInfo.dlItemTagAutoclosing = info;
+                ancestorInfo.dlItemTagAutoclosing = info2;
               }
               return ancestorInfo;
             };
@@ -9559,7 +9559,7 @@
               var parentTag = parentInfo && parentInfo.tag;
               if (childText != null) {
                 if (childTag != null) {
-                  error2("validateDOMNesting: when childText is passed, childTag should be null");
+                  error3("validateDOMNesting: when childText is passed, childTag should be null");
                 }
                 childTag = "#text";
               }
@@ -9588,13 +9588,13 @@
                 tagDisplayName = "<" + childTag + ">";
               }
               if (invalidParent) {
-                var info = "";
+                var info2 = "";
                 if (ancestorTag === "table" && childTag === "tr") {
-                  info += " Add a <tbody>, <thead> or <tfoot> to your code to match the DOM tree generated by the browser.";
+                  info2 += " Add a <tbody>, <thead> or <tfoot> to your code to match the DOM tree generated by the browser.";
                 }
-                error2("validateDOMNesting(...): %s cannot appear as a child of <%s>.%s%s", tagDisplayName, ancestorTag, whitespaceInfo, info);
+                error3("validateDOMNesting(...): %s cannot appear as a child of <%s>.%s%s", tagDisplayName, ancestorTag, whitespaceInfo, info2);
               } else {
-                error2("validateDOMNesting(...): %s cannot appear as a descendant of <%s>.", tagDisplayName, ancestorTag);
+                error3("validateDOMNesting(...): %s cannot appear as a descendant of <%s>.", tagDisplayName, ancestorTag);
               }
             };
           }
@@ -9733,9 +9733,9 @@
           var scheduleMicrotask = typeof queueMicrotask === "function" ? queueMicrotask : typeof localPromise !== "undefined" ? function(callback) {
             return localPromise.resolve(null).then(callback).catch(handleErrorInNextTick);
           } : scheduleTimeout;
-          function handleErrorInNextTick(error3) {
+          function handleErrorInNextTick(error4) {
             setTimeout(function() {
-              throw error3;
+              throw error4;
             });
           }
           function commitMount(domElement, type, newProps, internalInstanceHandle) {
@@ -10096,7 +10096,7 @@
           }
           function errorHydratingContainer(parentContainer) {
             {
-              error2("An error occurred during hydration. The server HTML was replaced with client content in <%s>.", parentContainer.nodeName.toLowerCase());
+              error3("An error occurred during hydration. The server HTML was replaced with client content in <%s>.", parentContainer.nodeName.toLowerCase());
             }
           }
           function preparePortalMount(portalInstance) {
@@ -10200,7 +10200,7 @@
           }
           function checkPropTypes(typeSpecs, values, location2, componentName, element2) {
             {
-              var has2 = Function.call.bind(hasOwnProperty);
+              var has2 = Function.call.bind(hasOwnProperty2);
               for (var typeSpecName in typeSpecs) {
                 if (has2(typeSpecs, typeSpecName)) {
                   var error$1 = void 0;
@@ -10216,13 +10216,13 @@
                   }
                   if (error$1 && !(error$1 instanceof Error)) {
                     setCurrentlyValidatingElement(element2);
-                    error2("%s: type specification of %s `%s` is invalid; the type checker function must return `null` or an `Error` but returned a %s. You may have forgotten to pass an argument to the type checker creator (arrayOf, instanceOf, objectOf, oneOf, oneOfType, and shape all require an argument).", componentName || "React class", location2, typeSpecName, typeof error$1);
+                    error3("%s: type specification of %s `%s` is invalid; the type checker function must return `null` or an `Error` but returned a %s. You may have forgotten to pass an argument to the type checker creator (arrayOf, instanceOf, objectOf, oneOf, oneOfType, and shape all require an argument).", componentName || "React class", location2, typeSpecName, typeof error$1);
                     setCurrentlyValidatingElement(null);
                   }
                   if (error$1 instanceof Error && !(error$1.message in loggedTypeFailures)) {
                     loggedTypeFailures[error$1.message] = true;
                     setCurrentlyValidatingElement(element2);
-                    error2("Failed %s type: %s", location2, error$1.message);
+                    error3("Failed %s type: %s", location2, error$1.message);
                     setCurrentlyValidatingElement(null);
                   }
                 }
@@ -10243,13 +10243,13 @@
           function pop(cursor, fiber) {
             if (index5 < 0) {
               {
-                error2("Unexpected pop.");
+                error3("Unexpected pop.");
               }
               return;
             }
             {
               if (fiber !== fiberStack[index5]) {
-                error2("Unexpected Fiber popped.");
+                error3("Unexpected Fiber popped.");
               }
             }
             cursor.current = valueStack[index5];
@@ -10359,7 +10359,7 @@
                   var componentName = getComponentNameFromFiber(fiber) || "Unknown";
                   if (!warnedAboutMissingGetChildContext[componentName]) {
                     warnedAboutMissingGetChildContext[componentName] = true;
-                    error2("%s.childContextTypes is specified but there is no getChildContext() method on the instance. You can either define getChildContext() on %s or remove childContextTypes from it.", componentName, componentName);
+                    error3("%s.childContextTypes is specified but there is no getChildContext() method on the instance. You can either define getChildContext() on %s or remove childContextTypes from it.", componentName, componentName);
                   }
                 }
                 return parentContext;
@@ -10467,12 +10467,12 @@
                 }
                 syncQueue = null;
                 includesLegacySyncCallbacks = false;
-              } catch (error3) {
+              } catch (error4) {
                 if (syncQueue !== null) {
                   syncQueue = syncQueue.slice(i2 + 1);
                 }
                 scheduleCallback(ImmediatePriority, flushSyncCallbacks);
-                throw error3;
+                throw error4;
               } finally {
                 setCurrentUpdatePriority(previousUpdatePriority);
                 isFlushingSyncQueue = false;
@@ -10597,7 +10597,7 @@
           function warnIfNotHydrating() {
             {
               if (!getIsHydrating()) {
-                error2("Expected to be hydrating. This is a bug in React. Please file an issue.");
+                error3("Expected to be hydrating. This is a bug in React. Please file an issue.");
               }
             }
           }
@@ -10609,7 +10609,7 @@
           function warnIfHydrating() {
             {
               if (isHydrating) {
-                error2("We should not be hydrating here. This is a bug in React. Please file a bug.");
+                error3("We should not be hydrating here. This is a bug in React. Please file a bug.");
               }
             }
           }
@@ -10946,11 +10946,11 @@
           function getIsHydrating() {
             return isHydrating;
           }
-          function queueHydrationError(error3) {
+          function queueHydrationError(error4) {
             if (hydrationErrors === null) {
-              hydrationErrors = [error3];
+              hydrationErrors = [error4];
             } else {
-              hydrationErrors.push(error3);
+              hydrationErrors.push(error4);
             }
           }
           var ReactCurrentBatchConfig$1 = ReactSharedInternals.ReactCurrentBatchConfig;
@@ -11070,27 +11070,27 @@
               }
               if (UNSAFE_componentWillMountUniqueNames.size > 0) {
                 var sortedNames = setToSortedString(UNSAFE_componentWillMountUniqueNames);
-                error2("Using UNSAFE_componentWillMount in strict mode is not recommended and may indicate bugs in your code. See https://reactjs.org/link/unsafe-component-lifecycles for details.\n\n* Move code with side effects to componentDidMount, and set initial state in the constructor.\n\nPlease update the following components: %s", sortedNames);
+                error3("Using UNSAFE_componentWillMount in strict mode is not recommended and may indicate bugs in your code. See https://reactjs.org/link/unsafe-component-lifecycles for details.\n\n* Move code with side effects to componentDidMount, and set initial state in the constructor.\n\nPlease update the following components: %s", sortedNames);
               }
               if (UNSAFE_componentWillReceivePropsUniqueNames.size > 0) {
                 var _sortedNames = setToSortedString(UNSAFE_componentWillReceivePropsUniqueNames);
-                error2("Using UNSAFE_componentWillReceiveProps in strict mode is not recommended and may indicate bugs in your code. See https://reactjs.org/link/unsafe-component-lifecycles for details.\n\n* Move data fetching code or side effects to componentDidUpdate.\n* If you're updating state whenever props change, refactor your code to use memoization techniques or move it to static getDerivedStateFromProps. Learn more at: https://reactjs.org/link/derived-state\n\nPlease update the following components: %s", _sortedNames);
+                error3("Using UNSAFE_componentWillReceiveProps in strict mode is not recommended and may indicate bugs in your code. See https://reactjs.org/link/unsafe-component-lifecycles for details.\n\n* Move data fetching code or side effects to componentDidUpdate.\n* If you're updating state whenever props change, refactor your code to use memoization techniques or move it to static getDerivedStateFromProps. Learn more at: https://reactjs.org/link/derived-state\n\nPlease update the following components: %s", _sortedNames);
               }
               if (UNSAFE_componentWillUpdateUniqueNames.size > 0) {
                 var _sortedNames2 = setToSortedString(UNSAFE_componentWillUpdateUniqueNames);
-                error2("Using UNSAFE_componentWillUpdate in strict mode is not recommended and may indicate bugs in your code. See https://reactjs.org/link/unsafe-component-lifecycles for details.\n\n* Move data fetching code or side effects to componentDidUpdate.\n\nPlease update the following components: %s", _sortedNames2);
+                error3("Using UNSAFE_componentWillUpdate in strict mode is not recommended and may indicate bugs in your code. See https://reactjs.org/link/unsafe-component-lifecycles for details.\n\n* Move data fetching code or side effects to componentDidUpdate.\n\nPlease update the following components: %s", _sortedNames2);
               }
               if (componentWillMountUniqueNames.size > 0) {
                 var _sortedNames3 = setToSortedString(componentWillMountUniqueNames);
-                warn("componentWillMount has been renamed, and is not recommended for use. See https://reactjs.org/link/unsafe-component-lifecycles for details.\n\n* Move code with side effects to componentDidMount, and set initial state in the constructor.\n* Rename componentWillMount to UNSAFE_componentWillMount to suppress this warning in non-strict mode. In React 18.x, only the UNSAFE_ name will work. To rename all deprecated lifecycles to their new names, you can run `npx react-codemod rename-unsafe-lifecycles` in your project source folder.\n\nPlease update the following components: %s", _sortedNames3);
+                warn2("componentWillMount has been renamed, and is not recommended for use. See https://reactjs.org/link/unsafe-component-lifecycles for details.\n\n* Move code with side effects to componentDidMount, and set initial state in the constructor.\n* Rename componentWillMount to UNSAFE_componentWillMount to suppress this warning in non-strict mode. In React 18.x, only the UNSAFE_ name will work. To rename all deprecated lifecycles to their new names, you can run `npx react-codemod rename-unsafe-lifecycles` in your project source folder.\n\nPlease update the following components: %s", _sortedNames3);
               }
               if (componentWillReceivePropsUniqueNames.size > 0) {
                 var _sortedNames4 = setToSortedString(componentWillReceivePropsUniqueNames);
-                warn("componentWillReceiveProps has been renamed, and is not recommended for use. See https://reactjs.org/link/unsafe-component-lifecycles for details.\n\n* Move data fetching code or side effects to componentDidUpdate.\n* If you're updating state whenever props change, refactor your code to use memoization techniques or move it to static getDerivedStateFromProps. Learn more at: https://reactjs.org/link/derived-state\n* Rename componentWillReceiveProps to UNSAFE_componentWillReceiveProps to suppress this warning in non-strict mode. In React 18.x, only the UNSAFE_ name will work. To rename all deprecated lifecycles to their new names, you can run `npx react-codemod rename-unsafe-lifecycles` in your project source folder.\n\nPlease update the following components: %s", _sortedNames4);
+                warn2("componentWillReceiveProps has been renamed, and is not recommended for use. See https://reactjs.org/link/unsafe-component-lifecycles for details.\n\n* Move data fetching code or side effects to componentDidUpdate.\n* If you're updating state whenever props change, refactor your code to use memoization techniques or move it to static getDerivedStateFromProps. Learn more at: https://reactjs.org/link/derived-state\n* Rename componentWillReceiveProps to UNSAFE_componentWillReceiveProps to suppress this warning in non-strict mode. In React 18.x, only the UNSAFE_ name will work. To rename all deprecated lifecycles to their new names, you can run `npx react-codemod rename-unsafe-lifecycles` in your project source folder.\n\nPlease update the following components: %s", _sortedNames4);
               }
               if (componentWillUpdateUniqueNames.size > 0) {
                 var _sortedNames5 = setToSortedString(componentWillUpdateUniqueNames);
-                warn("componentWillUpdate has been renamed, and is not recommended for use. See https://reactjs.org/link/unsafe-component-lifecycles for details.\n\n* Move data fetching code or side effects to componentDidUpdate.\n* Rename componentWillUpdate to UNSAFE_componentWillUpdate to suppress this warning in non-strict mode. In React 18.x, only the UNSAFE_ name will work. To rename all deprecated lifecycles to their new names, you can run `npx react-codemod rename-unsafe-lifecycles` in your project source folder.\n\nPlease update the following components: %s", _sortedNames5);
+                warn2("componentWillUpdate has been renamed, and is not recommended for use. See https://reactjs.org/link/unsafe-component-lifecycles for details.\n\n* Move data fetching code or side effects to componentDidUpdate.\n* Rename componentWillUpdate to UNSAFE_componentWillUpdate to suppress this warning in non-strict mode. In React 18.x, only the UNSAFE_ name will work. To rename all deprecated lifecycles to their new names, you can run `npx react-codemod rename-unsafe-lifecycles` in your project source folder.\n\nPlease update the following components: %s", _sortedNames5);
               }
             };
             var pendingLegacyContextWarning = /* @__PURE__ */ new Map();
@@ -11098,7 +11098,7 @@
             ReactStrictModeWarnings.recordLegacyContextWarning = function(fiber, instance) {
               var strictRoot = findStrictRoot(fiber);
               if (strictRoot === null) {
-                error2("Expected to find a StrictMode component in a strict mode tree. This error is likely caused by a bug in React. Please file an issue.");
+                error3("Expected to find a StrictMode component in a strict mode tree. This error is likely caused by a bug in React. Please file an issue.");
                 return;
               }
               if (didWarnAboutLegacyContext.has(fiber.type)) {
@@ -11127,7 +11127,7 @@
                 var sortedNames = setToSortedString(uniqueNames);
                 try {
                   setCurrentFiber(firstFiber);
-                  error2("Legacy context API has been detected within a strict-mode tree.\n\nThe old API will be supported in all 16.x releases, but applications using it should migrate to the new version.\n\nPlease update the following components: %s\n\nLearn more about this warning here: https://reactjs.org/link/legacy-context", sortedNames);
+                  error3("Legacy context API has been detected within a strict-mode tree.\n\nThe old API will be supported in all 16.x releases, but applications using it should migrate to the new version.\n\nPlease update the following components: %s\n\nLearn more about this warning here: https://reactjs.org/link/legacy-context", sortedNames);
                 } finally {
                   resetCurrentFiber();
                 }
@@ -11189,7 +11189,7 @@
               context._currentValue = nextValue;
               {
                 if (context._currentRenderer !== void 0 && context._currentRenderer !== null && context._currentRenderer !== rendererSigil) {
-                  error2("Detected multiple renderers concurrently rendering the same context provider. This is currently unsupported.");
+                  error3("Detected multiple renderers concurrently rendering the same context provider. This is currently unsupported.");
                 }
                 context._currentRenderer = rendererSigil;
               }
@@ -11223,7 +11223,7 @@
             }
             {
               if (node !== propagationRoot) {
-                error2("Expected to find the propagation root when scheduling context work. This error is likely caused by a bug in React. Please file an issue.");
+                error3("Expected to find the propagation root when scheduling context work. This error is likely caused by a bug in React. Please file an issue.");
               }
             }
           }
@@ -11333,7 +11333,7 @@
           function readContext(context) {
             {
               if (isDisallowedContextReadInDEV) {
-                error2("Context can only be read while React is rendering. In classes, you can read it in the render method or getDerivedStateFromProps. In function components, you can read it directly in the function body, but not inside Hooks like useReducer() or useMemo().");
+                error3("Context can only be read while React is rendering. In classes, you can read it in the render method or getDerivedStateFromProps. In function components, you can read it directly in the function body, but not inside Hooks like useReducer() or useMemo().");
               }
             }
             var value12 = context._currentValue;
@@ -11520,7 +11520,7 @@
             var sharedQueue = updateQueue.shared;
             {
               if (currentlyProcessingQueue === sharedQueue && !didWarnUpdateInsideUpdate) {
-                error2("An update (setState, replaceState, or forceUpdate) was scheduled from inside an update function. Update functions should be pure, with zero side-effects. Consider using componentDidUpdate or a callback.");
+                error3("An update (setState, replaceState, or forceUpdate) was scheduled from inside an update function. Update functions should be pure, with zero side-effects. Consider using componentDidUpdate or a callback.");
                 didWarnUpdateInsideUpdate = true;
               }
             }
@@ -11819,7 +11819,7 @@
             }
           }
           var fakeInternalInstance = {};
-          var emptyRefsObject = new React4.Component().refs;
+          var emptyRefsObject = new React6.Component().refs;
           var didWarnAboutStateAssignmentForComponent;
           var didWarnAboutUninitializedState;
           var didWarnAboutGetSnapshotBeforeUpdateWithoutDidUpdate;
@@ -11847,7 +11847,7 @@
               var key = callerName + "_" + callback;
               if (!didWarnOnInvalidCallback.has(key)) {
                 didWarnOnInvalidCallback.add(key);
-                error2("%s(...): Expected the last optional `callback` argument to be a function. Instead received: %s.", callerName, callback);
+                error3("%s(...): Expected the last optional `callback` argument to be a function. Instead received: %s.", callerName, callback);
               }
             };
             warnOnUndefinedDerivedState = function(type, partialState) {
@@ -11855,7 +11855,7 @@
                 var componentName = getComponentNameFromType(type) || "Component";
                 if (!didWarnAboutUndefinedDerivedState.has(componentName)) {
                   didWarnAboutUndefinedDerivedState.add(componentName);
-                  error2("%s.getDerivedStateFromProps(): A valid state object (or null) must be returned. You have returned undefined.", componentName);
+                  error3("%s.getDerivedStateFromProps(): A valid state object (or null) must be returned. You have returned undefined.", componentName);
                 }
               }
             };
@@ -11969,7 +11969,7 @@
                   }
                 }
                 if (shouldUpdate === void 0) {
-                  error2("%s.shouldComponentUpdate(): Returned undefined instead of a boolean value. Make sure to return true or false.", getComponentNameFromType(ctor) || "Component");
+                  error3("%s.shouldComponentUpdate(): Returned undefined instead of a boolean value. Make sure to return true or false.", getComponentNameFromType(ctor) || "Component");
                 }
               }
               return shouldUpdate;
@@ -11986,76 +11986,76 @@
               var renderPresent = instance.render;
               if (!renderPresent) {
                 if (ctor.prototype && typeof ctor.prototype.render === "function") {
-                  error2("%s(...): No `render` method found on the returned component instance: did you accidentally return an object from the constructor?", name15);
+                  error3("%s(...): No `render` method found on the returned component instance: did you accidentally return an object from the constructor?", name15);
                 } else {
-                  error2("%s(...): No `render` method found on the returned component instance: you may have forgotten to define `render`.", name15);
+                  error3("%s(...): No `render` method found on the returned component instance: you may have forgotten to define `render`.", name15);
                 }
               }
               if (instance.getInitialState && !instance.getInitialState.isReactClassApproved && !instance.state) {
-                error2("getInitialState was defined on %s, a plain JavaScript class. This is only supported for classes created using React.createClass. Did you mean to define a state property instead?", name15);
+                error3("getInitialState was defined on %s, a plain JavaScript class. This is only supported for classes created using React.createClass. Did you mean to define a state property instead?", name15);
               }
               if (instance.getDefaultProps && !instance.getDefaultProps.isReactClassApproved) {
-                error2("getDefaultProps was defined on %s, a plain JavaScript class. This is only supported for classes created using React.createClass. Use a static property to define defaultProps instead.", name15);
+                error3("getDefaultProps was defined on %s, a plain JavaScript class. This is only supported for classes created using React.createClass. Use a static property to define defaultProps instead.", name15);
               }
               if (instance.propTypes) {
-                error2("propTypes was defined as an instance property on %s. Use a static property to define propTypes instead.", name15);
+                error3("propTypes was defined as an instance property on %s. Use a static property to define propTypes instead.", name15);
               }
               if (instance.contextType) {
-                error2("contextType was defined as an instance property on %s. Use a static property to define contextType instead.", name15);
+                error3("contextType was defined as an instance property on %s. Use a static property to define contextType instead.", name15);
               }
               {
                 if (instance.contextTypes) {
-                  error2("contextTypes was defined as an instance property on %s. Use a static property to define contextTypes instead.", name15);
+                  error3("contextTypes was defined as an instance property on %s. Use a static property to define contextTypes instead.", name15);
                 }
                 if (ctor.contextType && ctor.contextTypes && !didWarnAboutContextTypeAndContextTypes.has(ctor)) {
                   didWarnAboutContextTypeAndContextTypes.add(ctor);
-                  error2("%s declares both contextTypes and contextType static properties. The legacy contextTypes property will be ignored.", name15);
+                  error3("%s declares both contextTypes and contextType static properties. The legacy contextTypes property will be ignored.", name15);
                 }
               }
               if (typeof instance.componentShouldUpdate === "function") {
-                error2("%s has a method called componentShouldUpdate(). Did you mean shouldComponentUpdate()? The name is phrased as a question because the function is expected to return a value.", name15);
+                error3("%s has a method called componentShouldUpdate(). Did you mean shouldComponentUpdate()? The name is phrased as a question because the function is expected to return a value.", name15);
               }
               if (ctor.prototype && ctor.prototype.isPureReactComponent && typeof instance.shouldComponentUpdate !== "undefined") {
-                error2("%s has a method called shouldComponentUpdate(). shouldComponentUpdate should not be used when extending React.PureComponent. Please extend React.Component if shouldComponentUpdate is used.", getComponentNameFromType(ctor) || "A pure component");
+                error3("%s has a method called shouldComponentUpdate(). shouldComponentUpdate should not be used when extending React.PureComponent. Please extend React.Component if shouldComponentUpdate is used.", getComponentNameFromType(ctor) || "A pure component");
               }
               if (typeof instance.componentDidUnmount === "function") {
-                error2("%s has a method called componentDidUnmount(). But there is no such lifecycle method. Did you mean componentWillUnmount()?", name15);
+                error3("%s has a method called componentDidUnmount(). But there is no such lifecycle method. Did you mean componentWillUnmount()?", name15);
               }
               if (typeof instance.componentDidReceiveProps === "function") {
-                error2("%s has a method called componentDidReceiveProps(). But there is no such lifecycle method. If you meant to update the state in response to changing props, use componentWillReceiveProps(). If you meant to fetch data or run side-effects or mutations after React has updated the UI, use componentDidUpdate().", name15);
+                error3("%s has a method called componentDidReceiveProps(). But there is no such lifecycle method. If you meant to update the state in response to changing props, use componentWillReceiveProps(). If you meant to fetch data or run side-effects or mutations after React has updated the UI, use componentDidUpdate().", name15);
               }
               if (typeof instance.componentWillRecieveProps === "function") {
-                error2("%s has a method called componentWillRecieveProps(). Did you mean componentWillReceiveProps()?", name15);
+                error3("%s has a method called componentWillRecieveProps(). Did you mean componentWillReceiveProps()?", name15);
               }
               if (typeof instance.UNSAFE_componentWillRecieveProps === "function") {
-                error2("%s has a method called UNSAFE_componentWillRecieveProps(). Did you mean UNSAFE_componentWillReceiveProps()?", name15);
+                error3("%s has a method called UNSAFE_componentWillRecieveProps(). Did you mean UNSAFE_componentWillReceiveProps()?", name15);
               }
               var hasMutatedProps = instance.props !== newProps;
               if (instance.props !== void 0 && hasMutatedProps) {
-                error2("%s(...): When calling super() in `%s`, make sure to pass up the same props that your component's constructor was passed.", name15, name15);
+                error3("%s(...): When calling super() in `%s`, make sure to pass up the same props that your component's constructor was passed.", name15, name15);
               }
               if (instance.defaultProps) {
-                error2("Setting defaultProps as an instance property on %s is not supported and will be ignored. Instead, define defaultProps as a static property on %s.", name15, name15);
+                error3("Setting defaultProps as an instance property on %s is not supported and will be ignored. Instead, define defaultProps as a static property on %s.", name15, name15);
               }
               if (typeof instance.getSnapshotBeforeUpdate === "function" && typeof instance.componentDidUpdate !== "function" && !didWarnAboutGetSnapshotBeforeUpdateWithoutDidUpdate.has(ctor)) {
                 didWarnAboutGetSnapshotBeforeUpdateWithoutDidUpdate.add(ctor);
-                error2("%s: getSnapshotBeforeUpdate() should be used with componentDidUpdate(). This component defines getSnapshotBeforeUpdate() only.", getComponentNameFromType(ctor));
+                error3("%s: getSnapshotBeforeUpdate() should be used with componentDidUpdate(). This component defines getSnapshotBeforeUpdate() only.", getComponentNameFromType(ctor));
               }
               if (typeof instance.getDerivedStateFromProps === "function") {
-                error2("%s: getDerivedStateFromProps() is defined as an instance method and will be ignored. Instead, declare it as a static method.", name15);
+                error3("%s: getDerivedStateFromProps() is defined as an instance method and will be ignored. Instead, declare it as a static method.", name15);
               }
               if (typeof instance.getDerivedStateFromError === "function") {
-                error2("%s: getDerivedStateFromError() is defined as an instance method and will be ignored. Instead, declare it as a static method.", name15);
+                error3("%s: getDerivedStateFromError() is defined as an instance method and will be ignored. Instead, declare it as a static method.", name15);
               }
               if (typeof ctor.getSnapshotBeforeUpdate === "function") {
-                error2("%s: getSnapshotBeforeUpdate() is defined as a static method and will be ignored. Instead, declare it as an instance method.", name15);
+                error3("%s: getSnapshotBeforeUpdate() is defined as a static method and will be ignored. Instead, declare it as an instance method.", name15);
               }
               var _state = instance.state;
               if (_state && (typeof _state !== "object" || isArray(_state))) {
-                error2("%s.state: must be set to an object or null", name15);
+                error3("%s.state: must be set to an object or null", name15);
               }
               if (typeof instance.getChildContext === "function" && typeof ctor.childContextTypes !== "object") {
-                error2("%s.getChildContext(): childContextTypes must be defined in order to use getChildContext().", name15);
+                error3("%s.getChildContext(): childContextTypes must be defined in order to use getChildContext().", name15);
               }
             }
           }
@@ -12089,7 +12089,7 @@
                   } else {
                     addendum = " However, it is set to an object with keys {" + Object.keys(contextType).join(", ") + "}.";
                   }
-                  error2("%s defines an invalid contextType. contextType should point to the Context object returned by React.createContext().%s", getComponentNameFromType(ctor) || "Component", addendum);
+                  error3("%s defines an invalid contextType. contextType should point to the Context object returned by React.createContext().%s", getComponentNameFromType(ctor) || "Component", addendum);
                 }
               }
             }
@@ -12119,7 +12119,7 @@
                 var componentName = getComponentNameFromType(ctor) || "Component";
                 if (!didWarnAboutUninitializedState.has(componentName)) {
                   didWarnAboutUninitializedState.add(componentName);
-                  error2("`%s` uses `getDerivedStateFromProps` but its initial state is %s. This is not recommended. Instead, define the initial state by assigning an object to `this.state` in the constructor of `%s`. This ensures that `getDerivedStateFromProps` arguments have a consistent shape.", componentName, instance.state === null ? "null" : "undefined", componentName);
+                  error3("`%s` uses `getDerivedStateFromProps` but its initial state is %s. This is not recommended. Instead, define the initial state by assigning an object to `this.state` in the constructor of `%s`. This ensures that `getDerivedStateFromProps` arguments have a consistent shape.", componentName, instance.state === null ? "null" : "undefined", componentName);
                 }
               }
               if (typeof ctor.getDerivedStateFromProps === "function" || typeof instance.getSnapshotBeforeUpdate === "function") {
@@ -12146,7 +12146,7 @@
                   var newApiName = typeof ctor.getDerivedStateFromProps === "function" ? "getDerivedStateFromProps()" : "getSnapshotBeforeUpdate()";
                   if (!didWarnAboutLegacyLifecyclesAndDerivedState.has(_componentName)) {
                     didWarnAboutLegacyLifecyclesAndDerivedState.add(_componentName);
-                    error2("Unsafe legacy lifecycles will not be called for components using new component APIs.\n\n%s uses %s but also contains the following legacy lifecycles:%s%s%s\n\nThe above lifecycles should be removed. Learn more about this warning here:\nhttps://reactjs.org/link/unsafe-component-lifecycles", _componentName, newApiName, foundWillMountName !== null ? "\n  " + foundWillMountName : "", foundWillReceivePropsName !== null ? "\n  " + foundWillReceivePropsName : "", foundWillUpdateName !== null ? "\n  " + foundWillUpdateName : "");
+                    error3("Unsafe legacy lifecycles will not be called for components using new component APIs.\n\n%s uses %s but also contains the following legacy lifecycles:%s%s%s\n\nThe above lifecycles should be removed. Learn more about this warning here:\nhttps://reactjs.org/link/unsafe-component-lifecycles", _componentName, newApiName, foundWillMountName !== null ? "\n  " + foundWillMountName : "", foundWillReceivePropsName !== null ? "\n  " + foundWillReceivePropsName : "", foundWillUpdateName !== null ? "\n  " + foundWillUpdateName : "");
                   }
                 }
               }
@@ -12166,7 +12166,7 @@
             }
             if (oldState !== instance.state) {
               {
-                error2("%s.componentWillMount(): Assigning directly to this.state is deprecated (except inside a component's constructor). Use setState instead.", getComponentNameFromFiber(workInProgress2) || "Component");
+                error3("%s.componentWillMount(): Assigning directly to this.state is deprecated (except inside a component's constructor). Use setState instead.", getComponentNameFromFiber(workInProgress2) || "Component");
               }
               classComponentUpdater.enqueueReplaceState(instance, instance.state, null);
             }
@@ -12184,7 +12184,7 @@
                 var componentName = getComponentNameFromFiber(workInProgress2) || "Component";
                 if (!didWarnAboutStateAssignmentForComponent.has(componentName)) {
                   didWarnAboutStateAssignmentForComponent.add(componentName);
-                  error2("%s.componentWillReceiveProps(): Assigning directly to this.state is deprecated (except inside a component's constructor). Use setState instead.", componentName);
+                  error3("%s.componentWillReceiveProps(): Assigning directly to this.state is deprecated (except inside a component's constructor). Use setState instead.", componentName);
                 }
               }
               classComponentUpdater.enqueueReplaceState(instance, instance.state, null);
@@ -12211,7 +12211,7 @@
                 var componentName = getComponentNameFromType(ctor) || "Component";
                 if (!didWarnAboutDirectlyAssigningPropsToState.has(componentName)) {
                   didWarnAboutDirectlyAssigningPropsToState.add(componentName);
-                  error2("%s: It is not recommended to assign props directly to state because updates to props won't be reflected in state. In most cases, it is better to use props directly.", componentName);
+                  error3("%s: It is not recommended to assign props directly to state because updates to props won't be reflected in state. In most cases, it is better to use props directly.", componentName);
                 }
               }
               if (workInProgress2.mode & StrictLegacyMode) {
@@ -12433,7 +12433,7 @@
                 return;
               }
               ownerHasKeyUseWarning[componentName] = true;
-              error2('Each child in a list should have a unique "key" prop. See https://reactjs.org/link/warning-keys for more information.');
+              error3('Each child in a list should have a unique "key" prop. See https://reactjs.org/link/warning-keys for more information.');
             };
           }
           function coerceRef(returnFiber, current2, element2) {
@@ -12444,7 +12444,7 @@
                   var componentName = getComponentNameFromFiber(returnFiber) || "Component";
                   if (!didWarnAboutStringRefs[componentName]) {
                     {
-                      error2('A string ref, "%s", has been found within a strict mode tree. String refs are a source of potential bugs and should be avoided. We recommend using useRef() or createRef() instead. Learn more about using refs safely here: https://reactjs.org/link/strict-mode-string-ref', mixedRef);
+                      error3('A string ref, "%s", has been found within a strict mode tree. String refs are a source of potential bugs and should be avoided. We recommend using useRef() or createRef() instead. Learn more about using refs safely here: https://reactjs.org/link/strict-mode-string-ref', mixedRef);
                     }
                     didWarnAboutStringRefs[componentName] = true;
                   }
@@ -12506,7 +12506,7 @@
                 return;
               }
               ownerHasFunctionTypeWarning[componentName] = true;
-              error2("Functions are not valid as a React child. This may happen if you return a Component instead of <Component /> from render. Or maybe you meant to call this function rather than return it.");
+              error3("Functions are not valid as a React child. This may happen if you return a Component instead of <Component /> from render. Or maybe you meant to call this function rather than return it.");
             }
           }
           function resolveLazy(lazyType) {
@@ -12777,7 +12777,7 @@
                       knownKeys.add(key);
                       break;
                     }
-                    error2("Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted \u2014 the behavior is unsupported and could change in a future version.", key);
+                    error3("Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted \u2014 the behavior is unsupported and could change in a future version.", key);
                     break;
                   case REACT_LAZY_TYPE:
                     var payload = child._payload;
@@ -12895,13 +12895,13 @@
               {
                 if (typeof Symbol === "function" && newChildrenIterable[Symbol.toStringTag] === "Generator") {
                   if (!didWarnAboutGenerators) {
-                    error2("Using Generators as children is unsupported and will likely yield unexpected results because enumerating a generator mutates it. You may convert it to an array with `Array.from()` or the `[...spread]` operator before rendering. Keep in mind you might need to polyfill these features for older browsers.");
+                    error3("Using Generators as children is unsupported and will likely yield unexpected results because enumerating a generator mutates it. You may convert it to an array with `Array.from()` or the `[...spread]` operator before rendering. Keep in mind you might need to polyfill these features for older browsers.");
                   }
                   didWarnAboutGenerators = true;
                 }
                 if (newChildrenIterable.entries === iteratorFn) {
                   if (!didWarnAboutMaps) {
-                    error2("Using Maps as children is not supported. Use an array of keyed ReactElements instead.");
+                    error3("Using Maps as children is not supported. Use an array of keyed ReactElements instead.");
                   }
                   didWarnAboutMaps = true;
                 }
@@ -13343,7 +13343,7 @@
           function checkDepsAreArrayDev(deps) {
             {
               if (deps !== void 0 && deps !== null && !isArray(deps)) {
-                error2("%s received a final argument that is not an array (instead, received `%s`). When specified, the final argument must be an array.", currentHookNameInDev, typeof deps);
+                error3("%s received a final argument that is not an array (instead, received `%s`). When specified, the final argument must be an array.", currentHookNameInDev, typeof deps);
               }
             }
           }
@@ -13365,7 +13365,7 @@
                     row += newHookName + "\n";
                     table2 += row;
                   }
-                  error2("React has detected a change in the order of Hooks called by %s. This will lead to bugs and errors if not fixed. For more information, read the Rules of Hooks: https://reactjs.org/link/rules-of-hooks\n\n   Previous render            Next render\n   ------------------------------------------------------\n%s   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n", componentName, table2);
+                  error3("React has detected a change in the order of Hooks called by %s. This will lead to bugs and errors if not fixed. For more information, read the Rules of Hooks: https://reactjs.org/link/rules-of-hooks\n\n   Previous render            Next render\n   ------------------------------------------------------\n%s   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n", componentName, table2);
                 }
               }
             }
@@ -13381,13 +13381,13 @@
             }
             if (prevDeps === null) {
               {
-                error2("%s received a final argument during this render, but not during the previous render. Even though the final argument is optional, its type cannot change between renders.", currentHookNameInDev);
+                error3("%s received a final argument during this render, but not during the previous render. Even though the final argument is optional, its type cannot change between renders.", currentHookNameInDev);
               }
               return false;
             }
             {
               if (nextDeps.length !== prevDeps.length) {
-                error2("The final argument passed to %s changed size between renders. The order and size of this array must remain constant.\n\nPrevious: %s\nIncoming: %s", currentHookNameInDev, "[" + prevDeps.join(", ") + "]", "[" + nextDeps.join(", ") + "]");
+                error3("The final argument passed to %s changed size between renders. The order and size of this array must remain constant.\n\nPrevious: %s\nIncoming: %s", currentHookNameInDev, "[" + prevDeps.join(", ") + "]", "[" + nextDeps.join(", ") + "]");
               }
             }
             for (var i2 = 0; i2 < prevDeps.length && i2 < nextDeps.length; i2++) {
@@ -13455,7 +13455,7 @@
               hookTypesDev = null;
               hookTypesUpdateIndexDev = -1;
               if (current2 !== null && (current2.flags & StaticMask) !== (workInProgress2.flags & StaticMask) && (current2.mode & ConcurrentMode) !== NoMode) {
-                error2("Internal React error: Expected static flag was missing. Please notify the React team.");
+                error3("Internal React error: Expected static flag was missing. Please notify the React team.");
               }
             }
             didScheduleRenderPhaseUpdate = false;
@@ -13572,20 +13572,20 @@
           }
           function mountReducer(reducer, initialArg, init3) {
             var hook = mountWorkInProgressHook();
-            var initialState2;
+            var initialState;
             if (init3 !== void 0) {
-              initialState2 = init3(initialArg);
+              initialState = init3(initialArg);
             } else {
-              initialState2 = initialArg;
+              initialState = initialArg;
             }
-            hook.memoizedState = hook.baseState = initialState2;
+            hook.memoizedState = hook.baseState = initialState;
             var queue = {
               pending: null,
               interleaved: null,
               lanes: NoLanes,
               dispatch: null,
               lastRenderedReducer: reducer,
-              lastRenderedState: initialState2
+              lastRenderedState: initialState
             };
             hook.queue = queue;
             var dispatch = queue.dispatch = dispatchReducerAction.bind(null, currentlyRenderingFiber$1, queue);
@@ -13610,7 +13610,7 @@
               }
               {
                 if (current2.baseQueue !== baseQueue) {
-                  error2("Internal error: Expected work-in-progress queue to be a clone. This is a bug in React.");
+                  error3("Internal error: Expected work-in-progress queue to be a clone. This is a bug in React.");
                 }
               }
               current2.baseQueue = baseQueue = pendingQueue;
@@ -13742,7 +13742,7 @@
               {
                 if (!didWarnUncachedGetSnapshot) {
                   if (nextSnapshot !== getServerSnapshot()) {
-                    error2("The result of getServerSnapshot should be cached to avoid an infinite loop");
+                    error3("The result of getServerSnapshot should be cached to avoid an infinite loop");
                     didWarnUncachedGetSnapshot = true;
                   }
                 }
@@ -13753,7 +13753,7 @@
                 if (!didWarnUncachedGetSnapshot) {
                   var cachedSnapshot = getSnapshot();
                   if (!objectIs(nextSnapshot, cachedSnapshot)) {
-                    error2("The result of getSnapshot should be cached to avoid an infinite loop");
+                    error3("The result of getSnapshot should be cached to avoid an infinite loop");
                     didWarnUncachedGetSnapshot = true;
                   }
                 }
@@ -13785,7 +13785,7 @@
               if (!didWarnUncachedGetSnapshot) {
                 var cachedSnapshot = getSnapshot();
                 if (!objectIs(nextSnapshot, cachedSnapshot)) {
-                  error2("The result of getSnapshot should be cached to avoid an infinite loop");
+                  error3("The result of getSnapshot should be cached to avoid an infinite loop");
                   didWarnUncachedGetSnapshot = true;
                 }
               }
@@ -13852,7 +13852,7 @@
             try {
               var nextValue = latestGetSnapshot();
               return !objectIs(prevValue, nextValue);
-            } catch (error3) {
+            } catch (error4) {
               return true;
             }
           }
@@ -13862,28 +13862,28 @@
               scheduleUpdateOnFiber(root2, fiber, SyncLane, NoTimestamp);
             }
           }
-          function mountState(initialState2) {
+          function mountState(initialState) {
             var hook = mountWorkInProgressHook();
-            if (typeof initialState2 === "function") {
-              initialState2 = initialState2();
+            if (typeof initialState === "function") {
+              initialState = initialState();
             }
-            hook.memoizedState = hook.baseState = initialState2;
+            hook.memoizedState = hook.baseState = initialState;
             var queue = {
               pending: null,
               interleaved: null,
               lanes: NoLanes,
               dispatch: null,
               lastRenderedReducer: basicStateReducer,
-              lastRenderedState: initialState2
+              lastRenderedState: initialState
             };
             hook.queue = queue;
             var dispatch = queue.dispatch = dispatchSetState.bind(null, currentlyRenderingFiber$1, queue);
             return [hook.memoizedState, dispatch];
           }
-          function updateState(initialState2) {
+          function updateState(initialState) {
             return updateReducer(basicStateReducer);
           }
-          function rerenderState(initialState2) {
+          function rerenderState(initialState) {
             return rerenderReducer(basicStateReducer);
           }
           function pushEffect(tag, create3, destroy, deps) {
@@ -13991,7 +13991,7 @@
               var refObject = ref;
               {
                 if (!refObject.hasOwnProperty("current")) {
-                  error2("Expected useImperativeHandle() first argument to either be a ref callback or React.createRef() object. Instead received: %s.", "an object with keys {" + Object.keys(refObject).join(", ") + "}");
+                  error3("Expected useImperativeHandle() first argument to either be a ref callback or React.createRef() object. Instead received: %s.", "an object with keys {" + Object.keys(refObject).join(", ") + "}");
                 }
               }
               var _inst2 = create3();
@@ -14004,7 +14004,7 @@
           function mountImperativeHandle(ref, create3, deps) {
             {
               if (typeof create3 !== "function") {
-                error2("Expected useImperativeHandle() second argument to be a function that creates a handle. Instead received: %s.", create3 !== null ? typeof create3 : "null");
+                error3("Expected useImperativeHandle() second argument to be a function that creates a handle. Instead received: %s.", create3 !== null ? typeof create3 : "null");
               }
             }
             var effectDeps = deps !== null && deps !== void 0 ? deps.concat([ref]) : null;
@@ -14020,7 +14020,7 @@
           function updateImperativeHandle(ref, create3, deps) {
             {
               if (typeof create3 !== "function") {
-                error2("Expected useImperativeHandle() second argument to be a function that creates a handle. Instead received: %s.", create3 !== null ? typeof create3 : "null");
+                error3("Expected useImperativeHandle() second argument to be a function that creates a handle. Instead received: %s.", create3 !== null ? typeof create3 : "null");
               }
             }
             var effectDeps = deps !== null && deps !== void 0 ? deps.concat([ref]) : null;
@@ -14133,7 +14133,7 @@
                 if (prevTransition === null && currentTransition._updatedFibers) {
                   var updatedFibersCount = currentTransition._updatedFibers.size;
                   if (updatedFibersCount > 10) {
-                    warn("Detected a large number of updates inside startTransition. If this is due to a subscription please re-write it to use React provided hooks. Otherwise concurrent mode guarantees are off the table.");
+                    warn2("Detected a large number of updates inside startTransition. If this is due to a subscription please re-write it to use React provided hooks. Otherwise concurrent mode guarantees are off the table.");
                   }
                   currentTransition._updatedFibers.clear();
                 }
@@ -14193,7 +14193,7 @@
           function dispatchReducerAction(fiber, queue, action2) {
             {
               if (typeof arguments[3] === "function") {
-                error2("State updates from the useState() and useReducer() Hooks don't support the second callback argument. To execute a side effect after rendering, declare it in the component body with useEffect().");
+                error3("State updates from the useState() and useReducer() Hooks don't support the second callback argument. To execute a side effect after rendering, declare it in the component body with useEffect().");
               }
             }
             var lane = requestUpdateLane(fiber);
@@ -14219,7 +14219,7 @@
           function dispatchSetState(fiber, queue, action2) {
             {
               if (typeof arguments[3] === "function") {
-                error2("State updates from the useState() and useReducer() Hooks don't support the second callback argument. To execute a side effect after rendering, declare it in the component body with useEffect().");
+                error3("State updates from the useState() and useReducer() Hooks don't support the second callback argument. To execute a side effect after rendering, declare it in the component body with useEffect().");
               }
             }
             var lane = requestUpdateLane(fiber);
@@ -14251,7 +14251,7 @@
                       enqueueConcurrentHookUpdateAndEagerlyBailout(fiber, queue, update, lane);
                       return;
                     }
-                  } catch (error3) {
+                  } catch (error4) {
                   } finally {
                     {
                       ReactCurrentDispatcher$1.current = prevDispatcher;
@@ -14326,10 +14326,10 @@
           var InvalidNestedHooksDispatcherOnRerenderInDEV = null;
           {
             var warnInvalidContextAccess = function() {
-              error2("Context can only be read while React is rendering. In classes, you can read it in the render method or getDerivedStateFromProps. In function components, you can read it directly in the function body, but not inside Hooks like useReducer() or useMemo().");
+              error3("Context can only be read while React is rendering. In classes, you can read it in the render method or getDerivedStateFromProps. In function components, you can read it directly in the function body, but not inside Hooks like useReducer() or useMemo().");
             };
             var warnInvalidHookAccess = function() {
-              error2("Do not call Hooks inside useEffect(...), useMemo(...), or other built-in Hooks. You can only call Hooks at the top level of your React function. For more information, see https://reactjs.org/link/rules-of-hooks");
+              error3("Do not call Hooks inside useEffect(...), useMemo(...), or other built-in Hooks. You can only call Hooks at the top level of your React function. For more information, see https://reactjs.org/link/rules-of-hooks");
             };
             HooksDispatcherOnMountInDEV = {
               readContext: function(context) {
@@ -14398,13 +14398,13 @@
                 mountHookTypesDev();
                 return mountRef(initialValue);
               },
-              useState: function(initialState2) {
+              useState: function(initialState) {
                 currentHookNameInDev = "useState";
                 mountHookTypesDev();
                 var prevDispatcher = ReactCurrentDispatcher$1.current;
                 ReactCurrentDispatcher$1.current = InvalidNestedHooksDispatcherOnMountInDEV;
                 try {
-                  return mountState(initialState2);
+                  return mountState(initialState);
                 } finally {
                   ReactCurrentDispatcher$1.current = prevDispatcher;
                 }
@@ -14502,13 +14502,13 @@
                 updateHookTypesDev();
                 return mountRef(initialValue);
               },
-              useState: function(initialState2) {
+              useState: function(initialState) {
                 currentHookNameInDev = "useState";
                 updateHookTypesDev();
                 var prevDispatcher = ReactCurrentDispatcher$1.current;
                 ReactCurrentDispatcher$1.current = InvalidNestedHooksDispatcherOnMountInDEV;
                 try {
-                  return mountState(initialState2);
+                  return mountState(initialState);
                 } finally {
                   ReactCurrentDispatcher$1.current = prevDispatcher;
                 }
@@ -14606,13 +14606,13 @@
                 updateHookTypesDev();
                 return updateRef();
               },
-              useState: function(initialState2) {
+              useState: function(initialState) {
                 currentHookNameInDev = "useState";
                 updateHookTypesDev();
                 var prevDispatcher = ReactCurrentDispatcher$1.current;
                 ReactCurrentDispatcher$1.current = InvalidNestedHooksDispatcherOnUpdateInDEV;
                 try {
-                  return updateState(initialState2);
+                  return updateState(initialState);
                 } finally {
                   ReactCurrentDispatcher$1.current = prevDispatcher;
                 }
@@ -14710,13 +14710,13 @@
                 updateHookTypesDev();
                 return updateRef();
               },
-              useState: function(initialState2) {
+              useState: function(initialState) {
                 currentHookNameInDev = "useState";
                 updateHookTypesDev();
                 var prevDispatcher = ReactCurrentDispatcher$1.current;
                 ReactCurrentDispatcher$1.current = InvalidNestedHooksDispatcherOnRerenderInDEV;
                 try {
-                  return rerenderState(initialState2);
+                  return rerenderState(initialState);
                 } finally {
                   ReactCurrentDispatcher$1.current = prevDispatcher;
                 }
@@ -14824,14 +14824,14 @@
                 mountHookTypesDev();
                 return mountRef(initialValue);
               },
-              useState: function(initialState2) {
+              useState: function(initialState) {
                 currentHookNameInDev = "useState";
                 warnInvalidHookAccess();
                 mountHookTypesDev();
                 var prevDispatcher = ReactCurrentDispatcher$1.current;
                 ReactCurrentDispatcher$1.current = InvalidNestedHooksDispatcherOnMountInDEV;
                 try {
-                  return mountState(initialState2);
+                  return mountState(initialState);
                 } finally {
                   ReactCurrentDispatcher$1.current = prevDispatcher;
                 }
@@ -14945,14 +14945,14 @@
                 updateHookTypesDev();
                 return updateRef();
               },
-              useState: function(initialState2) {
+              useState: function(initialState) {
                 currentHookNameInDev = "useState";
                 warnInvalidHookAccess();
                 updateHookTypesDev();
                 var prevDispatcher = ReactCurrentDispatcher$1.current;
                 ReactCurrentDispatcher$1.current = InvalidNestedHooksDispatcherOnUpdateInDEV;
                 try {
-                  return updateState(initialState2);
+                  return updateState(initialState);
                 } finally {
                   ReactCurrentDispatcher$1.current = prevDispatcher;
                 }
@@ -15066,14 +15066,14 @@
                 updateHookTypesDev();
                 return updateRef();
               },
-              useState: function(initialState2) {
+              useState: function(initialState) {
                 currentHookNameInDev = "useState";
                 warnInvalidHookAccess();
                 updateHookTypesDev();
                 var prevDispatcher = ReactCurrentDispatcher$1.current;
                 ReactCurrentDispatcher$1.current = InvalidNestedHooksDispatcherOnUpdateInDEV;
                 try {
-                  return rerenderState(initialState2);
+                  return rerenderState(initialState);
                 } finally {
                   ReactCurrentDispatcher$1.current = prevDispatcher;
                 }
@@ -15251,16 +15251,16 @@
               if (logError === false) {
                 return;
               }
-              var error3 = errorInfo.value;
+              var error4 = errorInfo.value;
               if (true) {
                 var source3 = errorInfo.source;
                 var stack = errorInfo.stack;
                 var componentStack = stack !== null ? stack : "";
-                if (error3 != null && error3._suppressLogging) {
+                if (error4 != null && error4._suppressLogging) {
                   if (boundary.tag === ClassComponent) {
                     return;
                   }
-                  console["error"](error3);
+                  console["error"](error4);
                 }
                 var componentName = source3 ? getComponentNameFromFiber(source3) : null;
                 var componentNameMessage = componentName ? "The above error occurred in the <" + componentName + "> component:" : "The above error occurred in one of your React components:";
@@ -15274,7 +15274,7 @@
                 var combinedMessage = componentNameMessage + "\n" + componentStack + "\n\n" + ("" + errorBoundaryMessage);
                 console["error"](combinedMessage);
               } else {
-                console["error"](error3);
+                console["error"](error4);
               }
             } catch (e) {
               setTimeout(function() {
@@ -15289,9 +15289,9 @@
             update.payload = {
               element: null
             };
-            var error3 = errorInfo.value;
+            var error4 = errorInfo.value;
             update.callback = function() {
-              onUncaughtError(error3);
+              onUncaughtError(error4);
               logCapturedError(fiber, errorInfo);
             };
             return update;
@@ -15330,7 +15330,7 @@
                 {
                   if (typeof getDerivedStateFromError !== "function") {
                     if (!includesSomeLane(fiber.lanes, SyncLane)) {
-                      error2("%s: Error boundaries should implement getDerivedStateFromError(). In that method, return a state update to display an error message or fallback UI.", getComponentNameFromFiber(fiber) || "Unknown");
+                      error3("%s: Error boundaries should implement getDerivedStateFromError(). In that method, return a state update to display an error message or fallback UI.", getComponentNameFromFiber(fiber) || "Unknown");
                     }
                   }
                 }
@@ -15862,7 +15862,7 @@
               var inst = workInProgress2.stateNode;
               if (shouldUpdate && inst.props !== nextProps) {
                 if (!didWarnAboutReassigningProps) {
-                  error2("It looks like %s is reassigning its own `this.props` while rendering. This is not supported and can lead to confusing bugs.", getComponentNameFromFiber(workInProgress2) || "a component");
+                  error3("It looks like %s is reassigning its own `this.props` while rendering. This is not supported and can lead to confusing bugs.", getComponentNameFromFiber(workInProgress2) || "a component");
                 }
                 didWarnAboutReassigningProps = true;
               }
@@ -16097,7 +16097,7 @@
               if (Component.prototype && typeof Component.prototype.render === "function") {
                 var componentName = getComponentNameFromType(Component) || "Unknown";
                 if (!didWarnAboutBadClass[componentName]) {
-                  error2("The <%s /> component appears to have a render method, but doesn't extend React.Component. This is likely to cause errors. Change %s to extend React.Component instead.", componentName, componentName);
+                  error3("The <%s /> component appears to have a render method, but doesn't extend React.Component. This is likely to cause errors. Change %s to extend React.Component instead.", componentName, componentName);
                   didWarnAboutBadClass[componentName] = true;
                 }
               }
@@ -16118,7 +16118,7 @@
               if (typeof value12 === "object" && value12 !== null && typeof value12.render === "function" && value12.$$typeof === void 0) {
                 var _componentName = getComponentNameFromType(Component) || "Unknown";
                 if (!didWarnAboutModulePatternComponent[_componentName]) {
-                  error2("The <%s /> component appears to be a function component that returns a class instance. Change %s to a class that extends React.Component instead. If you can't use a class try assigning the prototype on the function as a workaround. `%s.prototype = React.Component.prototype`. Don't use an arrow function since it cannot be called with `new` by React.", _componentName, _componentName, _componentName);
+                  error3("The <%s /> component appears to be a function component that returns a class instance. Change %s to a class that extends React.Component instead. If you can't use a class try assigning the prototype on the function as a workaround. `%s.prototype = React.Component.prototype`. Don't use an arrow function since it cannot be called with `new` by React.", _componentName, _componentName, _componentName);
                   didWarnAboutModulePatternComponent[_componentName] = true;
                 }
               }
@@ -16127,7 +16127,7 @@
               {
                 var _componentName2 = getComponentNameFromType(Component) || "Unknown";
                 if (!didWarnAboutModulePatternComponent[_componentName2]) {
-                  error2("The <%s /> component appears to be a function component that returns a class instance. Change %s to a class that extends React.Component instead. If you can't use a class try assigning the prototype on the function as a workaround. `%s.prototype = React.Component.prototype`. Don't use an arrow function since it cannot be called with `new` by React.", _componentName2, _componentName2, _componentName2);
+                  error3("The <%s /> component appears to be a function component that returns a class instance. Change %s to a class that extends React.Component instead. If you can't use a class try assigning the prototype on the function as a workaround. `%s.prototype = React.Component.prototype`. Don't use an arrow function since it cannot be called with `new` by React.", _componentName2, _componentName2, _componentName2);
                   didWarnAboutModulePatternComponent[_componentName2] = true;
                 }
               }
@@ -16173,14 +16173,14 @@
             {
               if (Component) {
                 if (Component.childContextTypes) {
-                  error2("%s(...): childContextTypes cannot be defined on a function component.", Component.displayName || Component.name || "Component");
+                  error3("%s(...): childContextTypes cannot be defined on a function component.", Component.displayName || Component.name || "Component");
                 }
               }
               if (workInProgress2.ref !== null) {
-                var info = "";
+                var info2 = "";
                 var ownerName = getCurrentFiberOwnerNameInDevOrNull();
                 if (ownerName) {
-                  info += "\n\nCheck the render method of `" + ownerName + "`.";
+                  info2 += "\n\nCheck the render method of `" + ownerName + "`.";
                 }
                 var warningKey = ownerName || "";
                 var debugSource = workInProgress2._debugSource;
@@ -16189,20 +16189,20 @@
                 }
                 if (!didWarnAboutFunctionRefs[warningKey]) {
                   didWarnAboutFunctionRefs[warningKey] = true;
-                  error2("Function components cannot be given refs. Attempts to access this ref will fail. Did you mean to use React.forwardRef()?%s", info);
+                  error3("Function components cannot be given refs. Attempts to access this ref will fail. Did you mean to use React.forwardRef()?%s", info2);
                 }
               }
               if (typeof Component.getDerivedStateFromProps === "function") {
                 var _componentName3 = getComponentNameFromType(Component) || "Unknown";
                 if (!didWarnAboutGetDerivedStateOnFunctionComponent[_componentName3]) {
-                  error2("%s: Function components do not support getDerivedStateFromProps.", _componentName3);
+                  error3("%s: Function components do not support getDerivedStateFromProps.", _componentName3);
                   didWarnAboutGetDerivedStateOnFunctionComponent[_componentName3] = true;
                 }
               }
               if (typeof Component.contextType === "object" && Component.contextType !== null) {
                 var _componentName4 = getComponentNameFromType(Component) || "Unknown";
                 if (!didWarnAboutContextTypeOnFunctionComponent[_componentName4]) {
-                  error2("%s: Function components do not support contextType.", _componentName4);
+                  error3("%s: Function components do not support contextType.", _componentName4);
                   didWarnAboutContextTypeOnFunctionComponent[_componentName4] = true;
                 }
               }
@@ -16450,7 +16450,7 @@
           function mountDehydratedSuspenseComponent(workInProgress2, suspenseInstance, renderLanes2) {
             if ((workInProgress2.mode & ConcurrentMode) === NoMode) {
               {
-                error2("Cannot hydrate Suspense in legacy mode. Switch from ReactDOM.hydrate(element, container) to ReactDOMClient.hydrateRoot(container, <App />).render(element) or remove the Suspense components from the server rendered components.");
+                error3("Cannot hydrate Suspense in legacy mode. Switch from ReactDOM.hydrate(element, container) to ReactDOMClient.hydrateRoot(container, <App />).render(element) or remove the Suspense components from the server rendered components.");
               }
               workInProgress2.lanes = laneToLanes(SyncLane);
             } else if (isSuspenseInstanceFallback(suspenseInstance)) {
@@ -16474,13 +16474,13 @@
                   message2 = _getSuspenseInstanceF.message;
                   stack = _getSuspenseInstanceF.stack;
                 }
-                var error3;
+                var error4;
                 if (message2) {
-                  error3 = new Error(message2);
+                  error4 = new Error(message2);
                 } else {
-                  error3 = new Error("The server could not finish this Suspense boundary, likely due to an error during server rendering. Switched to client rendering.");
+                  error4 = new Error("The server could not finish this Suspense boundary, likely due to an error during server rendering. Switched to client rendering.");
                 }
-                var capturedValue = createCapturedValue(error3, digest, stack);
+                var capturedValue = createCapturedValue(error4, digest, stack);
                 return retrySuspenseComponentWithoutHydrating(current2, workInProgress2, renderLanes2, capturedValue);
               }
               var hasContextChanged2 = includesSomeLane(renderLanes2, current2.childLanes);
@@ -16588,20 +16588,20 @@
                     case "together":
                     case "forwards":
                     case "backwards": {
-                      error2('"%s" is not a valid value for revealOrder on <SuspenseList />. Use lowercase "%s" instead.', revealOrder, revealOrder.toLowerCase());
+                      error3('"%s" is not a valid value for revealOrder on <SuspenseList />. Use lowercase "%s" instead.', revealOrder, revealOrder.toLowerCase());
                       break;
                     }
                     case "forward":
                     case "backward": {
-                      error2('"%s" is not a valid value for revealOrder on <SuspenseList />. React uses the -s suffix in the spelling. Use "%ss" instead.', revealOrder, revealOrder.toLowerCase());
+                      error3('"%s" is not a valid value for revealOrder on <SuspenseList />. React uses the -s suffix in the spelling. Use "%ss" instead.', revealOrder, revealOrder.toLowerCase());
                       break;
                     }
                     default:
-                      error2('"%s" is not a supported revealOrder on <SuspenseList />. Did you mean "together", "forwards" or "backwards"?', revealOrder);
+                      error3('"%s" is not a supported revealOrder on <SuspenseList />. Did you mean "together", "forwards" or "backwards"?', revealOrder);
                       break;
                   }
                 } else {
-                  error2('%s is not a supported value for revealOrder on <SuspenseList />. Did you mean "together", "forwards" or "backwards"?', revealOrder);
+                  error3('%s is not a supported value for revealOrder on <SuspenseList />. Did you mean "together", "forwards" or "backwards"?', revealOrder);
                 }
               }
             }
@@ -16611,10 +16611,10 @@
               if (tailMode !== void 0 && !didWarnAboutTailOptions[tailMode]) {
                 if (tailMode !== "collapsed" && tailMode !== "hidden") {
                   didWarnAboutTailOptions[tailMode] = true;
-                  error2('"%s" is not a supported value for tail on <SuspenseList />. Did you mean "collapsed" or "hidden"?', tailMode);
+                  error3('"%s" is not a supported value for tail on <SuspenseList />. Did you mean "collapsed" or "hidden"?', tailMode);
                 } else if (revealOrder !== "forwards" && revealOrder !== "backwards") {
                   didWarnAboutTailOptions[tailMode] = true;
-                  error2('<SuspenseList tail="%s" /> is only valid if revealOrder is "forwards" or "backwards". Did you mean to specify revealOrder="forwards"?', tailMode);
+                  error3('<SuspenseList tail="%s" /> is only valid if revealOrder is "forwards" or "backwards". Did you mean to specify revealOrder="forwards"?', tailMode);
                 }
               }
             }
@@ -16625,7 +16625,7 @@
               var isIterable = !isAnArray && typeof getIteratorFn(childSlot) === "function";
               if (isAnArray || isIterable) {
                 var type = isAnArray ? "array" : "iterable";
-                error2("A nested %s was passed to row #%s in <SuspenseList />. Wrap it in an additional SuspenseList to configure its revealOrder: <SuspenseList revealOrder=...> ... <SuspenseList revealOrder=...>{%s}</SuspenseList> ... </SuspenseList>", type, index6, type);
+                error3("A nested %s was passed to row #%s in <SuspenseList />. Wrap it in an additional SuspenseList to configure its revealOrder: <SuspenseList revealOrder=...> ... <SuspenseList revealOrder=...>{%s}</SuspenseList> ... </SuspenseList>", type, index6, type);
                 return false;
               }
             }
@@ -16655,15 +16655,15 @@
                       }
                     }
                   } else {
-                    error2('A single row was passed to a <SuspenseList revealOrder="%s" />. This is not useful since it needs multiple rows. Did you mean to pass multiple children or an array?', revealOrder);
+                    error3('A single row was passed to a <SuspenseList revealOrder="%s" />. This is not useful since it needs multiple rows. Did you mean to pass multiple children or an array?', revealOrder);
                   }
                 }
               }
             }
           }
           function initSuspenseListRenderState(workInProgress2, isBackwards, tail3, lastContentRow, tailMode) {
-            var renderState2 = workInProgress2.memoizedState;
-            if (renderState2 === null) {
+            var renderState = workInProgress2.memoizedState;
+            if (renderState === null) {
               workInProgress2.memoizedState = {
                 isBackwards,
                 rendering: null,
@@ -16673,12 +16673,12 @@
                 tailMode
               };
             } else {
-              renderState2.isBackwards = isBackwards;
-              renderState2.rendering = null;
-              renderState2.renderingStartTime = 0;
-              renderState2.last = lastContentRow;
-              renderState2.tail = tail3;
-              renderState2.tailMode = tailMode;
+              renderState.isBackwards = isBackwards;
+              renderState.rendering = null;
+              renderState.renderingStartTime = 0;
+              renderState.last = lastContentRow;
+              renderState.tail = tail3;
+              renderState.tailMode = tailMode;
             }
           }
           function updateSuspenseListComponent(current2, workInProgress2, renderLanes2) {
@@ -16770,7 +16770,7 @@
               if (!("value" in newProps)) {
                 if (!hasWarnedAboutUsingNoValuePropOnContextProvider) {
                   hasWarnedAboutUsingNoValuePropOnContextProvider = true;
-                  error2("The `value` prop is required for the `<Context.Provider>`. Did you misspell it or forget to pass it?");
+                  error3("The `value` prop is required for the `<Context.Provider>`. Did you misspell it or forget to pass it?");
                 }
               }
               var providerPropTypes = workInProgress2.type.propTypes;
@@ -16803,7 +16803,7 @@
                 if (context !== context.Consumer) {
                   if (!hasWarnedAboutUsingContextAsConsumer) {
                     hasWarnedAboutUsingContextAsConsumer = true;
-                    error2("Rendering <Context> directly is not supported and will be removed in a future major release. Did you mean to render <Context.Consumer> instead?");
+                    error3("Rendering <Context> directly is not supported and will be removed in a future major release. Did you mean to render <Context.Consumer> instead?");
                   }
                 }
               } else {
@@ -16814,7 +16814,7 @@
             var render2 = newProps.children;
             {
               if (typeof render2 !== "function") {
-                error2("A context consumer was rendered with multiple children, or a child that isn't a function. A context consumer expects a single child that is a function. If you did pass a function, make sure there is no trailing or leading whitespace around it.");
+                error3("A context consumer was rendered with multiple children, or a child that isn't a function. A context consumer expects a single child that is a function. If you did pass a function, make sure there is no trailing or leading whitespace around it.");
               }
             }
             prepareToReadContext(workInProgress2, renderLanes2);
@@ -16983,11 +16983,11 @@
                   }
                   workInProgress2.flags |= DidCapture;
                 }
-                var renderState2 = workInProgress2.memoizedState;
-                if (renderState2 !== null) {
-                  renderState2.rendering = null;
-                  renderState2.tail = null;
-                  renderState2.lastEffect = null;
+                var renderState = workInProgress2.memoizedState;
+                if (renderState !== null) {
+                  renderState.rendering = null;
+                  renderState.tail = null;
+                  renderState.lastEffect = null;
                 }
                 pushSuspenseContext(workInProgress2, suspenseStackCursor.current);
                 if (_hasChildWork) {
@@ -17178,13 +17178,13 @@
               }
             };
           }
-          function cutOffTailIfNeeded(renderState2, hasRenderedATailFallback) {
+          function cutOffTailIfNeeded(renderState, hasRenderedATailFallback) {
             if (getIsHydrating()) {
               return;
             }
-            switch (renderState2.tailMode) {
+            switch (renderState.tailMode) {
               case "hidden": {
-                var tailNode = renderState2.tail;
+                var tailNode = renderState.tail;
                 var lastTailNode = null;
                 while (tailNode !== null) {
                   if (tailNode.alternate !== null) {
@@ -17193,14 +17193,14 @@
                   tailNode = tailNode.sibling;
                 }
                 if (lastTailNode === null) {
-                  renderState2.tail = null;
+                  renderState.tail = null;
                 } else {
                   lastTailNode.sibling = null;
                 }
                 break;
               }
               case "collapsed": {
-                var _tailNode = renderState2.tail;
+                var _tailNode = renderState.tail;
                 var _lastTailNode = null;
                 while (_tailNode !== null) {
                   if (_tailNode.alternate !== null) {
@@ -17209,10 +17209,10 @@
                   _tailNode = _tailNode.sibling;
                 }
                 if (_lastTailNode === null) {
-                  if (!hasRenderedATailFallback && renderState2.tail !== null) {
-                    renderState2.tail.sibling = null;
+                  if (!hasRenderedATailFallback && renderState.tail !== null) {
+                    renderState.tail.sibling = null;
                   } else {
-                    renderState2.tail = null;
+                    renderState.tail = null;
                   }
                 } else {
                   _lastTailNode.sibling = null;
@@ -17520,13 +17520,13 @@
               }
               case SuspenseListComponent: {
                 popSuspenseContext(workInProgress2);
-                var renderState2 = workInProgress2.memoizedState;
-                if (renderState2 === null) {
+                var renderState = workInProgress2.memoizedState;
+                if (renderState === null) {
                   bubbleProperties(workInProgress2);
                   return null;
                 }
                 var didSuspendAlready = (workInProgress2.flags & DidCapture) !== NoFlags;
-                var renderedTail = renderState2.rendering;
+                var renderedTail = renderState.rendering;
                 if (renderedTail === null) {
                   if (!didSuspendAlready) {
                     var cannotBeSuspended = renderHasNotSuspendedYet() && (current2 === null || (current2.flags & DidCapture) === NoFlags);
@@ -17537,7 +17537,7 @@
                         if (suspended !== null) {
                           didSuspendAlready = true;
                           workInProgress2.flags |= DidCapture;
-                          cutOffTailIfNeeded(renderState2, false);
+                          cutOffTailIfNeeded(renderState, false);
                           var newThenables = suspended.updateQueue;
                           if (newThenables !== null) {
                             workInProgress2.updateQueue = newThenables;
@@ -17551,14 +17551,14 @@
                         row = row.sibling;
                       }
                     }
-                    if (renderState2.tail !== null && now() > getRenderTargetTime()) {
+                    if (renderState.tail !== null && now() > getRenderTargetTime()) {
                       workInProgress2.flags |= DidCapture;
                       didSuspendAlready = true;
-                      cutOffTailIfNeeded(renderState2, false);
+                      cutOffTailIfNeeded(renderState, false);
                       workInProgress2.lanes = SomeRetryLane;
                     }
                   } else {
-                    cutOffTailIfNeeded(renderState2, false);
+                    cutOffTailIfNeeded(renderState, false);
                   }
                 } else {
                   if (!didSuspendAlready) {
@@ -17571,36 +17571,36 @@
                         workInProgress2.updateQueue = _newThenables;
                         workInProgress2.flags |= Update;
                       }
-                      cutOffTailIfNeeded(renderState2, true);
-                      if (renderState2.tail === null && renderState2.tailMode === "hidden" && !renderedTail.alternate && !getIsHydrating()) {
+                      cutOffTailIfNeeded(renderState, true);
+                      if (renderState.tail === null && renderState.tailMode === "hidden" && !renderedTail.alternate && !getIsHydrating()) {
                         bubbleProperties(workInProgress2);
                         return null;
                       }
-                    } else if (now() * 2 - renderState2.renderingStartTime > getRenderTargetTime() && renderLanes2 !== OffscreenLane) {
+                    } else if (now() * 2 - renderState.renderingStartTime > getRenderTargetTime() && renderLanes2 !== OffscreenLane) {
                       workInProgress2.flags |= DidCapture;
                       didSuspendAlready = true;
-                      cutOffTailIfNeeded(renderState2, false);
+                      cutOffTailIfNeeded(renderState, false);
                       workInProgress2.lanes = SomeRetryLane;
                     }
                   }
-                  if (renderState2.isBackwards) {
+                  if (renderState.isBackwards) {
                     renderedTail.sibling = workInProgress2.child;
                     workInProgress2.child = renderedTail;
                   } else {
-                    var previousSibling = renderState2.last;
+                    var previousSibling = renderState.last;
                     if (previousSibling !== null) {
                       previousSibling.sibling = renderedTail;
                     } else {
                       workInProgress2.child = renderedTail;
                     }
-                    renderState2.last = renderedTail;
+                    renderState.last = renderedTail;
                   }
                 }
-                if (renderState2.tail !== null) {
-                  var next = renderState2.tail;
-                  renderState2.rendering = next;
-                  renderState2.tail = next.sibling;
-                  renderState2.renderingStartTime = now();
+                if (renderState.tail !== null) {
+                  var next = renderState.tail;
+                  renderState.rendering = next;
+                  renderState.tail = next.sibling;
+                  renderState.renderingStartTime = now();
                   next.sibling = null;
                   var suspenseContext = suspenseStackCursor.current;
                   if (didSuspendAlready) {
@@ -17776,10 +17776,10 @@
           var nextEffect = null;
           var inProgressLanes = null;
           var inProgressRoot = null;
-          function reportUncaughtErrorInDEV(error3) {
+          function reportUncaughtErrorInDEV(error4) {
             {
               invokeGuardedCallback(null, function() {
-                throw error3;
+                throw error4;
               });
               clearCaughtError();
             }
@@ -17801,29 +17801,29 @@
           function safelyCallCommitHookLayoutEffectListMount(current2, nearestMountedAncestor) {
             try {
               commitHookEffectListMount(Layout, current2);
-            } catch (error3) {
-              captureCommitPhaseError(current2, nearestMountedAncestor, error3);
+            } catch (error4) {
+              captureCommitPhaseError(current2, nearestMountedAncestor, error4);
             }
           }
           function safelyCallComponentWillUnmount(current2, nearestMountedAncestor, instance) {
             try {
               callComponentWillUnmountWithTimer(current2, instance);
-            } catch (error3) {
-              captureCommitPhaseError(current2, nearestMountedAncestor, error3);
+            } catch (error4) {
+              captureCommitPhaseError(current2, nearestMountedAncestor, error4);
             }
           }
           function safelyCallComponentDidMount(current2, nearestMountedAncestor, instance) {
             try {
               instance.componentDidMount();
-            } catch (error3) {
-              captureCommitPhaseError(current2, nearestMountedAncestor, error3);
+            } catch (error4) {
+              captureCommitPhaseError(current2, nearestMountedAncestor, error4);
             }
           }
           function safelyAttachRef(current2, nearestMountedAncestor) {
             try {
               commitAttachRef(current2);
-            } catch (error3) {
-              captureCommitPhaseError(current2, nearestMountedAncestor, error3);
+            } catch (error4) {
+              captureCommitPhaseError(current2, nearestMountedAncestor, error4);
             }
           }
           function safelyDetachRef(current2, nearestMountedAncestor) {
@@ -17842,12 +17842,12 @@
                   } else {
                     retVal = ref(null);
                   }
-                } catch (error3) {
-                  captureCommitPhaseError(current2, nearestMountedAncestor, error3);
+                } catch (error4) {
+                  captureCommitPhaseError(current2, nearestMountedAncestor, error4);
                 }
                 {
                   if (typeof retVal === "function") {
-                    error2("Unexpected return value from a callback ref in %s. A callback ref should not return a function.", getComponentNameFromFiber(current2));
+                    error3("Unexpected return value from a callback ref in %s. A callback ref should not return a function.", getComponentNameFromFiber(current2));
                   }
                 }
               } else {
@@ -17858,8 +17858,8 @@
           function safelyCallDestroy(current2, nearestMountedAncestor, destroy) {
             try {
               destroy();
-            } catch (error3) {
-              captureCommitPhaseError(current2, nearestMountedAncestor, error3);
+            } catch (error4) {
+              captureCommitPhaseError(current2, nearestMountedAncestor, error4);
             }
           }
           var focusedInstanceHandle = null;
@@ -17891,8 +17891,8 @@
               setCurrentFiber(fiber);
               try {
                 commitBeforeMutationEffectsOnFiber(fiber);
-              } catch (error3) {
-                captureCommitPhaseError(fiber, fiber.return, error3);
+              } catch (error4) {
+                captureCommitPhaseError(fiber, fiber.return, error4);
               }
               resetCurrentFiber();
               var sibling = fiber.sibling;
@@ -17923,10 +17923,10 @@
                     {
                       if (finishedWork.type === finishedWork.elementType && !didWarnAboutReassigningProps) {
                         if (instance.props !== finishedWork.memoizedProps) {
-                          error2("Expected %s props to match memoized props before getSnapshotBeforeUpdate. This might either be because of a bug in React, or because a component reassigns its own `this.props`. Please file an issue.", getComponentNameFromFiber(finishedWork) || "instance");
+                          error3("Expected %s props to match memoized props before getSnapshotBeforeUpdate. This might either be because of a bug in React, or because a component reassigns its own `this.props`. Please file an issue.", getComponentNameFromFiber(finishedWork) || "instance");
                         }
                         if (instance.state !== finishedWork.memoizedState) {
-                          error2("Expected %s state to match memoized state before getSnapshotBeforeUpdate. This might either be because of a bug in React, or because a component reassigns its own `this.state`. Please file an issue.", getComponentNameFromFiber(finishedWork) || "instance");
+                          error3("Expected %s state to match memoized state before getSnapshotBeforeUpdate. This might either be because of a bug in React, or because a component reassigns its own `this.state`. Please file an issue.", getComponentNameFromFiber(finishedWork) || "instance");
                         }
                       }
                     }
@@ -17935,7 +17935,7 @@
                       var didWarnSet = didWarnAboutUndefinedSnapshotBeforeUpdate;
                       if (snapshot === void 0 && !didWarnSet.has(finishedWork.type)) {
                         didWarnSet.add(finishedWork.type);
-                        error2("%s.getSnapshotBeforeUpdate(): A snapshot value (or null) must be returned. You have returned undefined.", getComponentNameFromFiber(finishedWork));
+                        error3("%s.getSnapshotBeforeUpdate(): A snapshot value (or null) must be returned. You have returned undefined.", getComponentNameFromFiber(finishedWork));
                       }
                     }
                     instance.__reactInternalSnapshotBeforeUpdate = snapshot;
@@ -18056,7 +18056,7 @@
                       } else {
                         addendum = " You returned: " + destroy;
                       }
-                      error2("%s must not return anything besides a function, which is used for clean-up.%s", hookName, addendum);
+                      error3("%s must not return anything besides a function, which is used for clean-up.%s", hookName, addendum);
                     }
                   }
                 }
@@ -18130,10 +18130,10 @@
                         {
                           if (finishedWork.type === finishedWork.elementType && !didWarnAboutReassigningProps) {
                             if (instance.props !== finishedWork.memoizedProps) {
-                              error2("Expected %s props to match memoized props before componentDidMount. This might either be because of a bug in React, or because a component reassigns its own `this.props`. Please file an issue.", getComponentNameFromFiber(finishedWork) || "instance");
+                              error3("Expected %s props to match memoized props before componentDidMount. This might either be because of a bug in React, or because a component reassigns its own `this.props`. Please file an issue.", getComponentNameFromFiber(finishedWork) || "instance");
                             }
                             if (instance.state !== finishedWork.memoizedState) {
-                              error2("Expected %s state to match memoized state before componentDidMount. This might either be because of a bug in React, or because a component reassigns its own `this.state`. Please file an issue.", getComponentNameFromFiber(finishedWork) || "instance");
+                              error3("Expected %s state to match memoized state before componentDidMount. This might either be because of a bug in React, or because a component reassigns its own `this.state`. Please file an issue.", getComponentNameFromFiber(finishedWork) || "instance");
                             }
                           }
                         }
@@ -18153,10 +18153,10 @@
                         {
                           if (finishedWork.type === finishedWork.elementType && !didWarnAboutReassigningProps) {
                             if (instance.props !== finishedWork.memoizedProps) {
-                              error2("Expected %s props to match memoized props before componentDidUpdate. This might either be because of a bug in React, or because a component reassigns its own `this.props`. Please file an issue.", getComponentNameFromFiber(finishedWork) || "instance");
+                              error3("Expected %s props to match memoized props before componentDidUpdate. This might either be because of a bug in React, or because a component reassigns its own `this.props`. Please file an issue.", getComponentNameFromFiber(finishedWork) || "instance");
                             }
                             if (instance.state !== finishedWork.memoizedState) {
-                              error2("Expected %s state to match memoized state before componentDidUpdate. This might either be because of a bug in React, or because a component reassigns its own `this.state`. Please file an issue.", getComponentNameFromFiber(finishedWork) || "instance");
+                              error3("Expected %s state to match memoized state before componentDidUpdate. This might either be because of a bug in React, or because a component reassigns its own `this.state`. Please file an issue.", getComponentNameFromFiber(finishedWork) || "instance");
                             }
                           }
                         }
@@ -18178,10 +18178,10 @@
                     {
                       if (finishedWork.type === finishedWork.elementType && !didWarnAboutReassigningProps) {
                         if (instance.props !== finishedWork.memoizedProps) {
-                          error2("Expected %s props to match memoized props before processing the update queue. This might either be because of a bug in React, or because a component reassigns its own `this.props`. Please file an issue.", getComponentNameFromFiber(finishedWork) || "instance");
+                          error3("Expected %s props to match memoized props before processing the update queue. This might either be because of a bug in React, or because a component reassigns its own `this.props`. Please file an issue.", getComponentNameFromFiber(finishedWork) || "instance");
                         }
                         if (instance.state !== finishedWork.memoizedState) {
-                          error2("Expected %s state to match memoized state before processing the update queue. This might either be because of a bug in React, or because a component reassigns its own `this.state`. Please file an issue.", getComponentNameFromFiber(finishedWork) || "instance");
+                          error3("Expected %s state to match memoized state before processing the update queue. This might either be because of a bug in React, or because a component reassigns its own `this.state`. Please file an issue.", getComponentNameFromFiber(finishedWork) || "instance");
                         }
                       }
                     }
@@ -18330,8 +18330,8 @@
                       } else {
                         unhideInstance(node.stateNode, node.memoizedProps);
                       }
-                    } catch (error3) {
-                      captureCommitPhaseError(finishedWork, finishedWork.return, error3);
+                    } catch (error4) {
+                      captureCommitPhaseError(finishedWork, finishedWork.return, error4);
                     }
                   }
                 } else if (node.tag === HostText) {
@@ -18343,8 +18343,8 @@
                       } else {
                         unhideTextInstance(_instance3, node.memoizedProps);
                       }
-                    } catch (error3) {
-                      captureCommitPhaseError(finishedWork, finishedWork.return, error3);
+                    } catch (error4) {
+                      captureCommitPhaseError(finishedWork, finishedWork.return, error4);
                     }
                   }
                 } else if ((node.tag === OffscreenComponent || node.tag === LegacyHiddenComponent) && node.memoizedState !== null && node !== finishedWork)
@@ -18400,13 +18400,13 @@
                 }
                 {
                   if (typeof retVal === "function") {
-                    error2("Unexpected return value from a callback ref in %s. A callback ref should not return a function.", getComponentNameFromFiber(finishedWork));
+                    error3("Unexpected return value from a callback ref in %s. A callback ref should not return a function.", getComponentNameFromFiber(finishedWork));
                   }
                 }
               } else {
                 {
                   if (!ref.hasOwnProperty("current")) {
-                    error2("Unexpected ref object provided for %s. Use either a ref-setter function or React.createRef().", getComponentNameFromFiber(finishedWork));
+                    error3("Unexpected ref object provided for %s. Use either a ref-setter function or React.createRef().", getComponentNameFromFiber(finishedWork));
                   }
                 }
                 ref.current = instanceToUse;
@@ -18788,8 +18788,8 @@
                 var childToDelete = deletions[i2];
                 try {
                   commitDeletionEffects(root2, parentFiber, childToDelete);
-                } catch (error3) {
-                  captureCommitPhaseError(childToDelete, parentFiber, error3);
+                } catch (error4) {
+                  captureCommitPhaseError(childToDelete, parentFiber, error4);
                 }
               }
             }
@@ -18818,22 +18818,22 @@
                   try {
                     commitHookEffectListUnmount(Insertion | HasEffect, finishedWork, finishedWork.return);
                     commitHookEffectListMount(Insertion | HasEffect, finishedWork);
-                  } catch (error3) {
-                    captureCommitPhaseError(finishedWork, finishedWork.return, error3);
+                  } catch (error4) {
+                    captureCommitPhaseError(finishedWork, finishedWork.return, error4);
                   }
                   if (finishedWork.mode & ProfileMode) {
                     try {
                       startLayoutEffectTimer();
                       commitHookEffectListUnmount(Layout | HasEffect, finishedWork, finishedWork.return);
-                    } catch (error3) {
-                      captureCommitPhaseError(finishedWork, finishedWork.return, error3);
+                    } catch (error4) {
+                      captureCommitPhaseError(finishedWork, finishedWork.return, error4);
                     }
                     recordLayoutEffectDuration(finishedWork);
                   } else {
                     try {
                       commitHookEffectListUnmount(Layout | HasEffect, finishedWork, finishedWork.return);
-                    } catch (error3) {
-                      captureCommitPhaseError(finishedWork, finishedWork.return, error3);
+                    } catch (error4) {
+                      captureCommitPhaseError(finishedWork, finishedWork.return, error4);
                     }
                   }
                 }
@@ -18862,8 +18862,8 @@
                     var instance = finishedWork.stateNode;
                     try {
                       resetTextContent(instance);
-                    } catch (error3) {
-                      captureCommitPhaseError(finishedWork, finishedWork.return, error3);
+                    } catch (error4) {
+                      captureCommitPhaseError(finishedWork, finishedWork.return, error4);
                     }
                   }
                   if (flags & Update) {
@@ -18877,8 +18877,8 @@
                       if (updatePayload !== null) {
                         try {
                           commitUpdate(_instance4, updatePayload, type, oldProps, newProps, finishedWork);
-                        } catch (error3) {
-                          captureCommitPhaseError(finishedWork, finishedWork.return, error3);
+                        } catch (error4) {
+                          captureCommitPhaseError(finishedWork, finishedWork.return, error4);
                         }
                       }
                     }
@@ -18899,8 +18899,8 @@
                     var oldText = current2 !== null ? current2.memoizedProps : newText;
                     try {
                       commitTextUpdate(textInstance, oldText, newText);
-                    } catch (error3) {
-                      captureCommitPhaseError(finishedWork, finishedWork.return, error3);
+                    } catch (error4) {
+                      captureCommitPhaseError(finishedWork, finishedWork.return, error4);
                     }
                   }
                 }
@@ -18916,8 +18916,8 @@
                       if (prevRootState.isDehydrated) {
                         try {
                           commitHydratedContainer(root2.containerInfo);
-                        } catch (error3) {
-                          captureCommitPhaseError(finishedWork, finishedWork.return, error3);
+                        } catch (error4) {
+                          captureCommitPhaseError(finishedWork, finishedWork.return, error4);
                         }
                       }
                     }
@@ -18949,8 +18949,8 @@
                 if (flags & Update) {
                   try {
                     commitSuspenseCallback(finishedWork);
-                  } catch (error3) {
-                    captureCommitPhaseError(finishedWork, finishedWork.return, error3);
+                  } catch (error4) {
+                    captureCommitPhaseError(finishedWork, finishedWork.return, error4);
                   }
                   attachSuspenseRetryListeners(finishedWork);
                 }
@@ -19017,8 +19017,8 @@
             if (flags & Placement) {
               try {
                 commitPlacement(finishedWork);
-              } catch (error3) {
-                captureCommitPhaseError(finishedWork, finishedWork.return, error3);
+              } catch (error4) {
+                captureCommitPhaseError(finishedWork, finishedWork.return, error4);
               }
               finishedWork.flags &= ~Placement;
             }
@@ -19086,8 +19086,8 @@
                 setCurrentFiber(fiber);
                 try {
                   commitLayoutEffectOnFiber(root2, current2, fiber, committedLanes);
-                } catch (error3) {
-                  captureCommitPhaseError(fiber, fiber.return, error3);
+                } catch (error4) {
+                  captureCommitPhaseError(fiber, fiber.return, error4);
                 }
                 resetCurrentFiber();
               }
@@ -19195,8 +19195,8 @@
               setCurrentFiber(fiber);
               try {
                 reappearLayoutEffectsOnFiber(fiber);
-              } catch (error3) {
-                captureCommitPhaseError(fiber, fiber.return, error3);
+              } catch (error4) {
+                captureCommitPhaseError(fiber, fiber.return, error4);
               }
               resetCurrentFiber();
               if (fiber === subtreeRoot) {
@@ -19235,8 +19235,8 @@
                 setCurrentFiber(fiber);
                 try {
                   commitPassiveMountOnFiber(root2, fiber, committedLanes, committedTransitions);
-                } catch (error3) {
-                  captureCommitPhaseError(fiber, fiber.return, error3);
+                } catch (error4) {
+                  captureCommitPhaseError(fiber, fiber.return, error4);
                 }
                 resetCurrentFiber();
               }
@@ -19405,8 +19405,8 @@
                 case SimpleMemoComponent: {
                   try {
                     commitHookEffectListMount(Layout | HasEffect, fiber);
-                  } catch (error3) {
-                    captureCommitPhaseError(fiber, fiber.return, error3);
+                  } catch (error4) {
+                    captureCommitPhaseError(fiber, fiber.return, error4);
                   }
                   break;
                 }
@@ -19414,8 +19414,8 @@
                   var instance = fiber.stateNode;
                   try {
                     instance.componentDidMount();
-                  } catch (error3) {
-                    captureCommitPhaseError(fiber, fiber.return, error3);
+                  } catch (error4) {
+                    captureCommitPhaseError(fiber, fiber.return, error4);
                   }
                   break;
                 }
@@ -19430,8 +19430,8 @@
                 case SimpleMemoComponent: {
                   try {
                     commitHookEffectListMount(Passive$1 | HasEffect, fiber);
-                  } catch (error3) {
-                    captureCommitPhaseError(fiber, fiber.return, error3);
+                  } catch (error4) {
+                    captureCommitPhaseError(fiber, fiber.return, error4);
                   }
                   break;
                 }
@@ -19446,8 +19446,8 @@
                 case SimpleMemoComponent: {
                   try {
                     commitHookEffectListUnmount(Layout | HasEffect, fiber, fiber.return);
-                  } catch (error3) {
-                    captureCommitPhaseError(fiber, fiber.return, error3);
+                  } catch (error4) {
+                    captureCommitPhaseError(fiber, fiber.return, error4);
                   }
                   break;
                 }
@@ -19469,8 +19469,8 @@
                 case SimpleMemoComponent: {
                   try {
                     commitHookEffectListUnmount(Passive$1 | HasEffect, fiber, fiber.return);
-                  } catch (error3) {
-                    captureCommitPhaseError(fiber, fiber.return, error3);
+                  } catch (error4) {
+                    captureCommitPhaseError(fiber, fiber.return, error4);
                   }
                 }
               }
@@ -19509,7 +19509,7 @@
             {
               var isReactActEnvironmentGlobal = typeof IS_REACT_ACT_ENVIRONMENT !== "undefined" ? IS_REACT_ACT_ENVIRONMENT : void 0;
               if (!isReactActEnvironmentGlobal && ReactCurrentActQueue.current !== null) {
-                error2("The current testing environment is not configured to support act(...)");
+                error3("The current testing environment is not configured to support act(...)");
               }
               return isReactActEnvironmentGlobal;
             }
@@ -19623,7 +19623,7 @@
             checkForNestedUpdates();
             {
               if (isRunningInsertionEffect) {
-                error2("useInsertionEffect must not schedule updates.");
+                error3("useInsertionEffect must not schedule updates.");
               }
             }
             {
@@ -19682,7 +19682,7 @@
             if (existingCallbackPriority === newCallbackPriority && !(ReactCurrentActQueue$1.current !== null && existingCallbackNode !== fakeActCallbackNode)) {
               {
                 if (existingCallbackNode == null && existingCallbackPriority !== SyncLane) {
-                  error2("Expected scheduled callback to exist. This error is likely caused by a bug in React. Please file an issue.");
+                  error3("Expected scheduled callback to exist. This error is likely caused by a bug in React. Please file an issue.");
                 }
               }
               return;
@@ -19907,7 +19907,7 @@
                         if (!objectIs(getSnapshot(), renderedValue)) {
                           return false;
                         }
-                      } catch (error3) {
+                      } catch (error4) {
                         return false;
                       }
                     }
@@ -20157,14 +20157,14 @@
               markRootSuspended$1(workInProgressRoot, workInProgressRootRenderLanes);
             }
           }
-          function renderDidError(error3) {
+          function renderDidError(error4) {
             if (workInProgressRootExitStatus !== RootSuspendedWithDelay) {
               workInProgressRootExitStatus = RootErrored;
             }
             if (workInProgressRootConcurrentErrors === null) {
-              workInProgressRootConcurrentErrors = [error3];
+              workInProgressRootConcurrentErrors = [error4];
             } else {
-              workInProgressRootConcurrentErrors.push(error3);
+              workInProgressRootConcurrentErrors.push(error4);
             }
           }
           function renderHasNotSuspendedYet() {
@@ -20382,7 +20382,7 @@
             } else {
               {
                 if (lanes === NoLanes) {
-                  error2("root.finishedLanes should not be empty during a commit. This is a bug in React.");
+                  error3("root.finishedLanes should not be empty during a commit. This is a bug in React.");
                 }
               }
             }
@@ -20616,15 +20616,15 @@
               legacyErrorBoundariesThatAlreadyFailed.add(instance);
             }
           }
-          function prepareToThrowUncaughtError(error3) {
+          function prepareToThrowUncaughtError(error4) {
             if (!hasUncaughtError) {
               hasUncaughtError = true;
-              firstUncaughtError = error3;
+              firstUncaughtError = error4;
             }
           }
           var onUncaughtError = prepareToThrowUncaughtError;
-          function captureCommitPhaseErrorOnRoot(rootFiber, sourceFiber, error3) {
-            var errorInfo = createCapturedValueAtFiber(error3, sourceFiber);
+          function captureCommitPhaseErrorOnRoot(rootFiber, sourceFiber, error4) {
+            var errorInfo = createCapturedValueAtFiber(error4, sourceFiber);
             var update = createRootErrorUpdate(rootFiber, errorInfo, SyncLane);
             var root2 = enqueueUpdate(rootFiber, update, SyncLane);
             var eventTime = requestEventTime();
@@ -20668,7 +20668,7 @@
               fiber = fiber.return;
             }
             {
-              error2("Internal React error: Attempted to capture a commit phase error inside a detached tree. This indicates a bug in React. Likely causes include deleting the same fiber more than once, committing an already-finished tree, or an inconsistent return pointer.\n\nError message:\n\n%s", error$1);
+              error3("Internal React error: Attempted to capture a commit phase error inside a detached tree. This indicates a bug in React. Likely causes include deleting the same fiber more than once, committing an already-finished tree, or an inconsistent return pointer.\n\nError message:\n\n%s", error$1);
             }
           }
           function pingSuspendedRoot(root2, wakeable, pingedLanes) {
@@ -20742,7 +20742,7 @@
               if (nestedPassiveUpdateCount > NESTED_PASSIVE_UPDATE_LIMIT) {
                 nestedPassiveUpdateCount = 0;
                 rootWithPassiveNestedUpdates = null;
-                error2("Maximum update depth exceeded. This can happen when a component calls setState inside useEffect, but useEffect either doesn't have a dependency array, or one of the dependencies changes on every render.");
+                error3("Maximum update depth exceeded. This can happen when a component calls setState inside useEffect, but useEffect either doesn't have a dependency array, or one of the dependencies changes on every render.");
               }
             }
           }
@@ -20814,7 +20814,7 @@
               var previousFiber = current;
               try {
                 setCurrentFiber(fiber);
-                error2("Can't perform a React state update on a component that hasn't mounted yet. This indicates that you have a side-effect in your render function that asynchronously later calls tries to update the component. Move this work to useEffect instead.");
+                error3("Can't perform a React state update on a component that hasn't mounted yet. This indicates that you have a side-effect in your render function that asynchronously later calls tries to update the component. Move this work to useEffect instead.");
               } finally {
                 if (previousFiber) {
                   setCurrentFiber(fiber);
@@ -20870,13 +20870,13 @@
                     if (!didWarnAboutUpdateInRenderForAnotherComponent.has(dedupeKey)) {
                       didWarnAboutUpdateInRenderForAnotherComponent.add(dedupeKey);
                       var setStateComponentName = getComponentNameFromFiber(fiber) || "Unknown";
-                      error2("Cannot update a component (`%s`) while rendering a different component (`%s`). To locate the bad setState() call inside `%s`, follow the stack trace as described in https://reactjs.org/link/setstate-in-render", setStateComponentName, renderingComponentName, renderingComponentName);
+                      error3("Cannot update a component (`%s`) while rendering a different component (`%s`). To locate the bad setState() call inside `%s`, follow the stack trace as described in https://reactjs.org/link/setstate-in-render", setStateComponentName, renderingComponentName, renderingComponentName);
                     }
                     break;
                   }
                   case ClassComponent: {
                     if (!didWarnAboutUpdateInRender) {
-                      error2("Cannot update during an existing state transition (such as within `render`). Render methods should be a pure function of props and state.");
+                      error3("Cannot update during an existing state transition (such as within `render`). Render methods should be a pure function of props and state.");
                       didWarnAboutUpdateInRender = true;
                     }
                     break;
@@ -20937,7 +20937,7 @@
                 var previousFiber = current;
                 try {
                   setCurrentFiber(fiber);
-                  error2("An update to %s inside a test was not wrapped in act(...).\n\nWhen testing, code that causes React state updates should be wrapped into act(...):\n\nact(() => {\n  /* fire events that update state */\n});\n/* assert on the output */\n\nThis ensures that you're testing the behavior the user would see in the browser. Learn more at https://reactjs.org/link/wrap-tests-with-act", getComponentNameFromFiber(fiber));
+                  error3("An update to %s inside a test was not wrapped in act(...).\n\nWhen testing, code that causes React state updates should be wrapped into act(...):\n\nact(() => {\n  /* fire events that update state */\n});\n/* assert on the output */\n\nThis ensures that you're testing the behavior the user would see in the browser. Learn more at https://reactjs.org/link/wrap-tests-with-act", getComponentNameFromFiber(fiber));
                 } finally {
                   if (previousFiber) {
                     setCurrentFiber(fiber);
@@ -20951,7 +20951,7 @@
           function warnIfSuspenseResolutionNotWrappedWithActDEV(root2) {
             {
               if (root2.tag !== LegacyRoot && isConcurrentActEnvironment() && ReactCurrentActQueue$1.current === null) {
-                error2("A suspended resource finished loading inside a test, but the event was not wrapped in act(...).\n\nWhen testing, code that resolves suspended data should be wrapped into act(...):\n\nact(() => {\n  /* finish loading suspended data */\n});\n/* assert on the output */\n\nThis ensures that you're testing the behavior the user would see in the browser. Learn more at https://reactjs.org/link/wrap-tests-with-act");
+                error3("A suspended resource finished loading inside a test, but the event was not wrapped in act(...).\n\nWhen testing, code that resolves suspended data should be wrapped into act(...):\n\nact(() => {\n  /* finish loading suspended data */\n});\n/* assert on the output */\n\nThis ensures that you're testing the behavior the user would see in the browser. Learn more at https://reactjs.org/link/wrap-tests-with-act");
               }
             }
           }
@@ -21510,17 +21510,17 @@
                           break getTag;
                       }
                     }
-                    var info = "";
+                    var info2 = "";
                     {
                       if (type === void 0 || typeof type === "object" && type !== null && Object.keys(type).length === 0) {
-                        info += " You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.";
+                        info2 += " You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.";
                       }
                       var ownerName = owner ? getComponentNameFromFiber(owner) : null;
                       if (ownerName) {
-                        info += "\n\nCheck the render method of `" + ownerName + "`.";
+                        info2 += "\n\nCheck the render method of `" + ownerName + "`.";
                       }
                     }
-                    throw new Error("Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) " + ("but got: " + (type == null ? type : typeof type) + "." + info));
+                    throw new Error("Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) " + ("but got: " + (type == null ? type : typeof type) + "." + info2));
                   }
                 }
             }
@@ -21556,7 +21556,7 @@
           function createFiberFromProfiler(pendingProps, mode, lanes, key) {
             {
               if (typeof pendingProps.id !== "string") {
-                error2('Profiler must specify an "id" of type `string` as a prop. Received the type `%s` instead.', typeof pendingProps.id);
+                error3('Profiler must specify an "id" of type `string` as a prop. Received the type `%s` instead.', typeof pendingProps.id);
               }
             }
             var fiber = createFiber(Profiler, pendingProps, key, mode | ProfileMode);
@@ -21764,8 +21764,8 @@
                 if (typeof component.render === "function") {
                   throw new Error("Unable to find node on an unmounted component.");
                 } else {
-                  var keys = Object.keys(component).join(",");
-                  throw new Error("Argument appears to not be a ReactComponent. Keys: " + keys);
+                  var keys2 = Object.keys(component).join(",");
+                  throw new Error("Argument appears to not be a ReactComponent. Keys: " + keys2);
                 }
               }
               var hostFiber = findCurrentHostFiber(fiber);
@@ -21780,9 +21780,9 @@
                   try {
                     setCurrentFiber(hostFiber);
                     if (fiber.mode & StrictLegacyMode) {
-                      error2("%s is deprecated in StrictMode. %s was passed an instance of %s which is inside StrictMode. Instead, add a ref directly to the element you want to reference. Learn more about using refs safely here: https://reactjs.org/link/strict-mode-find-node", methodName, methodName, componentName);
+                      error3("%s is deprecated in StrictMode. %s was passed an instance of %s which is inside StrictMode. Instead, add a ref directly to the element you want to reference. Learn more about using refs safely here: https://reactjs.org/link/strict-mode-find-node", methodName, methodName, componentName);
                     } else {
-                      error2("%s is deprecated in StrictMode. %s was passed an instance of %s which renders StrictMode children. Instead, add a ref directly to the element you want to reference. Learn more about using refs safely here: https://reactjs.org/link/strict-mode-find-node", methodName, methodName, componentName);
+                      error3("%s is deprecated in StrictMode. %s was passed an instance of %s which renders StrictMode children. Instead, add a ref directly to the element you want to reference. Learn more about using refs safely here: https://reactjs.org/link/strict-mode-find-node", methodName, methodName, componentName);
                     }
                   } finally {
                     if (previousFiber) {
@@ -21833,7 +21833,7 @@
             {
               if (isRendering && current !== null && !didWarnAboutNestedUpdates) {
                 didWarnAboutNestedUpdates = true;
-                error2("Render methods should be a pure function of props and state; triggering nested component updates from render is not allowed. If necessary, trigger nested updates in componentDidUpdate.\n\nCheck the render method of %s.", getComponentNameFromFiber(current) || "Unknown");
+                error3("Render methods should be a pure function of props and state; triggering nested component updates from render is not allowed. If necessary, trigger nested updates in componentDidUpdate.\n\nCheck the render method of %s.", getComponentNameFromFiber(current) || "Unknown");
               }
             }
             var update = createUpdate(eventTime, lane);
@@ -21844,7 +21844,7 @@
             if (callback !== null) {
               {
                 if (typeof callback !== "function") {
-                  error2("render(...): Expected the last optional `callback` argument to be a function. Instead received: %s.", callback);
+                  error3("render(...): Expected the last optional `callback` argument to be a function. Instead received: %s.", callback);
                 }
               }
               update.callback = callback;
@@ -21993,12 +21993,12 @@
             };
             var copyWithRename = function(obj, oldPath, newPath) {
               if (oldPath.length !== newPath.length) {
-                warn("copyWithRename() expects paths of the same length");
+                warn2("copyWithRename() expects paths of the same length");
                 return;
               } else {
                 for (var i2 = 0; i2 < newPath.length - 1; i2++) {
                   if (oldPath[i2] !== newPath[i2]) {
-                    warn("copyWithRename() expects paths to be the same except for the deepest key");
+                    warn2("copyWithRename() expects paths to be the same except for the deepest key");
                     return;
                   }
                 }
@@ -22148,8 +22148,8 @@
               reconcilerVersion: ReactVersion
             });
           }
-          var defaultOnRecoverableError = typeof reportError === "function" ? reportError : function(error3) {
-            console["error"](error3);
+          var defaultOnRecoverableError = typeof reportError === "function" ? reportError : function(error4) {
+            console["error"](error4);
           };
           function ReactDOMRoot(internalRoot) {
             this._internalRoot = internalRoot;
@@ -22161,18 +22161,18 @@
             }
             {
               if (typeof arguments[1] === "function") {
-                error2("render(...): does not support the second callback argument. To execute a side effect after rendering, declare it in a component body with useEffect().");
+                error3("render(...): does not support the second callback argument. To execute a side effect after rendering, declare it in a component body with useEffect().");
               } else if (isValidContainer(arguments[1])) {
-                error2("You passed a container to the second argument of root.render(...). You don't need to pass it again since you already passed it to create the root.");
+                error3("You passed a container to the second argument of root.render(...). You don't need to pass it again since you already passed it to create the root.");
               } else if (typeof arguments[1] !== "undefined") {
-                error2("You passed a second argument to root.render(...) but it only accepts one argument.");
+                error3("You passed a second argument to root.render(...) but it only accepts one argument.");
               }
               var container = root2.containerInfo;
               if (container.nodeType !== COMMENT_NODE) {
                 var hostInstance = findHostInstanceWithNoPortals(root2.current);
                 if (hostInstance) {
                   if (hostInstance.parentNode !== container) {
-                    error2("render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.");
+                    error3("render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.");
                   }
                 }
               }
@@ -22182,7 +22182,7 @@
           ReactDOMHydrationRoot.prototype.unmount = ReactDOMRoot.prototype.unmount = function() {
             {
               if (typeof arguments[0] === "function") {
-                error2("unmount(...): does not support a callback argument. To execute a side effect after rendering, declare it in a component body with useEffect().");
+                error3("unmount(...): does not support a callback argument. To execute a side effect after rendering, declare it in a component body with useEffect().");
               }
             }
             var root2 = this._internalRoot;
@@ -22191,7 +22191,7 @@
               var container = root2.containerInfo;
               {
                 if (isAlreadyRendering()) {
-                  error2("Attempted to synchronously unmount a root while React was already rendering. React cannot finish unmounting the root until the current render has completed, which may lead to a race condition.");
+                  error3("Attempted to synchronously unmount a root while React was already rendering. React cannot finish unmounting the root until the current render has completed, which may lead to a race condition.");
                 }
               }
               flushSync(function() {
@@ -22213,10 +22213,10 @@
             if (options3 !== null && options3 !== void 0) {
               {
                 if (options3.hydrate) {
-                  warn("hydrate through createRoot is deprecated. Use ReactDOMClient.hydrateRoot(container, <App />) instead.");
+                  warn2("hydrate through createRoot is deprecated. Use ReactDOMClient.hydrateRoot(container, <App />) instead.");
                 } else {
                   if (typeof options3 === "object" && options3 !== null && options3.$$typeof === REACT_ELEMENT_TYPE) {
-                    error2("You passed a JSX element to createRoot. You probably meant to call root.render instead. Example usage:\n\n  let root = createRoot(domContainer);\n  root.render(<App />);");
+                    error3("You passed a JSX element to createRoot. You probably meant to call root.render instead. Example usage:\n\n  let root = createRoot(domContainer);\n  root.render(<App />);");
                   }
                 }
               }
@@ -22255,7 +22255,7 @@
             warnIfReactDOMContainerInDEV(container);
             {
               if (initialChildren === void 0) {
-                error2("Must provide initial children as second argument to hydrateRoot. Example usage: hydrateRoot(domContainer, <App />)");
+                error3("Must provide initial children as second argument to hydrateRoot. Example usage: hydrateRoot(domContainer, <App />)");
               }
             }
             var hydrationCallbacks = options3 != null ? options3 : null;
@@ -22295,13 +22295,13 @@
           function warnIfReactDOMContainerInDEV(container) {
             {
               if (container.nodeType === ELEMENT_NODE && container.tagName && container.tagName.toUpperCase() === "BODY") {
-                error2("createRoot(): Creating roots directly with document.body is discouraged, since its children are often manipulated by third-party scripts and browser extensions. This may lead to subtle reconciliation issues. Try using a container element created for your app.");
+                error3("createRoot(): Creating roots directly with document.body is discouraged, since its children are often manipulated by third-party scripts and browser extensions. This may lead to subtle reconciliation issues. Try using a container element created for your app.");
               }
               if (isContainerMarkedAsRoot(container)) {
                 if (container._reactRootContainer) {
-                  error2("You are calling ReactDOMClient.createRoot() on a container that was previously passed to ReactDOM.render(). This is not supported.");
+                  error3("You are calling ReactDOMClient.createRoot() on a container that was previously passed to ReactDOM.render(). This is not supported.");
                 } else {
-                  error2("You are calling ReactDOMClient.createRoot() on a container that has already been passed to createRoot() before. Instead, call root.render() on the existing root instead if you want to update it.");
+                  error3("You are calling ReactDOMClient.createRoot() on a container that has already been passed to createRoot() before. Instead, call root.render() on the existing root instead if you want to update it.");
                 }
               }
             }
@@ -22314,7 +22314,7 @@
                 var hostInstance = findHostInstanceWithNoPortals(container._reactRootContainer.current);
                 if (hostInstance) {
                   if (hostInstance.parentNode !== container) {
-                    error2("render(...): It looks like the React-rendered content of this container was removed without using React. This is not supported and will cause errors. Instead, call ReactDOM.unmountComponentAtNode to empty a container.");
+                    error3("render(...): It looks like the React-rendered content of this container was removed without using React. This is not supported and will cause errors. Instead, call ReactDOM.unmountComponentAtNode to empty a container.");
                   }
                 }
               }
@@ -22322,10 +22322,10 @@
               var rootEl = getReactRootElementInContainer(container);
               var hasNonRootReactChild = !!(rootEl && getInstanceFromNode(rootEl));
               if (hasNonRootReactChild && !isRootRenderedBySomeReact) {
-                error2("render(...): Replacing React-rendered children with a new root component. If you intended to update the children of this node, you should instead have the existing children update their state and render the new components instead of calling ReactDOM.render.");
+                error3("render(...): Replacing React-rendered children with a new root component. If you intended to update the children of this node, you should instead have the existing children update their state and render the new components instead of calling ReactDOM.render.");
               }
               if (container.nodeType === ELEMENT_NODE && container.tagName && container.tagName.toUpperCase() === "BODY") {
-                error2("render(): Rendering components directly into document.body is discouraged, since its children are often manipulated by third-party scripts and browser extensions. This may lead to subtle reconciliation issues. Try rendering into a container element created for your app.");
+                error3("render(): Rendering components directly into document.body is discouraged, since its children are often manipulated by third-party scripts and browser extensions. This may lead to subtle reconciliation issues. Try rendering into a container element created for your app.");
               }
             };
           }
@@ -22383,7 +22383,7 @@
           function warnOnInvalidCallback$1(callback, callerName) {
             {
               if (callback !== null && typeof callback !== "function") {
-                error2("%s(...): Expected the last optional `callback` argument to be a function. Instead received: %s.", callerName, callback);
+                error3("%s(...): Expected the last optional `callback` argument to be a function. Instead received: %s.", callerName, callback);
               }
             }
           }
@@ -22415,7 +22415,7 @@
               if (owner !== null && owner.stateNode !== null) {
                 var warnedAboutRefsInRender = owner.stateNode._warnedAboutRefsInRender;
                 if (!warnedAboutRefsInRender) {
-                  error2("%s is accessing findDOMNode inside its render(). render() should be a pure function of props and state. It should never access something that requires stale data from the previous render, such as refs. Move this logic to componentDidMount and componentDidUpdate instead.", getComponentNameFromType(owner.type) || "A component");
+                  error3("%s is accessing findDOMNode inside its render(). render() should be a pure function of props and state. It should never access something that requires stale data from the previous render, such as refs. Move this logic to componentDidMount and componentDidUpdate instead.", getComponentNameFromType(owner.type) || "A component");
                 }
                 owner.stateNode._warnedAboutRefsInRender = true;
               }
@@ -22432,7 +22432,7 @@
           }
           function hydrate(element2, container, callback) {
             {
-              error2("ReactDOM.hydrate is no longer supported in React 18. Use hydrateRoot instead. Until you switch to the new API, your app will behave as if it's running React 17. Learn more: https://reactjs.org/link/switch-to-createroot");
+              error3("ReactDOM.hydrate is no longer supported in React 18. Use hydrateRoot instead. Until you switch to the new API, your app will behave as if it's running React 17. Learn more: https://reactjs.org/link/switch-to-createroot");
             }
             if (!isValidContainerLegacy(container)) {
               throw new Error("Target container is not a DOM element.");
@@ -22440,14 +22440,14 @@
             {
               var isModernRoot = isContainerMarkedAsRoot(container) && container._reactRootContainer === void 0;
               if (isModernRoot) {
-                error2("You are calling ReactDOM.hydrate() on a container that was previously passed to ReactDOMClient.createRoot(). This is not supported. Did you mean to call hydrateRoot(container, element)?");
+                error3("You are calling ReactDOM.hydrate() on a container that was previously passed to ReactDOMClient.createRoot(). This is not supported. Did you mean to call hydrateRoot(container, element)?");
               }
             }
             return legacyRenderSubtreeIntoContainer(null, element2, container, true, callback);
           }
           function render(element2, container, callback) {
             {
-              error2("ReactDOM.render is no longer supported in React 18. Use createRoot instead. Until you switch to the new API, your app will behave as if it's running React 17. Learn more: https://reactjs.org/link/switch-to-createroot");
+              error3("ReactDOM.render is no longer supported in React 18. Use createRoot instead. Until you switch to the new API, your app will behave as if it's running React 17. Learn more: https://reactjs.org/link/switch-to-createroot");
             }
             if (!isValidContainerLegacy(container)) {
               throw new Error("Target container is not a DOM element.");
@@ -22455,14 +22455,14 @@
             {
               var isModernRoot = isContainerMarkedAsRoot(container) && container._reactRootContainer === void 0;
               if (isModernRoot) {
-                error2("You are calling ReactDOM.render() on a container that was previously passed to ReactDOMClient.createRoot(). This is not supported. Did you mean to call root.render(element)?");
+                error3("You are calling ReactDOM.render() on a container that was previously passed to ReactDOMClient.createRoot(). This is not supported. Did you mean to call root.render(element)?");
               }
             }
             return legacyRenderSubtreeIntoContainer(null, element2, container, false, callback);
           }
           function unstable_renderSubtreeIntoContainer(parentComponent, element2, containerNode, callback) {
             {
-              error2("ReactDOM.unstable_renderSubtreeIntoContainer() is no longer supported in React 18. Consider using a portal instead. Until you switch to the createRoot API, your app will behave as if it's running React 17. Learn more: https://reactjs.org/link/switch-to-createroot");
+              error3("ReactDOM.unstable_renderSubtreeIntoContainer() is no longer supported in React 18. Consider using a portal instead. Until you switch to the createRoot API, your app will behave as if it's running React 17. Learn more: https://reactjs.org/link/switch-to-createroot");
             }
             if (!isValidContainerLegacy(containerNode)) {
               throw new Error("Target container is not a DOM element.");
@@ -22479,7 +22479,7 @@
             {
               var isModernRoot = isContainerMarkedAsRoot(container) && container._reactRootContainer === void 0;
               if (isModernRoot) {
-                error2("You are calling ReactDOM.unmountComponentAtNode() on a container that was previously passed to ReactDOMClient.createRoot(). This is not supported. Did you mean to call root.unmount()?");
+                error3("You are calling ReactDOM.unmountComponentAtNode() on a container that was previously passed to ReactDOMClient.createRoot(). This is not supported. Did you mean to call root.unmount()?");
               }
             }
             if (container._reactRootContainer) {
@@ -22487,7 +22487,7 @@
                 var rootEl = getReactRootElementInContainer(container);
                 var renderedByDifferentReact = rootEl && !getInstanceFromNode(rootEl);
                 if (renderedByDifferentReact) {
-                  error2("unmountComponentAtNode(): The node you're attempting to unmount was rendered by another copy of React.");
+                  error3("unmountComponentAtNode(): The node you're attempting to unmount was rendered by another copy of React.");
                 }
               }
               flushSync(function() {
@@ -22503,7 +22503,7 @@
                 var hasNonRootReactChild = !!(_rootEl && getInstanceFromNode(_rootEl));
                 var isContainerReactRoot = container.nodeType === ELEMENT_NODE && isValidContainerLegacy(container.parentNode) && !!container.parentNode._reactRootContainer;
                 if (hasNonRootReactChild) {
-                  error2("unmountComponentAtNode(): The node you're attempting to unmount was rendered by React and is not a top-level container. %s", isContainerReactRoot ? "You may have accidentally passed in a React root node instead of its container." : "Instead, have the parent component update its state and rerender in order to remove this component.");
+                  error3("unmountComponentAtNode(): The node you're attempting to unmount was rendered by React and is not a top-level container. %s", isContainerReactRoot ? "You may have accidentally passed in a React root node instead of its container." : "Instead, have the parent component update its state and rerender in order to remove this component.");
                 }
               }
               return false;
@@ -22516,7 +22516,7 @@
           setAttemptHydrationAtPriority(runWithPriority);
           {
             if (typeof Map !== "function" || Map.prototype == null || typeof Map.prototype.forEach !== "function" || typeof Set !== "function" || Set.prototype == null || typeof Set.prototype.clear !== "function" || typeof Set.prototype.forEach !== "function") {
-              error2("React depends on Map and Set built-in types. Make sure that you load a polyfill in older browsers. https://reactjs.org/link/react-polyfills");
+              error3("React depends on Map and Set built-in types. Make sure that you load a polyfill in older browsers. https://reactjs.org/link/react-polyfills");
             }
           }
           setRestoreImplementation(restoreControlledState$3);
@@ -22538,7 +22538,7 @@
           function createRoot$1(container, options3) {
             {
               if (!Internals.usingClientEntryPoint && true) {
-                error2('You are importing createRoot from "react-dom" which is not supported. You should instead import it from "react-dom/client".');
+                error3('You are importing createRoot from "react-dom" which is not supported. You should instead import it from "react-dom/client".');
               }
             }
             return createRoot2(container, options3);
@@ -22546,7 +22546,7 @@
           function hydrateRoot$1(container, initialChildren, options3) {
             {
               if (!Internals.usingClientEntryPoint && true) {
-                error2('You are importing hydrateRoot from "react-dom" which is not supported. You should instead import it from "react-dom/client".');
+                error3('You are importing hydrateRoot from "react-dom" which is not supported. You should instead import it from "react-dom/client".');
               }
             }
             return hydrateRoot2(container, initialChildren, options3);
@@ -22554,7 +22554,7 @@
           function flushSync$1(fn) {
             {
               if (isAlreadyRendering()) {
-                error2("flushSync was called from inside a lifecycle method. React cannot flush when React is already rendering. Consider moving this call to a scheduler task or micro task.");
+                error3("flushSync was called from inside a lifecycle method. React cannot flush when React is already rendering. Consider moving this call to a scheduler task or micro task.");
               }
             }
             return flushSync(fn);
@@ -22639,12 +22639,6 @@
     }
   });
 
-  // output/Main/foreign.js
-  var hello = function() {
-    console.log("Hello, world.");
-    return 5;
-  };
-
   // output/Control.Semigroupoid/index.js
   var semigroupoidFn = {
     compose: function(f) {
@@ -22727,6 +22721,15 @@
       };
     };
   };
+  var lift2 = function(dictApply) {
+    return function(f) {
+      return function(a2) {
+        return function(b2) {
+          return apply(dictApply)(map(dictApply.Functor0())(f)(a2))(b2);
+        };
+      };
+    };
+  };
 
   // output/Control.Applicative/index.js
   var pure = function(dict) {
@@ -22756,38 +22759,6 @@
     }
   };
 
-  // output/Data.Eq/foreign.js
-  var refEq = function(r1) {
-    return function(r2) {
-      return r1 === r2;
-    };
-  };
-  var eqIntImpl = refEq;
-  var eqCharImpl = refEq;
-
-  // output/Data.Symbol/index.js
-  var reflectSymbol = function(dict) {
-    return dict.reflectSymbol;
-  };
-
-  // output/Record.Unsafe/foreign.js
-  var unsafeGet = function(label5) {
-    return function(rec) {
-      return rec[label5];
-    };
-  };
-
-  // output/Data.Eq/index.js
-  var eqInt = {
-    eq: eqIntImpl
-  };
-  var eqChar = {
-    eq: eqCharImpl
-  };
-  var eq = function(dict) {
-    return dict.eq;
-  };
-
   // output/Data.Semigroup/foreign.js
   var concatString = function(s1) {
     return function(s2) {
@@ -22801,6 +22772,18 @@
       if (ys.length === 0)
         return xs;
       return xs.concat(ys);
+    };
+  };
+
+  // output/Data.Symbol/index.js
+  var reflectSymbol = function(dict) {
+    return dict.reflectSymbol;
+  };
+
+  // output/Record.Unsafe/foreign.js
+  var unsafeGet = function(label5) {
+    return function(rec) {
+      return rec[label5];
     };
   };
 
@@ -22842,6 +22825,30 @@
   };
   var ordIntImpl = unsafeCompareImpl;
   var ordCharImpl = unsafeCompareImpl;
+
+  // output/Data.Eq/foreign.js
+  var refEq = function(r1) {
+    return function(r2) {
+      return r1 === r2;
+    };
+  };
+  var eqIntImpl = refEq;
+  var eqCharImpl = refEq;
+  var eqStringImpl = refEq;
+
+  // output/Data.Eq/index.js
+  var eqString = {
+    eq: eqStringImpl
+  };
+  var eqInt = {
+    eq: eqIntImpl
+  };
+  var eqChar = {
+    eq: eqCharImpl
+  };
+  var eq = function(dict) {
+    return dict.eq;
+  };
 
   // output/Data.Ordering/index.js
   var LT = /* @__PURE__ */ function() {
@@ -22994,8 +23001,8 @@
           return "\\v";
       }
       var k = i2 + 1;
-      var empty3 = k < l && s2[k] >= "0" && s2[k] <= "9" ? "\\&" : "";
-      return "\\" + c.charCodeAt(0).toString(10) + empty3;
+      var empty4 = k < l && s2[k] >= "0" && s2[k] <= "9" ? "\\&" : "";
+      return "\\" + c.charCodeAt(0).toString(10) + empty4;
     }) + '"';
   };
   var cons = function(head6) {
@@ -23146,24 +23153,6 @@
       return functorMaybe;
     }
   };
-  var bindMaybe = {
-    bind: function(v) {
-      return function(v1) {
-        if (v instanceof Just) {
-          return v1(v.value0);
-        }
-        ;
-        if (v instanceof Nothing) {
-          return Nothing.value;
-        }
-        ;
-        throw new Error("Failed pattern match at Data.Maybe (line 125, column 1 - line 127, column 28): " + [v.constructor.name, v1.constructor.name]);
-      };
-    },
-    Apply0: function() {
-      return applyMaybe;
-    }
-  };
   var applicativeMaybe = /* @__PURE__ */ function() {
     return {
       pure: Just.create,
@@ -23173,55 +23162,30 @@
     };
   }();
 
-  // output/Data.Either/index.js
-  var Left = /* @__PURE__ */ function() {
-    function Left2(value0) {
-      this.value0 = value0;
-    }
-    ;
-    Left2.create = function(value0) {
-      return new Left2(value0);
-    };
-    return Left2;
-  }();
-  var Right = /* @__PURE__ */ function() {
-    function Right2(value0) {
-      this.value0 = value0;
-    }
-    ;
-    Right2.create = function(value0) {
-      return new Right2(value0);
-    };
-    return Right2;
-  }();
-
-  // output/Control.Lazy/index.js
-  var $runtime_lazy = function(name15, moduleName, init3) {
-    var state3 = 0;
-    var val;
-    return function(lineNumber) {
-      if (state3 === 2)
-        return val;
-      if (state3 === 1)
-        throw new ReferenceError(name15 + " was needed before it finished initializing (module " + moduleName + ", line " + lineNumber + ")", moduleName, lineNumber);
-      state3 = 1;
-      val = init3();
-      state3 = 2;
-      return val;
+  // output/Effect/foreign.js
+  var pureE = function(a2) {
+    return function() {
+      return a2;
     };
   };
-  var defer = function(dict) {
-    return dict.defer;
-  };
-  var fix = function(dictLazy) {
+  var bindE = function(a2) {
     return function(f) {
-      var $lazy_go = $runtime_lazy("go", "Control.Lazy", function() {
-        return defer(dictLazy)(function(v) {
-          return f($lazy_go(25));
+      return function() {
+        return f(a2())();
+      };
+    };
+  };
+
+  // output/Control.Monad/index.js
+  var ap = function(dictMonad) {
+    return function(f) {
+      return function(a2) {
+        return bind(dictMonad.Bind1())(f)(function(f$prime) {
+          return bind(dictMonad.Bind1())(a2)(function(a$prime2) {
+            return pure(dictMonad.Applicative0())(f$prime(a$prime2));
+          });
         });
-      });
-      var go2 = $lazy_go(25);
-      return go2;
+      };
     };
   };
 
@@ -23279,6 +23243,203 @@
     return dict.mempty;
   };
 
+  // output/Effect/index.js
+  var $runtime_lazy = function(name15, moduleName, init3) {
+    var state3 = 0;
+    var val;
+    return function(lineNumber) {
+      if (state3 === 2)
+        return val;
+      if (state3 === 1)
+        throw new ReferenceError(name15 + " was needed before it finished initializing (module " + moduleName + ", line " + lineNumber + ")", moduleName, lineNumber);
+      state3 = 1;
+      val = init3();
+      state3 = 2;
+      return val;
+    };
+  };
+  var monadEffect = {
+    Applicative0: function() {
+      return applicativeEffect;
+    },
+    Bind1: function() {
+      return bindEffect;
+    }
+  };
+  var bindEffect = {
+    bind: bindE,
+    Apply0: function() {
+      return $lazy_applyEffect(0);
+    }
+  };
+  var applicativeEffect = {
+    pure: pureE,
+    Apply0: function() {
+      return $lazy_applyEffect(0);
+    }
+  };
+  var $lazy_functorEffect = /* @__PURE__ */ $runtime_lazy("functorEffect", "Effect", function() {
+    return {
+      map: liftA1(applicativeEffect)
+    };
+  });
+  var $lazy_applyEffect = /* @__PURE__ */ $runtime_lazy("applyEffect", "Effect", function() {
+    return {
+      apply: ap(monadEffect),
+      Functor0: function() {
+        return $lazy_functorEffect(0);
+      }
+    };
+  });
+  var functorEffect = /* @__PURE__ */ $lazy_functorEffect(20);
+
+  // output/Effect.Exception/foreign.js
+  function error(msg) {
+    return new Error(msg);
+  }
+  function throwException(e) {
+    return function() {
+      throw e;
+    };
+  }
+
+  // output/Data.Either/index.js
+  var Left = /* @__PURE__ */ function() {
+    function Left2(value0) {
+      this.value0 = value0;
+    }
+    ;
+    Left2.create = function(value0) {
+      return new Left2(value0);
+    };
+    return Left2;
+  }();
+  var Right = /* @__PURE__ */ function() {
+    function Right2(value0) {
+      this.value0 = value0;
+    }
+    ;
+    Right2.create = function(value0) {
+      return new Right2(value0);
+    };
+    return Right2;
+  }();
+
+  // output/Effect.Exception/index.js
+  var $$throw = function($2) {
+    return throwException(error($2));
+  };
+
+  // output/React.Basic.DOM.Client/foreign.js
+  var import_client = __toESM(require_client(), 1);
+  var createRoot = (container) => () => import_client.default.createRoot(container);
+  var renderRoot = (root) => (children) => () => root.render(children);
+
+  // output/RewriteLive.App/foreign.js
+  var typeset = function() {
+    console.log("RW: Asking Mathjax to re-typeset.");
+    try {
+      MathJax.typeset();
+    } catch (error3) {
+      console.log("RW: MathJax.typeset() failed. Maybe MathJax loaded yet.");
+      console.error(error3);
+    }
+  };
+
+  // output/Data.Foldable/foreign.js
+  var foldrArray = function(f) {
+    return function(init3) {
+      return function(xs) {
+        var acc = init3;
+        var len = xs.length;
+        for (var i2 = len - 1; i2 >= 0; i2--) {
+          acc = f(xs[i2])(acc);
+        }
+        return acc;
+      };
+    };
+  };
+  var foldlArray = function(f) {
+    return function(init3) {
+      return function(xs) {
+        var acc = init3;
+        var len = xs.length;
+        for (var i2 = 0; i2 < len; i2++) {
+          acc = f(acc)(xs[i2]);
+        }
+        return acc;
+      };
+    };
+  };
+
+  // output/Control.Lazy/index.js
+  var $runtime_lazy2 = function(name15, moduleName, init3) {
+    var state3 = 0;
+    var val;
+    return function(lineNumber) {
+      if (state3 === 2)
+        return val;
+      if (state3 === 1)
+        throw new ReferenceError(name15 + " was needed before it finished initializing (module " + moduleName + ", line " + lineNumber + ")", moduleName, lineNumber);
+      state3 = 1;
+      val = init3();
+      state3 = 2;
+      return val;
+    };
+  };
+  var defer = function(dict) {
+    return dict.defer;
+  };
+  var fix = function(dictLazy) {
+    return function(f) {
+      var $lazy_go = $runtime_lazy2("go", "Control.Lazy", function() {
+        return defer(dictLazy)(function(v) {
+          return f($lazy_go(25));
+        });
+      });
+      var go2 = $lazy_go(25);
+      return go2;
+    };
+  };
+
+  // output/Data.HeytingAlgebra/foreign.js
+  var boolConj = function(b1) {
+    return function(b2) {
+      return b1 && b2;
+    };
+  };
+  var boolDisj = function(b1) {
+    return function(b2) {
+      return b1 || b2;
+    };
+  };
+  var boolNot = function(b2) {
+    return !b2;
+  };
+
+  // output/Data.HeytingAlgebra/index.js
+  var not = function(dict) {
+    return dict.not;
+  };
+  var ff = function(dict) {
+    return dict.ff;
+  };
+  var disj = function(dict) {
+    return dict.disj;
+  };
+  var heytingAlgebraBoolean = {
+    ff: false,
+    tt: true,
+    implies: function(a2) {
+      return function(b2) {
+        return disj(heytingAlgebraBoolean)(not(heytingAlgebraBoolean)(a2))(b2);
+      };
+    },
+    conj: boolConj,
+    disj: boolDisj,
+    not: boolNot
+  };
+
   // output/Data.Tuple/index.js
   var Tuple = /* @__PURE__ */ function() {
     function Tuple2(value0, value1) {
@@ -23305,9 +23466,50 @@
     return dict.bimap;
   };
 
+  // output/Data.Monoid.Disj/index.js
+  var Disj = function(x) {
+    return x;
+  };
+  var semigroupDisj = function(dictHeytingAlgebra) {
+    return {
+      append: function(v) {
+        return function(v1) {
+          return disj(dictHeytingAlgebra)(v)(v1);
+        };
+      }
+    };
+  };
+  var monoidDisj = function(dictHeytingAlgebra) {
+    return {
+      mempty: ff(dictHeytingAlgebra),
+      Semigroup0: function() {
+        return semigroupDisj(dictHeytingAlgebra);
+      }
+    };
+  };
+
   // output/Unsafe.Coerce/foreign.js
   var unsafeCoerce2 = function(x) {
     return x;
+  };
+
+  // output/Safe.Coerce/index.js
+  var coerce = function() {
+    return unsafeCoerce2;
+  };
+
+  // output/Data.Newtype/index.js
+  var unwrap = coerce;
+  var alaF = function() {
+    return function() {
+      return function() {
+        return function() {
+          return function(v) {
+            return coerce();
+          };
+        };
+      };
+    };
   };
 
   // output/Data.Foldable/index.js
@@ -23344,8 +23546,45 @@
       };
     };
   };
+  var foldMapDefaultR = function(dictFoldable) {
+    return function(dictMonoid) {
+      return function(f) {
+        return foldr(dictFoldable)(function(x) {
+          return function(acc) {
+            return append(dictMonoid.Semigroup0())(f(x))(acc);
+          };
+        })(mempty(dictMonoid));
+      };
+    };
+  };
+  var foldableArray = {
+    foldr: foldrArray,
+    foldl: foldlArray,
+    foldMap: function(dictMonoid) {
+      return foldMapDefaultR(foldableArray)(dictMonoid);
+    }
+  };
   var foldMap = function(dict) {
     return dict.foldMap;
+  };
+  var fold = function(dictFoldable) {
+    return function(dictMonoid) {
+      return foldMap(dictFoldable)(dictMonoid)(identity(categoryFn));
+    };
+  };
+  var any = function(dictFoldable) {
+    return function(dictHeytingAlgebra) {
+      return alaF()()()()(Disj)(foldMap(dictFoldable)(monoidDisj(dictHeytingAlgebra)));
+    };
+  };
+  var elem = function(dictFoldable) {
+    return function(dictEq) {
+      var $326 = any(dictFoldable)(heytingAlgebraBoolean);
+      var $327 = eq(dictEq);
+      return function($328) {
+        return $326($327($328));
+      };
+    };
   };
 
   // output/Data.Identity/index.js
@@ -23394,6 +23633,92 @@
     }
   };
 
+  // output/Control.Monad.Rec.Class/index.js
+  var Loop = /* @__PURE__ */ function() {
+    function Loop2(value0) {
+      this.value0 = value0;
+    }
+    ;
+    Loop2.create = function(value0) {
+      return new Loop2(value0);
+    };
+    return Loop2;
+  }();
+  var Done = /* @__PURE__ */ function() {
+    function Done2(value0) {
+      this.value0 = value0;
+    }
+    ;
+    Done2.create = function(value0) {
+      return new Done2(value0);
+    };
+    return Done2;
+  }();
+  var tailRecM = function(dict) {
+    return dict.tailRecM;
+  };
+  var tailRec = function(f) {
+    var go2 = function($copy_v) {
+      var $tco_done = false;
+      var $tco_result;
+      function $tco_loop(v) {
+        if (v instanceof Loop) {
+          $copy_v = f(v.value0);
+          return;
+        }
+        ;
+        if (v instanceof Done) {
+          $tco_done = true;
+          return v.value0;
+        }
+        ;
+        throw new Error("Failed pattern match at Control.Monad.Rec.Class (line 93, column 3 - line 93, column 25): " + [v.constructor.name]);
+      }
+      ;
+      while (!$tco_done) {
+        $tco_result = $tco_loop($copy_v);
+      }
+      ;
+      return $tco_result;
+    };
+    return function($55) {
+      return go2(f($55));
+    };
+  };
+  var monadRecIdentity = {
+    tailRecM: function(f) {
+      var runIdentity = function(v) {
+        return v;
+      };
+      var $56 = tailRec(function($58) {
+        return runIdentity(f($58));
+      });
+      return function($57) {
+        return Identity($56($57));
+      };
+    },
+    Monad0: function() {
+      return monadIdentity;
+    }
+  };
+  var bifunctorStep = {
+    bimap: function(v) {
+      return function(v1) {
+        return function(v2) {
+          if (v2 instanceof Loop) {
+            return new Loop(v(v2.value0));
+          }
+          ;
+          if (v2 instanceof Done) {
+            return new Done(v1(v2.value0));
+          }
+          ;
+          throw new Error("Failed pattern match at Control.Monad.Rec.Class (line 29, column 1 - line 31, column 34): " + [v.constructor.name, v1.constructor.name, v2.constructor.name]);
+        };
+      };
+    }
+  };
+
   // output/Data.Traversable/foreign.js
   var traverseArrayImpl = function() {
     function array1(a2) {
@@ -23411,7 +23736,7 @@
         };
       };
     }
-    function concat22(xs) {
+    function concat2(xs) {
       return function(ys) {
         return xs.concat(ys);
       };
@@ -23433,7 +23758,7 @@
                     return apply2(apply2(map3(array3)(f(array[bot])))(f(array[bot + 1])))(f(array[bot + 2]));
                   default:
                     var pivot = bot + Math.floor((top2 - bot) / 4) * 2;
-                    return apply2(map3(concat22)(go2(bot, pivot)))(go2(pivot, top2));
+                    return apply2(map3(concat2)(go2(bot, pivot)))(go2(pivot, top2));
                 }
               }
               return go2(0, array.length);
@@ -23444,11 +23769,16 @@
     };
   }();
 
+  // output/Data.Traversable/index.js
+  var traverse = function(dict) {
+    return dict.traverse;
+  };
+
   // output/Data.Unfoldable/foreign.js
   var unfoldrArrayImpl = function(isNothing2) {
     return function(fromJust2) {
-      return function(fst3) {
-        return function(snd3) {
+      return function(fst2) {
+        return function(snd2) {
           return function(f) {
             return function(b2) {
               var result = [];
@@ -23458,8 +23788,8 @@
                 if (isNothing2(maybe2))
                   return result;
                 var tuple = fromJust2(maybe2);
-                result.push(fst3(tuple));
-                value12 = snd3(tuple);
+                result.push(fst2(tuple));
+                value12 = snd2(tuple);
               }
             };
           };
@@ -23471,16 +23801,16 @@
   // output/Data.Unfoldable1/foreign.js
   var unfoldr1ArrayImpl = function(isNothing2) {
     return function(fromJust2) {
-      return function(fst3) {
-        return function(snd3) {
+      return function(fst2) {
+        return function(snd2) {
           return function(f) {
             return function(b2) {
               var result = [];
               var value12 = b2;
               while (true) {
                 var tuple = f(value12);
-                result.push(fst3(tuple));
-                var maybe2 = snd3(tuple);
+                result.push(fst2(tuple));
+                var maybe2 = snd2(tuple);
                 if (isNothing2(maybe2))
                   return result;
                 value12 = fromJust2(maybe2);
@@ -23694,169 +24024,450 @@
       };
     }
   };
-
-  // output/Control.Monad/index.js
-  var ap = function(dictMonad) {
-    return function(f) {
-      return function(a2) {
-        return bind(dictMonad.Bind1())(f)(function(f$prime) {
-          return bind(dictMonad.Bind1())(a2)(function(a$prime2) {
-            return pure(dictMonad.Applicative0())(f$prime(a$prime2));
-          });
-        });
-      };
-    };
-  };
-
-  // output/Effect/foreign.js
-  var pureE = function(a2) {
-    return function() {
-      return a2;
-    };
-  };
-  var bindE = function(a2) {
-    return function(f) {
-      return function() {
-        return f(a2())();
-      };
-    };
-  };
-
-  // output/Effect/index.js
-  var $runtime_lazy2 = function(name15, moduleName, init3) {
-    var state3 = 0;
-    var val;
-    return function(lineNumber) {
-      if (state3 === 2)
-        return val;
-      if (state3 === 1)
-        throw new ReferenceError(name15 + " was needed before it finished initializing (module " + moduleName + ", line " + lineNumber + ")", moduleName, lineNumber);
-      state3 = 1;
-      val = init3();
-      state3 = 2;
-      return val;
-    };
-  };
-  var monadEffect = {
-    Applicative0: function() {
-      return applicativeEffect;
-    },
-    Bind1: function() {
-      return bindEffect;
-    }
-  };
-  var bindEffect = {
-    bind: bindE,
-    Apply0: function() {
-      return $lazy_applyEffect(0);
-    }
-  };
-  var applicativeEffect = {
-    pure: pureE,
-    Apply0: function() {
-      return $lazy_applyEffect(0);
-    }
-  };
-  var $lazy_functorEffect = /* @__PURE__ */ $runtime_lazy2("functorEffect", "Effect", function() {
-    return {
-      map: liftA1(applicativeEffect)
-    };
-  });
-  var $lazy_applyEffect = /* @__PURE__ */ $runtime_lazy2("applyEffect", "Effect", function() {
-    return {
-      apply: ap(monadEffect),
-      Functor0: function() {
-        return $lazy_functorEffect(0);
-      }
-    };
-  });
-  var functorEffect = /* @__PURE__ */ $lazy_functorEffect(20);
-
-  // output/Control.Monad.Rec.Class/index.js
-  var Loop = /* @__PURE__ */ function() {
-    function Loop2(value0) {
-      this.value0 = value0;
-    }
-    ;
-    Loop2.create = function(value0) {
-      return new Loop2(value0);
-    };
-    return Loop2;
-  }();
-  var Done = /* @__PURE__ */ function() {
-    function Done2(value0) {
-      this.value0 = value0;
-    }
-    ;
-    Done2.create = function(value0) {
-      return new Done2(value0);
-    };
-    return Done2;
-  }();
-  var tailRecM = function(dict) {
-    return dict.tailRecM;
-  };
-  var tailRec = function(f) {
-    var go2 = function($copy_v) {
-      var $tco_done = false;
-      var $tco_result;
-      function $tco_loop(v) {
-        if (v instanceof Loop) {
-          $copy_v = f(v.value0);
-          return;
-        }
-        ;
-        if (v instanceof Done) {
-          $tco_done = true;
-          return v.value0;
-        }
-        ;
-        throw new Error("Failed pattern match at Control.Monad.Rec.Class (line 93, column 3 - line 93, column 25): " + [v.constructor.name]);
-      }
-      ;
-      while (!$tco_done) {
-        $tco_result = $tco_loop($copy_v);
-      }
-      ;
-      return $tco_result;
-    };
-    return function($55) {
-      return go2(f($55));
-    };
-  };
-  var monadRecIdentity = {
-    tailRecM: function(f) {
-      var runIdentity = function(v) {
-        return v;
-      };
-      var $56 = tailRec(function($58) {
-        return runIdentity(f($58));
-      });
-      return function($57) {
-        return Identity($56($57));
-      };
-    },
-    Monad0: function() {
-      return monadIdentity;
-    }
-  };
-  var bifunctorStep = {
-    bimap: function(v) {
-      return function(v1) {
-        return function(v2) {
-          if (v2 instanceof Loop) {
-            return new Loop(v(v2.value0));
-          }
-          ;
-          if (v2 instanceof Done) {
-            return new Done(v1(v2.value0));
-          }
-          ;
-          throw new Error("Failed pattern match at Control.Monad.Rec.Class (line 29, column 1 - line 31, column 34): " + [v.constructor.name, v1.constructor.name, v2.constructor.name]);
+  var traversableList = {
+    traverse: function(dictApplicative) {
+      return function(f) {
+        var $222 = map(dictApplicative.Apply0().Functor0())(foldl(foldableList)(flip(Cons.create))(Nil.value));
+        var $223 = foldl(foldableList)(function(acc) {
+          var $225 = lift2(dictApplicative.Apply0())(flip(Cons.create))(acc);
+          return function($226) {
+            return $225(f($226));
+          };
+        })(pure(dictApplicative)(Nil.value));
+        return function($224) {
+          return $222($223($224));
         };
       };
+    },
+    sequence: function(dictApplicative) {
+      return traverse(traversableList)(dictApplicative)(identity(categoryFn));
+    },
+    Functor0: function() {
+      return functorList;
+    },
+    Foldable1: function() {
+      return foldableList;
     }
   };
+
+  // output/Data.List/index.js
+  var tail = function(v) {
+    if (v instanceof Nil) {
+      return Nothing.value;
+    }
+    ;
+    if (v instanceof Cons) {
+      return new Just(v.value1);
+    }
+    ;
+    throw new Error("Failed pattern match at Data.List (line 245, column 1 - line 245, column 43): " + [v.constructor.name]);
+  };
+  var singleton3 = function(a2) {
+    return new Cons(a2, Nil.value);
+  };
+  var reverse = /* @__PURE__ */ function() {
+    var go2 = function($copy_acc) {
+      return function($copy_v) {
+        var $tco_var_acc = $copy_acc;
+        var $tco_done = false;
+        var $tco_result;
+        function $tco_loop(acc, v) {
+          if (v instanceof Nil) {
+            $tco_done = true;
+            return acc;
+          }
+          ;
+          if (v instanceof Cons) {
+            $tco_var_acc = new Cons(v.value0, acc);
+            $copy_v = v.value1;
+            return;
+          }
+          ;
+          throw new Error("Failed pattern match at Data.List (line 368, column 3 - line 368, column 19): " + [acc.constructor.name, v.constructor.name]);
+        }
+        ;
+        while (!$tco_done) {
+          $tco_result = $tco_loop($tco_var_acc, $copy_v);
+        }
+        ;
+        return $tco_result;
+      };
+    };
+    return go2(Nil.value);
+  }();
+  var zipWith = function(f) {
+    return function(xs) {
+      return function(ys) {
+        var go2 = function($copy_v) {
+          return function($copy_v1) {
+            return function($copy_acc) {
+              var $tco_var_v = $copy_v;
+              var $tco_var_v1 = $copy_v1;
+              var $tco_done = false;
+              var $tco_result;
+              function $tco_loop(v, v1, acc) {
+                if (v instanceof Nil) {
+                  $tco_done = true;
+                  return acc;
+                }
+                ;
+                if (v1 instanceof Nil) {
+                  $tco_done = true;
+                  return acc;
+                }
+                ;
+                if (v instanceof Cons && v1 instanceof Cons) {
+                  $tco_var_v = v.value1;
+                  $tco_var_v1 = v1.value1;
+                  $copy_acc = new Cons(f(v.value0)(v1.value0), acc);
+                  return;
+                }
+                ;
+                throw new Error("Failed pattern match at Data.List (line 779, column 3 - line 779, column 21): " + [v.constructor.name, v1.constructor.name, acc.constructor.name]);
+              }
+              ;
+              while (!$tco_done) {
+                $tco_result = $tco_loop($tco_var_v, $tco_var_v1, $copy_acc);
+              }
+              ;
+              return $tco_result;
+            };
+          };
+        };
+        return reverse(go2(xs)(ys)(Nil.value));
+      };
+    };
+  };
+  var manyRec = function(dictMonadRec) {
+    return function(dictAlternative) {
+      return function(p2) {
+        var go2 = function(acc) {
+          return bind(dictMonadRec.Monad0().Bind1())(alt(dictAlternative.Plus1().Alt0())(map(dictAlternative.Plus1().Alt0().Functor0())(Loop.create)(p2))(pure(dictAlternative.Applicative0())(new Done(unit))))(function(aa) {
+            return pure(dictAlternative.Applicative0())(bimap(bifunctorStep)(function(v) {
+              return new Cons(v, acc);
+            })(function(v) {
+              return reverse(acc);
+            })(aa));
+          });
+        };
+        return tailRecM(dictMonadRec)(go2)(Nil.value);
+      };
+    };
+  };
+  var length = /* @__PURE__ */ foldl(foldableList)(function(acc) {
+    return function(v) {
+      return acc + 1 | 0;
+    };
+  })(0);
+  var head = function(v) {
+    if (v instanceof Nil) {
+      return Nothing.value;
+    }
+    ;
+    if (v instanceof Cons) {
+      return new Just(v.value0);
+    }
+    ;
+    throw new Error("Failed pattern match at Data.List (line 230, column 1 - line 230, column 22): " + [v.constructor.name]);
+  };
+
+  // output/Effect.Console/foreign.js
+  var log = function(s2) {
+    return function() {
+      console.log(s2);
+    };
+  };
+
+  // output/React.Basic/foreign.js
+  var import_react = __toESM(require_react(), 1);
+  var createElement = import_react.default.createElement;
+  var Fragment = import_react.default.Fragment;
+  var empty2 = null;
+  function element(component) {
+    return (props) => Array.isArray(props.children) ? createElement.apply(null, [component, props].concat(props.children)) : createElement(component, props);
+  }
+  function fragment(children) {
+    return createElement.apply(null, [Fragment, null].concat(children));
+  }
+
+  // output/React.Basic/index.js
+  var semigroupJSX = {
+    append: function(a2) {
+      return function(b2) {
+        return fragment([a2, b2]);
+      };
+    }
+  };
+  var monoidJSX = {
+    mempty: empty2,
+    Semigroup0: function() {
+      return semigroupJSX;
+    }
+  };
+
+  // output/React.Basic.Classic/foreign.js
+  var import_react2 = __toESM(require_react(), 1);
+  var createComponent = function() {
+    function toSelf() {
+      var instance = this;
+      var setStateThen = function(update) {
+        return function(effects) {
+          return function() {
+            instance.setState(function(state3) {
+              return { $$state: update(state3.$$state) };
+            }, effects);
+          };
+        };
+      };
+      var self = {
+        props: instance.props.$$props,
+        state: instance.state === null ? null : instance.state.$$state,
+        setState: function(update) {
+          return setStateThen(update)(void 0);
+        },
+        setStateThen,
+        instance_: instance
+      };
+      return self;
+    }
+    function componentDidMount() {
+      var didMount = this.$$spec.didMount;
+      if (didMount !== void 0) {
+        didMount(this.toSelf())();
+      }
+    }
+    function shouldComponentUpdate(nextProps, nextState) {
+      var shouldUpdate = this.$$spec.shouldUpdate;
+      return shouldUpdate === void 0 ? true : shouldUpdate(this.toSelf())({
+        nextProps: nextProps.$$props,
+        nextState: nextState === null ? null : nextState.$$state
+      });
+    }
+    function componentDidUpdate(prevProps, prevState) {
+      var didUpdate = this.$$spec.didUpdate;
+      if (didUpdate !== void 0) {
+        didUpdate(this.toSelf())({
+          prevProps: prevProps.$$props,
+          prevState: prevState === null ? null : prevState.$$state
+        })();
+      }
+    }
+    function componentWillUnmount() {
+      this.$$mounted = false;
+      var willUnmount = this.$$spec.willUnmount;
+      if (willUnmount !== void 0) {
+        willUnmount(this.toSelf())();
+      }
+    }
+    function render() {
+      return this.$$spec.render(this.toSelf());
+    }
+    return function(displayName) {
+      var Component = function constructor(props) {
+        this.$$mounted = true;
+        this.$$spec = props.$$spec;
+        this.state = this.$$spec.initialState === void 0 ? null : { $$state: this.$$spec.initialState };
+        return this;
+      };
+      Component.displayName = displayName;
+      Component.prototype = Object.create(import_react2.default.Component.prototype);
+      Component.prototype.constructor = Component;
+      Component.prototype.toSelf = toSelf;
+      Component.prototype.shouldComponentUpdate = shouldComponentUpdate;
+      Component.prototype.componentDidMount = componentDidMount;
+      Component.prototype.componentDidUpdate = componentDidUpdate;
+      Component.prototype.componentWillUnmount = componentWillUnmount;
+      Component.prototype.render = render;
+      return Component;
+    };
+  }();
+  function _make($$type) {
+    return function($$spec) {
+      var $$specPadded = {
+        initialState: $$spec.initialState,
+        render: $$spec.render,
+        didMount: $$spec.didMount,
+        shouldUpdate: $$spec.shouldUpdate,
+        didUpdate: $$spec.didUpdate,
+        willUnmount: $$spec.willUnmount
+      };
+      return function($$props) {
+        var props = {
+          $$props,
+          $$spec: $$specPadded
+        };
+        return import_react2.default.createElement($$type, props);
+      };
+    };
+  }
+
+  // output/Data.Nullable/foreign.js
+  function nullable(a2, r, f) {
+    return a2 == null ? r : f(a2);
+  }
+
+  // output/Data.Nullable/index.js
+  var toMaybe = function(n) {
+    return nullable(n, Nothing.value, Just.create);
+  };
+
+  // output/Effect.Uncurried/foreign.js
+  var mkEffectFn1 = function mkEffectFn12(fn) {
+    return function(x) {
+      return fn(x)();
+    };
+  };
+
+  // output/React.Basic.Classic/index.js
+  var make = function() {
+    return _make;
+  };
+
+  // output/React.Basic.DOM/foreign.js
+  var import_react_dom = __toESM(require_react_dom(), 1);
+
+  // output/Effect.Unsafe/foreign.js
+  var unsafePerformEffect = function(f) {
+    return f();
+  };
+
+  // output/React.Basic.DOM.Internal/foreign.js
+  var import_react3 = __toESM(require_react(), 1);
+  function unsafeCreateDOMComponent_(createElement2) {
+    return (el) => {
+      const flattenDataProp = (props, ref) => {
+        var data = null;
+        if (props._data != null) {
+          data = { _data: void 0 };
+          Object.entries(props._data).forEach(function(entry) {
+            data["data-" + entry[0]] = entry[1];
+          });
+        }
+        var aria = null;
+        if (props._aria != null) {
+          aria = { _aria: void 0 };
+          Object.entries(props._aria).forEach(function(entry) {
+            aria["aria-" + entry[0]] = entry[1];
+          });
+        }
+        return Object.assign({ ref }, props, data, aria);
+      };
+      return () => {
+        const c = import_react3.default.forwardRef((props, ref) => createElement2(el)(flattenDataProp(props, ref)));
+        c.displayName = el;
+        return c;
+      };
+    };
+  }
+
+  // output/React.Basic.DOM.Internal/index.js
+  var unsafeCreateDOMComponent = /* @__PURE__ */ unsafeCreateDOMComponent_(element);
+
+  // output/React.Basic.DOM.Generated/index.js
+  var _ul$prime = /* @__PURE__ */ unsafePerformEffect(/* @__PURE__ */ unsafeCreateDOMComponent("ul"));
+  var ul$prime = function() {
+    return _ul$prime;
+  };
+  var ul = function() {
+    return element(ul$prime());
+  };
+  var _span$prime = /* @__PURE__ */ unsafePerformEffect(/* @__PURE__ */ unsafeCreateDOMComponent("span"));
+  var span$prime = function() {
+    return _span$prime;
+  };
+  var span = function() {
+    return element(span$prime());
+  };
+  var _section$prime = /* @__PURE__ */ unsafePerformEffect(/* @__PURE__ */ unsafeCreateDOMComponent("section"));
+  var section$prime = function() {
+    return _section$prime;
+  };
+  var section = function() {
+    return element(section$prime());
+  };
+  var _p$prime = /* @__PURE__ */ unsafePerformEffect(/* @__PURE__ */ unsafeCreateDOMComponent("p"));
+  var p$prime = function() {
+    return _p$prime;
+  };
+  var p = function() {
+    return element(p$prime());
+  };
+  var _ol$prime = /* @__PURE__ */ unsafePerformEffect(/* @__PURE__ */ unsafeCreateDOMComponent("ol"));
+  var ol$prime = function() {
+    return _ol$prime;
+  };
+  var ol = function() {
+    return element(ol$prime());
+  };
+  var ol_ = function(children) {
+    return ol()({
+      children
+    });
+  };
+  var _li$prime = /* @__PURE__ */ unsafePerformEffect(/* @__PURE__ */ unsafeCreateDOMComponent("li"));
+  var li$prime = function() {
+    return _li$prime;
+  };
+  var li = function() {
+    return element(li$prime());
+  };
+  var li_ = function(children) {
+    return li()({
+      children
+    });
+  };
+  var _label$prime = /* @__PURE__ */ unsafePerformEffect(/* @__PURE__ */ unsafeCreateDOMComponent("label"));
+  var label$prime = function() {
+    return _label$prime;
+  };
+  var label = function() {
+    return element(label$prime());
+  };
+  var _input$prime = /* @__PURE__ */ unsafePerformEffect(/* @__PURE__ */ unsafeCreateDOMComponent("input"));
+  var input$prime = function() {
+    return _input$prime;
+  };
+  var input = function() {
+    return element(input$prime());
+  };
+  var _i$prime = /* @__PURE__ */ unsafePerformEffect(/* @__PURE__ */ unsafeCreateDOMComponent("i"));
+  var i$prime = function() {
+    return _i$prime;
+  };
+  var i = function() {
+    return element(i$prime());
+  };
+  var _h3$prime = /* @__PURE__ */ unsafePerformEffect(/* @__PURE__ */ unsafeCreateDOMComponent("h3"));
+  var h3$prime = function() {
+    return _h3$prime;
+  };
+  var h3 = function() {
+    return element(h3$prime());
+  };
+  var _form$prime = /* @__PURE__ */ unsafePerformEffect(/* @__PURE__ */ unsafeCreateDOMComponent("form"));
+  var form$prime = function() {
+    return _form$prime;
+  };
+  var form = function() {
+    return element(form$prime());
+  };
+  var _div$prime = /* @__PURE__ */ unsafePerformEffect(/* @__PURE__ */ unsafeCreateDOMComponent("div"));
+  var div$prime = function() {
+    return _div$prime;
+  };
+  var div2 = function() {
+    return element(div$prime());
+  };
+  var _button$prime = /* @__PURE__ */ unsafePerformEffect(/* @__PURE__ */ unsafeCreateDOMComponent("button"));
+  var button$prime = function() {
+    return _button$prime;
+  };
+  var button = function() {
+    return element(button$prime());
+  };
+
+  // output/React.Basic.DOM/index.js
+  var text = unsafeCoerce2;
 
   // output/Data.Array/foreign.js
   var replicateFill = function(count) {
@@ -23971,8 +24582,107 @@
       };
     };
   }();
+  var unsafeIndexImpl = function(xs) {
+    return function(n) {
+      return xs[n];
+    };
+  };
+
+  // output/Control.Monad.ST.Internal/foreign.js
+  var map_2 = function(f) {
+    return function(a2) {
+      return function() {
+        return f(a2());
+      };
+    };
+  };
+  var pure_ = function(a2) {
+    return function() {
+      return a2;
+    };
+  };
+  var bind_ = function(a2) {
+    return function(f) {
+      return function() {
+        return f(a2())();
+      };
+    };
+  };
+  function forST(lo) {
+    return function(hi) {
+      return function(f) {
+        return function() {
+          for (var i2 = lo; i2 < hi; i2++) {
+            f(i2)();
+          }
+        };
+      };
+    };
+  }
+
+  // output/Control.Monad.ST.Internal/index.js
+  var $runtime_lazy3 = function(name15, moduleName, init3) {
+    var state3 = 0;
+    var val;
+    return function(lineNumber) {
+      if (state3 === 2)
+        return val;
+      if (state3 === 1)
+        throw new ReferenceError(name15 + " was needed before it finished initializing (module " + moduleName + ", line " + lineNumber + ")", moduleName, lineNumber);
+      state3 = 1;
+      val = init3();
+      state3 = 2;
+      return val;
+    };
+  };
+  var functorST = {
+    map: map_2
+  };
+  var monadST = {
+    Applicative0: function() {
+      return applicativeST;
+    },
+    Bind1: function() {
+      return bindST;
+    }
+  };
+  var bindST = {
+    bind: bind_,
+    Apply0: function() {
+      return $lazy_applyST(0);
+    }
+  };
+  var applicativeST = {
+    pure: pure_,
+    Apply0: function() {
+      return $lazy_applyST(0);
+    }
+  };
+  var $lazy_applyST = /* @__PURE__ */ $runtime_lazy3("applyST", "Control.Monad.ST.Internal", function() {
+    return {
+      apply: ap(monadST),
+      Functor0: function() {
+        return functorST;
+      }
+    };
+  });
 
   // output/Data.Array.ST/foreign.js
+  function newSTArray() {
+    return [];
+  }
+  var pushAll = function(as) {
+    return function(xs) {
+      return function() {
+        return xs.push.apply(xs, as);
+      };
+    };
+  };
+  var unsafeFreeze = function(xs) {
+    return function() {
+      return xs;
+    };
+  };
   var sortByImpl2 = function() {
     function mergeFromTo(compare2, fromOrdering, xs1, xs2, from2, to2) {
       var mid;
@@ -24023,7 +24733,47 @@
     };
   }();
 
+  // output/Data.Array.ST/index.js
+  var run2 = function(st) {
+    return bind(bindST)(st)(unsafeFreeze)();
+  };
+  var push = function(a2) {
+    return pushAll([a2]);
+  };
+
   // output/Data.Array/index.js
+  var unsafeIndex = function() {
+    return unsafeIndexImpl;
+  };
+  var intersperse = function(a2) {
+    return function(arr) {
+      var v = length2(arr);
+      if (v < 2) {
+        return arr;
+      }
+      ;
+      if (otherwise) {
+        return run2(function() {
+          var unsafeGetElem = function(idx) {
+            return unsafeIndex()(arr)(idx);
+          };
+          return function __do2() {
+            var out = newSTArray();
+            push(unsafeGetElem(0))(out)();
+            forST(1)(v)(function(idx) {
+              return function __do3() {
+                push(a2)(out)();
+                return $$void(functorST)(push(unsafeGetElem(idx))(out))();
+              };
+            })();
+            return out;
+          };
+        }());
+      }
+      ;
+      throw new Error("Failed pattern match at Data.Array (line 611, column 21 - line 620, column 19): " + [v.constructor.name]);
+    };
+  };
   var fromFoldable = function(dictFoldable) {
     return fromFoldableImpl(foldr(dictFoldable));
   };
@@ -24038,184 +24788,60 @@
     };
   };
 
-  // output/Data.Array.NonEmpty.Internal/foreign.js
-  var traverse1Impl = function() {
-    function Cont(fn) {
-      this.fn = fn;
-    }
-    var emptyList = {};
-    var ConsCell = function(head6, tail3) {
-      this.head = head6;
-      this.tail = tail3;
-    };
-    function finalCell(head6) {
-      return new ConsCell(head6, emptyList);
-    }
-    function consList(x) {
-      return function(xs) {
-        return new ConsCell(x, xs);
-      };
-    }
-    function listToArray(list) {
-      var arr = [];
-      var xs = list;
-      while (xs !== emptyList) {
-        arr.push(xs.head);
-        xs = xs.tail;
+  // output/Foreign.Object/foreign.js
+  var empty3 = {};
+  function runST(f) {
+    return f();
+  }
+  function toArrayWithKey(f) {
+    return function(m) {
+      var r = [];
+      for (var k in m) {
+        if (hasOwnProperty.call(m, k)) {
+          r.push(f(k)(m[k]));
+        }
       }
-      return arr;
-    }
-    return function(apply2) {
-      return function(map3) {
-        return function(f) {
-          var buildFrom = function(x, ys) {
-            return apply2(map3(consList)(f(x)))(ys);
-          };
-          var go2 = function(acc, currentLen, xs) {
-            if (currentLen === 0) {
-              return acc;
-            } else {
-              var last3 = xs[currentLen - 1];
-              return new Cont(function() {
-                var built = go2(buildFrom(last3, acc), currentLen - 1, xs);
-                return built;
-              });
-            }
-          };
-          return function(array) {
-            var acc = map3(finalCell)(f(array[array.length - 1]));
-            var result = go2(acc, array.length - 1, array);
-            while (result instanceof Cont) {
-              result = result.fn();
-            }
-            return map3(listToArray)(result);
-          };
+      return r;
+    };
+  }
+  var keys = Object.keys || toArrayWithKey(function(k) {
+    return function() {
+      return k;
+    };
+  });
+
+  // output/Data.Function.Uncurried/foreign.js
+  var mkFn5 = function(fn) {
+    return function(a2, b2, c, d, e) {
+      return fn(a2)(b2)(c)(d)(e);
+    };
+  };
+
+  // output/Foreign.Object.ST/foreign.js
+  var newImpl = function() {
+    return {};
+  };
+  function poke2(k) {
+    return function(v) {
+      return function(m) {
+        return function() {
+          m[k] = v;
+          return m;
         };
       };
     };
-  }();
-
-  // output/Data.Enum/foreign.js
-  function toCharCode(c) {
-    return c.charCodeAt(0);
-  }
-  function fromCharCode(c) {
-    return String.fromCharCode(c);
   }
 
-  // output/Data.Enum/index.js
-  var toEnum = function(dict) {
-    return dict.toEnum;
-  };
-  var fromEnum = function(dict) {
-    return dict.fromEnum;
-  };
-  var toEnumWithDefaults = function(dictBoundedEnum) {
-    return function(low2) {
-      return function(high2) {
-        return function(x) {
-          var v = toEnum(dictBoundedEnum)(x);
-          if (v instanceof Just) {
-            return v.value0;
-          }
-          ;
-          if (v instanceof Nothing) {
-            var $54 = x < fromEnum(dictBoundedEnum)(bottom(dictBoundedEnum.Bounded0()));
-            if ($54) {
-              return low2;
-            }
-            ;
-            return high2;
-          }
-          ;
-          throw new Error("Failed pattern match at Data.Enum (line 158, column 33 - line 160, column 62): " + [v.constructor.name]);
-        };
-      };
+  // output/Foreign.Object/index.js
+  var singleton4 = function(k) {
+    return function(v) {
+      return runST(bindFlipped(bindST)(poke2(k)(v))(newImpl));
     };
-  };
-  var defaultSucc = function(toEnum$prime) {
-    return function(fromEnum$prime) {
-      return function(a2) {
-        return toEnum$prime(fromEnum$prime(a2) + 1 | 0);
-      };
-    };
-  };
-  var defaultPred = function(toEnum$prime) {
-    return function(fromEnum$prime) {
-      return function(a2) {
-        return toEnum$prime(fromEnum$prime(a2) - 1 | 0);
-      };
-    };
-  };
-  var charToEnum = function(v) {
-    if (v >= bottom(boundedInt) && v <= top(boundedInt)) {
-      return new Just(fromCharCode(v));
-    }
-    ;
-    return Nothing.value;
-  };
-  var enumChar = {
-    succ: /* @__PURE__ */ defaultSucc(charToEnum)(toCharCode),
-    pred: /* @__PURE__ */ defaultPred(charToEnum)(toCharCode),
-    Ord0: function() {
-      return ordChar;
-    }
-  };
-  var boundedEnumChar = /* @__PURE__ */ function() {
-    return {
-      cardinality: toCharCode(top(boundedChar)) - toCharCode(bottom(boundedChar)) | 0,
-      toEnum: charToEnum,
-      fromEnum: toCharCode,
-      Bounded0: function() {
-        return boundedChar;
-      },
-      Enum1: function() {
-        return enumChar;
-      }
-    };
-  }();
-
-  // output/Data.Int/foreign.js
-  var fromNumberImpl = function(just) {
-    return function(nothing) {
-      return function(n) {
-        return (n | 0) === n ? just(n) : nothing;
-      };
-    };
-  };
-  var toNumber = function(n) {
-    return n;
   };
 
-  // output/Data.Number/foreign.js
-  var isFiniteImpl = isFinite;
-  var floor = Math.floor;
-
-  // output/Data.Int/index.js
-  var fromNumber = /* @__PURE__ */ function() {
-    return fromNumberImpl(Just.create)(Nothing.value);
-  }();
-  var unsafeClamp = function(x) {
-    if (!isFiniteImpl(x)) {
-      return 0;
-    }
-    ;
-    if (x >= toNumber(top(boundedInt))) {
-      return top(boundedInt);
-    }
-    ;
-    if (x <= toNumber(bottom(boundedInt))) {
-      return bottom(boundedInt);
-    }
-    ;
-    if (otherwise) {
-      return fromMaybe(0)(fromNumber(x));
-    }
-    ;
-    throw new Error("Failed pattern match at Data.Int (line 72, column 1 - line 72, column 29): " + [x.constructor.name]);
-  };
-  var floor2 = function($25) {
-    return unsafeClamp(floor($25));
+  // output/Control.Monad.Error.Class/index.js
+  var throwError = function(dict) {
+    return dict.throwError;
   };
 
   // output/Data.Lazy/foreign.js
@@ -24233,199 +24859,8 @@
     return l();
   };
 
-  // output/Data.String.CodeUnits/foreign.js
-  var singleton4 = function(c) {
-    return c;
-  };
-  var length3 = function(s2) {
-    return s2.length;
-  };
-  var drop2 = function(n) {
-    return function(s2) {
-      return s2.substring(n);
-    };
-  };
-
-  // output/Data.String.Unsafe/foreign.js
-  var charAt = function(i2) {
-    return function(s2) {
-      if (i2 >= 0 && i2 < s2.length)
-        return s2.charAt(i2);
-      throw new Error("Data.String.Unsafe.charAt: Invalid index.");
-    };
-  };
-
-  // output/Data.String.Common/index.js
-  var $$null = function(s2) {
-    return s2 === "";
-  };
-
-  // output/Data.Function.Uncurried/foreign.js
-  var mkFn5 = function(fn) {
-    return function(a2, b2, c, d, e) {
-      return fn(a2)(b2)(c)(d)(e);
-    };
-  };
-
-  // output/Effect.Exception/foreign.js
-  function error(msg) {
-    return new Error(msg);
-  }
-  function throwException(e) {
-    return function() {
-      throw e;
-    };
-  }
-
-  // output/Effect.Exception/index.js
-  var $$throw = function($2) {
-    return throwException(error($2));
-  };
-
-  // output/Control.Monad.Error.Class/index.js
-  var throwError = function(dict) {
-    return dict.throwError;
-  };
-
-  // output/Data.List/index.js
-  var singleton5 = function(a2) {
-    return new Cons(a2, Nil.value);
-  };
-  var reverse2 = /* @__PURE__ */ function() {
-    var go2 = function($copy_acc) {
-      return function($copy_v) {
-        var $tco_var_acc = $copy_acc;
-        var $tco_done = false;
-        var $tco_result;
-        function $tco_loop(acc, v) {
-          if (v instanceof Nil) {
-            $tco_done = true;
-            return acc;
-          }
-          ;
-          if (v instanceof Cons) {
-            $tco_var_acc = new Cons(v.value0, acc);
-            $copy_v = v.value1;
-            return;
-          }
-          ;
-          throw new Error("Failed pattern match at Data.List (line 368, column 3 - line 368, column 19): " + [acc.constructor.name, v.constructor.name]);
-        }
-        ;
-        while (!$tco_done) {
-          $tco_result = $tco_loop($tco_var_acc, $copy_v);
-        }
-        ;
-        return $tco_result;
-      };
-    };
-    return go2(Nil.value);
-  }();
-  var zipWith2 = function(f) {
-    return function(xs) {
-      return function(ys) {
-        var go2 = function($copy_v) {
-          return function($copy_v1) {
-            return function($copy_acc) {
-              var $tco_var_v = $copy_v;
-              var $tco_var_v1 = $copy_v1;
-              var $tco_done = false;
-              var $tco_result;
-              function $tco_loop(v, v1, acc) {
-                if (v instanceof Nil) {
-                  $tco_done = true;
-                  return acc;
-                }
-                ;
-                if (v1 instanceof Nil) {
-                  $tco_done = true;
-                  return acc;
-                }
-                ;
-                if (v instanceof Cons && v1 instanceof Cons) {
-                  $tco_var_v = v.value1;
-                  $tco_var_v1 = v1.value1;
-                  $copy_acc = new Cons(f(v.value0)(v1.value0), acc);
-                  return;
-                }
-                ;
-                throw new Error("Failed pattern match at Data.List (line 779, column 3 - line 779, column 21): " + [v.constructor.name, v1.constructor.name, acc.constructor.name]);
-              }
-              ;
-              while (!$tco_done) {
-                $tco_result = $tco_loop($tco_var_v, $tco_var_v1, $copy_acc);
-              }
-              ;
-              return $tco_result;
-            };
-          };
-        };
-        return reverse2(go2(xs)(ys)(Nil.value));
-      };
-    };
-  };
-  var manyRec = function(dictMonadRec) {
-    return function(dictAlternative) {
-      return function(p2) {
-        var go2 = function(acc) {
-          return bind(dictMonadRec.Monad0().Bind1())(alt(dictAlternative.Plus1().Alt0())(map(dictAlternative.Plus1().Alt0().Functor0())(Loop.create)(p2))(pure(dictAlternative.Applicative0())(new Done(unit))))(function(aa) {
-            return pure(dictAlternative.Applicative0())(bimap(bifunctorStep)(function(v) {
-              return new Cons(v, acc);
-            })(function(v) {
-              return reverse2(acc);
-            })(aa));
-          });
-        };
-        return tailRecM(dictMonadRec)(go2)(Nil.value);
-      };
-    };
-  };
-  var length4 = /* @__PURE__ */ foldl(foldableList)(function(acc) {
-    return function(v) {
-      return acc + 1 | 0;
-    };
-  })(0);
-
-  // output/Data.Pair/index.js
-  var Pair = /* @__PURE__ */ function() {
-    function Pair2(value0, value1) {
-      this.value0 = value0;
-      this.value1 = value1;
-    }
-    ;
-    Pair2.create = function(value0) {
-      return function(value1) {
-        return new Pair2(value0, value1);
-      };
-    };
-    return Pair2;
-  }();
-  var functorPair = {
-    map: function(f) {
-      return function(v) {
-        return new Pair(f(v.value0), f(v.value1));
-      };
-    }
-  };
-
-  // output/Misc/index.js
-  var popList = function(v) {
-    if (v instanceof Nil) {
-      return Nothing.value;
-    }
-    ;
-    if (v instanceof Cons) {
-      return new Just(new Tuple(v.value0, v.value1));
-    }
-    ;
-    throw new Error("Failed pattern match at Misc (line 27, column 1 - line 27, column 56): " + [v.constructor.name]);
-  };
-  var fromChars = function(dictFoldable) {
-    return foldMap(dictFoldable)(monoidString)(singleton4);
-  };
-
   // output/Data.Show.Generic/foreign.js
-  var intercalate4 = function(separator) {
+  var intercalate3 = function(separator) {
     return function(xs) {
       return xs.join(separator);
     };
@@ -24452,7 +24887,7 @@
             return ctor;
           }
           ;
-          return "(" + (intercalate4(" ")(append(semigroupArray)([ctor])(v1)) + ")");
+          return "(" + (intercalate3(" ")(append(semigroupArray)([ctor])(v1)) + ")");
         }
       };
     };
@@ -24469,7 +24904,7 @@
   };
 
   // output/Parsing/index.js
-  var $runtime_lazy3 = function(name15, moduleName, init3) {
+  var $runtime_lazy4 = function(name15, moduleName, init3) {
     var state3 = 0;
     var val;
     return function(lineNumber) {
@@ -24661,7 +25096,7 @@
     tailRecM: function(next) {
       return function(initArg) {
         return function(state1, more, lift3, $$throw2, done) {
-          var $lazy_loop = $runtime_lazy3("loop", "Parsing", function() {
+          var $lazy_loop = $runtime_lazy4("loop", "Parsing", function() {
             return function(state22, arg, gas) {
               var v = next(arg);
               return v(state22, more, lift3, $$throw2, function(state3, step3) {
@@ -24786,6 +25221,21 @@
     line: 1,
     column: 1
   };
+  var runParserT = function(dictMonadRec) {
+    return function(s2) {
+      return function(p2) {
+        var initialState = new ParseState(s2, initialPos, false);
+        return map(dictMonadRec.Monad0().Bind1().Apply0().Functor0())(fst)(runParserT$prime(dictMonadRec)(initialState)(p2));
+      };
+    };
+  };
+  var runParser = function(s2) {
+    var $185 = unwrap();
+    var $186 = runParserT(monadRecIdentity)(s2);
+    return function($187) {
+      return $185($186($187));
+    };
+  };
   var failWithPosition = function(message2) {
     return function(pos) {
       return throwError(monadThrowParseErrorParse)(new ParseError(message2, pos));
@@ -24809,42 +25259,48 @@
     }
   };
 
-  // output/Data.List.NonEmpty/index.js
-  var toList = function(v) {
-    return new Cons(v.value0, v.value1);
+  // output/React.Basic.Events/index.js
+  var EventFn = function(x) {
+    return x;
   };
-  var cons$prime = function(x) {
-    return function(xs) {
-      return new NonEmpty(x, xs);
+  var unsafeEventFn = EventFn;
+  var semigroupoidBuilder = semigroupoidFn;
+  var handler_ = function($17) {
+    return mkEffectFn1($$const($17));
+  };
+  var handler = function(v) {
+    return function(cb) {
+      return function($18) {
+        return cb(v($18))();
+      };
     };
   };
+  var categoryBuilder = categoryFn;
 
-  // output/Parsing.Combinators/index.js
-  var withErrorMessage = function(p2) {
-    return function(msg) {
-      return alt(altParserT)(p2)(fail("Expected " + msg));
-    };
+  // output/React.Basic.DOM.Events/index.js
+  var targetValue = /* @__PURE__ */ unsafeEventFn(function(e) {
+    return toMaybe(e.target.value);
+  });
+  var stopPropagation = /* @__PURE__ */ unsafeEventFn(function(e) {
+    return unsafePerformEffect(function __do2() {
+      e.stopPropagation();
+      return e;
+    });
+  });
+  var preventDefault = /* @__PURE__ */ unsafeEventFn(function(e) {
+    return unsafePerformEffect(function __do2() {
+      e.preventDefault();
+      return e;
+    });
+  });
+  var capture = function(eventFn) {
+    return handler(composeFlipped(semigroupoidBuilder)(preventDefault)(composeFlipped(semigroupoidBuilder)(stopPropagation)(eventFn)));
   };
-  var sepBy1 = function(p2) {
-    return function(sep) {
-      return bind(bindParserT)(p2)(function(a2) {
-        return bind(bindParserT)(manyRec(monadRecParserT)(alternativeParserT)(applySecond(applyParserT)(sep)(p2)))(function(as) {
-          return pure(applicativeParserT)(cons$prime(a2)(as));
-        });
-      });
-    };
+  var capture_ = function(cb) {
+    return capture(identity(categoryBuilder))(function(v) {
+      return cb;
+    });
   };
-  var sepBy = function(p2) {
-    return function(sep) {
-      return alt(altParserT)(map(functorParserT)(toList)(sepBy1(p2)(sep)))(pure(applicativeParserT)(Nil.value));
-    };
-  };
-  var option = function(a2) {
-    return function(p2) {
-      return alt(altParserT)(p2)(pure(applicativeParserT)(a2));
-    };
-  };
-  var many2 = /* @__PURE__ */ manyRec(monadRecParserT)(alternativeParserT);
 
   // output/Data.String.CodePoints/foreign.js
   var hasArrayFrom = typeof Array.from === "function";
@@ -24934,8 +25390,158 @@
     };
   };
 
+  // output/Data.Enum/foreign.js
+  function toCharCode(c) {
+    return c.charCodeAt(0);
+  }
+  function fromCharCode(c) {
+    return String.fromCharCode(c);
+  }
+
+  // output/Data.Enum/index.js
+  var toEnum = function(dict) {
+    return dict.toEnum;
+  };
+  var fromEnum = function(dict) {
+    return dict.fromEnum;
+  };
+  var toEnumWithDefaults = function(dictBoundedEnum) {
+    return function(low2) {
+      return function(high2) {
+        return function(x) {
+          var v = toEnum(dictBoundedEnum)(x);
+          if (v instanceof Just) {
+            return v.value0;
+          }
+          ;
+          if (v instanceof Nothing) {
+            var $54 = x < fromEnum(dictBoundedEnum)(bottom(dictBoundedEnum.Bounded0()));
+            if ($54) {
+              return low2;
+            }
+            ;
+            return high2;
+          }
+          ;
+          throw new Error("Failed pattern match at Data.Enum (line 158, column 33 - line 160, column 62): " + [v.constructor.name]);
+        };
+      };
+    };
+  };
+  var defaultSucc = function(toEnum$prime) {
+    return function(fromEnum$prime) {
+      return function(a2) {
+        return toEnum$prime(fromEnum$prime(a2) + 1 | 0);
+      };
+    };
+  };
+  var defaultPred = function(toEnum$prime) {
+    return function(fromEnum$prime) {
+      return function(a2) {
+        return toEnum$prime(fromEnum$prime(a2) - 1 | 0);
+      };
+    };
+  };
+  var charToEnum = function(v) {
+    if (v >= bottom(boundedInt) && v <= top(boundedInt)) {
+      return new Just(fromCharCode(v));
+    }
+    ;
+    return Nothing.value;
+  };
+  var enumChar = {
+    succ: /* @__PURE__ */ defaultSucc(charToEnum)(toCharCode),
+    pred: /* @__PURE__ */ defaultPred(charToEnum)(toCharCode),
+    Ord0: function() {
+      return ordChar;
+    }
+  };
+  var boundedEnumChar = /* @__PURE__ */ function() {
+    return {
+      cardinality: toCharCode(top(boundedChar)) - toCharCode(bottom(boundedChar)) | 0,
+      toEnum: charToEnum,
+      fromEnum: toCharCode,
+      Bounded0: function() {
+        return boundedChar;
+      },
+      Enum1: function() {
+        return enumChar;
+      }
+    };
+  }();
+
+  // output/Data.Int/foreign.js
+  var fromNumberImpl = function(just) {
+    return function(nothing) {
+      return function(n) {
+        return (n | 0) === n ? just(n) : nothing;
+      };
+    };
+  };
+  var toNumber = function(n) {
+    return n;
+  };
+
+  // output/Data.Number/foreign.js
+  var isFiniteImpl = isFinite;
+  var floor = Math.floor;
+
+  // output/Data.Int/index.js
+  var fromNumber = /* @__PURE__ */ function() {
+    return fromNumberImpl(Just.create)(Nothing.value);
+  }();
+  var unsafeClamp = function(x) {
+    if (!isFiniteImpl(x)) {
+      return 0;
+    }
+    ;
+    if (x >= toNumber(top(boundedInt))) {
+      return top(boundedInt);
+    }
+    ;
+    if (x <= toNumber(bottom(boundedInt))) {
+      return bottom(boundedInt);
+    }
+    ;
+    if (otherwise) {
+      return fromMaybe(0)(fromNumber(x));
+    }
+    ;
+    throw new Error("Failed pattern match at Data.Int (line 72, column 1 - line 72, column 29): " + [x.constructor.name]);
+  };
+  var floor2 = function($25) {
+    return unsafeClamp(floor($25));
+  };
+
+  // output/Data.String.CodeUnits/foreign.js
+  var singleton5 = function(c) {
+    return c;
+  };
+  var length3 = function(s2) {
+    return s2.length;
+  };
+  var drop = function(n) {
+    return function(s2) {
+      return s2.substring(n);
+    };
+  };
+
+  // output/Data.String.Unsafe/foreign.js
+  var charAt = function(i2) {
+    return function(s2) {
+      if (i2 >= 0 && i2 < s2.length)
+        return s2.charAt(i2);
+      throw new Error("Data.String.Unsafe.charAt: Invalid index.");
+    };
+  };
+
+  // output/Data.String.Common/index.js
+  var $$null = function(s2) {
+    return s2 === "";
+  };
+
   // output/Data.String.CodePoints/index.js
-  var $runtime_lazy4 = function(name15, moduleName, init3) {
+  var $runtime_lazy5 = function(name15, moduleName, init3) {
     var state3 = 0;
     var val;
     return function(lineNumber) {
@@ -24963,7 +25569,7 @@
   var isLead = function(cu) {
     return 55296 <= cu && cu <= 56319;
   };
-  var uncons3 = function(s2) {
+  var uncons = function(s2) {
     var v = length3(s2);
     if (v === 0) {
       return Nothing.value;
@@ -24982,19 +25588,19 @@
     if ($21) {
       return new Just({
         head: unsurrogate(cu0)(cu1),
-        tail: drop2(2)(s2)
+        tail: drop(2)(s2)
       });
     }
     ;
     return new Just({
       head: cu0,
-      tail: drop2(1)(s2)
+      tail: drop(1)(s2)
     });
   };
   var unconsButWithTuple = function(s2) {
     return map(functorMaybe)(function(v) {
       return new Tuple(v.head, v.tail);
-    })(uncons3(s2));
+    })(uncons(s2));
   };
   var toCodePointArrayFallback = function(s2) {
     return unfoldr(unfoldableArray)(unconsButWithTuple)(s2);
@@ -25016,13 +25622,13 @@
   };
   var unsafeCodePointAt0 = /* @__PURE__ */ _unsafeCodePointAt0(unsafeCodePointAt0Fallback);
   var toCodePointArray = /* @__PURE__ */ _toCodePointArray(toCodePointArrayFallback)(unsafeCodePointAt0);
-  var length6 = function($52) {
+  var length4 = function($52) {
     return length2(toCodePointArray($52));
   };
   var fromCharCode2 = /* @__PURE__ */ function() {
     var $53 = toEnumWithDefaults(boundedEnumChar)(bottom(boundedChar))(top(boundedChar));
     return function($54) {
-      return singleton4($53($54));
+      return singleton5($53($54));
     };
   }();
   var singletonFallback = function(v) {
@@ -25034,22 +25640,22 @@
     var trail = mod(euclideanRingInt)(v - 65536 | 0)(1024) + 56320 | 0;
     return fromCharCode2(lead) + fromCharCode2(trail);
   };
-  var singleton7 = /* @__PURE__ */ _singleton(singletonFallback);
+  var singleton6 = /* @__PURE__ */ _singleton(singletonFallback);
   var takeFallback = function(n) {
     return function(v) {
       if (n < 1) {
         return "";
       }
       ;
-      var v1 = uncons3(v);
+      var v1 = uncons(v);
       if (v1 instanceof Just) {
-        return singleton7(v1.value0.head) + takeFallback(n - 1 | 0)(v1.value0.tail);
+        return singleton6(v1.value0.head) + takeFallback(n - 1 | 0)(v1.value0.tail);
       }
       ;
       return v;
     };
   };
-  var take4 = /* @__PURE__ */ _take(takeFallback);
+  var take2 = /* @__PURE__ */ _take(takeFallback);
   var eqCodePoint = {
     eq: function(x) {
       return function(y) {
@@ -25075,7 +25681,7 @@
         var $tco_done = false;
         var $tco_result;
         function $tco_loop(p2, s2, accum) {
-          var v = uncons3(s2);
+          var v = uncons(s2);
           if (v instanceof Just) {
             var $39 = p2(v.value0.head);
             if ($39) {
@@ -25107,9 +25713,9 @@
     };
   };
   var countPrefix2 = /* @__PURE__ */ _countPrefix(countFallback)(unsafeCodePointAt0);
-  var takeWhile4 = function(p2) {
+  var takeWhile = function(p2) {
     return function(s2) {
-      return take4(countPrefix2(p2)(s2))(s2);
+      return take2(countPrefix2(p2)(s2))(s2);
     };
   };
   var codePointFromChar = /* @__PURE__ */ function() {
@@ -25124,7 +25730,7 @@
       var $tco_done = false;
       var $tco_result;
       function $tco_loop(n, s2) {
-        var v = uncons3(s2);
+        var v = uncons(s2);
         if (v instanceof Just) {
           var $44 = n === 0;
           if ($44) {
@@ -25197,7 +25803,7 @@
       }
     };
   }();
-  var $lazy_enumCodePoint = /* @__PURE__ */ $runtime_lazy4("enumCodePoint", "Data.String.CodePoints", function() {
+  var $lazy_enumCodePoint = /* @__PURE__ */ $runtime_lazy5("enumCodePoint", "Data.String.CodePoints", function() {
     return {
       succ: defaultSucc(toEnum(boundedEnumCodePoint))(fromEnum(boundedEnumCodePoint)),
       pred: defaultPred(toEnum(boundedEnumCodePoint))(fromEnum(boundedEnumCodePoint)),
@@ -25206,6 +25812,527 @@
       }
     };
   });
+
+  // output/React.Icons/index.js
+  var icon = function() {
+    return function(reactIcon) {
+      return function(props) {
+        return element(reactIcon)(props);
+      };
+    };
+  };
+  var icon_ = function(reactIcon) {
+    return icon()(reactIcon)({});
+  };
+
+  // node_modules/react-icons/lib/esm/iconBase.js
+  var import_react5 = __toESM(require_react());
+
+  // node_modules/react-icons/lib/esm/iconContext.js
+  var import_react4 = __toESM(require_react());
+  var DefaultContext = {
+    color: void 0,
+    size: void 0,
+    className: void 0,
+    style: void 0,
+    attr: void 0
+  };
+  var IconContext = import_react4.default.createContext && import_react4.default.createContext(DefaultContext);
+
+  // node_modules/react-icons/lib/esm/iconBase.js
+  var __assign = function() {
+    __assign = Object.assign || function(t) {
+      for (var s2, i2 = 1, n = arguments.length; i2 < n; i2++) {
+        s2 = arguments[i2];
+        for (var p2 in s2)
+          if (Object.prototype.hasOwnProperty.call(s2, p2))
+            t[p2] = s2[p2];
+      }
+      return t;
+    };
+    return __assign.apply(this, arguments);
+  };
+  var __rest = function(s2, e) {
+    var t = {};
+    for (var p2 in s2)
+      if (Object.prototype.hasOwnProperty.call(s2, p2) && e.indexOf(p2) < 0)
+        t[p2] = s2[p2];
+    if (s2 != null && typeof Object.getOwnPropertySymbols === "function")
+      for (var i2 = 0, p2 = Object.getOwnPropertySymbols(s2); i2 < p2.length; i2++) {
+        if (e.indexOf(p2[i2]) < 0 && Object.prototype.propertyIsEnumerable.call(s2, p2[i2]))
+          t[p2[i2]] = s2[p2[i2]];
+      }
+    return t;
+  };
+  function Tree2Element(tree) {
+    return tree && tree.map(function(node, i2) {
+      return import_react5.default.createElement(node.tag, __assign({
+        key: i2
+      }, node.attr), Tree2Element(node.child));
+    });
+  }
+  function GenIcon(data) {
+    return function(props) {
+      return import_react5.default.createElement(IconBase, __assign({
+        attr: __assign({}, data.attr)
+      }, props), Tree2Element(data.child));
+    };
+  }
+  function IconBase(props) {
+    var elem3 = function(conf) {
+      var attr = props.attr, size4 = props.size, title5 = props.title, svgProps = __rest(props, ["attr", "size", "title"]);
+      var computedSize = size4 || conf.size || "1em";
+      var className;
+      if (conf.className)
+        className = conf.className;
+      if (props.className)
+        className = (className ? className + " " : "") + props.className;
+      return import_react5.default.createElement("svg", __assign({
+        stroke: "currentColor",
+        fill: "currentColor",
+        strokeWidth: "0"
+      }, conf.attr, attr, svgProps, {
+        className,
+        style: __assign(__assign({
+          color: props.color || conf.color
+        }, conf.style), props.style),
+        height: computedSize,
+        width: computedSize,
+        xmlns: "http://www.w3.org/2000/svg"
+      }), title5 && import_react5.default.createElement("title", null, title5), props.children);
+    };
+    return IconContext !== void 0 ? import_react5.default.createElement(IconContext.Consumer, null, function(conf) {
+      return elem3(conf);
+    }) : elem3(DefaultContext);
+  }
+
+  // node_modules/react-icons/fa/index.esm.js
+  function FaCheck(props) {
+    return GenIcon({ "tag": "svg", "attr": { "viewBox": "0 0 512 512" }, "child": [{ "tag": "path", "attr": { "d": "M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z" } }] })(props);
+  }
+  function FaExclamationTriangle(props) {
+    return GenIcon({ "tag": "svg", "attr": { "viewBox": "0 0 576 512" }, "child": [{ "tag": "path", "attr": { "d": "M569.517 440.013C587.975 472.007 564.806 512 527.94 512H48.054c-36.937 0-59.999-40.055-41.577-71.987L246.423 23.985c18.467-32.009 64.72-31.951 83.154 0l239.94 416.028zM288 354c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z" } }] })(props);
+  }
+
+  // output/RewriteLive.DOM/index.js
+  var BoxGood = /* @__PURE__ */ function() {
+    function BoxGood2(value0) {
+      this.value0 = value0;
+    }
+    ;
+    BoxGood2.create = function(value0) {
+      return new BoxGood2(value0);
+    };
+    return BoxGood2;
+  }();
+  var BoxError = /* @__PURE__ */ function() {
+    function BoxError2(value0) {
+      this.value0 = value0;
+    }
+    ;
+    BoxError2.create = function(value0) {
+      return new BoxError2(value0);
+    };
+    return BoxError2;
+  }();
+  var BoxEmpty = /* @__PURE__ */ function() {
+    function BoxEmpty2() {
+    }
+    ;
+    BoxEmpty2.value = new BoxEmpty2();
+    return BoxEmpty2;
+  }();
+  var simpleDiv = function(classes) {
+    return function(children) {
+      return div2()({
+        className: classes,
+        children
+      });
+    };
+  };
+  var renderTextBox = function(spec) {
+    var icon2 = function() {
+      if (spec.state instanceof BoxGood) {
+        return span()({
+          className: "icon is-small is-right",
+          children: [icon_(FaCheck)]
+        });
+      }
+      ;
+      if (spec.state instanceof BoxError) {
+        return span()({
+          className: "icon is-small is-right",
+          children: [icon_(FaExclamationTriangle)]
+        });
+      }
+      ;
+      if (spec.state instanceof BoxEmpty) {
+        return mempty(monoidJSX);
+      }
+      ;
+      throw new Error("Failed pattern match at RewriteLive.DOM (line 86, column 12 - line 95, column 25): " + [spec.state.constructor.name]);
+    }();
+    var classes = function() {
+      if (spec.state instanceof BoxGood) {
+        return "is-success";
+      }
+      ;
+      if (spec.state instanceof BoxError) {
+        return "is-danger";
+      }
+      ;
+      if (spec.state instanceof BoxEmpty) {
+        return "";
+      }
+      ;
+      throw new Error("Failed pattern match at RewriteLive.DOM (line 82, column 15 - line 85, column 23): " + [spec.state.constructor.name]);
+    }();
+    return simpleDiv("control has-icons-right")([input()({
+      className: "input " + classes,
+      type: "text",
+      placeholder: spec.placeholder,
+      onChange: spec.onChange,
+      value: spec.value
+    }), icon2]);
+  };
+  var para = function(classes) {
+    return function(msg) {
+      return p()({
+        className: classes,
+        children: [text(msg)]
+      });
+    };
+  };
+  var appendClasses = function(orig) {
+    return function(rest) {
+      var $6 = length4(rest) > 0;
+      if ($6) {
+        return orig + (" " + rest);
+      }
+      ;
+      return orig;
+    };
+  };
+  var simpleColumn = function(classes) {
+    return function(children) {
+      return simpleDiv(appendClasses("column")(classes))(children);
+    };
+  };
+  var simpleColumns = function(classes) {
+    return function(children) {
+      return simpleDiv(appendClasses("columns")(classes))(children);
+    };
+  };
+  var simpleContainer = function(classes) {
+    return function(children) {
+      return div2()({
+        className: appendClasses("container")(classes),
+        children
+      });
+    };
+  };
+  var simpleSection = function(classes) {
+    return function(children) {
+      return section()({
+        className: appendClasses("section")(classes),
+        children
+      });
+    };
+  };
+
+  // output/RewriteLive.Events/index.js
+  var capturingTargetValue = function(setState) {
+    return function(go2) {
+      return capture(targetValue)(function(targetValue2) {
+        return setState(go2(fromMaybe("")(targetValue2)));
+      });
+    };
+  };
+
+  // output/RewriteLive.Expr/index.js
+  var Var = /* @__PURE__ */ function() {
+    function Var2(value0) {
+      this.value0 = value0;
+    }
+    ;
+    Var2.create = function(value0) {
+      return new Var2(value0);
+    };
+    return Var2;
+  }();
+  var Node = /* @__PURE__ */ function() {
+    function Node2(value0, value1) {
+      this.value0 = value0;
+      this.value1 = value1;
+    }
+    ;
+    Node2.create = function(value0) {
+      return function(value1) {
+        return new Node2(value0, value1);
+      };
+    };
+    return Node2;
+  }();
+  var AnnVar = /* @__PURE__ */ function() {
+    function AnnVar2(value0) {
+      this.value0 = value0;
+    }
+    ;
+    AnnVar2.create = function(value0) {
+      return new AnnVar2(value0);
+    };
+    return AnnVar2;
+  }();
+  var AnnNode = /* @__PURE__ */ function() {
+    function AnnNode2(value0, value1, value22) {
+      this.value0 = value0;
+      this.value1 = value1;
+      this.value2 = value22;
+    }
+    ;
+    AnnNode2.create = function(value0) {
+      return function(value1) {
+        return function(value22) {
+          return new AnnNode2(value0, value1, value22);
+        };
+      };
+    };
+    return AnnNode2;
+  }();
+  var undecorateNodes = function(v) {
+    if (v instanceof AnnVar) {
+      return new Var(v.value0);
+    }
+    ;
+    if (v instanceof AnnNode) {
+      return new Node(v.value0, map(functorList)(undecorateNodes)(v.value1));
+    }
+    ;
+    throw new Error("Failed pattern match at RewriteLive.Expr (line 64, column 1 - line 64, column 47): " + [v.constructor.name]);
+  };
+  var substitute = function(dict) {
+    return dict.substitute;
+  };
+  var substituteExpr = {
+    substitute: function(sub3) {
+      return function(e) {
+        if (e instanceof Var) {
+          return sub3(e.value0);
+        }
+        ;
+        if (e instanceof Node) {
+          return new Node(e.value0, map(functorList)(substitute(substituteExpr)(sub3))(e.value1));
+        }
+        ;
+        throw new Error("Failed pattern match at RewriteLive.Expr (line 78, column 22 - line 80, column 52): " + [e.constructor.name]);
+      };
+    }
+  };
+  var showExpr = {
+    show: function(expr) {
+      if (expr instanceof Node) {
+        var $36 = length(expr.value1) > 0;
+        if ($36) {
+          return expr.value0 + (" (" + (intercalate2(foldableList)(monoidString)(", ")(map(functorList)(show(showExpr))(expr.value1)) + ")"));
+        }
+        ;
+        return expr.value0;
+      }
+      ;
+      if (expr instanceof Var) {
+        return expr.value0;
+      }
+      ;
+      throw new Error("Failed pattern match at RewriteLive.Expr (line 90, column 15 - line 95, column 15): " + [expr.constructor.name]);
+    }
+  };
+  var renderExpr = function(expr) {
+    var go2 = function(v) {
+      if (v instanceof Var) {
+        return span()({
+          className: "var",
+          children: [text(v.value0)]
+        });
+      }
+      ;
+      if (v instanceof Node) {
+        return span()({
+          className: "node",
+          children: [text(v.value0 + function() {
+            var $42 = length(v.value1) > 0;
+            if ($42) {
+              return "(" + (intercalate2(foldableList)(monoidString)(", ")(map(functorList)(show(showExpr))(v.value1)) + ")");
+            }
+            ;
+            return "";
+          }())]
+        });
+      }
+      ;
+      throw new Error("Failed pattern match at RewriteLive.Expr (line 103, column 5 - line 105, column 38): " + [v.constructor.name]);
+    };
+    return span()({
+      className: "expr-inline",
+      children: [go2(expr)]
+    });
+  };
+  var mkSub = function(v) {
+    return function(e) {
+      return function(str) {
+        var $50 = str === v;
+        if ($50) {
+          return e;
+        }
+        ;
+        return new Var(str);
+      };
+    };
+  };
+  var substitute1 = function(dictSubstitute) {
+    return function(v) {
+      return function(e) {
+        return substitute(dictSubstitute)(mkSub(v)(e));
+      };
+    };
+  };
+  var extractNodes = function(v) {
+    if (v instanceof AnnVar) {
+      return new Var(v.value0);
+    }
+    ;
+    if (v instanceof AnnNode) {
+      return new Node(v.value0, map(functorList)(extractNodes)(v.value1));
+    }
+    ;
+    throw new Error("Failed pattern match at RewriteLive.Expr (line 54, column 1 - line 54, column 44): " + [v.constructor.name]);
+  };
+  var decorateNodes_rec = function(start2) {
+    return function(v) {
+      if (v instanceof Var) {
+        return new Tuple(start2, new AnnVar(v.value0));
+      }
+      ;
+      if (v instanceof Node) {
+        var go2 = function(n) {
+          return function(args1) {
+            if (args1 instanceof Nil) {
+              return new Tuple(n, Nil.value);
+            }
+            ;
+            if (args1 instanceof Cons) {
+              var v12 = decorateNodes_rec(n)(args1.value0);
+              var v2 = go2(v12.value0)(args1.value1);
+              return new Tuple(v2.value0, new Cons(v12.value1, v2.value1));
+            }
+            ;
+            throw new Error("Failed pattern match at RewriteLive.Expr (line 46, column 17 - line 51, column 43): " + [args1.constructor.name]);
+          };
+        };
+        var v1 = go2(start2 + 1 | 0)(v.value1);
+        return new Tuple(v1.value0, new AnnNode(v.value0, v1.value1, start2));
+      }
+      ;
+      throw new Error("Failed pattern match at RewriteLive.Expr (line 39, column 1 - line 39, column 60): " + [start2.constructor.name, v.constructor.name]);
+    };
+  };
+  var decorateNodes = function(expr) {
+    var v = decorateNodes_rec(0)(expr);
+    return v.value1;
+  };
+
+  // output/Data.List.NonEmpty/index.js
+  var toList = function(v) {
+    return new Cons(v.value0, v.value1);
+  };
+  var cons$prime = function(x) {
+    return function(xs) {
+      return new NonEmpty(x, xs);
+    };
+  };
+
+  // output/Parsing.Combinators/index.js
+  var withErrorMessage = function(p2) {
+    return function(msg) {
+      return alt(altParserT)(p2)(fail("Expected " + msg));
+    };
+  };
+  var sepBy1 = function(p2) {
+    return function(sep) {
+      return bind(bindParserT)(p2)(function(a2) {
+        return bind(bindParserT)(manyRec(monadRecParserT)(alternativeParserT)(applySecond(applyParserT)(sep)(p2)))(function(as) {
+          return pure(applicativeParserT)(cons$prime(a2)(as));
+        });
+      });
+    };
+  };
+  var sepBy = function(p2) {
+    return function(sep) {
+      return alt(altParserT)(map(functorParserT)(toList)(sepBy1(p2)(sep)))(pure(applicativeParserT)(Nil.value));
+    };
+  };
+  var option2 = function(a2) {
+    return function(p2) {
+      return alt(altParserT)(p2)(pure(applicativeParserT)(a2));
+    };
+  };
+  var many = /* @__PURE__ */ manyRec(monadRecParserT)(alternativeParserT);
+
+  // output/Data.Array.NonEmpty.Internal/foreign.js
+  var traverse1Impl = function() {
+    function Cont(fn) {
+      this.fn = fn;
+    }
+    var emptyList = {};
+    var ConsCell = function(head6, tail3) {
+      this.head = head6;
+      this.tail = tail3;
+    };
+    function finalCell(head6) {
+      return new ConsCell(head6, emptyList);
+    }
+    function consList(x) {
+      return function(xs) {
+        return new ConsCell(x, xs);
+      };
+    }
+    function listToArray(list) {
+      var arr = [];
+      var xs = list;
+      while (xs !== emptyList) {
+        arr.push(xs.head);
+        xs = xs.tail;
+      }
+      return arr;
+    }
+    return function(apply2) {
+      return function(map3) {
+        return function(f) {
+          var buildFrom = function(x, ys) {
+            return apply2(map3(consList)(f(x)))(ys);
+          };
+          var go2 = function(acc, currentLen, xs) {
+            if (currentLen === 0) {
+              return acc;
+            } else {
+              var last3 = xs[currentLen - 1];
+              return new Cont(function() {
+                var built = go2(buildFrom(last3, acc), currentLen - 1, xs);
+                return built;
+              });
+            }
+          };
+          return function(array) {
+            var acc = map3(finalCell)(f(array[array.length - 1]));
+            var result = go2(acc, array.length - 1, array);
+            while (result instanceof Cont) {
+              result = result.fn();
+            }
+            return map3(listToArray)(result);
+          };
+        };
+      };
+    };
+  }();
 
   // output/Parsing.String/index.js
   var updatePosSingle = function(v) {
@@ -25261,7 +26388,7 @@
         var $tco_done = false;
         var $tco_result;
         function $tco_loop(pos, before, after) {
-          var v = uncons3(before);
+          var v = uncons(before);
           if (v instanceof Nothing) {
             $tco_done = true;
             return pos;
@@ -25302,7 +26429,7 @@
         return function(v2) {
           return function($$throw2) {
             return function(done) {
-              var v3 = uncons3(v.value0);
+              var v3 = uncons(v.value0);
               if (v3 instanceof Nothing) {
                 return $$throw2(v, new ParseError("Unexpected EOF", v.value1));
               }
@@ -25330,6 +26457,22 @@
       };
     });
   };
+  var eof = /* @__PURE__ */ mkFn5(function(v) {
+    return function(v1) {
+      return function(v2) {
+        return function($$throw2) {
+          return function(done) {
+            var $70 = $$null(v.value0);
+            if ($70) {
+              return done(new ParseState(v.value0, v.value1, true), unit);
+            }
+            ;
+            return $$throw2(v, new ParseError("Expected EOF", v.value1));
+          };
+        };
+      };
+    };
+  });
   var consumeWith = function(f) {
     return mkFn5(function(v) {
       return function(v1) {
@@ -27692,7 +28835,7 @@
   }();
   var bsearch = function(a2) {
     return function(array) {
-      return function(size3) {
+      return function(size4) {
         return function(compare2) {
           var go2 = function($copy_i) {
             return function($copy_k) {
@@ -27734,7 +28877,7 @@
               return $tco_result;
             };
           };
-          return go2(0)(size3);
+          return go2(0)(size4);
         };
       };
     };
@@ -27758,13 +28901,13 @@
   };
   var getRule = function(blocks) {
     return function(unichar) {
-      return function(size3) {
+      return function(size4) {
         var key = {
           start: unichar,
           length: 1,
           convRule: nullrule
         };
-        var maybeCharBlock = bsearch(key)(blocks)(size3)(blkCmp);
+        var maybeCharBlock = bsearch(key)(blocks)(size4)(blkCmp);
         if (maybeCharBlock instanceof Nothing) {
           return Nothing.value;
         }
@@ -41434,8 +42577,8 @@
 
   // output/Parsing.String.Basic/index.js
   var skipSpaces = /* @__PURE__ */ consumeWith(function(input2) {
-    var consumed = takeWhile4(isSpace)(input2);
-    var remainder2 = drop2(length3(consumed))(input2);
+    var consumed = takeWhile(isSpace)(input2);
+    var remainder2 = drop(length3(consumed))(input2);
     return new Right({
       value: unit,
       consumed,
@@ -41451,208 +42594,7 @@
   var lower2 = /* @__PURE__ */ withErrorMessage(/* @__PURE__ */ satisfyCP(isLower))("lowercase letter");
   var alphaNum = /* @__PURE__ */ withErrorMessage(/* @__PURE__ */ satisfyCP(isAlphaNum))("letter or digit");
 
-  // output/React.Basic/foreign.js
-  var import_react = __toESM(require_react(), 1);
-  var createElement = import_react.default.createElement;
-  var Fragment = import_react.default.Fragment;
-  var empty2 = null;
-  function element(component) {
-    return (props) => Array.isArray(props.children) ? createElement.apply(null, [component, props].concat(props.children)) : createElement(component, props);
-  }
-  function fragment(children) {
-    return createElement.apply(null, [Fragment, null].concat(children));
-  }
-
-  // output/React.Basic/index.js
-  var semigroupJSX = {
-    append: function(a2) {
-      return function(b2) {
-        return fragment([a2, b2]);
-      };
-    }
-  };
-  var monoidJSX = {
-    mempty: empty2,
-    Semigroup0: function() {
-      return semigroupJSX;
-    }
-  };
-
-  // output/React.Basic.DOM/foreign.js
-  var import_react_dom = __toESM(require_react_dom(), 1);
-
-  // output/Effect.Unsafe/foreign.js
-  var unsafePerformEffect = function(f) {
-    return f();
-  };
-
-  // output/React.Basic.DOM.Internal/foreign.js
-  var import_react2 = __toESM(require_react(), 1);
-  function unsafeCreateDOMComponent_(createElement2) {
-    return (el) => {
-      const flattenDataProp = (props, ref) => {
-        var data = null;
-        if (props._data != null) {
-          data = { _data: void 0 };
-          Object.entries(props._data).forEach(function(entry) {
-            data["data-" + entry[0]] = entry[1];
-          });
-        }
-        var aria = null;
-        if (props._aria != null) {
-          aria = { _aria: void 0 };
-          Object.entries(props._aria).forEach(function(entry) {
-            aria["aria-" + entry[0]] = entry[1];
-          });
-        }
-        return Object.assign({ ref }, props, data, aria);
-      };
-      return () => {
-        const c = import_react2.default.forwardRef((props, ref) => createElement2(el)(flattenDataProp(props, ref)));
-        c.displayName = el;
-        return c;
-      };
-    };
-  }
-
-  // output/React.Basic.DOM.Internal/index.js
-  var unsafeCreateDOMComponent = /* @__PURE__ */ unsafeCreateDOMComponent_(element);
-
-  // output/React.Basic.DOM.Generated/index.js
-  var _span$prime = /* @__PURE__ */ unsafePerformEffect(/* @__PURE__ */ unsafeCreateDOMComponent("span"));
-  var span$prime = function() {
-    return _span$prime;
-  };
-  var span3 = function() {
-    return element(span$prime());
-  };
-  var _p$prime = /* @__PURE__ */ unsafePerformEffect(/* @__PURE__ */ unsafeCreateDOMComponent("p"));
-  var p$prime = function() {
-    return _p$prime;
-  };
-  var p = function() {
-    return element(p$prime());
-  };
-  var _ol$prime = /* @__PURE__ */ unsafePerformEffect(/* @__PURE__ */ unsafeCreateDOMComponent("ol"));
-  var ol$prime = function() {
-    return _ol$prime;
-  };
-  var ol = function() {
-    return element(ol$prime());
-  };
-  var ol_ = function(children) {
-    return ol()({
-      children
-    });
-  };
-  var _li$prime = /* @__PURE__ */ unsafePerformEffect(/* @__PURE__ */ unsafeCreateDOMComponent("li"));
-  var li$prime = function() {
-    return _li$prime;
-  };
-  var li = function() {
-    return element(li$prime());
-  };
-  var _label$prime = /* @__PURE__ */ unsafePerformEffect(/* @__PURE__ */ unsafeCreateDOMComponent("label"));
-  var label$prime = function() {
-    return _label$prime;
-  };
-  var label = function() {
-    return element(label$prime());
-  };
-  var _input$prime = /* @__PURE__ */ unsafePerformEffect(/* @__PURE__ */ unsafeCreateDOMComponent("input"));
-  var input$prime = function() {
-    return _input$prime;
-  };
-  var input = function() {
-    return element(input$prime());
-  };
-  var _i$prime = /* @__PURE__ */ unsafePerformEffect(/* @__PURE__ */ unsafeCreateDOMComponent("i"));
-  var i$prime = function() {
-    return _i$prime;
-  };
-  var i = function() {
-    return element(i$prime());
-  };
-  var _h5$prime = /* @__PURE__ */ unsafePerformEffect(/* @__PURE__ */ unsafeCreateDOMComponent("h5"));
-  var h5$prime = function() {
-    return _h5$prime;
-  };
-  var h5 = function() {
-    return element(h5$prime());
-  };
-  var _div$prime = /* @__PURE__ */ unsafePerformEffect(/* @__PURE__ */ unsafeCreateDOMComponent("div"));
-  var div$prime = function() {
-    return _div$prime;
-  };
-  var div2 = function() {
-    return element(div$prime());
-  };
-  var _article$prime = /* @__PURE__ */ unsafePerformEffect(/* @__PURE__ */ unsafeCreateDOMComponent("article"));
-  var article$prime = function() {
-    return _article$prime;
-  };
-  var article = function() {
-    return element(article$prime());
-  };
-
-  // output/React.Basic.DOM/index.js
-  var text = unsafeCoerce2;
-
-  // output/Expr/index.js
-  var Var = /* @__PURE__ */ function() {
-    function Var2(value0) {
-      this.value0 = value0;
-    }
-    ;
-    Var2.create = function(value0) {
-      return new Var2(value0);
-    };
-    return Var2;
-  }();
-  var Node = /* @__PURE__ */ function() {
-    function Node2(value0, value1) {
-      this.value0 = value0;
-      this.value1 = value1;
-    }
-    ;
-    Node2.create = function(value0) {
-      return function(value1) {
-        return new Node2(value0, value1);
-      };
-    };
-    return Node2;
-  }();
-  var token = /* @__PURE__ */ map(functorParserT)(/* @__PURE__ */ fromChars(foldableList))(/* @__PURE__ */ many2(alphaNum));
-  var sub_one = function(v) {
-    return function(e) {
-      return function(str) {
-        var $18 = str === v;
-        if ($18) {
-          return e;
-        }
-        ;
-        return new Var(str);
-      };
-    };
-  };
-  var showExpr = {
-    show: function(expr) {
-      if (expr instanceof Node) {
-        var $20 = length4(expr.value1) > 0;
-        if ($20) {
-          return expr.value0 + (" (" + (intercalate2(foldableList)(monoidString)(", ")(map(functorList)(show(showExpr))(expr.value1)) + ")"));
-        }
-        ;
-        return expr.value0;
-      }
-      ;
-      if (expr instanceof Var) {
-        return expr.value0;
-      }
-      ;
-      throw new Error("Failed pattern match at Expr (line 72, column 15 - line 77, column 15): " + [expr.constructor.name]);
-    }
-  };
+  // output/RewriteLive.Parsers/index.js
   var parseArgsWith = function(pExpr) {
     var expr = discard(discardUnit)(bindParserT)(skipSpaces)(function() {
       return bind(bindParserT)(pExpr)(function(e) {
@@ -41672,71 +42614,36 @@
       });
     });
   };
-  var expr_subFn = function(sub3) {
-    return function(e) {
-      if (e instanceof Var) {
-        return sub3(e.value0);
-      }
-      ;
-      if (e instanceof Node) {
-        return new Node(e.value0, map(functorList)(expr_subFn(sub3))(e.value1));
-      }
-      ;
-      throw new Error("Failed pattern match at Expr (line 53, column 20 - line 55, column 50): " + [e.constructor.name]);
-    };
+  var fromChars = function(dictFoldable) {
+    return foldMap(dictFoldable)(monoidString)(singleton5);
   };
-  var expr_sub = function(v) {
-    return function(e_v) {
-      return function(e) {
-        return expr_subFn(sub_one(v)(e_v))(e);
-      };
-    };
-  };
-  var exprToJSX = function(expr) {
-    var go2 = function(v) {
-      if (v instanceof Var) {
-        return span3()({
-          className: "var",
-          children: [text(v.value0)]
-        });
-      }
-      ;
-      if (v instanceof Node) {
-        return span3()({
-          className: "node",
-          children: [text(v.value0 + function() {
-            var $45 = length4(v.value1) > 0;
-            if ($45) {
-              return "(" + (intercalate2(foldableList)(monoidString)(", ")(map(functorList)(show(showExpr))(v.value1)) + ")");
-            }
-            ;
-            return "";
-          }())]
-        });
-      }
-      ;
-      throw new Error("Failed pattern match at Expr (line 95, column 5 - line 97, column 38): " + [v.constructor.name]);
-    };
-    return span3()({
-      className: "expr-inline",
-      children: [go2(expr)]
+  var token = /* @__PURE__ */ map(functorParserT)(/* @__PURE__ */ fromChars(foldableList))(/* @__PURE__ */ many(alphaNum));
+  var eatAll = function(parser) {
+    return bind(bindParserT)(parser)(function(out) {
+      return bind(bindParserT)(eof)(function() {
+        return pure(applicativeParserT)(out);
+      });
     });
   };
-  var cons5 = /* @__PURE__ */ function() {
-    var $68 = append(semigroupString);
-    return function($69) {
-      return $68(singleton4($69));
+  var parseAxiomName = function(str) {
+    var parser = map(functorParserT)(fromChars(foldableList))(many(alt(altParserT)(alphaNum)($$char("_"))));
+    return runParser(str)(eatAll(parser));
+  };
+  var cons4 = /* @__PURE__ */ function() {
+    var $16 = append(semigroupString);
+    return function($17) {
+      return $16(singleton5($17));
     };
   }();
   var parseHeadConstant = /* @__PURE__ */ bind(bindParserT)(upper2)(function(c) {
     return bind(bindParserT)(token)(function(rest) {
-      return pure(applicativeParserT)(cons5(c)(rest));
+      return pure(applicativeParserT)(cons4(c)(rest));
     });
   });
   var parseFunctionWith = function(pExpr) {
     return bind(bindParserT)(parseHeadConstant)(function(fn) {
       return discard(discardUnit)(bindParserT)(skipSpaces)(function() {
-        return bind(bindParserT)(option(Nil.value)(parseArgsWith(pExpr)))(function(args) {
+        return bind(bindParserT)(option2(Nil.value)(parseArgsWith(pExpr)))(function(args) {
           return discard(discardUnit)(bindParserT)(skipSpaces)(function() {
             return pure(applicativeParserT)(new Node(fn, args));
           });
@@ -41746,318 +42653,702 @@
   };
   var parseVariable = /* @__PURE__ */ bind(bindParserT)(lower2)(function(c) {
     return bind(bindParserT)(token)(function(rest) {
-      return pure(applicativeParserT)(new Var(cons5(c)(rest)));
+      return pure(applicativeParserT)(new Var(cons4(c)(rest)));
     });
   });
   var parseExpr = /* @__PURE__ */ fix(lazyParserT)(function(self) {
     return alt(altParserT)(parseVariable)(parseFunctionWith(self));
   });
-  var parseExpression = function(input2) {
-    var v = runParserT$prime(monadRecIdentity)(new ParseState(input2, initialPos, false))(parseExpr);
-    return {
-      parserResult: v.value0,
-      parserLeftover: v.value1.value0
-    };
+  var parseAxiomStmt = function(str) {
+    var eqnParser = bind(bindParserT)(parseExpr)(function(e1) {
+      return discard(discardUnit)(bindParserT)(skipSpaces)(function() {
+        return discard(discardUnit)(bindParserT)($$void(functorParserT)($$char("=")))(function() {
+          return discard(discardUnit)(bindParserT)(skipSpaces)(function() {
+            return bind(bindParserT)(parseExpr)(function(e2) {
+              return pure(applicativeParserT)({
+                left: e1,
+                right: e2
+              });
+            });
+          });
+        });
+      });
+    });
+    return runParser(str)(eatAll(eqnParser));
   };
-  var tryParseExpression = function(input2) {
-    var v = parseExpression(input2);
-    if (v.parserResult instanceof Left) {
-      return Nothing.value;
+  var parseExpression = function(str) {
+    return runParser(str)(eatAll(parseExpr));
+  };
+
+  // output/RewriteLive.Types/index.js
+  var RwLeftToRight = /* @__PURE__ */ function() {
+    function RwLeftToRight2() {
     }
     ;
-    if (v.parserResult instanceof Right) {
-      return new Just(v.parserResult.value0);
+    RwLeftToRight2.value = new RwLeftToRight2();
+    return RwLeftToRight2;
+  }();
+  var RwRightToLeft = /* @__PURE__ */ function() {
+    function RwRightToLeft2() {
     }
     ;
-    throw new Error("Failed pattern match at Expr (line 175, column 6 - line 177, column 31): " + [v.parserResult.constructor.name]);
-  };
-
-  // output/React.Basic.DOM.Client/foreign.js
-  var import_client = __toESM(require_client(), 1);
-  var createRoot = (container) => () => import_client.default.createRoot(container);
-  var renderRoot = (root) => (children) => () => root.render(children);
-
-  // output/Unification/foreign.js
-  var typeset = function() {
-    MathJax.typeset();
-    console.log("Typesetting!");
-  };
-
-  // output/React.Basic.Classic/foreign.js
-  var import_react3 = __toESM(require_react(), 1);
-  var createComponent = function() {
-    function toSelf() {
-      var instance = this;
-      var setStateThen = function(update) {
-        return function(effects) {
-          return function() {
-            instance.setState(function(state3) {
-              return { $$state: update(state3.$$state) };
-            }, effects);
+    RwRightToLeft2.value = new RwRightToLeft2();
+    return RwRightToLeft2;
+  }();
+  var OnLeft = /* @__PURE__ */ function() {
+    function OnLeft2() {
+    }
+    ;
+    OnLeft2.value = new OnLeft2();
+    return OnLeft2;
+  }();
+  var OnRight = /* @__PURE__ */ function() {
+    function OnRight2() {
+    }
+    ;
+    OnRight2.value = new OnRight2();
+    return OnRight2;
+  }();
+  var RewriteCmd = /* @__PURE__ */ function() {
+    function RewriteCmd2(value0, value1, value22, value32) {
+      this.value0 = value0;
+      this.value1 = value1;
+      this.value2 = value22;
+      this.value3 = value32;
+    }
+    ;
+    RewriteCmd2.create = function(value0) {
+      return function(value1) {
+        return function(value22) {
+          return function(value32) {
+            return new RewriteCmd2(value0, value1, value22, value32);
           };
         };
       };
-      var self = {
-        props: instance.props.$$props,
-        state: instance.state === null ? null : instance.state.$$state,
-        setState: function(update) {
-          return setStateThen(update)(void 0);
-        },
-        setStateThen,
-        instance_: instance
-      };
-      return self;
-    }
-    function componentDidMount() {
-      var didMount = this.$$spec.didMount;
-      if (didMount !== void 0) {
-        didMount(this.toSelf())();
-      }
-    }
-    function shouldComponentUpdate(nextProps, nextState) {
-      var shouldUpdate = this.$$spec.shouldUpdate;
-      return shouldUpdate === void 0 ? true : shouldUpdate(this.toSelf())({
-        nextProps: nextProps.$$props,
-        nextState: nextState === null ? null : nextState.$$state
-      });
-    }
-    function componentDidUpdate(prevProps, prevState) {
-      var didUpdate = this.$$spec.didUpdate;
-      if (didUpdate !== void 0) {
-        didUpdate(this.toSelf())({
-          prevProps: prevProps.$$props,
-          prevState: prevState === null ? null : prevState.$$state
-        })();
-      }
-    }
-    function componentWillUnmount() {
-      this.$$mounted = false;
-      var willUnmount = this.$$spec.willUnmount;
-      if (willUnmount !== void 0) {
-        willUnmount(this.toSelf())();
-      }
-    }
-    function render() {
-      return this.$$spec.render(this.toSelf());
-    }
-    return function(displayName) {
-      var Component = function constructor(props) {
-        this.$$mounted = true;
-        this.$$spec = props.$$spec;
-        this.state = this.$$spec.initialState === void 0 ? null : { $$state: this.$$spec.initialState };
-        return this;
-      };
-      Component.displayName = displayName;
-      Component.prototype = Object.create(import_react3.default.Component.prototype);
-      Component.prototype.constructor = Component;
-      Component.prototype.toSelf = toSelf;
-      Component.prototype.shouldComponentUpdate = shouldComponentUpdate;
-      Component.prototype.componentDidMount = componentDidMount;
-      Component.prototype.componentDidUpdate = componentDidUpdate;
-      Component.prototype.componentWillUnmount = componentWillUnmount;
-      Component.prototype.render = render;
-      return Component;
     };
+    return RewriteCmd2;
   }();
-  function _make($$type) {
-    return function($$spec) {
-      var $$specPadded = {
-        initialState: $$spec.initialState,
-        render: $$spec.render,
-        didMount: $$spec.didMount,
-        shouldUpdate: $$spec.shouldUpdate,
-        didUpdate: $$spec.didUpdate,
-        willUnmount: $$spec.willUnmount
-      };
-      return function($$props) {
-        var props = {
-          $$props,
-          $$spec: $$specPadded
-        };
-        return import_react3.default.createElement($$type, props);
-      };
-    };
-  }
-
-  // output/Data.Nullable/foreign.js
-  function nullable(a2, r, f) {
-    return a2 == null ? r : f(a2);
-  }
-
-  // output/Data.Nullable/index.js
-  var toMaybe = function(n) {
-    return nullable(n, Nothing.value, Just.create);
-  };
-
-  // output/React.Basic.Classic/index.js
-  var make = function() {
-    return _make;
-  };
-
-  // output/ExprTextBox/index.js
-  var BadInput = /* @__PURE__ */ function() {
-    function BadInput2(value0) {
-      this.value0 = value0;
-    }
-    ;
-    BadInput2.create = function(value0) {
-      return new BadInput2(value0);
-    };
-    return BadInput2;
-  }();
-  var GoodInput = /* @__PURE__ */ function() {
-    function GoodInput2(value0) {
-      this.value0 = value0;
-    }
-    ;
-    GoodInput2.create = function(value0) {
-      return new GoodInput2(value0);
-    };
-    return GoodInput2;
-  }();
-  var NoInput = /* @__PURE__ */ function() {
-    function NoInput2() {
-    }
-    ;
-    NoInput2.value = new NoInput2();
-    return NoInput2;
-  }();
-  var readInput = function(input2) {
-    var $1 = input2 === "";
-    if ($1) {
-      return NoInput.value;
-    }
-    ;
-    var v = parseExpression(input2);
-    if (v.parserResult instanceof Left) {
-      return new BadInput("parse error: " + show(showParseError)(v.parserResult.value0));
-    }
-    ;
-    if (v.parserResult instanceof Right) {
-      var $5 = v.parserLeftover !== "";
-      if ($5) {
-        return new BadInput("The parser left this input unprocessed: " + v.parserLeftover);
+  var showLorR = {
+    show: function(v) {
+      if (v instanceof OnLeft) {
+        return "left";
       }
       ;
-      return new GoodInput(v.parserResult.value0);
+      if (v instanceof OnRight) {
+        return "right";
+      }
+      ;
+      throw new Error("Failed pattern match at RewriteLive.Types (line 33, column 1 - line 35, column 25): " + [v.constructor.name]);
+    }
+  };
+  var nameIsFresh = function(name15) {
+    return function(axioms) {
+      return !elem(foldableList)(eqString)(name15)(map(functorList)(function(v) {
+        return v.name;
+      })(axioms));
+    };
+  };
+  var eqRwDir = {
+    eq: function(x) {
+      return function(y) {
+        if (x instanceof RwLeftToRight && y instanceof RwLeftToRight) {
+          return true;
+        }
+        ;
+        if (x instanceof RwRightToLeft && y instanceof RwRightToLeft) {
+          return true;
+        }
+        ;
+        return false;
+      };
+    }
+  };
+
+  // output/RewriteLive.Axioms/index.js
+  var stmtToTextboxState = function(stmt) {
+    var $9 = stmt === "";
+    if ($9) {
+      return BoxEmpty.value;
     }
     ;
-    throw new Error("Failed pattern match at ExprTextBox (line 28, column 11 - line 34, column 31): " + [v.parserResult.constructor.name]);
+    var v = parseAxiomStmt(stmt);
+    if (v instanceof Left) {
+      return new BoxError(v.value0);
+    }
+    ;
+    if (v instanceof Right) {
+      return new BoxGood(v.value0);
+    }
+    ;
+    throw new Error("Failed pattern match at RewriteLive.Axioms (line 64, column 8 - line 66, column 30): " + [v.constructor.name]);
   };
-  var exprTextBoxC = /* @__PURE__ */ createComponent("exprTextBox");
-  var exprTextBox = /* @__PURE__ */ function() {
-    var render = function(self) {
-      var output2 = readInput(self.props.value);
-      var maybe_error = function() {
-        if (output2 instanceof NoInput) {
-          return mempty(monoidJSX);
-        }
-        ;
-        if (output2 instanceof BadInput) {
-          return text(output2.value0);
-        }
-        ;
-        if (output2 instanceof GoodInput) {
-          return text("Parsed input as: " + show(showExpr)(output2.value0));
-        }
-        ;
-        throw new Error("Failed pattern match at ExprTextBox (line 74, column 23 - line 77, column 68): " + [output2.constructor.name]);
-      }();
-      var icon = function() {
-        if (output2 instanceof NoInput) {
-          return mempty(monoidJSX);
-        }
-        ;
-        if (output2 instanceof BadInput) {
-          return span3()({
-            className: "icon is-small is-right",
-            children: [i()({
-              className: "fas fa-triangle-exclamation"
-            })]
-          });
-        }
-        ;
-        if (output2 instanceof GoodInput) {
-          return span3()({
-            className: "icon is-small is-right",
-            children: [i()({
-              className: "fas fa-check"
-            })]
-          });
-        }
-        ;
-        throw new Error("Failed pattern match at ExprTextBox (line 66, column 16 - line 73, column 66): " + [output2.constructor.name]);
-      }();
-      var classes = function() {
-        if (output2 instanceof BadInput) {
-          return "is-danger";
-        }
-        ;
-        if (output2 instanceof GoodInput) {
-          return "is-success";
-        }
-        ;
-        return "";
-      }();
-      return div2()({
-        className: "field exprTextBox",
-        children: [label()({
-          className: "label",
-          children: [text(self.props.label)]
-        }), div2()({
-          className: "control has-icons-right",
-          children: [input()({
-            className: "input " + classes,
-            type: "text",
-            placeholder: "Text input",
-            onChange: self.props.onChange,
-            value: self.props.value
-          }), icon]
-        }), maybe_error]
+  var renderAxiom = function(onButtonClick) {
+    return function(v) {
+      var mkIcon = function(dir2) {
+        return span()({
+          className: "icon",
+          children: [i()({
+            className: function() {
+              if (dir2 instanceof RwLeftToRight) {
+                return "fas fa-right-long";
+              }
+              ;
+              if (dir2 instanceof RwRightToLeft) {
+                return "fas fa-left-long";
+              }
+              ;
+              throw new Error("Failed pattern match at RewriteLive.Axioms (line 109, column 41 - line 111, column 68): " + [dir2.constructor.name]);
+            }()
+          })]
+        });
+      };
+      var mkButton = function(dir2) {
+        return button()({
+          className: "button rw-button is-small is-primary",
+          children: [mkIcon(dir2)],
+          onClick: capture_(onButtonClick(dir2))
+        });
+      };
+      return simpleDiv("axiom")([simpleDiv("axiom_name")([text(v.name)]), simpleDiv("axiom_stmt")([renderExpr(v.statement.left), text(" = "), renderExpr(v.statement.right)]), mkButton(RwLeftToRight.value), mkButton(RwRightToLeft.value)]);
+    };
+  };
+  var renderAxioms = function(onButtonClick) {
+    return function(axioms) {
+      var mkItem = function(axiom) {
+        return li_([renderAxiom(onButtonClick(axiom))(axiom)]);
+      };
+      return ol()({
+        className: "axioms_list",
+        children: fromFoldable(foldableList)(map(functorList)(mkItem)(reverse(axioms)))
       });
     };
-    var initialState2 = {};
-    return make()(exprTextBoxC)({
-      initialState: initialState2,
-      render
+  };
+  var nameToTextboxState = function(axioms) {
+    return function(name15) {
+      var $18 = name15 === "";
+      if ($18) {
+        return BoxEmpty.value;
+      }
+      ;
+      var v = parseAxiomName(name15);
+      if (v instanceof Left) {
+        return new BoxError(new Just(v.value0));
+      }
+      ;
+      if (v instanceof Right) {
+        var $21 = !nameIsFresh(v.value0)(axioms);
+        if ($21) {
+          return new BoxError(Nothing.value);
+        }
+        ;
+        return new BoxGood(name15);
+      }
+      ;
+      throw new Error("Failed pattern match at RewriteLive.Axioms (line 50, column 8 - line 56, column 24): " + [v.constructor.name]);
+    };
+  };
+  var tryReadingFormState = function(self) {
+    var go2 = function(v) {
+      return function(v1) {
+        if (v instanceof BoxGood && v1 instanceof BoxGood) {
+          return new Just({
+            name: v.value0,
+            statement: v1.value0
+          });
+        }
+        ;
+        return Nothing.value;
+      };
+    };
+    return go2(nameToTextboxState(self.props.axioms)(self.state.name))(stmtToTextboxState(self.state.statement));
+  };
+  var initialAxiomsState = {
+    name: "",
+    statement: ""
+  };
+  var renderAxiomForm = function(self) {
+    var updateStmt = capturingTargetValue(self.setState)(function(statement) {
+      return function(state3) {
+        return {
+          name: state3.name,
+          statement
+        };
+      };
+    });
+    var updateName = capturingTargetValue(self.setState)(function(name15) {
+      return function(state3) {
+        return {
+          name: name15,
+          statement: state3.statement
+        };
+      };
+    });
+    var trySubmit = function() {
+      var v = tryReadingFormState(self);
+      if (v instanceof Just) {
+        return capture_(function __do2() {
+          self.props.handleSubmit(v.value0)();
+          return self.setState(function(v1) {
+            return initialAxiomsState;
+          })();
+        });
+      }
+      ;
+      if (v instanceof Nothing) {
+        return capture_(pure(applicativeEffect)(unit));
+      }
+      ;
+      throw new Error("Failed pattern match at RewriteLive.Axioms (line 160, column 7 - line 164, column 40): " + [v.constructor.name]);
+    }();
+    var stmtState = stmtToTextboxState(self.state.statement);
+    var stmtInput = renderTextBox({
+      value: self.state.statement,
+      placeholder: "expr1 = expr2",
+      state: stmtState,
+      onChange: updateStmt
+    });
+    var stmtError = function() {
+      if (stmtState instanceof BoxError) {
+        return new Just("Parser error in equation: " + show(showParseError)(stmtState.value0));
+      }
+      ;
+      return Nothing.value;
+    }();
+    var ready = isJust(tryReadingFormState(self));
+    var sbmtButton = button()({
+      className: "button is-info",
+      type: "submit",
+      disabled: !ready,
+      "_data": function() {
+        var $31 = !ready;
+        if ($31) {
+          return singleton4("tooltip")("Please fix errors first");
+        }
+        ;
+        return empty3;
+      }(),
+      children: [text("Add")]
+    });
+    var nameState = nameToTextboxState(self.props.axioms)(self.state.name);
+    var nameInput = renderTextBox({
+      value: self.state.name,
+      placeholder: "axiom name",
+      state: nameState,
+      onChange: updateName
+    });
+    var nameError = function() {
+      if (nameState instanceof BoxError) {
+        if (nameState.value0 instanceof Nothing) {
+          return new Just("Axiom name " + (self.state.name + " is not fresh."));
+        }
+        ;
+        if (nameState.value0 instanceof Just) {
+          return new Just("Parser error in name: " + show(showParseError)(nameState.value0.value0));
+        }
+        ;
+        throw new Error("Failed pattern match at RewriteLive.Axioms (line 197, column 11 - line 199, column 70): " + [nameState.value0.constructor.name]);
+      }
+      ;
+      return Nothing.value;
+    }();
+    var maybeError = function(merr) {
+      return fromMaybe(mempty(monoidJSX))(map(functorMaybe)(function(err) {
+        return li_([text(err)]);
+      })(merr));
+    };
+    var help = para("help")("Add an axiom in the form expr1 = expr2. Make sure to give it a meaningful name.");
+    var formLabel = label()({
+      className: "label",
+      children: [text("Add a new equational axiom")]
+    });
+    var errors = simpleDiv("errors")([ul()({
+      className: "",
+      children: [maybeError(nameError), maybeError(stmtError)]
+    })]);
+    return form()({
+      className: "block",
+      children: [formLabel, simpleDiv("field has-addons")([simpleDiv("control")([nameInput]), simpleDiv("control")([stmtInput]), simpleDiv("control")([sbmtButton])]), help, errors],
+      onSubmit: trySubmit
+    });
+  };
+  var axiomsArea = /* @__PURE__ */ createComponent("AxiomsArea");
+  var renderAxiomsArea = /* @__PURE__ */ function() {
+    var mkTitle = h3()({
+      className: "title is-3",
+      children: [text("Axioms")]
+    });
+    var mkList = function(self) {
+      return div2()({
+        className: "block",
+        children: [label()({
+          className: "label title is-5",
+          children: [text("Current axiom set")]
+        }), renderAxioms(self.props.handleRewrite)(self.props.axioms)]
+      });
+    };
+    return make()(axiomsArea)({
+      initialState: initialAxiomsState,
+      render: function(self) {
+        return fold(foldableArray)(monoidJSX)([mkTitle, mkList(self), renderAxiomForm(self)]);
+      }
     });
   }();
 
-  // output/React.Basic.Events/index.js
-  var EventFn = function(x) {
-    return x;
+  // output/RewriteLive.Goal/index.js
+  var GoalEmpty = /* @__PURE__ */ function() {
+    function GoalEmpty2() {
+    }
+    ;
+    GoalEmpty2.value = new GoalEmpty2();
+    return GoalEmpty2;
+  }();
+  var GoalPlain = /* @__PURE__ */ function() {
+    function GoalPlain2(value0, value1) {
+      this.value0 = value0;
+      this.value1 = value1;
+    }
+    ;
+    GoalPlain2.create = function(value0) {
+      return function(value1) {
+        return new GoalPlain2(value0, value1);
+      };
+    };
+    return GoalPlain2;
+  }();
+  var GoalDec = /* @__PURE__ */ function() {
+    function GoalDec2(value0, value1) {
+      this.value0 = value0;
+      this.value1 = value1;
+    }
+    ;
+    GoalDec2.create = function(value0) {
+      return function(value1) {
+        return new GoalDec2(value0, value1);
+      };
+    };
+    return GoalDec2;
+  }();
+  var uidToColorClass = function(i2) {
+    var remainder2 = mod(euclideanRingInt)(i2)(6);
+    var go2 = function(v) {
+      if (v === 0) {
+        return "c1";
+      }
+      ;
+      if (v === 1) {
+        return "c2";
+      }
+      ;
+      if (v === 2) {
+        return "c3";
+      }
+      ;
+      if (v === 3) {
+        return "c3";
+      }
+      ;
+      if (v === 4) {
+        return "c4";
+      }
+      ;
+      if (v === 5) {
+        return "c5";
+      }
+      ;
+      if (v === 6) {
+        return "c6";
+      }
+      ;
+      return "cxxx";
+    };
+    return go2(remainder2);
   };
-  var unsafeEventFn = EventFn;
-  var semigroupoidBuilder = semigroupoidFn;
-  var handler = function(v) {
-    return function(cb) {
-      return function($18) {
-        return cb(v($18))();
+  var renderGoalExpr = function(v) {
+    if (v instanceof Var) {
+      return text(v.value0);
+    }
+    ;
+    if (v instanceof Node) {
+      return span()({
+        className: "expr-hi",
+        children: append(semigroupArray)([text(v.value0)])(function() {
+          var $15 = length(v.value1) === 0;
+          if ($15) {
+            return [];
+          }
+          ;
+          return append(semigroupArray)([text(" (")])(append(semigroupArray)(intersperse(text(", "))(fromFoldable(foldableList)(map(functorList)(renderGoalExpr)(v.value1))))([text(")")]));
+        }())
+      });
+    }
+    ;
+    throw new Error("Failed pattern match at RewriteLive.Goal (line 57, column 1 - line 57, column 30): " + [v.constructor.name]);
+  };
+  var renderGoalAnnExpr = function(v) {
+    return function(v1) {
+      if (v1 instanceof AnnVar) {
+        return text(v1.value0);
+      }
+      ;
+      if (v1 instanceof AnnNode) {
+        var renderArgs = function() {
+          var $21 = length(v1.value1) === 0;
+          if ($21) {
+            return [];
+          }
+          ;
+          return append(semigroupArray)([text(" (")])(append(semigroupArray)(intersperse(text(", "))(fromFoldable(foldableList)(map(functorList)(renderGoalAnnExpr(v))(v1.value1))))([text(")")]));
+        }();
+        var handleClick = function() {
+          if (v1.value2.value1 instanceof Nothing) {
+            return handler_(pure(applicativeEffect)(unit));
+          }
+          ;
+          if (v1.value2.value1 instanceof Just) {
+            return capture_(v(v1.value2.value0)(v1.value2.value1.value0));
+          }
+          ;
+          throw new Error("Failed pattern match at RewriteLive.Goal (line 89, column 7 - line 94, column 52): " + [v1.value2.value1.constructor.name]);
+        }();
+        var color = function() {
+          if (v1.value2.value1 instanceof Nothing) {
+            return "";
+          }
+          ;
+          if (v1.value2.value1 instanceof Just) {
+            return uidToColorClass(v1.value2.value0);
+          }
+          ;
+          throw new Error("Failed pattern match at RewriteLive.Goal (line 80, column 7 - line 82, column 38): " + [v1.value2.value1.constructor.name]);
+        }();
+        return span()({
+          className: appendClasses("expr-hi")(color),
+          children: append(semigroupArray)([text(v1.value0)])(renderArgs),
+          onClick: handleClick
+        });
+      }
+      ;
+      throw new Error("Failed pattern match at RewriteLive.Goal (line 69, column 1 - line 71, column 28): " + [v.constructor.name, v1.constructor.name]);
+    };
+  };
+  var renderGoalState = function(v) {
+    return function(v1) {
+      if (v1 instanceof GoalPlain) {
+        return simpleDiv("expr-goal")([renderGoalExpr(v1.value0), span()({
+          className: "expr-hi",
+          children: [text("=")]
+        }), renderGoalExpr(v1.value1)]);
+      }
+      ;
+      if (v1 instanceof GoalDec) {
+        return simpleDiv("expr-goal")([renderGoalAnnExpr(v(OnLeft.value))(v1.value0), span()({
+          className: "expr-hi",
+          children: [text("=")]
+        }), renderGoalAnnExpr(v(OnRight.value))(v1.value1)]);
+      }
+      ;
+      if (v1 instanceof GoalEmpty) {
+        return mempty(monoidJSX);
+      }
+      ;
+      throw new Error("Failed pattern match at RewriteLive.Goal (line 110, column 1 - line 110, column 76): " + [v.constructor.name, v1.constructor.name]);
+    };
+  };
+  var mkState = function(left) {
+    return function(right) {
+      var go2 = function(text6) {
+        var $37 = text6 === "";
+        if ($37) {
+          return BoxEmpty.value;
+        }
+        ;
+        var v = parseExpression(text6);
+        if (v instanceof Left) {
+          return new BoxError(v.value0);
+        }
+        ;
+        if (v instanceof Right) {
+          return new BoxGood(v.value0);
+        }
+        ;
+        throw new Error("Failed pattern match at RewriteLive.Goal (line 204, column 12 - line 206, column 35): " + [v.constructor.name]);
+      };
+      return {
+        goalLeft: left,
+        goalRight: right,
+        leftState: go2(left),
+        rightState: go2(right)
       };
     };
   };
-
-  // output/React.Basic.DOM.Events/index.js
-  var targetValue = /* @__PURE__ */ unsafeEventFn(function(e) {
-    return toMaybe(e.target.value);
-  });
-  var stopPropagation = /* @__PURE__ */ unsafeEventFn(function(e) {
-    return unsafePerformEffect(function __do2() {
-      e.stopPropagation();
-      return e;
-    });
-  });
-  var preventDefault = /* @__PURE__ */ unsafeEventFn(function(e) {
-    return unsafePerformEffect(function __do2() {
-      e.preventDefault();
-      return e;
-    });
-  });
-  var capture = function(eventFn) {
-    return handler(composeFlipped(semigroupoidBuilder)(preventDefault)(composeFlipped(semigroupoidBuilder)(stopPropagation)(eventFn)));
+  var initialGoalFormState = /* @__PURE__ */ function() {
+    return {
+      goalLeft: "",
+      goalRight: "",
+      leftState: BoxEmpty.value,
+      rightState: BoxEmpty.value
+    };
+  }();
+  var goalArea = /* @__PURE__ */ createComponent("GoalArea");
+  var formReady = function(v) {
+    var go2 = function(v1) {
+      return function(v2) {
+        if (v1 instanceof BoxGood && v2 instanceof BoxGood) {
+          return new Just({
+            left: v1.value0,
+            right: v2.value0
+          });
+        }
+        ;
+        return Nothing.value;
+      };
+    };
+    return go2(v.leftState)(v.rightState);
   };
+  var renderGoalForm = function(self) {
+    var submit2 = function() {
+      var v = formReady(self.state);
+      if (v instanceof Just) {
+        return capture_(function __do2() {
+          self.props.handleSubmit(v.value0)();
+          return self.setState(function(v1) {
+            return mkState("")("");
+          })();
+        });
+      }
+      ;
+      if (v instanceof Nothing) {
+        return capture_(pure(applicativeEffect)(unit));
+      }
+      ;
+      throw new Error("Failed pattern match at RewriteLive.Goal (line 231, column 7 - line 236, column 31): " + [v.constructor.name]);
+    }();
+    var sbmtButton = button()({
+      className: "button is-info",
+      type: "submit",
+      disabled: isNothing(formReady(self.state)),
+      "_data": function() {
+        var $50 = isNothing(formReady(self.state));
+        if ($50) {
+          return singleton4("tooltip")("Please fix errors first");
+        }
+        ;
+        return empty3;
+      }(),
+      children: [text("Add goal")]
+    });
+    var rightError = function() {
+      if (self.state.rightState instanceof BoxError) {
+        return new Just("Parser error in right expression: " + show(showParseError)(self.state.rightState.value0));
+      }
+      ;
+      return Nothing.value;
+    }();
+    var leftError = function() {
+      if (self.state.leftState instanceof BoxError) {
+        return new Just("Parser error in left expression: " + show(showParseError)(self.state.leftState.value0));
+      }
+      ;
+      return Nothing.value;
+    }();
+    var help = para("help")("Type in two expressions to get started.");
+    var handleRight = capturingTargetValue(self.setState)(function(right) {
+      return function(state3) {
+        return mkState(state3.goalLeft)(right);
+      };
+    });
+    var rightInput = renderTextBox({
+      value: self.state.goalRight,
+      placeholder: "expr2",
+      state: self.state.rightState,
+      onChange: handleRight
+    });
+    var handleLeft = capturingTargetValue(self.setState)(function(left) {
+      return function(state3) {
+        return mkState(left)(state3.goalRight);
+      };
+    });
+    var leftInput = renderTextBox({
+      value: self.state.goalLeft,
+      placeholder: "expr1",
+      state: self.state.leftState,
+      onChange: handleLeft
+    });
+    var formLabel = label()({
+      className: "label",
+      children: [text("Set a goal")]
+    });
+    var errors = simpleDiv("errors")([ol_([function() {
+      if (leftError instanceof Nothing) {
+        return text("");
+      }
+      ;
+      if (leftError instanceof Just) {
+        return li_([text(leftError.value0)]);
+      }
+      ;
+      throw new Error("Failed pattern match at RewriteLive.Goal (line 290, column 11 - line 292, column 49): " + [leftError.constructor.name]);
+    }(), function() {
+      if (rightError instanceof Nothing) {
+        return text("");
+      }
+      ;
+      if (rightError instanceof Just) {
+        return li_([text(rightError.value0)]);
+      }
+      ;
+      throw new Error("Failed pattern match at RewriteLive.Goal (line 293, column 11 - line 295, column 49): " + [rightError.constructor.name]);
+    }()])]);
+    var equalsButton = button()({
+      className: "button is-static",
+      type: "button",
+      children: [text("=")]
+    });
+    var demoButton = button()({
+      className: "button is-danger",
+      children: [text("Demo")],
+      onClick: handler_(self.props.runDemo)
+    });
+    if (self.props.goalState instanceof GoalEmpty) {
+      return form()({
+        className: "block",
+        children: [formLabel, simpleDiv("field has-addons")([simpleDiv("control")([leftInput]), simpleDiv("control")([equalsButton]), simpleDiv("control")([rightInput]), simpleDiv("control")([sbmtButton]), simpleDiv("control")([demoButton])]), help, errors],
+        onSubmit: submit2
+      });
+    }
+    ;
+    return mempty(monoidJSX);
+  };
+  var renderGoalArea = /* @__PURE__ */ make()(goalArea)({
+    initialState: initialGoalFormState,
+    render: function(self) {
+      return append(semigroupJSX)(renderGoalState(self.props.handleClick)(self.props.goalState))(renderGoalForm(self));
+    }
+  });
 
-  // output/Unification/index.js
+  // output/Data.Pair/index.js
+  var Pair = /* @__PURE__ */ function() {
+    function Pair2(value0, value1) {
+      this.value0 = value0;
+      this.value1 = value1;
+    }
+    ;
+    Pair2.create = function(value0) {
+      return function(value1) {
+        return new Pair2(value0, value1);
+      };
+    };
+    return Pair2;
+  }();
+
+  // output/RewriteLive.Unification/index.js
+  var Unfreeze = /* @__PURE__ */ function() {
+    function Unfreeze2() {
+    }
+    ;
+    Unfreeze2.value = new Unfreeze2();
+    return Unfreeze2;
+  }();
   var Solvable = /* @__PURE__ */ function() {
     function Solvable2(value0) {
       this.value0 = value0;
@@ -42078,315 +43369,168 @@
     };
     return Unsolvable2;
   }();
-  var varElim_eqns = function(v) {
-    return function(e) {
-      return function(eqns) {
-        return map(functorList)(map(functorPair)(expr_sub(v)(e)))(eqns);
-      };
+  var StepDiscarded = /* @__PURE__ */ function() {
+    function StepDiscarded2(value0) {
+      this.value0 = value0;
+    }
+    ;
+    StepDiscarded2.create = function(value0) {
+      return new StepDiscarded2(value0);
     };
+    return StepDiscarded2;
+  }();
+  var StepPass = /* @__PURE__ */ function() {
+    function StepPass2() {
+    }
+    ;
+    StepPass2.value = new StepPass2();
+    return StepPass2;
+  }();
+  var popList = function(v) {
+    if (v instanceof Nil) {
+      return Nothing.value;
+    }
+    ;
+    if (v instanceof Cons) {
+      return new Just(new Tuple(v.value0, v.value1));
+    }
+    ;
+    throw new Error("Failed pattern match at RewriteLive.Unification (line 23, column 1 - line 23, column 56): " + [v.constructor.name]);
   };
-  var varElim_asgns = function(v) {
-    return function(e) {
-      return function(asgns) {
-        return map(functorList)(function(asgn) {
+  var takeMatchingStep = function(st) {
+    var pushNewAssignment = function(v2) {
+      return function(e) {
+        return function(state3) {
           return {
-            assignment: expr_sub(v)(e)(asgn.assignment),
-            variable: asgn.variable
+            res: StepPass.value,
+            next: {
+              assignments: new Cons({
+                variable: v2,
+                assignment: e
+              }, state3.assignments),
+              equations: map(functorList)(function(v22) {
+                return {
+                  left: v22.left,
+                  right: substitute1(substituteExpr)(v2)(e)(v22.right)
+                };
+              })(state3.equations),
+              configuration: state3.configuration
+            }
           };
-        })(asgns);
-      };
-    };
-  };
-  var stateEquation = function(v) {
-    return bind(bindMaybe)(tryParseExpression(v.e1))(function(e1$prime) {
-      return bind(bindMaybe)(tryParseExpression(v.e2))(function(e2$prime) {
-        return pure(applicativeMaybe)(new Pair(e1$prime, e2$prime));
-      });
-    });
-  };
-  var renderDsgp = function(v) {
-    return div2()({
-      className: "expr-inline",
-      children: [text("\\(\\langle\\)"), exprToJSX(v.value0), text(", "), exprToJSX(v.value1), text("\\(\\rangle\\)")]
-    });
-  };
-  var renderEqns = function(eqns) {
-    return ol_(fromFoldable(foldableList)(map(functorList)(function(x) {
-      return li()({
-        children: [x]
-      });
-    })(map(functorList)(renderDsgp)(eqns))));
-  };
-  var renderAsgn = function(v) {
-    return div2()({
-      className: "eqn",
-      children: [exprToJSX(new Var(v.variable)), text(" \\(\\mapsto\\) "), exprToJSX(v.assignment)]
-    });
-  };
-  var renderAsgns = function(asgns) {
-    return ol_(fromFoldable(foldableList)(map(functorList)(renderAsgn)(asgns)));
-  };
-  var pushNewAssignment = function(v) {
-    return function(e) {
-      return function(st) {
-        return {
-          msg: append(semigroupJSX)(text("This disagreement pair is unified by the following substitution:"))(append(semigroupJSX)(text("\\[" + (v + ("\\mapsto " + (show(showExpr)(e) + "\\]")))))(text("We apply this substitution to the m.g.u. and to the remaining disagreement pairs on the stack."))),
-          next: {
-            assignments: new Cons({
-              variable: v,
-              assignment: e
-            }, varElim_asgns(v)(e)(st.assignments)),
-            equations: varElim_eqns(v)(e)(st.equations)
-          }
         };
       };
     };
-  };
-  var processEquation = function($copy_eqn) {
-    return function($copy_st) {
-      var $tco_var_eqn = $copy_eqn;
-      var $tco_done = false;
-      var $tco_result;
-      function $tco_loop(eqn, st) {
-        if (eqn.value0 instanceof Var && eqn.value1 instanceof Var) {
-          var $36 = eqn.value0.value0 === eqn.value1.value0;
-          if ($36) {
-            $tco_done = true;
+    var step3 = function(v2) {
+      return function(state3) {
+        if (v2.left instanceof Var) {
+          if (v2.right instanceof Var) {
+            var $34 = v2.left.value0 === v2.right.value0;
+            if ($34) {
+              return new Right({
+                res: new StepDiscarded(v2),
+                next: state3
+              });
+            }
+            ;
+            return new Right(pushNewAssignment(v2.right.value0)(new Var(v2.left.value0))(state3));
+          }
+          ;
+          if (v2.right instanceof Node) {
+            return new Left(new Unsolvable("Cannot unify function application with a bound variable."));
+          }
+          ;
+          throw new Error("Failed pattern match at RewriteLive.Unification (line 198, column 11 - line 208, column 91): " + [v2.right.constructor.name]);
+        }
+        ;
+        if (v2.left instanceof Node) {
+          if (v2.right instanceof Var) {
+            return new Right(pushNewAssignment(v2.right.value0)(new Node(v2.left.value0, v2.left.value1))(state3));
+          }
+          ;
+          if (v2.right instanceof Node) {
+            var $41 = v2.left.value0 !== v2.right.value0;
+            if ($41) {
+              return new Left(new Unsolvable("Heads unequal"));
+            }
+            ;
+            var $42 = length(v2.left.value1) !== length(v2.right.value1);
+            if ($42) {
+              return new Left(new Unsolvable("Function " + (v2.left.value0 + " applied to different numbers of arguments.")));
+            }
+            ;
             return new Right({
-              next: st,
-              msg: span3()({
-                children: [text("Both variables of "), renderDsgp(eqn), text(" are equal, so this is not a disagreement and we can discard this constraint. ")]
-              })
+              res: StepPass.value,
+              next: {
+                equations: append(semigroupList)(zipWith(function(l) {
+                  return function(r) {
+                    return {
+                      left: l,
+                      right: r
+                    };
+                  };
+                })(v2.left.value1)(v2.right.value1))(state3.equations),
+                assignments: state3.assignments,
+                configuration: state3.configuration
+              }
             });
           }
           ;
-          $tco_done = true;
-          return new Right(pushNewAssignment(eqn.value0.value0)(new Var(eqn.value1.value0))(st));
+          throw new Error("Failed pattern match at RewriteLive.Unification (line 210, column 11 - line 224, column 140): " + [v2.right.constructor.name]);
         }
         ;
-        if (eqn.value0 instanceof Node && eqn.value1 instanceof Var) {
-          $tco_var_eqn = new Pair(new Var(eqn.value1.value0), new Node(eqn.value0.value0, eqn.value0.value1));
-          $copy_st = st;
-          return;
-        }
-        ;
-        if (eqn.value0 instanceof Var && eqn.value1 instanceof Node) {
-          $tco_done = true;
-          return new Right(pushNewAssignment(eqn.value0.value0)(new Node(eqn.value1.value0, eqn.value1.value1))(st));
-        }
-        ;
-        if (eqn.value0 instanceof Node && eqn.value1 instanceof Node) {
-          var $51 = eqn.value0.value0 !== eqn.value1.value0;
-          if ($51) {
-            $tco_done = true;
-            return new Left(new Unsolvable("There is no way to unify " + (show(showExpr)(eqn.value0) + (" with " + (show(showExpr)(eqn.value1) + " because their heads are not equal.")))));
-          }
-          ;
-          var $52 = length4(eqn.value0.value1) !== length4(eqn.value1.value1);
-          if ($52) {
-            $tco_done = true;
-            return new Left(new Unsolvable("There is no way to unify " + (show(showExpr)(eqn.value0) + (" with " + (show(showExpr)(eqn.value1) + ". The heads match but they are applied to different numbers of arguments")))));
-          }
-          ;
-          $tco_done = true;
-          return new Right({
-            msg: text("Unification of " + (show(showExpr)(eqn.value0) + (" with " + (show(showExpr)(eqn.value1) + " induces new potential disagreement pairs for corresponding arguments. We push these new constraints back onto the stack.")))),
-            next: {
-              equations: append(semigroupList)(zipWith2(Pair.create)(eqn.value0.value1)(eqn.value1.value1))(st.equations),
-              assignments: st.assignments
-            }
-          });
-        }
-        ;
-        throw new Error("Failed pattern match at Unification (line 153, column 3 - line 179, column 91): " + [eqn.constructor.name]);
-      }
-      ;
-      while (!$tco_done) {
-        $tco_result = $tco_loop($tco_var_eqn, $copy_st);
-      }
-      ;
-      return $tco_result;
+        throw new Error("Failed pattern match at RewriteLive.Unification (line 196, column 7 - line 224, column 140): " + [v2.left.constructor.name]);
+      };
     };
-  };
-  var takeUnificationStep = function(st) {
     var v = popList(st.equations);
     if (v instanceof Nothing) {
       return new Left(new Solvable(st.assignments));
     }
     ;
     if (v instanceof Just) {
-      return processEquation(v.value0.value0)({
+      return step3(v.value0.value0)({
         assignments: st.assignments,
-        equations: v.value0.value1
+        equations: v.value0.value1,
+        configuration: st.configuration
       });
     }
     ;
-    throw new Error("Failed pattern match at Unification (line 144, column 3 - line 148, column 50): " + [v.constructor.name]);
-  };
-  var para = function(msg) {
-    return p()({
-      children: [text(msg)]
-    });
-  };
-  var initialState = {
-    e1: "",
-    e2: ""
-  };
-  var inRowOfColumns = function(classes) {
-    return function(children) {
-      return div2()({
-        className: "columns" + function() {
-          var $63 = length6(classes) > 0;
-          if ($63) {
-            return " " + classes;
-          }
-          ;
-          return mempty(monoidString);
-        }(),
-        children
-      });
-    };
-  };
-  var inColumn = function(classes) {
-    return function(children) {
-      return div2()({
-        className: "column" + function() {
-          var $64 = length6(classes) > 0;
-          if ($64) {
-            return " " + classes;
-          }
-          ;
-          return mempty(monoidString);
-        }(),
-        children
-      });
-    };
-  };
-  var renderMguResult = function(res) {
-    return inRowOfColumns("is-centered")([inColumn("")([div2()({
-      className: "update",
-      children: [function() {
-        if (res instanceof Solvable) {
-          return text("The equation is solvable according to the displayed unifier.");
-        }
-        ;
-        if (res instanceof Unsolvable) {
-          return text("The system cannot be unified.");
-        }
-        ;
-        throw new Error("Failed pattern match at Unification (line 320, column 17 - line 323, column 76): " + [res.constructor.name]);
-      }()]
-    })])]);
-  };
-  var renderMguState = function(state3) {
-    return div2()({
-      className: "box",
-      children: [inRowOfColumns("mgustate")([inColumn("is-three-fifths")([h5()({
-        className: "has-text-weight-bold",
-        children: [text("Potential disagreement pairs")]
-      }), renderEqns(state3.equations)]), inColumn("")([h5()({
-        className: "has-text-weight-bold",
-        children: [text("Current m.g.u. \\(\\sigma\\)")]
-      }), renderAsgns(state3.assignments)])])]
-    });
-  };
-  var renderMguStart = function(eqns) {
-    var state3 = renderMguState({
-      assignments: Nil.value,
-      equations: eqns
-    });
-    var update = div2()({
-      className: "update",
-      children: [text("Attempting to compute a most general unifier for the following system.")]
-    });
-    return inRowOfColumns("is-centered")([inColumn("")([update]), inColumn("")([state3])]);
-  };
-  var renderMguUpdate = function(v) {
-    return div2()({
-      className: "columns is-centered",
-      children: [div2()({
-        className: "column",
-        children: [div2()({
-          className: "update",
-          children: [v.msg]
-        })]
-      }), div2()({
-        className: "column",
-        children: [renderMguState(v.next)]
-      })]
-    });
-  };
-  var renderMguSummary = function(res) {
-    return inRowOfColumns("is-centered")([inColumn("is-half")([function() {
-      if (res instanceof Solvable) {
-        return article()({
-          className: "message is-success",
-          children: [div2()({
-            className: "message-header",
-            children: [para("Success")]
-          }), div2()({
-            className: "message-body has-text-centered",
-            children: [para("This problem has the following most general unifier:"), renderAsgns(res.value0)]
-          })]
-        });
-      }
-      ;
-      if (res instanceof Unsolvable) {
-        return article()({
-          className: "message is-danger",
-          children: [div2()({
-            className: "message-header",
-            children: [para("Failure")]
-          }), div2()({
-            className: "message-body has-text-centered",
-            children: [para("This problem is not unifiable.")]
-          })]
-        });
-      }
-      ;
-      throw new Error("Failed pattern match at Unification (line 340, column 5 - line 366, column 20): " + [res.constructor.name]);
-    }()])]);
-  };
-  var renderTrace = function(trace) {
-    return append(semigroupJSX)(renderMguSummary(trace["final"]))(append(semigroupJSX)(renderMguStart(trace.start))(append(semigroupJSX)(foldMap(foldableList)(monoidJSX)(renderMguUpdate)(trace.history))(renderMguResult(trace["final"]))));
+    throw new Error("Failed pattern match at RewriteLive.Unification (line 186, column 3 - line 192, column 39): " + [v.constructor.name]);
   };
   var equationToInitialState = function(eqn) {
     return {
       assignments: Nil.value,
-      equations: singleton5(eqn)
+      equations: singleton3(eqn),
+      configuration: new Pair(Unfreeze.value, Unfreeze.value)
     };
   };
-  var solveUnificationProblem = function(eqn) {
-    var go2 = function($copy_st) {
+  var tryMatchingTrace = function(eqn) {
+    var go2 = function($copy_state) {
       return function($copy_history) {
-        var $tco_var_st = $copy_st;
+        var $tco_var_state = $copy_state;
         var $tco_done = false;
         var $tco_result;
-        function $tco_loop(st, history2) {
-          var v = takeUnificationStep(st);
+        function $tco_loop(state3, history2) {
+          var v = takeMatchingStep(state3);
           if (v instanceof Left) {
             $tco_done = true;
             return {
-              start: singleton5(eqn),
+              start: singleton3(eqn),
               history: history2,
               "final": v.value0
             };
           }
           ;
           if (v instanceof Right) {
-            $tco_var_st = v.value0.next;
-            $copy_history = append(semigroupList)(history2)(new Cons({
-              msg: v.value0.msg,
-              next: v.value0.next
-            }, Nil.value));
+            $tco_var_state = v.value0.next;
+            $copy_history = append(semigroupList)(history2)(new Cons(v.value0, Nil.value));
             return;
           }
           ;
-          throw new Error("Failed pattern match at Unification (line 223, column 7 - line 228, column 54): " + [v.constructor.name]);
+          throw new Error("Failed pattern match at RewriteLive.Unification (line 263, column 7 - line 269, column 47): " + [v.constructor.name]);
         }
         ;
         while (!$tco_done) {
-          $tco_result = $tco_loop($tco_var_st, $copy_history);
+          $tco_result = $tco_loop($tco_var_state, $copy_history);
         }
         ;
         return $tco_result;
@@ -42394,53 +43538,488 @@
     };
     return go2(equationToInitialState(eqn))(Nil.value);
   };
-  var renderState = function(st) {
-    return inRowOfColumns("is-centered")([inColumn("")([function() {
-      var v = stateEquation(st);
-      if (v instanceof Nothing) {
-        return text("Enter two expressions to compute their most general unifier, if there is one.");
-      }
-      ;
-      if (v instanceof Just) {
-        return renderTrace(solveUnificationProblem(v.value0));
-      }
-      ;
-      throw new Error("Failed pattern match at Unification (line 415, column 7 - line 419, column 53): " + [v.constructor.name]);
-    }()])]);
+  var tryMatching = function($104) {
+    return function(v) {
+      return v["final"];
+    }(tryMatchingTrace($104));
   };
-  var renderUnificationDemo = /* @__PURE__ */ make()(/* @__PURE__ */ createComponent("UnificationDemo"))({
-    initialState,
-    didUpdate: function(v) {
-      return function(v1) {
-        return typeset;
+  var asgnsToSub = function($copy_v) {
+    return function($copy_v1) {
+      var $tco_var_v = $copy_v;
+      var $tco_done = false;
+      var $tco_result;
+      function $tco_loop(v, v1) {
+        if (v instanceof Nil) {
+          $tco_done = true;
+          return new Var(v1);
+        }
+        ;
+        if (v instanceof Cons) {
+          var $86 = v.value0.variable === v1;
+          if ($86) {
+            $tco_done = true;
+            return v.value0.assignment;
+          }
+          ;
+          $tco_var_v = v.value1;
+          $copy_v1 = v1;
+          return;
+        }
+        ;
+        throw new Error("Failed pattern match at RewriteLive.Unification (line 50, column 1 - line 50, column 33): " + [v.constructor.name, v1.constructor.name]);
+      }
+      ;
+      while (!$tco_done) {
+        $tco_result = $tco_loop($tco_var_v, $copy_v1);
+      }
+      ;
+      return $tco_result;
+    };
+  };
+  var searchForAxioms = function(v) {
+    return function(dir2) {
+      return function(expr) {
+        var pattern_rewrite = function() {
+          if (dir2 instanceof RwLeftToRight) {
+            return v.right;
+          }
+          ;
+          if (dir2 instanceof RwRightToLeft) {
+            return v.left;
+          }
+          ;
+          throw new Error("Failed pattern match at RewriteLive.Unification (line 285, column 23 - line 287, column 32): " + [dir2.constructor.name]);
+        }();
+        var pattern_match = function() {
+          if (dir2 instanceof RwLeftToRight) {
+            return v.left;
+          }
+          ;
+          if (dir2 instanceof RwRightToLeft) {
+            return v.right;
+          }
+          ;
+          throw new Error("Failed pattern match at RewriteLive.Unification (line 282, column 21 - line 284, column 33): " + [dir2.constructor.name]);
+        }();
+        var mnew = function(v1) {
+          if (v1 instanceof Unsolvable) {
+            return Nothing.value;
+          }
+          ;
+          if (v1 instanceof Solvable) {
+            return new Just(substitute(substituteExpr)(asgnsToSub(v1.value0))(pattern_rewrite));
+          }
+          ;
+          throw new Error("Failed pattern match at RewriteLive.Unification (line 294, column 5 - line 294, column 37): " + [v1.constructor.name]);
+        };
+        var go2 = function(annexpr) {
+          if (annexpr instanceof AnnVar) {
+            return new AnnVar(annexpr.value0);
+          }
+          ;
+          if (annexpr instanceof AnnNode) {
+            var result = tryMatching({
+              left: undecorateNodes(annexpr),
+              right: pattern_match
+            });
+            return new AnnNode(annexpr.value0, map(functorList)(go2)(annexpr.value1), new Tuple(annexpr.value2, mnew(result)));
+          }
+          ;
+          throw new Error("Failed pattern match at RewriteLive.Unification (line 288, column 18 - line 293, column 62): " + [annexpr.constructor.name]);
+        };
+        return go2(decorateNodes(expr));
       };
-    },
-    render: function(self) {
-      return append(semigroupJSX)(inRowOfColumns("is-centered")([inColumn("is-half")([exprTextBox({
-        label: "Expression 1",
-        value: self.state.e1,
-        onChange: capture(targetValue)(function(targetValue2) {
-          return self.setState(function(s2) {
-            return {
-              e1: fromMaybe("")(targetValue2),
-              e2: s2.e2
-            };
-          });
-        })
-      }), exprTextBox({
-        label: "Expression 2",
-        value: self.state.e2,
-        onChange: capture(targetValue)(function(targetValue2) {
-          return self.setState(function(s2) {
-            return {
-              e1: s2.e1,
-              e2: fromMaybe("")(targetValue2)
-            };
-          });
-        })
-      })])]))(renderState(self.state));
+    };
+  };
+
+  // output/RewriteLive.App/index.js
+  var selectAxiom = function(v) {
+    return function(dir2) {
+      return function(v1) {
+        var decorate = searchForAxioms(v.statement)(dir2);
+        if (v1.goal instanceof GoalEmpty) {
+          return v1;
+        }
+        ;
+        if (v1.goal instanceof GoalPlain) {
+          return {
+            goal: new GoalDec(decorate(v1.goal.value0), decorate(v1.goal.value1)),
+            axioms: v1.axioms,
+            focus: new Just(new Tuple(v.name, dir2)),
+            leftStart: v1.leftStart,
+            rightStart: v1.rightStart,
+            leftHistory: v1.leftHistory,
+            rightHistory: v1.rightHistory,
+            cmdHistory: v1.cmdHistory,
+            error: v1.error
+          };
+        }
+        ;
+        if (v1.goal instanceof GoalDec) {
+          return {
+            goal: new GoalDec(decorate(extractNodes(v1.goal.value0)), decorate(extractNodes(v1.goal.value1))),
+            axioms: v1.axioms,
+            focus: new Just(new Tuple(v.name, dir2)),
+            leftStart: v1.leftStart,
+            rightStart: v1.rightStart,
+            leftHistory: v1.leftHistory,
+            rightHistory: v1.rightHistory,
+            cmdHistory: v1.cmdHistory,
+            error: v1.error
+          };
+        }
+        ;
+        throw new Error("Failed pattern match at RewriteLive.App (line 170, column 3 - line 179, column 25): " + [v1.goal.constructor.name]);
+      };
+    };
+  };
+  var renderScript = function(v) {
+    var arrow = function(v1) {
+      if (v1 instanceof RwLeftToRight) {
+        return "\u2192";
+      }
+      ;
+      if (v1 instanceof RwRightToLeft) {
+        return "\u2190";
+      }
+      ;
+      throw new Error("Failed pattern match at RewriteLive.App (line 246, column 5 - line 246, column 30): " + [v1.constructor.name]);
+    };
+    var renderCmd = function(v1) {
+      return li_([text("rewrite " + (v1.value0 + (" " + (arrow(v1.value1) + (" at " + (show(showInt)(v1.value3) + (" on " + (show(showLorR)(v1.value2) + "."))))))))]);
+    };
+    return ol()({
+      className: "script no-bullets",
+      children: function() {
+        if (v.cmdHistory instanceof Nil) {
+          return [text("Begin proving to see a proof script.")];
+        }
+        ;
+        return [foldMap(foldableList)(monoidJSX)(renderCmd)(reverse(v.cmdHistory))];
+      }()
+    });
+  };
+  var renderLaTeX = function(v) {
+    var onRightNote = function(string2) {
+      return function(note) {
+        return " &= " + (string2 + (" &&" + ("\\text{\\small " + (note + "} \\\\"))));
+      };
+    };
+    var onRight = function(string2) {
+      return " &= " + (string2 + "\\\\");
+    };
+    var mkStep = function(v1) {
+      return onRightNote(show(showExpr)(v1.value0))("by " + v1.value1);
+    };
+    var rightSteps = foldMap(foldableList)(monoidString)(mkStep)(v.rightHistory);
+    var leftSteps = function() {
+      var v1 = tail(reverse(v.leftHistory));
+      if (v1 instanceof Nothing) {
+        return mempty(monoidString);
+      }
+      ;
+      if (v1 instanceof Just) {
+        return foldMap(foldableList)(monoidString)(mkStep)(v1.value0) + onRight("\\ldots");
+      }
+      ;
+      throw new Error("Failed pattern match at RewriteLive.App (line 285, column 7 - line 290, column 34): " + [v1.constructor.name]);
+    }();
+    var lastLine = function(right) {
+      return " &= " + show(showExpr)(right);
+    };
+    var firstLine = function(left) {
+      var v1 = head(reverse(v.leftHistory));
+      if (v1 instanceof Nothing) {
+        return show(showExpr)(left) + onRight("\\ldots");
+      }
+      ;
+      if (v1 instanceof Just) {
+        return show(showExpr)(left) + mkStep(v1.value0);
+      }
+      ;
+      throw new Error("Failed pattern match at RewriteLive.App (line 278, column 7 - line 282, column 35): " + [v1.constructor.name]);
+    };
+    var go2 = function(left) {
+      return function(right) {
+        return "\\[\\begin{aligned}" + (firstLine(left) + (leftSteps + (rightSteps + (lastLine(right) + "\\end{aligned}\\]"))));
+      };
+    };
+    if (v.leftStart instanceof Nothing) {
+      return simpleDiv("block")([text("Enter a goal to see a LaTeX preview.")]);
     }
-  });
+    ;
+    if (v.leftStart instanceof Just) {
+      if (v.rightStart instanceof Nothing) {
+        return simpleDiv("block")([text("Enter a goal to see a LaTeX preview.")]);
+      }
+      ;
+      if (v.rightStart instanceof Just) {
+        return simpleDiv("latex-preview")([text(go2(v.leftStart.value0)(v.rightStart.value0))]);
+      }
+      ;
+      throw new Error("Failed pattern match at RewriteLive.App (line 260, column 7 - line 265, column 68): " + [v.rightStart.constructor.name]);
+    }
+    ;
+    throw new Error("Failed pattern match at RewriteLive.App (line 255, column 3 - line 265, column 68): " + [v.leftStart.constructor.name]);
+  };
+  var performRewrite = function(target5) {
+    return function(replacement) {
+      return function(expr) {
+        if (expr instanceof AnnVar) {
+          return new Just(new Var(expr.value0));
+        }
+        ;
+        if (expr instanceof AnnNode) {
+          var $62 = expr.value2.value0 === target5;
+          if ($62) {
+            return new Just(replacement);
+          }
+          ;
+          return apply(applyMaybe)(new Just(Node.create(expr.value0)))(traverse(traversableList)(applicativeMaybe)(performRewrite(target5)(replacement))(expr.value1));
+        }
+        ;
+        throw new Error("Failed pattern match at RewriteLive.App (line 105, column 3 - line 110, column 82): " + [expr.constructor.name]);
+      };
+    };
+  };
+  var initialAppState = /* @__PURE__ */ function() {
+    return {
+      goal: GoalEmpty.value,
+      axioms: Nil.value,
+      focus: Nothing.value,
+      leftStart: Nothing.value,
+      rightStart: Nothing.value,
+      leftHistory: Nil.value,
+      rightHistory: Nil.value,
+      cmdHistory: Nil.value,
+      error: Nothing.value
+    };
+  }();
+  var handleSubmit = function(self) {
+    return function(v) {
+      return function __do2() {
+        log("Registering a new axiom '" + (v.name + ("'. Statement " + (show(showExpr)(v.statement.left) + (" = " + (show(showExpr)(v.statement.right) + "."))))))();
+        return self.setState(function(v1) {
+          return {
+            goal: v1.goal,
+            axioms: new Cons(v, v1.axioms),
+            focus: v1.focus,
+            leftStart: v1.leftStart,
+            rightStart: v1.rightStart,
+            leftHistory: v1.leftHistory,
+            rightHistory: v1.rightHistory,
+            cmdHistory: v1.cmdHistory,
+            error: v1.error
+          };
+        })();
+      };
+    };
+  };
+  var handleSelect = function(self) {
+    return function(v) {
+      return function(rwdir) {
+        var dir2 = function() {
+          var $78 = eq(eqRwDir)(rwdir)(RwLeftToRight.value);
+          if ($78) {
+            return "left-to-right";
+          }
+          ;
+          return "right-to-left";
+        }();
+        return function __do2() {
+          log("Axiom '" + (v.name + ("' was clicked in the " + (dir2 + " direction."))))();
+          return self.setState(selectAxiom(v)(rwdir))();
+        };
+      };
+    };
+  };
+  var handleRewrite = function(self) {
+    return function(side) {
+      return function(target5) {
+        return function($$new2) {
+          return function __do2() {
+            $$void(functorEffect)(log("Clicked " + (show(showInt)(target5) + (" on " + (show(showLorR)(side) + (". Would replace with " + (show(showExpr)($$new2) + ".")))))))();
+            if (self.state.focus instanceof Nothing) {
+              return log("This is impossible")();
+            }
+            ;
+            if (self.state.focus instanceof Just) {
+              return self.setState(function(v) {
+                if (v.goal instanceof GoalEmpty) {
+                  return v;
+                }
+                ;
+                if (v.goal instanceof GoalPlain) {
+                  return v;
+                }
+                ;
+                if (v.goal instanceof GoalDec) {
+                  if (side instanceof OnLeft) {
+                    var v1 = performRewrite(target5)($$new2)(v.goal.value0);
+                    if (v1 instanceof Nothing) {
+                      return {
+                        goal: v.goal,
+                        axioms: v.axioms,
+                        focus: v.focus,
+                        leftStart: v.leftStart,
+                        rightStart: v.rightStart,
+                        leftHistory: v.leftHistory,
+                        rightHistory: v.rightHistory,
+                        cmdHistory: v.cmdHistory,
+                        error: new Just("WTF")
+                      };
+                    }
+                    ;
+                    if (v1 instanceof Just) {
+                      return {
+                        goal: new GoalPlain(v1.value0, extractNodes(v.goal.value1)),
+                        axioms: v.axioms,
+                        focus: Nothing.value,
+                        leftStart: v.leftStart,
+                        rightStart: v.rightStart,
+                        leftHistory: new Cons(new Tuple(v1.value0, self.state.focus.value0.value0), v.leftHistory),
+                        rightHistory: v.rightHistory,
+                        cmdHistory: new Cons(new RewriteCmd(self.state.focus.value0.value0, self.state.focus.value0.value1, side, target5), v.cmdHistory),
+                        error: v.error
+                      };
+                    }
+                    ;
+                    throw new Error("Failed pattern match at RewriteLive.App (line 127, column 23 - line 134, column 33): " + [v1.constructor.name]);
+                  }
+                  ;
+                  if (side instanceof OnRight) {
+                    var v1 = performRewrite(target5)($$new2)(v.goal.value1);
+                    if (v1 instanceof Nothing) {
+                      return {
+                        goal: v.goal,
+                        axioms: v.axioms,
+                        focus: v.focus,
+                        leftStart: v.leftStart,
+                        rightStart: v.rightStart,
+                        leftHistory: v.leftHistory,
+                        rightHistory: v.rightHistory,
+                        cmdHistory: v.cmdHistory,
+                        error: new Just("WTF")
+                      };
+                    }
+                    ;
+                    if (v1 instanceof Just) {
+                      return {
+                        goal: new GoalPlain(extractNodes(v.goal.value0), v1.value0),
+                        axioms: v.axioms,
+                        focus: Nothing.value,
+                        leftStart: v.leftStart,
+                        rightStart: v.rightStart,
+                        leftHistory: v.leftHistory,
+                        rightHistory: new Cons(new Tuple(v1.value0, self.state.focus.value0.value0), v.rightHistory),
+                        cmdHistory: new Cons(new RewriteCmd(self.state.focus.value0.value0, self.state.focus.value0.value1, side, target5), v.cmdHistory),
+                        error: v.error
+                      };
+                    }
+                    ;
+                    throw new Error("Failed pattern match at RewriteLive.App (line 135, column 24 - line 142, column 33): " + [v1.constructor.name]);
+                  }
+                  ;
+                  throw new Error("Failed pattern match at RewriteLive.App (line 126, column 11 - line 142, column 33): " + [side.constructor.name]);
+                }
+                ;
+                throw new Error("Failed pattern match at RewriteLive.App (line 122, column 7 - line 142, column 33): " + [v.goal.constructor.name]);
+              })();
+            }
+            ;
+            throw new Error("Failed pattern match at RewriteLive.App (line 118, column 3 - line 142, column 33): " + [self.state.focus.constructor.name]);
+          };
+        };
+      };
+    };
+  };
+  var demoAppState = /* @__PURE__ */ function() {
+    var demo_r = new Node("P", new Cons(new Var("c"), new Cons(new Node("P", new Cons(new Var("a"), new Cons(new Var("b"), Nil.value))), Nil.value)));
+    var demo_l = new Node("P", new Cons(new Var("a"), new Cons(new Node("P", new Cons(new Var("b"), new Cons(new Var("c"), Nil.value))), Nil.value)));
+    var comm_r = new Node("P", new Cons(new Var("y"), new Cons(new Var("x"), Nil.value)));
+    var comm_l = new Node("P", new Cons(new Var("x"), new Cons(new Var("y"), Nil.value)));
+    var comm = {
+      name: "comm",
+      statement: {
+        left: comm_l,
+        right: comm_r
+      }
+    };
+    var assoc_r = new Node("P", new Cons(new Var("x"), new Cons(new Node("P", new Cons(new Var("y"), new Cons(new Var("z"), Nil.value))), Nil.value)));
+    var assoc_l = new Node("P", new Cons(new Node("P", new Cons(new Var("x"), new Cons(new Var("y"), Nil.value))), new Cons(new Var("z"), Nil.value)));
+    var assoc = {
+      name: "assoc",
+      statement: {
+        left: assoc_l,
+        right: assoc_r
+      }
+    };
+    return {
+      goal: new GoalPlain(demo_l, demo_r),
+      focus: Nothing.value,
+      axioms: new Cons(comm, new Cons(assoc, Nil.value)),
+      leftStart: new Just(demo_l),
+      rightStart: new Just(demo_r),
+      leftHistory: Nil.value,
+      rightHistory: Nil.value,
+      cmdHistory: Nil.value,
+      error: Nothing.value
+    };
+  }();
+  var appComponent = /* @__PURE__ */ createComponent("App");
+  var renderApp = /* @__PURE__ */ function() {
+    var render = function(self) {
+      return append(semigroupJSX)(simpleSection("")([simpleContainer("")([simpleColumns("is-centered")([simpleColumn("is-two-thirds")([h3()({
+        className: "title is-3",
+        children: [text("Goal")]
+      }), renderGoalArea({
+        goalState: self.state.goal,
+        handleClick: handleRewrite(self),
+        handleSubmit: function(v) {
+          return self.setState(function(v1) {
+            return {
+              goal: new GoalPlain(v.left, v.right),
+              axioms: v1.axioms,
+              focus: v1.focus,
+              leftStart: new Just(v.left),
+              rightStart: new Just(v.right),
+              leftHistory: v1.leftHistory,
+              rightHistory: v1.rightHistory,
+              cmdHistory: v1.cmdHistory,
+              error: v1.error
+            };
+          });
+        },
+        runDemo: self.setState(function(v) {
+          return demoAppState;
+        })
+      })])])])]))(simpleSection("")([simpleContainer("")([simpleColumns("")([simpleColumn("")([renderAxiomsArea({
+        axioms: self.state.axioms,
+        handleSubmit: handleSubmit(self),
+        handleRewrite: handleSelect(self)
+      })]), simpleColumn("")([h3()({
+        className: "title is-3",
+        children: [text("Command history")]
+      }), renderScript(self.state)]), simpleColumn("")([h3()({
+        className: "title is-3",
+        children: [text("LaTeX Preview")]
+      }), renderLaTeX(self.state)])])])]));
+    };
+    return make()(appComponent)({
+      initialState: initialAppState,
+      render: function(self) {
+        return render(self);
+      },
+      didUpdate: function(v) {
+        return function(v1) {
+          return typeset;
+        };
+      },
+      didMount: function(v) {
+        return typeset;
+      }
+    });
+  }();
 
   // output/Web.DOM.NonElementParentNode/foreign.js
   function _getElementById(id) {
@@ -42477,18 +44056,17 @@
 
   // output/Main/index.js
   var main2 = function __do() {
-    var container = bindFlipped(bindEffect)(getElementById("unification-root"))(map(functorEffect)(toNonElementParentNode)(bindFlipped(bindEffect)(document2)(windowImpl)))();
-    $$void(functorEffect)(hello)();
+    var container = bindFlipped(bindEffect)(getElementById("app"))(map(functorEffect)(toNonElementParentNode)(bindFlipped(bindEffect)(document2)(windowImpl)))();
     if (container instanceof Nothing) {
-      return $$throw("Container element not found.")();
+      return $$throw("RW: App root element not found. I'm looking for something like '<div id=app>'")();
     }
     ;
     if (container instanceof Just) {
-      var reactroot = createRoot(container.value0)();
-      return renderRoot(reactroot)(renderUnificationDemo(unit))();
+      var root = createRoot(container.value0)();
+      return renderRoot(root)(renderApp(unit))();
     }
     ;
-    throw new Error("Failed pattern match at Main (line 42, column 3 - line 46, column 56): " + [container.constructor.name]);
+    throw new Error("Failed pattern match at Main (line 17, column 3 - line 21, column 39): " + [container.constructor.name]);
   };
 
   // <stdin>
