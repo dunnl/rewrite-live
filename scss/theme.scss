@@ -1,2 +1,115 @@
-@use '../node_modules/bulma/css/bulma.css';
-@use './rewrite.css';
+@import '../node_modules/bulma/bulma.sass';
+@import '../node_modules/@creativebulma/bulma-tooltip/src/sass/index';
+
+.navbar-title {
+    padding-right: 4em;
+}
+
+.expr-goal {
+    font-size: 40px;
+    font-weight: 700;
+    letter-spacing:0.1em;
+    text-align: center;
+}
+.eqn {
+    display: block;
+    margin: 1em 0.5em 1em 0.5em;
+    font-size: 14px;
+}
+
+.expr-inline {
+    display: inline;
+    letter-spacing: 0.03em;
+}
+
+.var {
+    color: gray;
+}
+
+.fn {
+    font-weight:500;
+    color: black;
+}
+
+.mgustate {
+    display: flex;
+}
+
+.update {
+    padding: 1.25em;
+}
+
+.no-bullets {
+    list-style-type: none;
+}
+
+.script {
+    font-family: monospace;
+}
+
+.expr-hi {
+    padding: 5px 10px 5px 10px;
+    margin: 5px 10px 5px 10px;
+    border: 0px solid black;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.c1 {
+    background-color: #B497EF;
+}
+
+.c2 {
+    background-color: #E6AAE9;
+}
+
+.c3 {
+    background-color: #F6C7C8
+}
+
+.c4 {
+    background-color: #FAE7CB;
+}
+
+.c5 {
+    background-color: #C4DBB9;
+}
+
+.c6 {
+    background-color: #A9BCE5;
+}
+
+.main-notice {
+    margin-bottom: 4em;
+}
+
+.axiom_name {
+    display:inline-block;
+    min-width: 4em;
+    font-weight: 700;
+}
+
+.axiom_stmt {
+    display:inline-block;
+    min-width: 3em;
+}
+
+.rw-button {
+    margin-left: 1em;
+}
+
+.axioms_list {
+    list-style: none;
+}
+
+#goal-title {
+    margin:auto;
+    text-align: center;
+}
+
+#goal-display {
+}
+
+#footer {
+    background-color: #fff;
+}

@@ -127,3 +127,11 @@ in  upstream
     , version =
         "v6.0.0"
     }
+  with react-icons =
+    { dependencies =
+       [ "react-basic", "react-basic-dom", "unsafe-coerce" ] : List Text
+    , repo =
+       "https://github.com/andys8/purescript-react-icons"
+    , version =
+        "v1.0.8"
+    }

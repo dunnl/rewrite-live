@@ -2,7 +2,6 @@
 
 ## Building
 
-
 ### A note about NixOS
 I am building on NixOS. If you not using Nix, basically you will need
 install the following three utilities before doing anything else:
