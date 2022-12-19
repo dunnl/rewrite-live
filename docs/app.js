@@ -43082,7 +43082,7 @@
       });
     }
     ;
-    throw new Error("Failed pattern match at RewriteLive.Goal (line 57, column 1 - line 57, column 30): " + [v.constructor.name]);
+    throw new Error("Failed pattern match at RewriteLive.Goal (line 58, column 1 - line 58, column 30): " + [v.constructor.name]);
   };
   var renderGoalAnnExpr = function(v) {
     return function(v1) {
@@ -43108,7 +43108,7 @@
             return capture_(v(v1.value2.value0)(v1.value2.value1.value0));
           }
           ;
-          throw new Error("Failed pattern match at RewriteLive.Goal (line 89, column 7 - line 94, column 52): " + [v1.value2.value1.constructor.name]);
+          throw new Error("Failed pattern match at RewriteLive.Goal (line 90, column 7 - line 95, column 52): " + [v1.value2.value1.constructor.name]);
         }();
         var color = function() {
           if (v1.value2.value1 instanceof Nothing) {
@@ -43119,7 +43119,7 @@
             return uidToColorClass(v1.value2.value0);
           }
           ;
-          throw new Error("Failed pattern match at RewriteLive.Goal (line 80, column 7 - line 82, column 38): " + [v1.value2.value1.constructor.name]);
+          throw new Error("Failed pattern match at RewriteLive.Goal (line 81, column 7 - line 83, column 38): " + [v1.value2.value1.constructor.name]);
         }();
         return span()({
           className: appendClasses("expr-hi")(color),
@@ -43128,7 +43128,7 @@
         });
       }
       ;
-      throw new Error("Failed pattern match at RewriteLive.Goal (line 69, column 1 - line 71, column 28): " + [v.constructor.name, v1.constructor.name]);
+      throw new Error("Failed pattern match at RewriteLive.Goal (line 70, column 1 - line 72, column 28): " + [v.constructor.name, v1.constructor.name]);
     };
   };
   var renderGoalState = function(v) {
@@ -43151,14 +43151,35 @@
         return mempty(monoidJSX);
       }
       ;
-      throw new Error("Failed pattern match at RewriteLive.Goal (line 110, column 1 - line 110, column 76): " + [v.constructor.name, v1.constructor.name]);
+      throw new Error("Failed pattern match at RewriteLive.Goal (line 111, column 1 - line 111, column 76): " + [v.constructor.name, v1.constructor.name]);
     };
+  };
+  var renderDemoButtons = function(self) {
+    var formLabel = label()({
+      className: "label",
+      children: [text("Or run a demo")]
+    });
+    var demoButton2 = button()({
+      className: "button is-danger",
+      children: [text("Monad Laws Demo")],
+      onClick: handler_(self.props.runDemo2)
+    });
+    var demoButton1 = button()({
+      className: "button is-danger",
+      children: [text("Arithmetic Demo")],
+      onClick: handler_(self.props.runDemo1)
+    });
+    if (self.props.goalState instanceof GoalEmpty) {
+      return append(semigroupJSX)(formLabel)(simpleDiv("buttons")([demoButton1, demoButton2]));
+    }
+    ;
+    return mempty(monoidJSX);
   };
   var mkState = function(left) {
     return function(right) {
       var go2 = function(text6) {
-        var $37 = text6 === "";
-        if ($37) {
+        var $38 = text6 === "";
+        if ($38) {
           return BoxEmpty.value;
         }
         ;
@@ -43171,7 +43192,7 @@
           return new BoxGood(v.value0);
         }
         ;
-        throw new Error("Failed pattern match at RewriteLive.Goal (line 204, column 12 - line 206, column 35): " + [v.constructor.name]);
+        throw new Error("Failed pattern match at RewriteLive.Goal (line 206, column 12 - line 208, column 35): " + [v.constructor.name]);
       };
       return {
         goalLeft: left,
@@ -43221,15 +43242,15 @@
         return capture_(pure(applicativeEffect)(unit));
       }
       ;
-      throw new Error("Failed pattern match at RewriteLive.Goal (line 231, column 7 - line 236, column 31): " + [v.constructor.name]);
+      throw new Error("Failed pattern match at RewriteLive.Goal (line 232, column 7 - line 237, column 31): " + [v.constructor.name]);
     }();
     var sbmtButton = button()({
       className: "button is-info",
       type: "submit",
       disabled: isNothing(formReady(self.state)),
       "_data": function() {
-        var $50 = isNothing(formReady(self.state));
-        if ($50) {
+        var $51 = isNothing(formReady(self.state));
+        if ($51) {
           return singleton4("tooltip")("Please fix errors first");
         }
         ;
@@ -43287,7 +43308,7 @@
         return li_([text(leftError.value0)]);
       }
       ;
-      throw new Error("Failed pattern match at RewriteLive.Goal (line 290, column 11 - line 292, column 49): " + [leftError.constructor.name]);
+      throw new Error("Failed pattern match at RewriteLive.Goal (line 286, column 11 - line 288, column 49): " + [leftError.constructor.name]);
     }(), function() {
       if (rightError instanceof Nothing) {
         return text("");
@@ -43297,22 +43318,17 @@
         return li_([text(rightError.value0)]);
       }
       ;
-      throw new Error("Failed pattern match at RewriteLive.Goal (line 293, column 11 - line 295, column 49): " + [rightError.constructor.name]);
+      throw new Error("Failed pattern match at RewriteLive.Goal (line 289, column 11 - line 291, column 49): " + [rightError.constructor.name]);
     }()])]);
     var equalsButton = button()({
       className: "button is-static",
       type: "button",
       children: [text("=")]
     });
-    var demoButton = button()({
-      className: "button is-danger",
-      children: [text("Demo")],
-      onClick: handler_(self.props.runDemo)
-    });
     if (self.props.goalState instanceof GoalEmpty) {
       return form()({
         className: "block",
-        children: [formLabel, simpleDiv("field has-addons")([simpleDiv("control")([leftInput]), simpleDiv("control")([equalsButton]), simpleDiv("control")([rightInput]), simpleDiv("control")([sbmtButton]), simpleDiv("control")([demoButton])]), help, errors],
+        children: [formLabel, simpleDiv("field has-addons")([simpleDiv("control")([leftInput]), simpleDiv("control")([equalsButton]), simpleDiv("control")([rightInput]), simpleDiv("control")([sbmtButton])]), help, errors],
         onSubmit: submit2
       });
     }
@@ -43322,7 +43338,7 @@
   var renderGoalArea = /* @__PURE__ */ make()(goalArea)({
     initialState: initialGoalFormState,
     render: function(self) {
-      return append(semigroupJSX)(renderGoalState(self.props.handleClick)(self.props.goalState))(renderGoalForm(self));
+      return append(semigroupJSX)(renderGoalState(self.props.handleClick)(self.props.goalState))(append(semigroupJSX)(renderGoalForm(self))(renderDemoButtons(self)));
     }
   });
 
@@ -43669,7 +43685,7 @@
           };
         }
         ;
-        throw new Error("Failed pattern match at RewriteLive.App (line 170, column 3 - line 179, column 25): " + [v1.goal.constructor.name]);
+        throw new Error("Failed pattern match at RewriteLive.App (line 247, column 3 - line 256, column 25): " + [v1.goal.constructor.name]);
       };
     };
   };
@@ -43683,7 +43699,7 @@
         return "\u2190";
       }
       ;
-      throw new Error("Failed pattern match at RewriteLive.App (line 246, column 5 - line 246, column 30): " + [v1.constructor.name]);
+      throw new Error("Failed pattern match at RewriteLive.App (line 324, column 5 - line 324, column 30): " + [v1.constructor.name]);
     };
     var renderCmd = function(v1) {
       return li_([text("rewrite " + (v1.value0 + (" " + (arrow(v1.value1) + (" at " + (show(showInt)(v1.value3) + (" on " + (show(showLorR)(v1.value2) + "."))))))))]);
@@ -43722,7 +43738,7 @@
         return foldMap(foldableList)(monoidString)(mkStep)(v1.value0) + onRight("\\ldots");
       }
       ;
-      throw new Error("Failed pattern match at RewriteLive.App (line 285, column 7 - line 290, column 34): " + [v1.constructor.name]);
+      throw new Error("Failed pattern match at RewriteLive.App (line 363, column 7 - line 368, column 34): " + [v1.constructor.name]);
     }();
     var lastLine = function(right) {
       return " &= " + show(showExpr)(right);
@@ -43737,7 +43753,7 @@
         return show(showExpr)(left) + mkStep(v1.value0);
       }
       ;
-      throw new Error("Failed pattern match at RewriteLive.App (line 278, column 7 - line 282, column 35): " + [v1.constructor.name]);
+      throw new Error("Failed pattern match at RewriteLive.App (line 356, column 7 - line 360, column 35): " + [v1.constructor.name]);
     };
     var go2 = function(left) {
       return function(right) {
@@ -43757,10 +43773,10 @@
         return simpleDiv("latex-preview")([text(go2(v.leftStart.value0)(v.rightStart.value0))]);
       }
       ;
-      throw new Error("Failed pattern match at RewriteLive.App (line 260, column 7 - line 265, column 68): " + [v.rightStart.constructor.name]);
+      throw new Error("Failed pattern match at RewriteLive.App (line 338, column 7 - line 343, column 68): " + [v.rightStart.constructor.name]);
     }
     ;
-    throw new Error("Failed pattern match at RewriteLive.App (line 255, column 3 - line 265, column 68): " + [v.leftStart.constructor.name]);
+    throw new Error("Failed pattern match at RewriteLive.App (line 333, column 3 - line 343, column 68): " + [v.leftStart.constructor.name]);
   };
   var performRewrite = function(target5) {
     return function(replacement) {
@@ -43770,18 +43786,125 @@
         }
         ;
         if (expr instanceof AnnNode) {
-          var $62 = expr.value2.value0 === target5;
-          if ($62) {
+          var $63 = expr.value2.value0 === target5;
+          if ($63) {
             return new Just(replacement);
           }
           ;
           return apply(applyMaybe)(new Just(Node.create(expr.value0)))(traverse(traversableList)(applicativeMaybe)(performRewrite(target5)(replacement))(expr.value1));
         }
         ;
-        throw new Error("Failed pattern match at RewriteLive.App (line 105, column 3 - line 110, column 82): " + [expr.constructor.name]);
+        throw new Error("Failed pattern match at RewriteLive.App (line 182, column 3 - line 187, column 82): " + [expr.constructor.name]);
       };
     };
   };
+  var monadDemoAppState = /* @__PURE__ */ function() {
+    var fn2 = function(f) {
+      return function(a1) {
+        return function(a2) {
+          return new Node(f, new Cons(a1, new Cons(a2, Nil.value)));
+        };
+      };
+    };
+    var fn1 = function(f) {
+      return function(a2) {
+        return new Node(f, new Cons(a2, Nil.value));
+      };
+    };
+    var fn0 = function(f) {
+      return new Node(f, Nil.value);
+    };
+    var joinassoc = {
+      name: "joinassoc",
+      statement: {
+        left: fn2("C")(fn0("J"))(fn0("J")),
+        right: fn2("C")(fn0("J"))(fn1("F")(fn0("J")))
+      }
+    };
+    var joinleft = {
+      name: "joinleft",
+      statement: {
+        left: fn2("C")(fn0("J"))(fn0("R")),
+        right: fn0("I")
+      }
+    };
+    var joinnat = {
+      name: "joinnat",
+      statement: {
+        left: fn2("C")(fn1("F")(new Var("f")))(fn0("J")),
+        right: fn2("C")(fn0("J"))(fn1("F")(fn1("F")(new Var("f"))))
+      }
+    };
+    var joinright = {
+      name: "joinright",
+      statement: {
+        left: fn2("C")(fn0("J"))(fn1("F")(fn0("R"))),
+        right: fn0("I")
+      }
+    };
+    var retnat = {
+      name: "retnat",
+      statement: {
+        left: fn2("C")(fn1("F")(new Var("f")))(fn0("R")),
+        right: fn2("C")(fn0("R"))(fn1("F")(new Var("f")))
+      }
+    };
+    var fmap2 = {
+      name: "fmap2",
+      statement: {
+        left: fn2("C")(fn1("F")(new Var("f2")))(fn1("F")(new Var("f1"))),
+        right: fn1("F")(fn2("C")(new Var("f2"))(new Var("f1")))
+      }
+    };
+    var fmap1 = {
+      name: "fmap1",
+      statement: {
+        left: fn1("F")(fn0("I")),
+        right: new Node("IF", Nil.value)
+      }
+    };
+    var demo_r = fn1("B")(fn2("C")(fn1("B")(new Var("g")))(new Var("f")));
+    var demo_l = fn2("C")(fn1("B")(new Var("g")))(fn1("B")(new Var("f")));
+    var cat3 = {
+      name: "assoc",
+      statement: {
+        right: fn2("C")(new Var("h"))(fn2("C")(new Var("g"))(new Var("f"))),
+        left: fn2("C")(fn2("C")(new Var("h"))(new Var("g")))(new Var("f"))
+      }
+    };
+    var cat2 = {
+      name: "idright",
+      statement: {
+        left: fn2("C")(new Var("f"))(new Node("I", Nil.value)),
+        right: new Var("f")
+      }
+    };
+    var cat1 = {
+      name: "idleft",
+      statement: {
+        left: fn2("C")(new Node("I", Nil.value))(new Var("f")),
+        right: new Var("f")
+      }
+    };
+    var binddef = {
+      name: "binddef",
+      statement: {
+        left: fn1("B")(new Var("f")),
+        right: fn2("C")(fn0("J"))(fn1("F")(new Var("f")))
+      }
+    };
+    return {
+      goal: new GoalPlain(demo_l, demo_r),
+      focus: Nothing.value,
+      axioms: reverse(new Cons(cat1, new Cons(cat2, new Cons(cat3, new Cons(fmap1, new Cons(fmap2, new Cons(retnat, new Cons(joinnat, new Cons(joinleft, new Cons(joinright, new Cons(joinassoc, new Cons(binddef, Nil.value)))))))))))),
+      leftStart: new Just(demo_l),
+      rightStart: new Just(demo_r),
+      leftHistory: Nil.value,
+      rightHistory: Nil.value,
+      cmdHistory: Nil.value,
+      error: Nothing.value
+    };
+  }();
   var initialAppState = /* @__PURE__ */ function() {
     return {
       goal: GoalEmpty.value,
@@ -43819,8 +43942,8 @@
     return function(v) {
       return function(rwdir) {
         var dir2 = function() {
-          var $78 = eq(eqRwDir)(rwdir)(RwLeftToRight.value);
-          if ($78) {
+          var $79 = eq(eqRwDir)(rwdir)(RwLeftToRight.value);
+          if ($79) {
             return "left-to-right";
           }
           ;
@@ -43884,7 +44007,7 @@
                       };
                     }
                     ;
-                    throw new Error("Failed pattern match at RewriteLive.App (line 127, column 23 - line 134, column 33): " + [v1.constructor.name]);
+                    throw new Error("Failed pattern match at RewriteLive.App (line 204, column 23 - line 211, column 33): " + [v1.constructor.name]);
                   }
                   ;
                   if (side instanceof OnRight) {
@@ -43917,17 +44040,17 @@
                       };
                     }
                     ;
-                    throw new Error("Failed pattern match at RewriteLive.App (line 135, column 24 - line 142, column 33): " + [v1.constructor.name]);
+                    throw new Error("Failed pattern match at RewriteLive.App (line 212, column 24 - line 219, column 33): " + [v1.constructor.name]);
                   }
                   ;
-                  throw new Error("Failed pattern match at RewriteLive.App (line 126, column 11 - line 142, column 33): " + [side.constructor.name]);
+                  throw new Error("Failed pattern match at RewriteLive.App (line 203, column 11 - line 219, column 33): " + [side.constructor.name]);
                 }
                 ;
-                throw new Error("Failed pattern match at RewriteLive.App (line 122, column 7 - line 142, column 33): " + [v.goal.constructor.name]);
+                throw new Error("Failed pattern match at RewriteLive.App (line 199, column 7 - line 219, column 33): " + [v.goal.constructor.name]);
               })();
             }
             ;
-            throw new Error("Failed pattern match at RewriteLive.App (line 118, column 3 - line 142, column 33): " + [self.state.focus.constructor.name]);
+            throw new Error("Failed pattern match at RewriteLive.App (line 195, column 3 - line 219, column 33): " + [self.state.focus.constructor.name]);
           };
         };
       };
@@ -43990,8 +44113,11 @@
             };
           });
         },
-        runDemo: self.setState(function(v) {
+        runDemo1: self.setState(function(v) {
           return demoAppState;
+        }),
+        runDemo2: self.setState(function(v) {
+          return monadDemoAppState;
         })
       })])])])]))(simpleSection("")([simpleContainer("")([simpleColumns("")([simpleColumn("")([renderAxiomsArea({
         axioms: self.state.axioms,

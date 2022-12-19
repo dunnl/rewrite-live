@@ -85,6 +85,83 @@ demoAppState =
     demo_l = Node "P" (Var "a" : Node "P" (Var "b" : Var "c" : Nil) : Nil)
     demo_r = Node "P" (Var "c" : Node "P" (Var "a" : Var "b" : Nil) : Nil)
 
+monadDemoAppState :: AppState
+monadDemoAppState =
+  AppState { goal: GoalPlain demo_l demo_r
+           , focus: Nothing
+           , axioms: reverse (cat1 : cat2 : cat3 : fmap1 : fmap2 : retnat : joinnat : joinleft : joinright : joinassoc : binddef : Nil)
+           , leftStart: Just demo_l
+           , rightStart: Just demo_r
+           , leftHistory: Nil
+           , rightHistory: Nil
+           , cmdHistory: Nil
+           , error: Nothing
+           }
+  where
+    fn0 f = Node f Nil
+    fn1 f a = Node f (a : Nil)
+    fn2 f a1 a2 = Node f (a1 : a2 : Nil)
+    demo_l = fn2 "C" (fn1 "B" (Var "g")) (fn1 "B" (Var "f"))
+    demo_r = fn1 "B" (fn2 "C" (fn1 "B" (Var "g")) (Var "f"))
+    cat1 = Axiom { name: "idleft"
+                  , statement: Equation { left: fn2 "C" (Node "I" Nil) (Var "f")
+                                        , right: Var "f"
+                                        }
+                  }
+    cat2 = Axiom { name: "idright"
+                  , statement: Equation { left: fn2 "C"  (Var "f") (Node "I" Nil)
+                                        , right: Var "f"
+                                        }
+                  }
+    cat3 = Axiom { name: "assoc"
+                  , statement: Equation { right: fn2 "C"  (Var "h") (fn2 "C" (Var "g") (Var "f"))
+                                        , left: fn2 "C"  (fn2 "C" (Var "h") (Var "g")) (Var "f")
+                                        }
+                  }
+    fmap1 = Axiom { name: "fmap1"
+                  , statement: Equation { left: fn1 "F" (fn0 "I")
+                                        , right: Node "IF" Nil
+                                        }
+                  }
+    fmap2 = Axiom { name: "fmap2"
+                  , statement: Equation { left: fn2 "C" (fn1 "F" (Var "f2")) (fn1 "F" (Var "f1"))
+                                        , right: fn1 "F" (fn2 "C" (Var "f2") (Var "f1"))
+                                        }
+                  }
+    retnat = Axiom { name: "retnat"
+                  , statement: Equation { left: fn2 "C" (fn1 "F" (Var "f")) (fn0 "R")
+                                        , right: fn2 "C" (fn0 "R") (fn1 "F" (Var "f"))
+                                        }
+                  }
+    joinnat = Axiom { name: "joinnat"
+                  , statement: Equation { left: fn2 "C" (fn1 "F" (Var "f")) (fn0 "J")
+                                        , right: fn2 "C" (fn0 "J") (fn1 "F" (fn1 "F" (Var "f")))
+                                        }
+                  }
+    joinleft = Axiom { name: "joinleft"
+                  , statement: Equation { left: fn2 "C" (fn0 "J") (fn0 "R")
+                                        , right: fn0 "I"
+                                        }
+                  }
+    joinright = Axiom { name: "joinright"
+                  , statement: Equation { left: fn2 "C" (fn0 "J") (fn1 "F" (fn0 "R"))
+                                        , right: fn0 "I"
+                                        }
+                  }
+    joinassoc = Axiom { name: "joinassoc"
+                  , statement: Equation { left: fn2 "C" (fn0 "J") (fn0 "J")
+                                        , right: fn2 "C" (fn0 "J") (fn1 "F" (fn0 "J"))
+                                        }
+                  }
+    binddef = Axiom { name: "binddef"
+                  , statement: Equation { left: fn1 "B" (Var "f")
+                                        , right: fn2 "C" (fn0 "J") (fn1 "F" (Var "f"))
+                                        }
+                  }
+
+
+
+
 -- | Try to accept a new axiom
 handleSubmit :: Self Unit AppState -> Axiom -> Effect Unit
 handleSubmit self ax@(Axiom {name, statement: Equation {left, right}}) = do
@@ -205,7 +282,8 @@ renderApp = make appComponent
                                                               , leftStart = Just left
                                                               , rightStart = Just right
                                                               }))
-                              ,  runDemo: self.setState (\_ -> demoAppState)
+                              ,  runDemo1: self.setState (\_ -> demoAppState)
+                              ,  runDemo2: self.setState (\_ -> monadDemoAppState)
                               })
             ]
           ]

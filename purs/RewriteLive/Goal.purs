@@ -34,7 +34,8 @@ data GoalState =
 type GoalProps = { goalState :: GoalState
                  , handleClick :: LorR -> Int -> Expr -> Effect Unit
                  , handleSubmit :: Equation -> Effect Unit
-                 , runDemo :: Effect Unit
+                 , runDemo1 :: Effect Unit
+                 , runDemo2 :: Effect Unit
                  }
 
 -- | Internal state of the goal form
@@ -141,8 +142,9 @@ renderGoalArea =
   , render: \self ->
   renderGoalState self.props.handleClick self.props.goalState
   <> renderGoalForm self
+  <> renderDemoButtons self
   }
-
+  
 notice :: JSX
 notice =
   DOM.div { id: "notice"
@@ -217,7 +219,6 @@ renderGoalForm self =
                              , simpleDiv "control" [ equalsButton ]
                              , simpleDiv "control" [ rightInput ]
                              , simpleDiv "control" [ sbmtButton ]
-                             , simpleDiv "control" [ demoButton ]
                              ]
                            , help
                            , errors
@@ -267,11 +268,6 @@ renderGoalForm self =
                    else FO.empty
                  , children: [ DOM.text "Add goal" ]
                  }
-    demoButton =
-      DOM.button { className: "button is-danger"
-                 , children: [ DOM.text "Demo" ]
-                 , onClick: handler_ self.props.runDemo
-                 }
     helpText = "Type in two expressions to get started."
     help = para "help" helpText
     leftError =
@@ -295,3 +291,29 @@ renderGoalForm self =
              Just err -> DOM.li_ [ DOM.text err]
         ]
       ]
+
+-- | Render some buttons with hard-coded demos
+renderDemoButtons :: (Self GoalProps GoalFormState) -> JSX
+renderDemoButtons self =
+  case self.props.goalState of
+    GoalEmpty -> formLabel <>
+                 simpleDiv "buttons"
+                 [ demoButton1
+                 , demoButton2
+                 ]
+    _ -> mempty
+  where
+    formLabel =
+      DOM.label { className: "label"
+                , children: [ DOM.text "Or run a demo" ]
+                }
+    demoButton1 =
+      DOM.button { className: "button is-danger"
+                 , children: [ DOM.text "Arithmetic Demo" ]
+                 , onClick: handler_ self.props.runDemo1
+                 }
+    demoButton2 =
+      DOM.button { className: "button is-danger"
+                 , children: [ DOM.text "Monad Laws Demo" ]
+                 , onClick: handler_ self.props.runDemo2
+                 }
